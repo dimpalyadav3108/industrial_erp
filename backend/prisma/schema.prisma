@@ -1,0 +1,175 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  LOCKED
+}
+
+enum CustomerStatus {
+  PROSPECT
+  ACTIVE
+  INACTIVE
+  BLACKLISTED
+}
+
+enum LeadStatus {
+  NEW
+  QUALIFIED
+  TECHNICAL_REVIEW
+  ESTIMATION
+  QUOTATION_SENT
+  WON
+  LOST
+  ON_HOLD
+}
+
+enum LeadPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+model User {
+  id           String     @id @default(uuid())
+  employeeCode String     @unique
+  firstName    String
+  lastName     String
+  email        String     @unique
+  passwordHash String
+  status       UserStatus @default(ACTIVE)
+  lastLoginAt  DateTime?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  roles         UserRole[]
+  auditLogs     AuditLog[]
+  assignedLeads Lead[]    @relation("AssignedLeads")
+
+  @@index([email])
+  @@index([status])
+}
+
+model Role {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  description String?
+  isSystem    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       UserRole[]
+  permissions RolePermission[]
+}
+
+model Permission {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  module      String
+  description String?
+  createdAt   DateTime @default(now())
+
+  roles RolePermission[]
+
+  @@index([module])
+}
+
+model UserRole {
+  userId     String
+  roleId     String
+  assignedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+  @@index([roleId])
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  assignedAt   DateTime @default(now())
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@index([permissionId])
+}
+
+model AuditLog {
+  id        BigInt   @id @default(autoincrement())
+  userId    String?
+  action    String
+  entity    String
+  entityId  String?
+  oldValues Json?
+  newValues Json?
+  ipAddress String?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([entity, entityId])
+  @@index([createdAt])
+}
+
+model Customer {
+  id              String         @id @default(uuid())
+  customerCode    String         @unique
+  companyName     String
+  contactPerson   String?
+  email           String?
+  phone           String?
+  gstNumber       String?        @unique
+  billingAddress  String?
+  shippingAddress String?
+  city            String?
+  state           String?
+  country         String         @default("India")
+  status          CustomerStatus @default(PROSPECT)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  leads Lead[]
+
+  @@index([companyName])
+  @@index([status])
+}
+
+model Lead {
+  id                String       @id @default(uuid())
+  leadNumber        String       @unique
+  title             String
+  description       String?
+  source            String?
+  priority          LeadPriority @default(MEDIUM)
+  status            LeadStatus   @default(NEW)
+  estimatedValue    Decimal?     @db.Decimal(15, 2)
+  expectedCloseDate DateTime?
+  customerId        String?
+  assignedToId      String?
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  customer   Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  assignedTo User?     @relation("AssignedLeads", fields: [assignedToId], references: [id], onDelete: SetNull)
+
+  @@index([customerId])
+  @@index([assignedToId])
+  @@index([status])
+  @@index([priority])
+  @@index([createdAt])
+}
