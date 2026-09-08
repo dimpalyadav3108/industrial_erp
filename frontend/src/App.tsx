@@ -11,6 +11,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import EstimationPage from "./pages/EstimationPage";
 import LeadsPage from "./pages/LeadsPage";
 import { LoginPage } from "./pages/LoginPage";
+import QuotationsPage from "./pages/QuotationsPage";
 import { getStoredUser } from "./services/auth.service";
 import "./App.css";
 
@@ -43,6 +44,7 @@ function App() {
           <Route path="/customers" element={<CustomersPage />} />
           <Route path="/leads" element={<LeadsPage />} />
           <Route path="/estimation" element={<EstimationPage />} />
+          <Route path="/quotations" element={<QuotationsPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

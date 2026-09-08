@@ -406,7 +406,8 @@ export const ModelName = {
   Customer: 'Customer',
   Lead: 'Lead',
   Estimate: 'Estimate',
-  EstimateItem: 'EstimateItem'
+  EstimateItem: 'EstimateItem',
+  Quotation: 'Quotation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -422,7 +423,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "auditLog" | "customer" | "lead" | "estimate" | "estimateItem"
+    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "auditLog" | "customer" | "lead" | "estimate" | "estimateItem" | "quotation"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1166,6 +1167,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Quotation: {
+      payload: Prisma.$QuotationPayload<ExtArgs>
+      fields: Prisma.QuotationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QuotationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QuotationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        findFirst: {
+          args: Prisma.QuotationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QuotationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        findMany: {
+          args: Prisma.QuotationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+        }
+        create: {
+          args: Prisma.QuotationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        createMany: {
+          args: Prisma.QuotationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QuotationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+        }
+        delete: {
+          args: Prisma.QuotationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        update: {
+          args: Prisma.QuotationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        deleteMany: {
+          args: Prisma.QuotationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QuotationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QuotationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+        }
+        upsert: {
+          args: Prisma.QuotationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuotationPayload>
+        }
+        aggregate: {
+          args: Prisma.QuotationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQuotation>
+        }
+        groupBy: {
+          args: Prisma.QuotationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QuotationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1358,6 +1433,30 @@ export const EstimateItemScalarFieldEnum = {
 } as const
 
 export type EstimateItemScalarFieldEnum = (typeof EstimateItemScalarFieldEnum)[keyof typeof EstimateItemScalarFieldEnum]
+
+
+export const QuotationScalarFieldEnum = {
+  id: 'id',
+  quotationNumber: 'quotationNumber',
+  estimateId: 'estimateId',
+  version: 'version',
+  status: 'status',
+  issueDate: 'issueDate',
+  validUntil: 'validUntil',
+  subtotal: 'subtotal',
+  taxPercent: 'taxPercent',
+  taxAmount: 'taxAmount',
+  totalAmount: 'totalAmount',
+  paymentTerms: 'paymentTerms',
+  deliveryTerms: 'deliveryTerms',
+  termsAndConditions: 'termsAndConditions',
+  notes: 'notes',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuotationScalarFieldEnum = (typeof QuotationScalarFieldEnum)[keyof typeof QuotationScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1569,6 +1668,20 @@ export type ListEnumEstimateStatusFieldRefInput<$PrismaModel> = FieldRefInputTyp
 
 
 /**
+ * Reference to a field of type 'QuotationStatus'
+ */
+export type EnumQuotationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuotationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'QuotationStatus[]'
+ */
+export type ListEnumQuotationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuotationStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1742,6 +1855,7 @@ export type GlobalOmitConfig = {
   lead?: Prisma.LeadOmit
   estimate?: Prisma.EstimateOmit
   estimateItem?: Prisma.EstimateItemOmit
+  quotation?: Prisma.QuotationOmit
 }
 
 /* Types for Logging */

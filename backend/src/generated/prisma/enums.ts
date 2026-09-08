@@ -61,3 +61,15 @@ export const EstimateStatus = {
 } as const
 
 export type EstimateStatus = (typeof EstimateStatus)[keyof typeof EstimateStatus]
+
+
+export const QuotationStatus = {
+  DRAFT: 'DRAFT',
+  SENT: 'SENT',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+  EXPIRED: 'EXPIRED',
+  CONVERTED: 'CONVERTED'
+} as const
+
+export type QuotationStatus = (typeof QuotationStatus)[keyof typeof QuotationStatus]

@@ -7,8 +7,9 @@ import morgan from "morgan";
 import { prisma } from "./config/database.js";
 import { authRouter } from "./routes/auth.routes.js";
 import { customerRouter } from "./routes/customer.routes.js";
-import { leadRouter } from "./routes/lead.routes.js";
 import { estimateRouter } from "./routes/estimate.routes.js";
+import { leadRouter } from "./routes/lead.routes.js";
+import { quotationRouter } from "./routes/quotation.routes.js";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 5000;
@@ -30,6 +31,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/leads", leadRouter);
 app.use("/api/estimates", estimateRouter);
+app.use("/api/quotations", quotationRouter);
 
 app.get("/api/health", async (_request: Request, response: Response) => {
   try {

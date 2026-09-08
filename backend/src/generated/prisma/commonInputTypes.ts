@@ -392,6 +392,23 @@ export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
 }
 
+export type EnumQuotationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.QuotationStatus | Prisma.EnumQuotationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.QuotationStatus[] | Prisma.ListEnumQuotationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QuotationStatus[] | Prisma.ListEnumQuotationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQuotationStatusFilter<$PrismaModel> | $Enums.QuotationStatus
+}
+
+export type EnumQuotationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QuotationStatus | Prisma.EnumQuotationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.QuotationStatus[] | Prisma.ListEnumQuotationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QuotationStatus[] | Prisma.ListEnumQuotationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQuotationStatusWithAggregatesFilter<$PrismaModel> | $Enums.QuotationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQuotationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQuotationStatusFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -754,6 +771,23 @@ export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
+}
+
+export type NestedEnumQuotationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.QuotationStatus | Prisma.EnumQuotationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.QuotationStatus[] | Prisma.ListEnumQuotationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QuotationStatus[] | Prisma.ListEnumQuotationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQuotationStatusFilter<$PrismaModel> | $Enums.QuotationStatus
+}
+
+export type NestedEnumQuotationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QuotationStatus | Prisma.EnumQuotationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.QuotationStatus[] | Prisma.ListEnumQuotationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QuotationStatus[] | Prisma.ListEnumQuotationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQuotationStatusWithAggregatesFilter<$PrismaModel> | $Enums.QuotationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQuotationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQuotationStatusFilter<$PrismaModel>
 }
 
 

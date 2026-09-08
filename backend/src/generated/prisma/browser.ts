@@ -67,3 +67,8 @@ export type Estimate = Prisma.EstimateModel
  * 
  */
 export type EstimateItem = Prisma.EstimateItemModel
+/**
+ * Model Quotation
+ * 
+ */
+export type Quotation = Prisma.QuotationModel

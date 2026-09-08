@@ -355,6 +355,7 @@ export type EstimateWhereInput = {
   lead?: Prisma.XOR<Prisma.LeadScalarRelationFilter, Prisma.LeadWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.EstimateItemListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
 }
 
 export type EstimateOrderByWithRelationInput = {
@@ -379,6 +380,7 @@ export type EstimateOrderByWithRelationInput = {
   lead?: Prisma.LeadOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   items?: Prisma.EstimateItemOrderByRelationAggregateInput
+  quotations?: Prisma.QuotationOrderByRelationAggregateInput
 }
 
 export type EstimateWhereUniqueInput = Prisma.AtLeast<{
@@ -407,6 +409,7 @@ export type EstimateWhereUniqueInput = Prisma.AtLeast<{
   lead?: Prisma.XOR<Prisma.LeadScalarRelationFilter, Prisma.LeadWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.EstimateItemListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
 }, "id" | "estimateNumber" | "leadId_version">
 
 export type EstimateOrderByWithAggregationInput = {
@@ -479,6 +482,7 @@ export type EstimateCreateInput = {
   lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
   items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateInput = {
@@ -501,6 +505,7 @@ export type EstimateUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUpdateInput = {
@@ -523,6 +528,7 @@ export type EstimateUpdateInput = {
   lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEstimatesNestedInput
   items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateInput = {
@@ -545,6 +551,7 @@ export type EstimateUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateManyInput = {
@@ -833,6 +840,20 @@ export type EstimateUpdateOneRequiredWithoutItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateUpdateToOneWithWhereWithoutItemsInput, Prisma.EstimateUpdateWithoutItemsInput>, Prisma.EstimateUncheckedUpdateWithoutItemsInput>
 }
 
+export type EstimateCreateNestedOneWithoutQuotationsInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutQuotationsInput, Prisma.EstimateUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutQuotationsInput
+  connect?: Prisma.EstimateWhereUniqueInput
+}
+
+export type EstimateUpdateOneRequiredWithoutQuotationsNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutQuotationsInput, Prisma.EstimateUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutQuotationsInput
+  upsert?: Prisma.EstimateUpsertWithoutQuotationsInput
+  connect?: Prisma.EstimateWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateUpdateToOneWithWhereWithoutQuotationsInput, Prisma.EstimateUpdateWithoutQuotationsInput>, Prisma.EstimateUncheckedUpdateWithoutQuotationsInput>
+}
+
 export type EstimateCreateWithoutCreatedByInput = {
   id?: string
   estimateNumber: string
@@ -852,6 +873,7 @@ export type EstimateCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
   items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutCreatedByInput = {
@@ -873,6 +895,7 @@ export type EstimateUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutCreatedByInput = {
@@ -944,6 +967,7 @@ export type EstimateCreateWithoutLeadInput = {
   updatedAt?: Date | string
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
   items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutLeadInput = {
@@ -965,6 +989,7 @@ export type EstimateUncheckedCreateWithoutLeadInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutLeadInput = {
@@ -1012,6 +1037,7 @@ export type EstimateCreateWithoutItemsInput = {
   updatedAt?: Date | string
   lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutItemsInput = {
@@ -1033,6 +1059,7 @@ export type EstimateUncheckedCreateWithoutItemsInput = {
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutItemsInput = {
@@ -1070,6 +1097,7 @@ export type EstimateUpdateWithoutItemsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEstimatesNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutItemsInput = {
@@ -1091,6 +1119,111 @@ export type EstimateUncheckedUpdateWithoutItemsInput = {
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateCreateWithoutQuotationsInput = {
+  id?: string
+  estimateNumber: string
+  version?: number
+  status?: $Enums.EstimateStatus
+  materialCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  validUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateUncheckedCreateWithoutQuotationsInput = {
+  id?: string
+  estimateNumber: string
+  leadId: string
+  version?: number
+  status?: $Enums.EstimateStatus
+  materialCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  validUntil?: Date | string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateCreateOrConnectWithoutQuotationsInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutQuotationsInput, Prisma.EstimateUncheckedCreateWithoutQuotationsInput>
+}
+
+export type EstimateUpsertWithoutQuotationsInput = {
+  update: Prisma.XOR<Prisma.EstimateUpdateWithoutQuotationsInput, Prisma.EstimateUncheckedUpdateWithoutQuotationsInput>
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutQuotationsInput, Prisma.EstimateUncheckedCreateWithoutQuotationsInput>
+  where?: Prisma.EstimateWhereInput
+}
+
+export type EstimateUpdateToOneWithWhereWithoutQuotationsInput = {
+  where?: Prisma.EstimateWhereInput
+  data: Prisma.XOR<Prisma.EstimateUpdateWithoutQuotationsInput, Prisma.EstimateUncheckedUpdateWithoutQuotationsInput>
+}
+
+export type EstimateUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  materialCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedEstimatesNestedInput
+  items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  leadId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  materialCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateManyCreatedByInput = {
@@ -1132,6 +1265,7 @@ export type EstimateUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
   items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutCreatedByInput = {
@@ -1153,6 +1287,7 @@ export type EstimateUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1214,6 +1349,7 @@ export type EstimateUpdateWithoutLeadInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEstimatesNestedInput
   items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutLeadInput = {
@@ -1235,6 +1371,7 @@ export type EstimateUncheckedUpdateWithoutLeadInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateManyWithoutLeadInput = {
@@ -1264,10 +1401,12 @@ export type EstimateUncheckedUpdateManyWithoutLeadInput = {
 
 export type EstimateCountOutputType = {
   items: number
+  quotations: number
 }
 
 export type EstimateCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | EstimateCountOutputTypeCountItemsArgs
+  quotations?: boolean | EstimateCountOutputTypeCountQuotationsArgs
 }
 
 /**
@@ -1285,6 +1424,13 @@ export type EstimateCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
  */
 export type EstimateCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.EstimateItemWhereInput
+}
+
+/**
+ * EstimateCountOutputType without action
+ */
+export type EstimateCountOutputTypeCountQuotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuotationWhereInput
 }
 
 
@@ -1310,6 +1456,7 @@ export type EstimateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Estimate$createdByArgs<ExtArgs>
   items?: boolean | Prisma.Estimate$itemsArgs<ExtArgs>
+  quotations?: boolean | Prisma.Estimate$quotationsArgs<ExtArgs>
   _count?: boolean | Prisma.EstimateCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["estimate"]>
 
@@ -1385,6 +1532,7 @@ export type EstimateInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Estimate$createdByArgs<ExtArgs>
   items?: boolean | Prisma.Estimate$itemsArgs<ExtArgs>
+  quotations?: boolean | Prisma.Estimate$quotationsArgs<ExtArgs>
   _count?: boolean | Prisma.EstimateCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EstimateIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1402,6 +1550,7 @@ export type $EstimatePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     lead: Prisma.$LeadPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     items: Prisma.$EstimateItemPayload<ExtArgs>[]
+    quotations: Prisma.$QuotationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1819,6 +1968,7 @@ export interface Prisma__EstimateClient<T, Null = never, ExtArgs extends runtime
   lead<T extends Prisma.LeadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeadDefaultArgs<ExtArgs>>): Prisma.Prisma__LeadClient<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.Estimate$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Estimate$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quotations<T extends Prisma.Estimate$quotationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2307,6 +2457,30 @@ export type Estimate$itemsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.EstimateItemScalarFieldEnum | Prisma.EstimateItemScalarFieldEnum[]
+}
+
+/**
+ * Estimate.quotations
+ */
+export type Estimate$quotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quotation
+   */
+  select?: Prisma.QuotationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quotation
+   */
+  omit?: Prisma.QuotationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuotationInclude<ExtArgs> | null
+  where?: Prisma.QuotationWhereInput
+  orderBy?: Prisma.QuotationOrderByWithRelationInput | Prisma.QuotationOrderByWithRelationInput[]
+  cursor?: Prisma.QuotationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuotationScalarFieldEnum | Prisma.QuotationScalarFieldEnum[]
 }
 
 /**
