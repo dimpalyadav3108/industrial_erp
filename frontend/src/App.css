@@ -2158,3 +2158,7 @@
     width: 100% !important;
   }
 } 
+/* Leads summary layout correction */
+.leads-summary-grid { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 24px !important; }
+@media (max-width: 1200px) { .leads-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 700px) { .leads-summary-grid { grid-template-columns: 1fr !important; } }
