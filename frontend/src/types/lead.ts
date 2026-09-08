@@ -65,3 +65,15 @@ export interface LeadCreateResponse {
   data?: Lead;
   errors?: Record<string, string[]>;
 }
+export type UpdateLeadPayload = Partial<CreateLeadPayload>;
+
+export interface LeadResponse {
+  success: boolean;
+  message?: string;
+  data: Lead;
+}
+
+export interface LeadDeleteResponse {
+  success: boolean;
+  message: string;
+}

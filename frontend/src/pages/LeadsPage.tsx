@@ -4,12 +4,20 @@ import {
   BriefcaseBusiness,
   CalendarDays,
   CircleDollarSign,
+  Eye,
+  Pencil,
   Plus,
   Search,
   Target,
+  Trash2,
   X,
 } from "lucide-react";
-import { createLead, getLeads } from "../services/lead.service";
+import {
+  createLead,
+  deleteLead,
+  getLeads,
+  updateLead,
+} from "../services/lead.service";
 import { getCustomers } from "../services/customer.service";
 import type { Customer } from "../types/customer";
 import type {
@@ -72,13 +80,29 @@ const formatDate = (value: string | null) => {
   }).format(new Date(value));
 };
 
+const leadToForm = (lead: Lead): LeadFormState => ({
+  title: lead.title,
+  customerId: lead.customerId,
+  description: lead.description ?? "",
+  source: lead.source ?? "",
+  priority: lead.priority,
+  status: lead.status,
+  estimatedValue: lead.estimatedValue ?? "",
+  expectedCloseDate: lead.expectedCloseDate
+    ? lead.expectedCloseDate.slice(0, 10)
+    : "",
+});
+
 export default function LeadsPage() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [busyLeadId, setBusyLeadId] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [editingLead, setEditingLead] = useState<Lead | null>(null);
+  const [viewingLead, setViewingLead] = useState<Lead | null>(null);
   const [error, setError] = useState("");
   const [form, setForm] = useState<LeadFormState>(initialForm);
 
@@ -121,9 +145,7 @@ export default function LeadsPage() {
     const active = leads.filter((lead) =>
       activeStatuses.includes(lead.status)
     ).length;
-
     const won = leads.filter((lead) => lead.status === "WON").length;
-
     const pipelineValue = leads
       .filter((lead) => activeStatuses.includes(lead.status))
       .reduce(
@@ -131,22 +153,37 @@ export default function LeadsPage() {
         0
       );
 
-    return {
-      total: leads.length,
-      active,
-      won,
-      pipelineValue,
-    };
+    return { total: leads.length, active, won, pipelineValue };
   }, [leads]);
+
+  const closeFormModal = () => {
+    if (saving) return;
+    setShowModal(false);
+    setEditingLead(null);
+    setForm(initialForm);
+    setError("");
+  };
+
+  const openCreateModal = () => {
+    setEditingLead(null);
+    setForm(initialForm);
+    setError("");
+    setShowModal(true);
+  };
+
+  const openEditModal = (lead: Lead) => {
+    setEditingLead(lead);
+    setForm(leadToForm(lead));
+    setError("");
+    setShowModal(true);
+  };
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     void loadData(search);
   };
 
-  const handleCreateLead = async (
-    event: FormEvent<HTMLFormElement>
-  ) => {
+  const handleSaveLead = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!form.customerId) {
@@ -163,31 +200,79 @@ export default function LeadsPage() {
         customerId: form.customerId,
         priority: form.priority,
         status: form.status,
-        ...(form.description
-          ? { description: form.description }
-          : {}),
-        ...(form.source ? { source: form.source } : {}),
+        description: form.description,
+        source: form.source,
         ...(form.estimatedValue
           ? { estimatedValue: Number(form.estimatedValue) }
           : {}),
-        ...(form.expectedCloseDate
-          ? { expectedCloseDate: form.expectedCloseDate }
-          : {}),
+        expectedCloseDate: form.expectedCloseDate,
       };
 
-      await createLead(payload);
+      if (editingLead) {
+        await updateLead(editingLead.id, payload);
+      } else {
+        await createLead(payload);
+      }
 
-      setForm(initialForm);
       setShowModal(false);
+      setEditingLead(null);
+      setForm(initialForm);
       await loadData(search);
-    } catch (createError) {
+    } catch (saveError) {
       setError(
-        createError instanceof Error
-          ? createError.message
-          : "Unable to create lead"
+        saveError instanceof Error
+          ? saveError.message
+          : "Unable to save lead"
       );
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleStatusChange = async (lead: Lead, status: LeadStatus) => {
+    try {
+      setBusyLeadId(lead.id);
+      setError("");
+      const updatedLead = await updateLead(lead.id, { status });
+      setLeads((current) =>
+        current.map((record) =>
+          record.id === updatedLead.id ? updatedLead : record
+        )
+      );
+    } catch (statusError) {
+      setError(
+        statusError instanceof Error
+          ? statusError.message
+          : "Unable to update lead status"
+      );
+    } finally {
+      setBusyLeadId(null);
+    }
+  };
+
+  const handleDeleteLead = async (lead: Lead) => {
+    const confirmed = window.confirm(
+      `Delete enquiry "${lead.title}"? This action cannot be undone.`
+    );
+
+    if (!confirmed) return;
+
+    try {
+      setBusyLeadId(lead.id);
+      setError("");
+      await deleteLead(lead.id);
+      setLeads((current) =>
+        current.filter((record) => record.id !== lead.id)
+      );
+      if (viewingLead?.id === lead.id) setViewingLead(null);
+    } catch (deleteError) {
+      setError(
+        deleteError instanceof Error
+          ? deleteError.message
+          : "Unable to delete lead"
+      );
+    } finally {
+      setBusyLeadId(null);
     }
   };
 
@@ -203,14 +288,7 @@ export default function LeadsPage() {
           </p>
         </div>
 
-        <button
-          className="primary-action"
-          type="button"
-          onClick={() => {
-            setError("");
-            setShowModal(true);
-          }}
-        >
+        <button className="primary-action" type="button" onClick={openCreateModal}>
           <Plus size={20} />
           Add enquiry
         </button>
@@ -218,43 +296,23 @@ export default function LeadsPage() {
 
       <div className="summary-grid leads-summary-grid">
         <article className="summary-card">
-          <span className="summary-icon">
-            <BriefcaseBusiness size={25} />
-          </span>
-          <div>
-            <strong>{statistics.total}</strong>
-            <span>Total enquiries</span>
-          </div>
+          <span className="summary-icon"><BriefcaseBusiness size={25} /></span>
+          <div><strong>{statistics.total}</strong><span>Total enquiries</span></div>
         </article>
-
         <article className="summary-card">
-          <span className="summary-icon">
-            <Target size={25} />
-          </span>
-          <div>
-            <strong>{statistics.active}</strong>
-            <span>Active opportunities</span>
-          </div>
+          <span className="summary-icon"><Target size={25} /></span>
+          <div><strong>{statistics.active}</strong><span>Active opportunities</span></div>
         </article>
-
         <article className="summary-card">
-          <span className="summary-icon">
-            <CircleDollarSign size={25} />
-          </span>
+          <span className="summary-icon"><CircleDollarSign size={25} /></span>
           <div>
             <strong>{formatCurrency(String(statistics.pipelineValue))}</strong>
             <span>Pipeline value</span>
           </div>
         </article>
-
         <article className="summary-card">
-          <span className="summary-icon">
-            <CalendarDays size={25} />
-          </span>
-          <div>
-            <strong>{statistics.won}</strong>
-            <span>Orders won</span>
-          </div>
+          <span className="summary-icon"><CalendarDays size={25} /></span>
+          <div><strong>{statistics.won}</strong><span>Orders won</span></div>
         </article>
       </div>
 
@@ -264,22 +322,19 @@ export default function LeadsPage() {
             <h2>Enquiry register</h2>
             <p>{leads.length} records shown</p>
           </div>
-
           <form className="directory-search" onSubmit={handleSearch}>
             <Search size={20} />
-
             <input
               type="search"
               value={search}
               placeholder="Search lead, title or customer..."
               onChange={(event) => setSearch(event.target.value)}
             />
-
             <button type="submit">Search</button>
           </form>
         </div>
 
-        {error && <div className="page-error">{error}</div>}
+        {error && !showModal && <div className="page-error">{error}</div>}
 
         {loading ? (
           <div className="empty-state">
@@ -288,16 +343,10 @@ export default function LeadsPage() {
           </div>
         ) : leads.length === 0 ? (
           <div className="empty-state">
-            <span className="empty-state-icon">
-              <Target size={35} />
-            </span>
+            <span className="empty-state-icon"><Target size={35} /></span>
             <h3>No enquiries found</h3>
             <p>Create your first enquiry to begin building the pipeline.</p>
-            <button
-              className="primary-action"
-              type="button"
-              onClick={() => setShowModal(true)}
-            >
+            <button className="primary-action" type="button" onClick={openCreateModal}>
               <Plus size={19} />
               Add first enquiry
             </button>
@@ -313,9 +362,9 @@ export default function LeadsPage() {
                   <th>Status</th>
                   <th>Value</th>
                   <th>Expected close</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
-
               <tbody>
                 {leads.map((lead) => (
                   <tr key={lead.id}>
@@ -325,32 +374,69 @@ export default function LeadsPage() {
                         <span>{lead.leadNumber}</span>
                       </div>
                     </td>
-
                     <td>
                       <div className="lead-title-cell">
                         <strong>{lead.customer.companyName}</strong>
                         <span>{lead.customer.customerCode}</span>
                       </div>
                     </td>
-
                     <td>
-                      <span
-                        className={`priority-badge priority-${lead.priority.toLowerCase()}`}
-                      >
+                      <span className={`priority-badge priority-${lead.priority.toLowerCase()}`}>
                         {lead.priority}
                       </span>
                     </td>
-
                     <td>
-                      <span
-                        className={`status-badge status-${lead.status.toLowerCase()}`}
+                      <select
+                        className={`lead-status-select status-${lead.status.toLowerCase()}`}
+                        value={lead.status}
+                        disabled={busyLeadId === lead.id}
+                        aria-label={`Status for ${lead.title}`}
+                        onChange={(event) =>
+                          void handleStatusChange(
+                            lead,
+                            event.target.value as LeadStatus
+                          )
+                        }
                       >
-                        {statusLabels[lead.status]}
-                      </span>
+                        {Object.entries(statusLabels).map(([value, label]) => (
+                          <option key={value} value={value}>{label}</option>
+                        ))}
+                      </select>
                     </td>
-
                     <td>{formatCurrency(lead.estimatedValue)}</td>
                     <td>{formatDate(lead.expectedCloseDate)}</td>
+                    <td>
+                      <div className="lead-row-actions">
+                        <button
+                          type="button"
+                          className="row-action-button"
+                          title="View enquiry"
+                          aria-label={`View ${lead.title}`}
+                          onClick={() => setViewingLead(lead)}
+                        >
+                          <Eye size={17} />
+                        </button>
+                        <button
+                          type="button"
+                          className="row-action-button"
+                          title="Edit enquiry"
+                          aria-label={`Edit ${lead.title}`}
+                          onClick={() => openEditModal(lead)}
+                        >
+                          <Pencil size={17} />
+                        </button>
+                        <button
+                          type="button"
+                          className="row-action-button danger"
+                          title="Delete enquiry"
+                          aria-label={`Delete ${lead.title}`}
+                          disabled={busyLeadId === lead.id}
+                          onClick={() => void handleDeleteLead(lead)}
+                        >
+                          <Trash2 size={17} />
+                        </button>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -360,11 +446,7 @@ export default function LeadsPage() {
       </div>
 
       {showModal && (
-        <div
-          className="modal-backdrop"
-          role="presentation"
-          onMouseDown={() => setShowModal(false)}
-        >
+        <div className="modal-backdrop" role="presentation" onMouseDown={closeFormModal}>
           <div
             className="form-modal lead-form-modal"
             role="dialog"
@@ -374,22 +456,31 @@ export default function LeadsPage() {
           >
             <div className="modal-header">
               <div>
-                <span className="page-eyebrow">NEW OPPORTUNITY</span>
-                <h2 id="lead-modal-title">Create sales enquiry</h2>
-                <p>Add the commercial details of the new opportunity.</p>
+                <span className="page-eyebrow">
+                  {editingLead ? "EDIT OPPORTUNITY" : "NEW OPPORTUNITY"}
+                </span>
+                <h2 id="lead-modal-title">
+                  {editingLead ? "Edit sales enquiry" : "Create sales enquiry"}
+                </h2>
+                <p>
+                  {editingLead
+                    ? `Update ${editingLead.leadNumber}`
+                    : "Add the commercial details of the new opportunity."}
+                </p>
               </div>
-
               <button
                 className="icon-button"
                 type="button"
                 aria-label="Close"
-                onClick={() => setShowModal(false)}
+                disabled={saving}
+                onClick={closeFormModal}
               >
                 <X size={21} />
               </button>
             </div>
 
-            <form onSubmit={handleCreateLead}>
+            <form onSubmit={handleSaveLead}>
+              {error && <div className="page-error modal-form-error">{error}</div>}
               <div className="form-grid">
                 <label className="full-field">
                   Enquiry title
@@ -399,35 +490,25 @@ export default function LeadsPage() {
                     value={form.title}
                     placeholder="Example: Boiler automation upgrade"
                     onChange={(event) =>
-                      setForm((current) => ({
-                        ...current,
-                        title: event.target.value,
-                      }))
+                      setForm((current) => ({ ...current, title: event.target.value }))
                     }
                   />
                 </label>
-
                 <label className="full-field">
                   Customer
                   <select
                     required
                     value={form.customerId}
                     onChange={(event) =>
-                      setForm((current) => ({
-                        ...current,
-                        customerId: event.target.value,
-                      }))
+                      setForm((current) => ({ ...current, customerId: event.target.value }))
                     }
                   >
                     <option value="">Select customer</option>
                     {customers.map((customer) => (
-                      <option key={customer.id} value={customer.id}>
-                        {customer.companyName}
-                      </option>
+                      <option key={customer.id} value={customer.id}>{customer.companyName}</option>
                     ))}
                   </select>
                 </label>
-
                 <label>
                   Priority
                   <select
@@ -445,7 +526,6 @@ export default function LeadsPage() {
                     <option value="URGENT">Urgent</option>
                   </select>
                 </label>
-
                 <label>
                   Status
                   <select
@@ -458,13 +538,10 @@ export default function LeadsPage() {
                     }
                   >
                     {Object.entries(statusLabels).map(([value, label]) => (
-                      <option key={value} value={value}>
-                        {label}
-                      </option>
+                      <option key={value} value={value}>{label}</option>
                     ))}
                   </select>
                 </label>
-
                 <label>
                   Estimated value
                   <input
@@ -473,42 +550,30 @@ export default function LeadsPage() {
                     value={form.estimatedValue}
                     placeholder="₹ 0"
                     onChange={(event) =>
-                      setForm((current) => ({
-                        ...current,
-                        estimatedValue: event.target.value,
-                      }))
+                      setForm((current) => ({ ...current, estimatedValue: event.target.value }))
                     }
                   />
                 </label>
-
                 <label>
                   Expected close date
                   <input
                     type="date"
                     value={form.expectedCloseDate}
                     onChange={(event) =>
-                      setForm((current) => ({
-                        ...current,
-                        expectedCloseDate: event.target.value,
-                      }))
+                      setForm((current) => ({ ...current, expectedCloseDate: event.target.value }))
                     }
                   />
                 </label>
-
                 <label className="full-field">
                   Lead source
                   <input
                     value={form.source}
                     placeholder="Website, referral, exhibition..."
                     onChange={(event) =>
-                      setForm((current) => ({
-                        ...current,
-                        source: event.target.value,
-                      }))
+                      setForm((current) => ({ ...current, source: event.target.value }))
                     }
                   />
                 </label>
-
                 <label className="full-field">
                   Description
                   <textarea
@@ -516,33 +581,80 @@ export default function LeadsPage() {
                     value={form.description}
                     placeholder="Add project requirements and initial notes..."
                     onChange={(event) =>
-                      setForm((current) => ({
-                        ...current,
-                        description: event.target.value,
-                      }))
+                      setForm((current) => ({ ...current, description: event.target.value }))
                     }
                   />
                 </label>
               </div>
-
               <div className="modal-actions">
-                <button
-                  className="secondary-action"
-                  type="button"
-                  onClick={() => setShowModal(false)}
-                >
+                <button className="secondary-action" type="button" disabled={saving} onClick={closeFormModal}>
                   Cancel
                 </button>
-
-                <button
-                  className="primary-action"
-                  type="submit"
-                  disabled={saving}
-                >
-                  {saving ? "Creating..." : "Create enquiry"}
+                <button className="primary-action" type="submit" disabled={saving}>
+                  {saving
+                    ? "Saving..."
+                    : editingLead
+                      ? "Save changes"
+                      : "Create enquiry"}
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {viewingLead && (
+        <div className="modal-backdrop" role="presentation" onMouseDown={() => setViewingLead(null)}>
+          <div
+            className="lead-detail-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="lead-detail-title"
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div className="modal-header">
+              <div>
+                <span className="page-eyebrow">ENQUIRY DETAILS</span>
+                <h2 id="lead-detail-title">{viewingLead.title}</h2>
+                <p>{viewingLead.leadNumber}</p>
+              </div>
+              <button className="icon-button" type="button" aria-label="Close" onClick={() => setViewingLead(null)}>
+                <X size={21} />
+              </button>
+            </div>
+            <div className="lead-detail-grid">
+              <div><span>Customer</span><strong>{viewingLead.customer.companyName}</strong></div>
+              <div><span>Status</span><strong>{statusLabels[viewingLead.status]}</strong></div>
+              <div><span>Priority</span><strong>{viewingLead.priority}</strong></div>
+              <div><span>Estimated value</span><strong>{formatCurrency(viewingLead.estimatedValue)}</strong></div>
+              <div><span>Expected close</span><strong>{formatDate(viewingLead.expectedCloseDate)}</strong></div>
+              <div><span>Lead source</span><strong>{viewingLead.source || "Not specified"}</strong></div>
+              <div className="full-field">
+                <span>Description</span>
+                <strong>{viewingLead.description || "No description provided"}</strong>
+              </div>
+            </div>
+            <div className="modal-actions lead-detail-actions">
+              <button
+                className="secondary-action"
+                type="button"
+                onClick={() => setViewingLead(null)}
+              >
+                Close
+              </button>
+              <button
+                className="primary-action"
+                type="button"
+                onClick={() => {
+                  const lead = viewingLead;
+                  setViewingLead(null);
+                  openEditModal(lead);
+                }}
+              >
+                <Pencil size={17} />
+                Edit enquiry
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -70,3 +70,10 @@ export const createLeadSchema = z.object({
 });
 
 export type CreateLeadInput = z.infer<typeof createLeadSchema>;
+export const updateLeadSchema = createLeadSchema
+  .partial()
+  .refine((data) => Object.keys(data).length > 0, {
+    message: "At least one field must be provided",
+  });
+
+export type UpdateLeadInput = z.infer<typeof updateLeadSchema>;
