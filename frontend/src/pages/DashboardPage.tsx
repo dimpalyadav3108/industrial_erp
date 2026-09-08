@@ -1,51 +1,165 @@
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   BarChart3,
   Calculator,
-  ClipboardCheck,
-  Truck,
+  FileText,
+  Send,
+  Target,
+  Trophy,
+  Users,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { getStoredUser } from "../services/auth.service";
+import { getCustomers } from "../services/customer.service";
+import { getEstimates } from "../services/estimate.service";
+import { getLeads } from "../services/lead.service";
+import { getQuotations } from "../services/quotation.service";
+import type { Customer } from "../types/customer";
+import type { Estimate } from "../types/estimate";
+import type { Lead } from "../types/lead";
+import type { Quotation } from "../types/quotation";
+
+const money = (value: number) =>
+  new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(value);
 
 export function DashboardPage() {
+  const navigate = useNavigate();
   const user = getStoredUser();
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [leads, setLeads] = useState<Lead[]>([]);
+  const [estimates, setEstimates] = useState<Estimate[]>([]);
+  const [quotations, setQuotations] = useState<Quotation[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  const loadDashboard = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError("");
+      const [customerRecords, leadRecords, estimateRecords, quotationRecords] =
+        await Promise.all([
+          getCustomers(),
+          getLeads(),
+          getEstimates(),
+          getQuotations(),
+        ]);
+
+      setCustomers(customerRecords.data);
+      setLeads(leadRecords);
+      setEstimates(estimateRecords);
+      setQuotations(quotationRecords);
+    } catch (loadError) {
+      setError(
+        loadError instanceof Error
+          ? loadError.message
+          : "Unable to load dashboard information"
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    void loadDashboard();
+  }, [loadDashboard]);
+
+  const metrics = useMemo(() => {
+    const activeLeads = leads.filter(
+      (lead) => !["WON", "LOST"].includes(lead.status)
+    ).length;
+    const openQuotations = quotations.filter((quotation) =>
+      ["DRAFT", "SENT"].includes(quotation.status)
+    ).length;
+    const wonLeads = leads.filter((lead) => lead.status === "WON").length;
+    const quotedValue = quotations.reduce(
+      (total, quotation) => total + Number(quotation.totalAmount),
+      0
+    );
+
+    return {
+      activeLeads,
+      openQuotations,
+      wonLeads,
+      quotedValue,
+      activeCustomers: customers.filter(
+        (customer) => customer.status === "ACTIVE"
+      ).length,
+      pendingEstimates: estimates.filter(
+        (estimate) => estimate.status === "IN_REVIEW"
+      ).length,
+      draftQuotations: quotations.filter(
+        (quotation) => quotation.status === "DRAFT"
+      ).length,
+      sentQuotations: quotations.filter(
+        (quotation) => quotation.status === "SENT"
+      ).length,
+      acceptedQuotations: quotations.filter((quotation) =>
+        ["ACCEPTED", "CONVERTED"].includes(quotation.status)
+      ).length,
+    };
+  }, [customers, estimates, leads, quotations]);
+
+  const pipeline = useMemo(
+    () => [
+      { label: "New", value: leads.filter((lead) => lead.status === "NEW").length },
+      { label: "Qualified", value: leads.filter((lead) => lead.status === "QUALIFIED").length },
+      { label: "Estimation", value: leads.filter((lead) => ["TECHNICAL_REVIEW", "ESTIMATION"].includes(lead.status)).length },
+      { label: "Quoted", value: leads.filter((lead) => lead.status === "QUOTATION_SENT").length },
+      { label: "Won", value: leads.filter((lead) => lead.status === "WON").length },
+      { label: "Lost", value: leads.filter((lead) => lead.status === "LOST").length },
+    ],
+    [leads]
+  );
+
+  const maxPipeline = Math.max(1, ...pipeline.map((item) => item.value));
 
   return (
-    <section className="dashboard-content">
+    <section className="dashboard-content live-dashboard">
       <div className="page-heading">
         <div>
-          <span className="eyebrow">Operations overview</span>
+          <span className="eyebrow">Live operations overview</span>
           <h1>Good day, {user?.firstName || "Administrator"}</h1>
-          <p>
-            Here is the current position of your manufacturing operations.
-          </p>
+          <p>Here is the current position of your commercial operations.</p>
         </div>
 
-        <button className="primary-action">Create new enquiry</button>
+        <button
+          className="primary-action"
+          type="button"
+          onClick={() => navigate("/leads")}
+        >
+          Create new enquiry
+        </button>
       </div>
+
+      {error && <div className="page-error dashboard-error">{error}</div>}
 
       <div className="metric-grid">
         <article className="metric-card">
           <span>Active enquiries</span>
-          <strong>24</strong>
-          <small>6 require estimation</small>
+          <strong>{loading ? "—" : metrics.activeLeads}</strong>
+          <small>{metrics.pendingEstimates} estimates awaiting review</small>
         </article>
 
         <article className="metric-card">
           <span>Open quotations</span>
-          <strong>18</strong>
-          <small>₹4.8 Cr pipeline value</small>
+          <strong>{loading ? "—" : metrics.openQuotations}</strong>
+          <small>{money(metrics.quotedValue)} total quoted value</small>
         </article>
 
         <article className="metric-card">
-          <span>Projects in execution</span>
-          <strong>12</strong>
-          <small>9 currently on schedule</small>
+          <span>Total customers</span>
+          <strong>{loading ? "—" : customers.length}</strong>
+          <small>{metrics.activeCustomers} active accounts</small>
         </article>
 
         <article className="metric-card">
-          <span>Production jobs</span>
-          <strong>31</strong>
-          <small>7 awaiting inspection</small>
+          <span>Opportunities won</span>
+          <strong>{loading ? "—" : metrics.wonLeads}</strong>
+          <small>{metrics.acceptedQuotations} accepted quotations</small>
         </article>
       </div>
 
@@ -53,21 +167,26 @@ export function DashboardPage() {
         <article className="content-card overview-card">
           <div className="card-heading">
             <div>
-              <span>Monthly performance</span>
-              <h2>Order and production overview</h2>
+              <span>Current pipeline</span>
+              <h2>Enquiries by commercial stage</h2>
             </div>
             <BarChart3 size={22} />
           </div>
 
-          <div className="chart-placeholder">
-            {[42, 58, 48, 72, 65, 86, 76, 92].map(
-              (height, index) => (
-                <span
-                  key={index}
-                  style={{ height: `${height}%` }}
-                />
-              )
-            )}
+          <div className="live-pipeline-chart">
+            {pipeline.map((item) => (
+              <div className="pipeline-column" key={item.label}>
+                <strong>{item.value}</strong>
+                <div>
+                  <span
+                    style={{
+                      height: `${Math.max(8, (item.value / maxPipeline) * 100)}%`,
+                    }}
+                  />
+                </div>
+                <small>{item.label}</small>
+              </div>
+            ))}
           </div>
         </article>
 
@@ -75,37 +194,45 @@ export function DashboardPage() {
           <div className="card-heading">
             <div>
               <span>Attention required</span>
-              <h2>Priority actions</h2>
+              <h2>Commercial actions</h2>
             </div>
           </div>
 
           <ul className="action-list">
             <li>
-              <ClipboardCheck size={18} />
-              <div>
-                <strong>3 inspections pending</strong>
-                <span>Quality department</span>
-              </div>
-            </li>
-
-            <li>
-              <Truck size={18} />
-              <div>
-                <strong>2 dispatches due today</strong>
-                <span>Logistics department</span>
-              </div>
-            </li>
-
-            <li>
               <Calculator size={18} />
               <div>
-                <strong>6 estimates awaiting review</strong>
+                <strong>{metrics.pendingEstimates} estimates awaiting review</strong>
+                <span>Estimation department</span>
+              </div>
+            </li>
+
+            <li>
+              <FileText size={18} />
+              <div>
+                <strong>{metrics.draftQuotations} quotations in draft</strong>
                 <span>Commercial department</span>
+              </div>
+            </li>
+
+            <li>
+              <Send size={18} />
+              <div>
+                <strong>{metrics.sentQuotations} quotations awaiting response</strong>
+                <span>Sales follow-up</span>
               </div>
             </li>
           </ul>
         </article>
       </div>
+
+      <div className="dashboard-quick-links">
+        <button type="button" onClick={() => navigate("/customers")}><Users size={18} /> Customers</button>
+        <button type="button" onClick={() => navigate("/leads")}><Target size={18} /> Leads</button>
+        <button type="button" onClick={() => navigate("/estimation")}><Calculator size={18} /> Estimates</button>
+        <button type="button" onClick={() => navigate("/quotations")}><Trophy size={18} /> Quotations</button>
+      </div>
     </section>
   );
 }
+
