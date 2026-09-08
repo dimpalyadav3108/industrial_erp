@@ -11,6 +11,7 @@ import { estimateRouter } from "./routes/estimate.routes.js";
 import { inventoryRouter } from "./routes/inventory.routes.js";
 import { leadRouter } from "./routes/lead.routes.js";
 import { productionRouter } from "./routes/production.routes.js";
+import { qualityRouter } from "./routes/quality.routes.js";
 import { quotationRouter } from "./routes/quotation.routes.js";
 
 const app = express();
@@ -35,6 +36,7 @@ app.use("/api/leads", leadRouter);
 app.use("/api/estimates", estimateRouter);
 app.use("/api/inventory", inventoryRouter);
 app.use("/api/production", productionRouter);
+app.use("/api/quality", qualityRouter);
 app.use("/api/quotations", quotationRouter);
 
 app.get("/api/health", async (_request: Request, response: Response) => {

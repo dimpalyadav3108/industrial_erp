@@ -1,3 +1,4 @@
+// Includes the Quality Inspection module
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -87,6 +88,26 @@ enum ProductionOperationStatus {
   SKIPPED
 }
 
+enum QualityInspectionType {
+  IN_PROCESS
+  FINAL
+}
+
+enum QualityInspectionStatus {
+  PENDING
+  IN_PROGRESS
+  PASSED
+  FAILED
+  ON_HOLD
+}
+
+enum QualityCheckResult {
+  PENDING
+  PASS
+  FAIL
+  NOT_APPLICABLE
+}
+
 model User {
   id           String     @id @default(uuid())
   employeeCode String     @unique
@@ -101,12 +122,14 @@ model User {
 
   roles                    UserRole[]
   auditLogs                AuditLog[]
-  assignedLeads            Lead[]            @relation("AssignedLeads")
-  createdEstimates         Estimate[]        @relation("CreatedEstimates")
-  createdQuotations        Quotation[]       @relation("CreatedQuotations")
-  stockMovements           StockMovement[]   @relation("CreatedStockMovements")
-  assignedProductionOrders ProductionOrder[] @relation("AssignedProductionOrders")
-  createdProductionOrders  ProductionOrder[] @relation("CreatedProductionOrders")
+  assignedLeads            Lead[]              @relation("AssignedLeads")
+  createdEstimates         Estimate[]          @relation("CreatedEstimates")
+  createdQuotations        Quotation[]         @relation("CreatedQuotations")
+  stockMovements           StockMovement[]     @relation("CreatedStockMovements")
+  assignedProductionOrders ProductionOrder[]   @relation("AssignedProductionOrders")
+  createdProductionOrders  ProductionOrder[]   @relation("CreatedProductionOrders")
+  assignedInspections      QualityInspection[] @relation("AssignedQualityInspections")
+  createdInspections       QualityInspection[] @relation("CreatedQualityInspections")
 
   @@index([email])
   @@index([status])
@@ -377,10 +400,11 @@ model ProductionOrder {
   createdAt        DateTime              @default(now())
   updatedAt        DateTime              @updatedAt
 
-  quotation  Quotation             @relation(fields: [quotationId], references: [id], onDelete: Restrict)
-  assignedTo User?                 @relation("AssignedProductionOrders", fields: [assignedToId], references: [id], onDelete: SetNull)
-  createdBy  User?                 @relation("CreatedProductionOrders", fields: [createdById], references: [id], onDelete: SetNull)
-  operations ProductionOperation[]
+  quotation   Quotation             @relation(fields: [quotationId], references: [id], onDelete: Restrict)
+  assignedTo  User?                 @relation("AssignedProductionOrders", fields: [assignedToId], references: [id], onDelete: SetNull)
+  createdBy   User?                 @relation("CreatedProductionOrders", fields: [createdById], references: [id], onDelete: SetNull)
+  operations  ProductionOperation[]
+  inspections QualityInspection[]
 
   @@index([quotationId])
   @@index([status])
@@ -412,4 +436,52 @@ model ProductionOperation {
   @@index([productionOrderId])
   @@index([status])
   @@index([workCenter])
+}
+
+model QualityInspection {
+  id                String                  @id @default(uuid())
+  inspectionNumber  String                  @unique
+  productionOrderId String
+  inspectionType    QualityInspectionType
+  status            QualityInspectionStatus @default(PENDING)
+  scheduledDate     DateTime?
+  inspectionDate    DateTime?
+  inspectorId       String?
+  createdById       String?
+  remarks           String?
+  failureReason     String?
+  createdAt         DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
+
+  productionOrder ProductionOrder    @relation(fields: [productionOrderId], references: [id], onDelete: Restrict)
+  inspector       User?              @relation("AssignedQualityInspections", fields: [inspectorId], references: [id], onDelete: SetNull)
+  createdBy       User?              @relation("CreatedQualityInspections", fields: [createdById], references: [id], onDelete: SetNull)
+  checks          QualityCheckItem[]
+
+  @@unique([productionOrderId, inspectionType])
+  @@index([productionOrderId])
+  @@index([inspectionType])
+  @@index([status])
+  @@index([inspectorId])
+  @@index([scheduledDate])
+  @@index([createdAt])
+}
+
+model QualityCheckItem {
+  id                  String             @id @default(uuid())
+  qualityInspectionId String
+  sequence            Int
+  parameter           String
+  specification       String?
+  observedValue       String?
+  result              QualityCheckResult @default(PENDING)
+  remarks             String?
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  qualityInspection QualityInspection @relation(fields: [qualityInspectionId], references: [id], onDelete: Cascade)
+
+  @@unique([qualityInspectionId, sequence])
+  @@index([qualityInspectionId])
+  @@index([result])
 }

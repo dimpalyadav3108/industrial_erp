@@ -92,3 +92,13 @@ export type ProductionOrder = Prisma.ProductionOrderModel
  * 
  */
 export type ProductionOperation = Prisma.ProductionOperationModel
+/**
+ * Model QualityInspection
+ * 
+ */
+export type QualityInspection = Prisma.QualityInspectionModel
+/**
+ * Model QualityCheckItem
+ * 
+ */
+export type QualityCheckItem = Prisma.QualityCheckItemModel

@@ -65,7 +65,9 @@ export const ModelName = {
   InventoryItem: 'InventoryItem',
   StockMovement: 'StockMovement',
   ProductionOrder: 'ProductionOrder',
-  ProductionOperation: 'ProductionOperation'
+  ProductionOperation: 'ProductionOperation',
+  QualityInspection: 'QualityInspection',
+  QualityCheckItem: 'QualityCheckItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -341,6 +343,41 @@ export const ProductionOperationScalarFieldEnum = {
 } as const
 
 export type ProductionOperationScalarFieldEnum = (typeof ProductionOperationScalarFieldEnum)[keyof typeof ProductionOperationScalarFieldEnum]
+
+
+export const QualityInspectionScalarFieldEnum = {
+  id: 'id',
+  inspectionNumber: 'inspectionNumber',
+  productionOrderId: 'productionOrderId',
+  inspectionType: 'inspectionType',
+  status: 'status',
+  scheduledDate: 'scheduledDate',
+  inspectionDate: 'inspectionDate',
+  inspectorId: 'inspectorId',
+  createdById: 'createdById',
+  remarks: 'remarks',
+  failureReason: 'failureReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QualityInspectionScalarFieldEnum = (typeof QualityInspectionScalarFieldEnum)[keyof typeof QualityInspectionScalarFieldEnum]
+
+
+export const QualityCheckItemScalarFieldEnum = {
+  id: 'id',
+  qualityInspectionId: 'qualityInspectionId',
+  sequence: 'sequence',
+  parameter: 'parameter',
+  specification: 'specification',
+  observedValue: 'observedValue',
+  result: 'result',
+  remarks: 'remarks',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QualityCheckItemScalarFieldEnum = (typeof QualityCheckItemScalarFieldEnum)[keyof typeof QualityCheckItemScalarFieldEnum]
 
 
 export const SortOrder = {

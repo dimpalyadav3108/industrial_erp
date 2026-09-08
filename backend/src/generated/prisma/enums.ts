@@ -117,3 +117,32 @@ export const ProductionOperationStatus = {
 } as const
 
 export type ProductionOperationStatus = (typeof ProductionOperationStatus)[keyof typeof ProductionOperationStatus]
+
+
+export const QualityInspectionType = {
+  IN_PROCESS: 'IN_PROCESS',
+  FINAL: 'FINAL'
+} as const
+
+export type QualityInspectionType = (typeof QualityInspectionType)[keyof typeof QualityInspectionType]
+
+
+export const QualityInspectionStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  PASSED: 'PASSED',
+  FAILED: 'FAILED',
+  ON_HOLD: 'ON_HOLD'
+} as const
+
+export type QualityInspectionStatus = (typeof QualityInspectionStatus)[keyof typeof QualityInspectionStatus]
+
+
+export const QualityCheckResult = {
+  PENDING: 'PENDING',
+  PASS: 'PASS',
+  FAIL: 'FAIL',
+  NOT_APPLICABLE: 'NOT_APPLICABLE'
+} as const
+
+export type QualityCheckResult = (typeof QualityCheckResult)[keyof typeof QualityCheckResult]
