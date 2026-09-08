@@ -58,7 +58,9 @@ export const ModelName = {
   RolePermission: 'RolePermission',
   AuditLog: 'AuditLog',
   Customer: 'Customer',
-  Lead: 'Lead'
+  Lead: 'Lead',
+  Estimate: 'Estimate',
+  EstimateItem: 'EstimateItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -189,6 +191,47 @@ export const LeadScalarFieldEnum = {
 } as const
 
 export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const EstimateScalarFieldEnum = {
+  id: 'id',
+  estimateNumber: 'estimateNumber',
+  leadId: 'leadId',
+  version: 'version',
+  status: 'status',
+  materialCost: 'materialCost',
+  labourCost: 'labourCost',
+  overheadCost: 'overheadCost',
+  marginPercent: 'marginPercent',
+  subtotal: 'subtotal',
+  taxPercent: 'taxPercent',
+  taxAmount: 'taxAmount',
+  totalAmount: 'totalAmount',
+  notes: 'notes',
+  validUntil: 'validUntil',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EstimateScalarFieldEnum = (typeof EstimateScalarFieldEnum)[keyof typeof EstimateScalarFieldEnum]
+
+
+export const EstimateItemScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  itemType: 'itemType',
+  description: 'description',
+  quantity: 'quantity',
+  unit: 'unit',
+  unitRate: 'unitRate',
+  amount: 'amount',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EstimateItemScalarFieldEnum = (typeof EstimateItemScalarFieldEnum)[keyof typeof EstimateItemScalarFieldEnum]
 
 
 export const SortOrder = {

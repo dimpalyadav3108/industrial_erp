@@ -38,6 +38,14 @@ enum LeadPriority {
   URGENT
 }
 
+enum EstimateStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  REJECTED
+  CONVERTED
+}
+
 model User {
   id           String     @id @default(uuid())
   employeeCode String     @unique
@@ -50,9 +58,10 @@ model User {
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 
-  roles         UserRole[]
-  auditLogs     AuditLog[]
-  assignedLeads Lead[]    @relation("AssignedLeads")
+  roles            UserRole[]
+  auditLogs        AuditLog[]
+  assignedLeads    Lead[]     @relation("AssignedLeads")
+  createdEstimates Estimate[] @relation("CreatedEstimates")
 
   @@index([email])
   @@index([status])
@@ -164,12 +173,63 @@ model Lead {
   createdAt         DateTime     @default(now())
   updatedAt         DateTime     @updatedAt
 
-  customer   Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
-  assignedTo User?     @relation("AssignedLeads", fields: [assignedToId], references: [id], onDelete: SetNull)
+  customer   Customer?  @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  assignedTo User?      @relation("AssignedLeads", fields: [assignedToId], references: [id], onDelete: SetNull)
+  estimates  Estimate[]
 
   @@index([customerId])
   @@index([assignedToId])
   @@index([status])
   @@index([priority])
   @@index([createdAt])
+}
+
+model Estimate {
+  id             String         @id @default(uuid())
+  estimateNumber String         @unique
+  leadId         String
+  version        Int            @default(1)
+  status         EstimateStatus @default(DRAFT)
+  materialCost   Decimal        @default(0) @db.Decimal(15, 2)
+  labourCost     Decimal        @default(0) @db.Decimal(15, 2)
+  overheadCost   Decimal        @default(0) @db.Decimal(15, 2)
+  marginPercent  Decimal        @default(0) @db.Decimal(5, 2)
+  subtotal       Decimal        @default(0) @db.Decimal(15, 2)
+  taxPercent     Decimal        @default(18) @db.Decimal(5, 2)
+  taxAmount      Decimal        @default(0) @db.Decimal(15, 2)
+  totalAmount    Decimal        @default(0) @db.Decimal(15, 2)
+  notes          String?
+  validUntil     DateTime?
+  createdById    String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  lead      Lead           @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  createdBy User?          @relation("CreatedEstimates", fields: [createdById], references: [id], onDelete: SetNull)
+  items     EstimateItem[]
+
+  @@unique([leadId, version])
+  @@index([leadId])
+  @@index([status])
+  @@index([createdById])
+  @@index([createdAt])
+}
+
+model EstimateItem {
+  id          String   @id @default(uuid())
+  estimateId  String
+  itemType    String
+  description String
+  quantity    Decimal  @default(1) @db.Decimal(12, 3)
+  unit        String
+  unitRate    Decimal  @default(0) @db.Decimal(15, 2)
+  amount      Decimal  @default(0) @db.Decimal(15, 2)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  estimate Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+
+  @@index([estimateId])
+  @@index([itemType])
 }

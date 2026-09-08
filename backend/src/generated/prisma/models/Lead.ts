@@ -282,6 +282,7 @@ export type LeadWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   assignedTo?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  estimates?: Prisma.EstimateListRelationFilter
 }
 
 export type LeadOrderByWithRelationInput = {
@@ -300,6 +301,7 @@ export type LeadOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   customer?: Prisma.CustomerOrderByWithRelationInput
   assignedTo?: Prisma.UserOrderByWithRelationInput
+  estimates?: Prisma.EstimateOrderByRelationAggregateInput
 }
 
 export type LeadWhereUniqueInput = Prisma.AtLeast<{
@@ -321,6 +323,7 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   assignedTo?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  estimates?: Prisma.EstimateListRelationFilter
 }, "id" | "leadNumber">
 
 export type LeadOrderByWithAggregationInput = {
@@ -377,6 +380,7 @@ export type LeadCreateInput = {
   updatedAt?: Date | string
   customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
 }
 
 export type LeadUncheckedCreateInput = {
@@ -393,6 +397,7 @@ export type LeadUncheckedCreateInput = {
   assignedToId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
 }
 
 export type LeadUpdateInput = {
@@ -409,6 +414,7 @@ export type LeadUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateInput = {
@@ -425,6 +431,7 @@ export type LeadUncheckedUpdateInput = {
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadCreateManyInput = {
@@ -539,6 +546,11 @@ export type LeadSumOrderByAggregateInput = {
   estimatedValue?: Prisma.SortOrder
 }
 
+export type LeadScalarRelationFilter = {
+  is?: Prisma.LeadWhereInput
+  isNot?: Prisma.LeadWhereInput
+}
+
 export type LeadCreateNestedManyWithoutAssignedToInput = {
   create?: Prisma.XOR<Prisma.LeadCreateWithoutAssignedToInput, Prisma.LeadUncheckedCreateWithoutAssignedToInput> | Prisma.LeadCreateWithoutAssignedToInput[] | Prisma.LeadUncheckedCreateWithoutAssignedToInput[]
   connectOrCreate?: Prisma.LeadCreateOrConnectWithoutAssignedToInput | Prisma.LeadCreateOrConnectWithoutAssignedToInput[]
@@ -639,6 +651,20 @@ export type NullableDecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type LeadCreateNestedOneWithoutEstimatesInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutEstimatesInput, Prisma.LeadUncheckedCreateWithoutEstimatesInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutEstimatesInput
+  connect?: Prisma.LeadWhereUniqueInput
+}
+
+export type LeadUpdateOneRequiredWithoutEstimatesNestedInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutEstimatesInput, Prisma.LeadUncheckedCreateWithoutEstimatesInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutEstimatesInput
+  upsert?: Prisma.LeadUpsertWithoutEstimatesInput
+  connect?: Prisma.LeadWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeadUpdateToOneWithWhereWithoutEstimatesInput, Prisma.LeadUpdateWithoutEstimatesInput>, Prisma.LeadUncheckedUpdateWithoutEstimatesInput>
+}
+
 export type LeadCreateWithoutAssignedToInput = {
   id?: string
   leadNumber: string
@@ -652,6 +678,7 @@ export type LeadCreateWithoutAssignedToInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
 }
 
 export type LeadUncheckedCreateWithoutAssignedToInput = {
@@ -667,6 +694,7 @@ export type LeadUncheckedCreateWithoutAssignedToInput = {
   customerId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
 }
 
 export type LeadCreateOrConnectWithoutAssignedToInput = {
@@ -727,6 +755,7 @@ export type LeadCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
 }
 
 export type LeadUncheckedCreateWithoutCustomerInput = {
@@ -742,6 +771,7 @@ export type LeadUncheckedCreateWithoutCustomerInput = {
   assignedToId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
 }
 
 export type LeadCreateOrConnectWithoutCustomerInput = {
@@ -768,6 +798,86 @@ export type LeadUpdateWithWhereUniqueWithoutCustomerInput = {
 export type LeadUpdateManyWithWhereWithoutCustomerInput = {
   where: Prisma.LeadScalarWhereInput
   data: Prisma.XOR<Prisma.LeadUpdateManyMutationInput, Prisma.LeadUncheckedUpdateManyWithoutCustomerInput>
+}
+
+export type LeadCreateWithoutEstimatesInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
+}
+
+export type LeadUncheckedCreateWithoutEstimatesInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  customerId?: string | null
+  assignedToId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type LeadCreateOrConnectWithoutEstimatesInput = {
+  where: Prisma.LeadWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeadCreateWithoutEstimatesInput, Prisma.LeadUncheckedCreateWithoutEstimatesInput>
+}
+
+export type LeadUpsertWithoutEstimatesInput = {
+  update: Prisma.XOR<Prisma.LeadUpdateWithoutEstimatesInput, Prisma.LeadUncheckedUpdateWithoutEstimatesInput>
+  create: Prisma.XOR<Prisma.LeadCreateWithoutEstimatesInput, Prisma.LeadUncheckedCreateWithoutEstimatesInput>
+  where?: Prisma.LeadWhereInput
+}
+
+export type LeadUpdateToOneWithWhereWithoutEstimatesInput = {
+  where?: Prisma.LeadWhereInput
+  data: Prisma.XOR<Prisma.LeadUpdateWithoutEstimatesInput, Prisma.LeadUncheckedUpdateWithoutEstimatesInput>
+}
+
+export type LeadUpdateWithoutEstimatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
+}
+
+export type LeadUncheckedUpdateWithoutEstimatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LeadCreateManyAssignedToInput = {
@@ -798,6 +908,7 @@ export type LeadUpdateWithoutAssignedToInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateWithoutAssignedToInput = {
@@ -813,6 +924,7 @@ export type LeadUncheckedUpdateWithoutAssignedToInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateManyWithoutAssignedToInput = {
@@ -858,6 +970,7 @@ export type LeadUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateWithoutCustomerInput = {
@@ -873,6 +986,7 @@ export type LeadUncheckedUpdateWithoutCustomerInput = {
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateManyWithoutCustomerInput = {
@@ -891,6 +1005,35 @@ export type LeadUncheckedUpdateManyWithoutCustomerInput = {
 }
 
 
+/**
+ * Count Type LeadCountOutputType
+ */
+
+export type LeadCountOutputType = {
+  estimates: number
+}
+
+export type LeadCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  estimates?: boolean | LeadCountOutputTypeCountEstimatesArgs
+}
+
+/**
+ * LeadCountOutputType without action
+ */
+export type LeadCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeadCountOutputType
+   */
+  select?: Prisma.LeadCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * LeadCountOutputType without action
+ */
+export type LeadCountOutputTypeCountEstimatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EstimateWhereInput
+}
+
 
 export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -908,6 +1051,8 @@ export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   customer?: boolean | Prisma.Lead$customerArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Lead$assignedToArgs<ExtArgs>
+  estimates?: boolean | Prisma.Lead$estimatesArgs<ExtArgs>
+  _count?: boolean | Prisma.LeadCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lead"]>
 
 export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -966,6 +1111,8 @@ export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type LeadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.Lead$customerArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Lead$assignedToArgs<ExtArgs>
+  estimates?: boolean | Prisma.Lead$estimatesArgs<ExtArgs>
+  _count?: boolean | Prisma.LeadCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LeadIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.Lead$customerArgs<ExtArgs>
@@ -981,6 +1128,7 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     customer: Prisma.$CustomerPayload<ExtArgs> | null
     assignedTo: Prisma.$UserPayload<ExtArgs> | null
+    estimates: Prisma.$EstimatePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1392,6 +1540,7 @@ export interface Prisma__LeadClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   customer<T extends Prisma.Lead$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   assignedTo<T extends Prisma.Lead$assignedToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$assignedToArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  estimates<T extends Prisma.Lead$estimatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$estimatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1870,6 +2019,30 @@ export type Lead$assignedToArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * Lead.estimates
+ */
+export type Lead$estimatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Estimate
+   */
+  select?: Prisma.EstimateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Estimate
+   */
+  omit?: Prisma.EstimateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateInclude<ExtArgs> | null
+  where?: Prisma.EstimateWhereInput
+  orderBy?: Prisma.EstimateOrderByWithRelationInput | Prisma.EstimateOrderByWithRelationInput[]
+  cursor?: Prisma.EstimateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EstimateScalarFieldEnum | Prisma.EstimateScalarFieldEnum[]
 }
 
 /**

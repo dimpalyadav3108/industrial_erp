@@ -404,7 +404,9 @@ export const ModelName = {
   RolePermission: 'RolePermission',
   AuditLog: 'AuditLog',
   Customer: 'Customer',
-  Lead: 'Lead'
+  Lead: 'Lead',
+  Estimate: 'Estimate',
+  EstimateItem: 'EstimateItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -420,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "auditLog" | "customer" | "lead"
+    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "auditLog" | "customer" | "lead" | "estimate" | "estimateItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1016,6 +1018,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Estimate: {
+      payload: Prisma.$EstimatePayload<ExtArgs>
+      fields: Prisma.EstimateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EstimateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EstimateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload>
+        }
+        findFirst: {
+          args: Prisma.EstimateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EstimateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload>
+        }
+        findMany: {
+          args: Prisma.EstimateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload>[]
+        }
+        create: {
+          args: Prisma.EstimateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload>
+        }
+        createMany: {
+          args: Prisma.EstimateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EstimateCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload>[]
+        }
+        delete: {
+          args: Prisma.EstimateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload>
+        }
+        update: {
+          args: Prisma.EstimateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload>
+        }
+        deleteMany: {
+          args: Prisma.EstimateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EstimateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EstimateUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload>[]
+        }
+        upsert: {
+          args: Prisma.EstimateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatePayload>
+        }
+        aggregate: {
+          args: Prisma.EstimateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEstimate>
+        }
+        groupBy: {
+          args: Prisma.EstimateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EstimateGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EstimateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EstimateCountAggregateOutputType> | number
+        }
+      }
+    }
+    EstimateItem: {
+      payload: Prisma.$EstimateItemPayload<ExtArgs>
+      fields: Prisma.EstimateItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EstimateItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EstimateItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload>
+        }
+        findFirst: {
+          args: Prisma.EstimateItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EstimateItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload>
+        }
+        findMany: {
+          args: Prisma.EstimateItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload>[]
+        }
+        create: {
+          args: Prisma.EstimateItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload>
+        }
+        createMany: {
+          args: Prisma.EstimateItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EstimateItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload>[]
+        }
+        delete: {
+          args: Prisma.EstimateItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload>
+        }
+        update: {
+          args: Prisma.EstimateItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.EstimateItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EstimateItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EstimateItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.EstimateItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimateItemPayload>
+        }
+        aggregate: {
+          args: Prisma.EstimateItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEstimateItem>
+        }
+        groupBy: {
+          args: Prisma.EstimateItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EstimateItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EstimateItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EstimateItemCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1167,6 +1317,47 @@ export const LeadScalarFieldEnum = {
 } as const
 
 export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const EstimateScalarFieldEnum = {
+  id: 'id',
+  estimateNumber: 'estimateNumber',
+  leadId: 'leadId',
+  version: 'version',
+  status: 'status',
+  materialCost: 'materialCost',
+  labourCost: 'labourCost',
+  overheadCost: 'overheadCost',
+  marginPercent: 'marginPercent',
+  subtotal: 'subtotal',
+  taxPercent: 'taxPercent',
+  taxAmount: 'taxAmount',
+  totalAmount: 'totalAmount',
+  notes: 'notes',
+  validUntil: 'validUntil',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EstimateScalarFieldEnum = (typeof EstimateScalarFieldEnum)[keyof typeof EstimateScalarFieldEnum]
+
+
+export const EstimateItemScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  itemType: 'itemType',
+  description: 'description',
+  quantity: 'quantity',
+  unit: 'unit',
+  unitRate: 'unitRate',
+  amount: 'amount',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EstimateItemScalarFieldEnum = (typeof EstimateItemScalarFieldEnum)[keyof typeof EstimateItemScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1364,6 +1555,20 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'EstimateStatus'
+ */
+export type EnumEstimateStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstimateStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'EstimateStatus[]'
+ */
+export type ListEnumEstimateStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstimateStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1535,6 +1740,8 @@ export type GlobalOmitConfig = {
   auditLog?: Prisma.AuditLogOmit
   customer?: Prisma.CustomerOmit
   lead?: Prisma.LeadOmit
+  estimate?: Prisma.EstimateOmit
+  estimateItem?: Prisma.EstimateItemOmit
 }
 
 /* Types for Logging */

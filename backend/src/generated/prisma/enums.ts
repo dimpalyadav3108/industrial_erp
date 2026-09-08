@@ -50,3 +50,14 @@ export const LeadPriority = {
 } as const
 
 export type LeadPriority = (typeof LeadPriority)[keyof typeof LeadPriority]
+
+
+export const EstimateStatus = {
+  DRAFT: 'DRAFT',
+  IN_REVIEW: 'IN_REVIEW',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CONVERTED: 'CONVERTED'
+} as const
+
+export type EstimateStatus = (typeof EstimateStatus)[keyof typeof EstimateStatus]

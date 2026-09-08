@@ -81,3 +81,13 @@ export type Customer = Prisma.CustomerModel
  * 
  */
 export type Lead = Prisma.LeadModel
+/**
+ * Model Estimate
+ * 
+ */
+export type Estimate = Prisma.EstimateModel
+/**
+ * Model EstimateItem
+ * 
+ */
+export type EstimateItem = Prisma.EstimateItemModel

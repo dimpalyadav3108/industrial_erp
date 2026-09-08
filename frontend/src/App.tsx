@@ -8,6 +8,7 @@ import {
 import { AppLayout } from "./components/AppLayout";
 import { CustomersPage } from "./pages/CustomersPage";
 import { DashboardPage } from "./pages/DashboardPage";
+import EstimationPage from "./pages/EstimationPage";
 import LeadsPage from "./pages/LeadsPage";
 import { LoginPage } from "./pages/LoginPage";
 import { getStoredUser } from "./services/auth.service";
@@ -41,6 +42,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/customers" element={<CustomersPage />} />
           <Route path="/leads" element={<LeadsPage />} />
+          <Route path="/estimation" element={<EstimationPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
