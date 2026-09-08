@@ -338,6 +338,7 @@ export type QuotationWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
   estimate?: Prisma.XOR<Prisma.EstimateScalarRelationFilter, Prisma.EstimateWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  productionOrders?: Prisma.ProductionOrderListRelationFilter
 }
 
 export type QuotationOrderByWithRelationInput = {
@@ -361,6 +362,7 @@ export type QuotationOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   estimate?: Prisma.EstimateOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
+  productionOrders?: Prisma.ProductionOrderOrderByRelationAggregateInput
 }
 
 export type QuotationWhereUniqueInput = Prisma.AtLeast<{
@@ -388,6 +390,7 @@ export type QuotationWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
   estimate?: Prisma.XOR<Prisma.EstimateScalarRelationFilter, Prisma.EstimateWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  productionOrders?: Prisma.ProductionOrderListRelationFilter
 }, "id" | "quotationNumber" | "estimateId_version">
 
 export type QuotationOrderByWithAggregationInput = {
@@ -459,6 +462,7 @@ export type QuotationCreateInput = {
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutQuotationsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedQuotationsInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutQuotationInput
 }
 
 export type QuotationUncheckedCreateInput = {
@@ -480,6 +484,7 @@ export type QuotationUncheckedCreateInput = {
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutQuotationInput
 }
 
 export type QuotationUpdateInput = {
@@ -501,6 +506,7 @@ export type QuotationUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutQuotationsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedQuotationsNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateInput = {
@@ -522,6 +528,7 @@ export type QuotationUncheckedUpdateInput = {
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutQuotationNestedInput
 }
 
 export type QuotationCreateManyInput = {
@@ -679,6 +686,11 @@ export type QuotationSumOrderByAggregateInput = {
   totalAmount?: Prisma.SortOrder
 }
 
+export type QuotationScalarRelationFilter = {
+  is?: Prisma.QuotationWhereInput
+  isNot?: Prisma.QuotationWhereInput
+}
+
 export type QuotationCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.QuotationCreateWithoutCreatedByInput, Prisma.QuotationUncheckedCreateWithoutCreatedByInput> | Prisma.QuotationCreateWithoutCreatedByInput[] | Prisma.QuotationUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutCreatedByInput | Prisma.QuotationCreateOrConnectWithoutCreatedByInput[]
@@ -767,6 +779,20 @@ export type EnumQuotationStatusFieldUpdateOperationsInput = {
   set?: $Enums.QuotationStatus
 }
 
+export type QuotationCreateNestedOneWithoutProductionOrdersInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutProductionOrdersInput, Prisma.QuotationUncheckedCreateWithoutProductionOrdersInput>
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutProductionOrdersInput
+  connect?: Prisma.QuotationWhereUniqueInput
+}
+
+export type QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.QuotationCreateWithoutProductionOrdersInput, Prisma.QuotationUncheckedCreateWithoutProductionOrdersInput>
+  connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutProductionOrdersInput
+  upsert?: Prisma.QuotationUpsertWithoutProductionOrdersInput
+  connect?: Prisma.QuotationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuotationUpdateToOneWithWhereWithoutProductionOrdersInput, Prisma.QuotationUpdateWithoutProductionOrdersInput>, Prisma.QuotationUncheckedUpdateWithoutProductionOrdersInput>
+}
+
 export type QuotationCreateWithoutCreatedByInput = {
   id?: string
   quotationNumber: string
@@ -785,6 +811,7 @@ export type QuotationCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutQuotationsInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutQuotationInput
 }
 
 export type QuotationUncheckedCreateWithoutCreatedByInput = {
@@ -805,6 +832,7 @@ export type QuotationUncheckedCreateWithoutCreatedByInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutQuotationInput
 }
 
 export type QuotationCreateOrConnectWithoutCreatedByInput = {
@@ -875,6 +903,7 @@ export type QuotationCreateWithoutEstimateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedQuotationsInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutQuotationInput
 }
 
 export type QuotationUncheckedCreateWithoutEstimateInput = {
@@ -895,6 +924,7 @@ export type QuotationUncheckedCreateWithoutEstimateInput = {
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutQuotationInput
 }
 
 export type QuotationCreateOrConnectWithoutEstimateInput = {
@@ -921,6 +951,106 @@ export type QuotationUpdateWithWhereUniqueWithoutEstimateInput = {
 export type QuotationUpdateManyWithWhereWithoutEstimateInput = {
   where: Prisma.QuotationScalarWhereInput
   data: Prisma.XOR<Prisma.QuotationUpdateManyMutationInput, Prisma.QuotationUncheckedUpdateManyWithoutEstimateInput>
+}
+
+export type QuotationCreateWithoutProductionOrdersInput = {
+  id?: string
+  quotationNumber: string
+  version?: number
+  status?: $Enums.QuotationStatus
+  issueDate?: Date | string
+  validUntil?: Date | string | null
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  termsAndConditions?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  estimate: Prisma.EstimateCreateNestedOneWithoutQuotationsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedQuotationsInput
+}
+
+export type QuotationUncheckedCreateWithoutProductionOrdersInput = {
+  id?: string
+  quotationNumber: string
+  estimateId: string
+  version?: number
+  status?: $Enums.QuotationStatus
+  issueDate?: Date | string
+  validUntil?: Date | string | null
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  termsAndConditions?: string | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type QuotationCreateOrConnectWithoutProductionOrdersInput = {
+  where: Prisma.QuotationWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuotationCreateWithoutProductionOrdersInput, Prisma.QuotationUncheckedCreateWithoutProductionOrdersInput>
+}
+
+export type QuotationUpsertWithoutProductionOrdersInput = {
+  update: Prisma.XOR<Prisma.QuotationUpdateWithoutProductionOrdersInput, Prisma.QuotationUncheckedUpdateWithoutProductionOrdersInput>
+  create: Prisma.XOR<Prisma.QuotationCreateWithoutProductionOrdersInput, Prisma.QuotationUncheckedCreateWithoutProductionOrdersInput>
+  where?: Prisma.QuotationWhereInput
+}
+
+export type QuotationUpdateToOneWithWhereWithoutProductionOrdersInput = {
+  where?: Prisma.QuotationWhereInput
+  data: Prisma.XOR<Prisma.QuotationUpdateWithoutProductionOrdersInput, Prisma.QuotationUncheckedUpdateWithoutProductionOrdersInput>
+}
+
+export type QuotationUpdateWithoutProductionOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumQuotationStatusFieldUpdateOperationsInput | $Enums.QuotationStatus
+  issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimate?: Prisma.EstimateUpdateOneRequiredWithoutQuotationsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedQuotationsNestedInput
+}
+
+export type QuotationUncheckedUpdateWithoutProductionOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumQuotationStatusFieldUpdateOperationsInput | $Enums.QuotationStatus
+  issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type QuotationCreateManyCreatedByInput = {
@@ -961,6 +1091,7 @@ export type QuotationUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutQuotationsNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateWithoutCreatedByInput = {
@@ -981,6 +1112,7 @@ export type QuotationUncheckedUpdateWithoutCreatedByInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1041,6 +1173,7 @@ export type QuotationUpdateWithoutEstimateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneWithoutCreatedQuotationsNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateWithoutEstimateInput = {
@@ -1061,6 +1194,7 @@ export type QuotationUncheckedUpdateWithoutEstimateInput = {
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutQuotationNestedInput
 }
 
 export type QuotationUncheckedUpdateManyWithoutEstimateInput = {
@@ -1084,6 +1218,35 @@ export type QuotationUncheckedUpdateManyWithoutEstimateInput = {
 }
 
 
+/**
+ * Count Type QuotationCountOutputType
+ */
+
+export type QuotationCountOutputType = {
+  productionOrders: number
+}
+
+export type QuotationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  productionOrders?: boolean | QuotationCountOutputTypeCountProductionOrdersArgs
+}
+
+/**
+ * QuotationCountOutputType without action
+ */
+export type QuotationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QuotationCountOutputType
+   */
+  select?: Prisma.QuotationCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * QuotationCountOutputType without action
+ */
+export type QuotationCountOutputTypeCountProductionOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductionOrderWhereInput
+}
+
 
 export type QuotationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1106,6 +1269,8 @@ export type QuotationSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   updatedAt?: boolean
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Quotation$createdByArgs<ExtArgs>
+  productionOrders?: boolean | Prisma.Quotation$productionOrdersArgs<ExtArgs>
+  _count?: boolean | Prisma.QuotationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quotation"]>
 
 export type QuotationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1179,6 +1344,8 @@ export type QuotationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type QuotationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Quotation$createdByArgs<ExtArgs>
+  productionOrders?: boolean | Prisma.Quotation$productionOrdersArgs<ExtArgs>
+  _count?: boolean | Prisma.QuotationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QuotationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
@@ -1194,6 +1361,7 @@ export type $QuotationPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     estimate: Prisma.$EstimatePayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs> | null
+    productionOrders: Prisma.$ProductionOrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1610,6 +1778,7 @@ export interface Prisma__QuotationClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   estimate<T extends Prisma.EstimateDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateDefaultArgs<ExtArgs>>): Prisma.Prisma__EstimateClient<runtime.Types.Result.GetResult<Prisma.$EstimatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.Quotation$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  productionOrders<T extends Prisma.Quotation$productionOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quotation$productionOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductionOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2074,6 +2243,30 @@ export type Quotation$createdByArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * Quotation.productionOrders
+ */
+export type Quotation$productionOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductionOrder
+   */
+  select?: Prisma.ProductionOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProductionOrder
+   */
+  omit?: Prisma.ProductionOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductionOrderInclude<ExtArgs> | null
+  where?: Prisma.ProductionOrderWhereInput
+  orderBy?: Prisma.ProductionOrderOrderByWithRelationInput | Prisma.ProductionOrderOrderByWithRelationInput[]
+  cursor?: Prisma.ProductionOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductionOrderScalarFieldEnum | Prisma.ProductionOrderScalarFieldEnum[]
 }
 
 /**

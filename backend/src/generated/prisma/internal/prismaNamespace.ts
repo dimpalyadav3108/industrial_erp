@@ -409,7 +409,9 @@ export const ModelName = {
   EstimateItem: 'EstimateItem',
   Quotation: 'Quotation',
   InventoryItem: 'InventoryItem',
-  StockMovement: 'StockMovement'
+  StockMovement: 'StockMovement',
+  ProductionOrder: 'ProductionOrder',
+  ProductionOperation: 'ProductionOperation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -425,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "auditLog" | "customer" | "lead" | "estimate" | "estimateItem" | "quotation" | "inventoryItem" | "stockMovement"
+    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "auditLog" | "customer" | "lead" | "estimate" | "estimateItem" | "quotation" | "inventoryItem" | "stockMovement" | "productionOrder" | "productionOperation"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1391,6 +1393,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ProductionOrder: {
+      payload: Prisma.$ProductionOrderPayload<ExtArgs>
+      fields: Prisma.ProductionOrderFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProductionOrderFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProductionOrderFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload>
+        }
+        findFirst: {
+          args: Prisma.ProductionOrderFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProductionOrderFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload>
+        }
+        findMany: {
+          args: Prisma.ProductionOrderFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload>[]
+        }
+        create: {
+          args: Prisma.ProductionOrderCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload>
+        }
+        createMany: {
+          args: Prisma.ProductionOrderCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProductionOrderCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload>[]
+        }
+        delete: {
+          args: Prisma.ProductionOrderDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload>
+        }
+        update: {
+          args: Prisma.ProductionOrderUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProductionOrderDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProductionOrderUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProductionOrderUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProductionOrderUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOrderPayload>
+        }
+        aggregate: {
+          args: Prisma.ProductionOrderAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProductionOrder>
+        }
+        groupBy: {
+          args: Prisma.ProductionOrderGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProductionOrderGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProductionOrderCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProductionOrderCountAggregateOutputType> | number
+        }
+      }
+    }
+    ProductionOperation: {
+      payload: Prisma.$ProductionOperationPayload<ExtArgs>
+      fields: Prisma.ProductionOperationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProductionOperationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProductionOperationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload>
+        }
+        findFirst: {
+          args: Prisma.ProductionOperationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProductionOperationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload>
+        }
+        findMany: {
+          args: Prisma.ProductionOperationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload>[]
+        }
+        create: {
+          args: Prisma.ProductionOperationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload>
+        }
+        createMany: {
+          args: Prisma.ProductionOperationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProductionOperationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload>[]
+        }
+        delete: {
+          args: Prisma.ProductionOperationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload>
+        }
+        update: {
+          args: Prisma.ProductionOperationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProductionOperationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProductionOperationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProductionOperationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProductionOperationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProductionOperationPayload>
+        }
+        aggregate: {
+          args: Prisma.ProductionOperationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProductionOperation>
+        }
+        groupBy: {
+          args: Prisma.ProductionOperationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProductionOperationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProductionOperationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProductionOperationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1646,6 +1796,49 @@ export const StockMovementScalarFieldEnum = {
 export type StockMovementScalarFieldEnum = (typeof StockMovementScalarFieldEnum)[keyof typeof StockMovementScalarFieldEnum]
 
 
+export const ProductionOrderScalarFieldEnum = {
+  id: 'id',
+  productionNumber: 'productionNumber',
+  quotationId: 'quotationId',
+  title: 'title',
+  status: 'status',
+  priority: 'priority',
+  quantity: 'quantity',
+  unit: 'unit',
+  plannedStartDate: 'plannedStartDate',
+  plannedEndDate: 'plannedEndDate',
+  actualStartDate: 'actualStartDate',
+  actualEndDate: 'actualEndDate',
+  progressPercent: 'progressPercent',
+  assignedToId: 'assignedToId',
+  createdById: 'createdById',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProductionOrderScalarFieldEnum = (typeof ProductionOrderScalarFieldEnum)[keyof typeof ProductionOrderScalarFieldEnum]
+
+
+export const ProductionOperationScalarFieldEnum = {
+  id: 'id',
+  productionOrderId: 'productionOrderId',
+  sequence: 'sequence',
+  name: 'name',
+  workCenter: 'workCenter',
+  status: 'status',
+  plannedStartDate: 'plannedStartDate',
+  plannedEndDate: 'plannedEndDate',
+  actualStartDate: 'actualStartDate',
+  actualEndDate: 'actualEndDate',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProductionOperationScalarFieldEnum = (typeof ProductionOperationScalarFieldEnum)[keyof typeof ProductionOperationScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1897,6 +2090,34 @@ export type ListEnumStockMovementTypeFieldRefInput<$PrismaModel> = FieldRefInput
 
 
 /**
+ * Reference to a field of type 'ProductionOrderStatus'
+ */
+export type EnumProductionOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProductionOrderStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ProductionOrderStatus[]'
+ */
+export type ListEnumProductionOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProductionOrderStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ProductionOperationStatus'
+ */
+export type EnumProductionOperationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProductionOperationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ProductionOperationStatus[]'
+ */
+export type ListEnumProductionOperationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProductionOperationStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2073,6 +2294,8 @@ export type GlobalOmitConfig = {
   quotation?: Prisma.QuotationOmit
   inventoryItem?: Prisma.InventoryItemOmit
   stockMovement?: Prisma.StockMovementOmit
+  productionOrder?: Prisma.ProductionOrderOmit
+  productionOperation?: Prisma.ProductionOperationOmit
 }
 
 /* Types for Logging */

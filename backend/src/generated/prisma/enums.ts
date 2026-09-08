@@ -95,3 +95,25 @@ export const StockMovementType = {
 } as const
 
 export type StockMovementType = (typeof StockMovementType)[keyof typeof StockMovementType]
+
+
+export const ProductionOrderStatus = {
+  PLANNED: 'PLANNED',
+  RELEASED: 'RELEASED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  ON_HOLD: 'ON_HOLD',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ProductionOrderStatus = (typeof ProductionOrderStatus)[keyof typeof ProductionOrderStatus]
+
+
+export const ProductionOperationStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  SKIPPED: 'SKIPPED'
+} as const
+
+export type ProductionOperationStatus = (typeof ProductionOperationStatus)[keyof typeof ProductionOperationStatus]

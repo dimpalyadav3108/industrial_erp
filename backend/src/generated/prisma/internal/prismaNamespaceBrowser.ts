@@ -63,7 +63,9 @@ export const ModelName = {
   EstimateItem: 'EstimateItem',
   Quotation: 'Quotation',
   InventoryItem: 'InventoryItem',
-  StockMovement: 'StockMovement'
+  StockMovement: 'StockMovement',
+  ProductionOrder: 'ProductionOrder',
+  ProductionOperation: 'ProductionOperation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -296,6 +298,49 @@ export const StockMovementScalarFieldEnum = {
 } as const
 
 export type StockMovementScalarFieldEnum = (typeof StockMovementScalarFieldEnum)[keyof typeof StockMovementScalarFieldEnum]
+
+
+export const ProductionOrderScalarFieldEnum = {
+  id: 'id',
+  productionNumber: 'productionNumber',
+  quotationId: 'quotationId',
+  title: 'title',
+  status: 'status',
+  priority: 'priority',
+  quantity: 'quantity',
+  unit: 'unit',
+  plannedStartDate: 'plannedStartDate',
+  plannedEndDate: 'plannedEndDate',
+  actualStartDate: 'actualStartDate',
+  actualEndDate: 'actualEndDate',
+  progressPercent: 'progressPercent',
+  assignedToId: 'assignedToId',
+  createdById: 'createdById',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProductionOrderScalarFieldEnum = (typeof ProductionOrderScalarFieldEnum)[keyof typeof ProductionOrderScalarFieldEnum]
+
+
+export const ProductionOperationScalarFieldEnum = {
+  id: 'id',
+  productionOrderId: 'productionOrderId',
+  sequence: 'sequence',
+  name: 'name',
+  workCenter: 'workCenter',
+  status: 'status',
+  plannedStartDate: 'plannedStartDate',
+  plannedEndDate: 'plannedEndDate',
+  actualStartDate: 'actualStartDate',
+  actualEndDate: 'actualEndDate',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProductionOperationScalarFieldEnum = (typeof ProductionOperationScalarFieldEnum)[keyof typeof ProductionOperationScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -10,6 +10,7 @@ import { customerRouter } from "./routes/customer.routes.js";
 import { estimateRouter } from "./routes/estimate.routes.js";
 import { inventoryRouter } from "./routes/inventory.routes.js";
 import { leadRouter } from "./routes/lead.routes.js";
+import { productionRouter } from "./routes/production.routes.js";
 import { quotationRouter } from "./routes/quotation.routes.js";
 
 const app = express();
@@ -33,6 +34,7 @@ app.use("/api/customers", customerRouter);
 app.use("/api/leads", leadRouter);
 app.use("/api/estimates", estimateRouter);
 app.use("/api/inventory", inventoryRouter);
+app.use("/api/production", productionRouter);
 app.use("/api/quotations", quotationRouter);
 
 app.get("/api/health", async (_request: Request, response: Response) => {

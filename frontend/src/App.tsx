@@ -12,6 +12,7 @@ import EstimationPage from "./pages/EstimationPage";
 import InventoryPage from "./pages/InventoryPage";
 import LeadsPage from "./pages/LeadsPage";
 import { LoginPage } from "./pages/LoginPage";
+import ProductionPage from "./pages/ProductionPage";
 import QuotationsPage from "./pages/QuotationsPage";
 import { getStoredUser } from "./services/auth.service";
 import "./App.css";
@@ -47,6 +48,7 @@ function App() {
           <Route path="/estimation" element={<EstimationPage />} />
           <Route path="/quotations" element={<QuotationsPage />} />
           <Route path="/inventory" element={<InventoryPage />} />
+          <Route path="/production" element={<ProductionPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -106,3 +106,13 @@ export type InventoryItem = Prisma.InventoryItemModel
  * 
  */
 export type StockMovement = Prisma.StockMovementModel
+/**
+ * Model ProductionOrder
+ * 
+ */
+export type ProductionOrder = Prisma.ProductionOrderModel
+/**
+ * Model ProductionOperation
+ * 
+ */
+export type ProductionOperation = Prisma.ProductionOperationModel

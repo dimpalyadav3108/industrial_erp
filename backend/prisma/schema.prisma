@@ -71,6 +71,22 @@ enum StockMovementType {
   RETURN_OUT
 }
 
+enum ProductionOrderStatus {
+  PLANNED
+  RELEASED
+  IN_PROGRESS
+  ON_HOLD
+  COMPLETED
+  CANCELLED
+}
+
+enum ProductionOperationStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  SKIPPED
+}
+
 model User {
   id           String     @id @default(uuid())
   employeeCode String     @unique
@@ -83,12 +99,14 @@ model User {
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 
-  roles             UserRole[]
-  auditLogs         AuditLog[]
-  assignedLeads     Lead[]          @relation("AssignedLeads")
-  createdEstimates  Estimate[]      @relation("CreatedEstimates")
-  createdQuotations Quotation[]     @relation("CreatedQuotations")
-  stockMovements    StockMovement[] @relation("CreatedStockMovements")
+  roles                    UserRole[]
+  auditLogs                AuditLog[]
+  assignedLeads            Lead[]            @relation("AssignedLeads")
+  createdEstimates         Estimate[]        @relation("CreatedEstimates")
+  createdQuotations        Quotation[]       @relation("CreatedQuotations")
+  stockMovements           StockMovement[]   @relation("CreatedStockMovements")
+  assignedProductionOrders ProductionOrder[] @relation("AssignedProductionOrders")
+  createdProductionOrders  ProductionOrder[] @relation("CreatedProductionOrders")
 
   @@index([email])
   @@index([status])
@@ -282,8 +300,9 @@ model Quotation {
   createdAt          DateTime        @default(now())
   updatedAt          DateTime        @updatedAt
 
-  estimate  Estimate @relation(fields: [estimateId], references: [id], onDelete: Restrict)
-  createdBy User?    @relation("CreatedQuotations", fields: [createdById], references: [id], onDelete: SetNull)
+  estimate         Estimate          @relation(fields: [estimateId], references: [id], onDelete: Restrict)
+  createdBy        User?             @relation("CreatedQuotations", fields: [createdById], references: [id], onDelete: SetNull)
+  productionOrders ProductionOrder[]
 
   @@unique([estimateId, version])
   @@index([estimateId])
@@ -336,4 +355,61 @@ model StockMovement {
   @@index([movementType])
   @@index([createdById])
   @@index([createdAt])
+}
+
+model ProductionOrder {
+  id               String                @id @default(uuid())
+  productionNumber String                @unique
+  quotationId      String
+  title            String
+  status           ProductionOrderStatus @default(PLANNED)
+  priority         LeadPriority          @default(MEDIUM)
+  quantity         Decimal               @default(1) @db.Decimal(15, 3)
+  unit             String                @default("Nos")
+  plannedStartDate DateTime?
+  plannedEndDate   DateTime?
+  actualStartDate  DateTime?
+  actualEndDate    DateTime?
+  progressPercent  Decimal               @default(0) @db.Decimal(5, 2)
+  assignedToId     String?
+  createdById      String?
+  notes            String?
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+
+  quotation  Quotation             @relation(fields: [quotationId], references: [id], onDelete: Restrict)
+  assignedTo User?                 @relation("AssignedProductionOrders", fields: [assignedToId], references: [id], onDelete: SetNull)
+  createdBy  User?                 @relation("CreatedProductionOrders", fields: [createdById], references: [id], onDelete: SetNull)
+  operations ProductionOperation[]
+
+  @@index([quotationId])
+  @@index([status])
+  @@index([priority])
+  @@index([assignedToId])
+  @@index([createdById])
+  @@index([plannedEndDate])
+  @@index([createdAt])
+}
+
+model ProductionOperation {
+  id                String                    @id @default(uuid())
+  productionOrderId String
+  sequence          Int
+  name              String
+  workCenter        String?
+  status            ProductionOperationStatus @default(PENDING)
+  plannedStartDate  DateTime?
+  plannedEndDate    DateTime?
+  actualStartDate   DateTime?
+  actualEndDate     DateTime?
+  notes             String?
+  createdAt         DateTime                  @default(now())
+  updatedAt         DateTime                  @updatedAt
+
+  productionOrder ProductionOrder @relation(fields: [productionOrderId], references: [id], onDelete: Cascade)
+
+  @@unique([productionOrderId, sequence])
+  @@index([productionOrderId])
+  @@index([status])
+  @@index([workCenter])
 }
