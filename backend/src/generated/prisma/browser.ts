@@ -72,3 +72,13 @@ export type EstimateItem = Prisma.EstimateItemModel
  * 
  */
 export type Quotation = Prisma.QuotationModel
+/**
+ * Model InventoryItem
+ * 
+ */
+export type InventoryItem = Prisma.InventoryItemModel
+/**
+ * Model StockMovement
+ * 
+ */
+export type StockMovement = Prisma.StockMovementModel

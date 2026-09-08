@@ -61,7 +61,9 @@ export const ModelName = {
   Lead: 'Lead',
   Estimate: 'Estimate',
   EstimateItem: 'EstimateItem',
-  Quotation: 'Quotation'
+  Quotation: 'Quotation',
+  InventoryItem: 'InventoryItem',
+  StockMovement: 'StockMovement'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -257,6 +259,43 @@ export const QuotationScalarFieldEnum = {
 } as const
 
 export type QuotationScalarFieldEnum = (typeof QuotationScalarFieldEnum)[keyof typeof QuotationScalarFieldEnum]
+
+
+export const InventoryItemScalarFieldEnum = {
+  id: 'id',
+  itemCode: 'itemCode',
+  name: 'name',
+  description: 'description',
+  itemType: 'itemType',
+  category: 'category',
+  unit: 'unit',
+  currentStock: 'currentStock',
+  reorderLevel: 'reorderLevel',
+  unitCost: 'unitCost',
+  location: 'location',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InventoryItemScalarFieldEnum = (typeof InventoryItemScalarFieldEnum)[keyof typeof InventoryItemScalarFieldEnum]
+
+
+export const StockMovementScalarFieldEnum = {
+  id: 'id',
+  inventoryItemId: 'inventoryItemId',
+  movementType: 'movementType',
+  quantity: 'quantity',
+  balanceAfter: 'balanceAfter',
+  unitCost: 'unitCost',
+  referenceType: 'referenceType',
+  referenceNumber: 'referenceNumber',
+  notes: 'notes',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type StockMovementScalarFieldEnum = (typeof StockMovementScalarFieldEnum)[keyof typeof StockMovementScalarFieldEnum]
 
 
 export const SortOrder = {

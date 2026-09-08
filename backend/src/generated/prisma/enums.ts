@@ -73,3 +73,25 @@ export const QuotationStatus = {
 } as const
 
 export type QuotationStatus = (typeof QuotationStatus)[keyof typeof QuotationStatus]
+
+
+export const InventoryItemType = {
+  RAW_MATERIAL: 'RAW_MATERIAL',
+  COMPONENT: 'COMPONENT',
+  CONSUMABLE: 'CONSUMABLE',
+  FINISHED_GOOD: 'FINISHED_GOOD'
+} as const
+
+export type InventoryItemType = (typeof InventoryItemType)[keyof typeof InventoryItemType]
+
+
+export const StockMovementType = {
+  RECEIPT: 'RECEIPT',
+  ISSUE: 'ISSUE',
+  ADJUSTMENT_IN: 'ADJUSTMENT_IN',
+  ADJUSTMENT_OUT: 'ADJUSTMENT_OUT',
+  RETURN_IN: 'RETURN_IN',
+  RETURN_OUT: 'RETURN_OUT'
+} as const
+
+export type StockMovementType = (typeof StockMovementType)[keyof typeof StockMovementType]

@@ -55,6 +55,22 @@ enum QuotationStatus {
   CONVERTED
 }
 
+enum InventoryItemType {
+  RAW_MATERIAL
+  COMPONENT
+  CONSUMABLE
+  FINISHED_GOOD
+}
+
+enum StockMovementType {
+  RECEIPT
+  ISSUE
+  ADJUSTMENT_IN
+  ADJUSTMENT_OUT
+  RETURN_IN
+  RETURN_OUT
+}
+
 model User {
   id           String     @id @default(uuid())
   employeeCode String     @unique
@@ -69,9 +85,10 @@ model User {
 
   roles             UserRole[]
   auditLogs         AuditLog[]
-  assignedLeads     Lead[]      @relation("AssignedLeads")
-  createdEstimates  Estimate[]  @relation("CreatedEstimates")
-  createdQuotations Quotation[] @relation("CreatedQuotations")
+  assignedLeads     Lead[]          @relation("AssignedLeads")
+  createdEstimates  Estimate[]      @relation("CreatedEstimates")
+  createdQuotations Quotation[]     @relation("CreatedQuotations")
+  stockMovements    StockMovement[] @relation("CreatedStockMovements")
 
   @@index([email])
   @@index([status])
@@ -271,6 +288,52 @@ model Quotation {
   @@unique([estimateId, version])
   @@index([estimateId])
   @@index([status])
+  @@index([createdById])
+  @@index([createdAt])
+}
+
+model InventoryItem {
+  id           String            @id @default(uuid())
+  itemCode     String            @unique
+  name         String
+  description  String?
+  itemType     InventoryItemType
+  category     String?
+  unit         String
+  currentStock Decimal           @default(0) @db.Decimal(15, 3)
+  reorderLevel Decimal           @default(0) @db.Decimal(15, 3)
+  unitCost     Decimal           @default(0) @db.Decimal(15, 2)
+  location     String?
+  isActive     Boolean           @default(true)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  movements StockMovement[]
+
+  @@index([name])
+  @@index([itemType])
+  @@index([category])
+  @@index([isActive])
+}
+
+model StockMovement {
+  id              String            @id @default(uuid())
+  inventoryItemId String
+  movementType    StockMovementType
+  quantity        Decimal           @db.Decimal(15, 3)
+  balanceAfter    Decimal           @db.Decimal(15, 3)
+  unitCost        Decimal?          @db.Decimal(15, 2)
+  referenceType   String?
+  referenceNumber String?
+  notes           String?
+  createdById     String?
+  createdAt       DateTime          @default(now())
+
+  inventoryItem InventoryItem @relation(fields: [inventoryItemId], references: [id], onDelete: Restrict)
+  createdBy     User?         @relation("CreatedStockMovements", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([inventoryItemId])
+  @@index([movementType])
   @@index([createdById])
   @@index([createdAt])
 }

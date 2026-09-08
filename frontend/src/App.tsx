@@ -9,6 +9,7 @@ import { AppLayout } from "./components/AppLayout";
 import { CustomersPage } from "./pages/CustomersPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import EstimationPage from "./pages/EstimationPage";
+import InventoryPage from "./pages/InventoryPage";
 import LeadsPage from "./pages/LeadsPage";
 import { LoginPage } from "./pages/LoginPage";
 import QuotationsPage from "./pages/QuotationsPage";
@@ -45,6 +46,7 @@ function App() {
           <Route path="/leads" element={<LeadsPage />} />
           <Route path="/estimation" element={<EstimationPage />} />
           <Route path="/quotations" element={<QuotationsPage />} />
+          <Route path="/inventory" element={<InventoryPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
