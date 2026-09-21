@@ -12,15 +12,18 @@ import ProductionPage from "./pages/ProductionPage";
 import QualityPage from "./pages/QualityPage";
 import QuotationsPage from "./pages/QuotationsPage";
 import ServicePage from "./pages/ServicePage";
+import SettingsPage from "./pages/SettingsPage";
 import { getStoredUser } from "./services/auth.service";
 import "./App.css";
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   return getStoredUser() ? children : <Navigate to="/" replace />;
 }
+
 function LoginRoute() {
   return getStoredUser() ? <Navigate to="/dashboard" replace /> : <LoginPage />;
 }
+
 function App() {
   return <BrowserRouter><Routes>
     <Route path="/" element={<LoginRoute />} />
@@ -36,8 +39,10 @@ function App() {
       <Route path="/dispatch" element={<DispatchPage />} />
       <Route path="/service" element={<ServicePage />} />
       <Route path="/service-amc" element={<ServicePage />} />
+      <Route path="/settings" element={<SettingsPage />} />
     </Route>
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes></BrowserRouter>;
 }
+
 export default App;

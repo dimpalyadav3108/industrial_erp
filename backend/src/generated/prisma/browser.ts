@@ -117,3 +117,8 @@ export type ServiceContract = Prisma.ServiceContractModel
  * 
  */
 export type ServiceRequest = Prisma.ServiceRequestModel
+/**
+ * Model CompanySettings
+ * 
+ */
+export type CompanySettings = Prisma.CompanySettingsModel

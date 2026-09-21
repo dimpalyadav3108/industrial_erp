@@ -70,7 +70,8 @@ export const ModelName = {
   QualityCheckItem: 'QualityCheckItem',
   Dispatch: 'Dispatch',
   ServiceContract: 'ServiceContract',
-  ServiceRequest: 'ServiceRequest'
+  ServiceRequest: 'ServiceRequest',
+  CompanySettings: 'CompanySettings'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -457,6 +458,35 @@ export const ServiceRequestScalarFieldEnum = {
 } as const
 
 export type ServiceRequestScalarFieldEnum = (typeof ServiceRequestScalarFieldEnum)[keyof typeof ServiceRequestScalarFieldEnum]
+
+
+export const CompanySettingsScalarFieldEnum = {
+  id: 'id',
+  companyName: 'companyName',
+  legalName: 'legalName',
+  gstNumber: 'gstNumber',
+  panNumber: 'panNumber',
+  email: 'email',
+  phone: 'phone',
+  website: 'website',
+  address: 'address',
+  city: 'city',
+  state: 'state',
+  country: 'country',
+  postalCode: 'postalCode',
+  currency: 'currency',
+  timezone: 'timezone',
+  financialYearStart: 'financialYearStart',
+  defaultTaxPercent: 'defaultTaxPercent',
+  estimatePrefix: 'estimatePrefix',
+  quotationPrefix: 'quotationPrefix',
+  productionPrefix: 'productionPrefix',
+  dispatchPrefix: 'dispatchPrefix',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanySettingsScalarFieldEnum = (typeof CompanySettingsScalarFieldEnum)[keyof typeof CompanySettingsScalarFieldEnum]
 
 
 export const SortOrder = {

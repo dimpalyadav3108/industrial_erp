@@ -1,4 +1,4 @@
-// Includes the Service & AMC module
+// Includes the Settings module
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -647,4 +647,30 @@ model ServiceRequest {
   @@index([assignedToId])
   @@index([scheduledDate])
   @@index([createdAt])
+}
+
+model CompanySettings {
+  id                 String   @id @default("company")
+  companyName        String   @default("Industrial ERP")
+  legalName          String?
+  gstNumber          String?
+  panNumber          String?
+  email              String?
+  phone              String?
+  website            String?
+  address            String?
+  city               String?
+  state              String?
+  country            String   @default("India")
+  postalCode         String?
+  currency           String   @default("INR")
+  timezone           String   @default("Asia/Kolkata")
+  financialYearStart Int      @default(4)
+  defaultTaxPercent  Decimal  @default(18) @db.Decimal(5, 2)
+  estimatePrefix     String   @default("EST")
+  quotationPrefix    String   @default("QUO")
+  productionPrefix   String   @default("PRO")
+  dispatchPrefix     String   @default("DSP")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 }
