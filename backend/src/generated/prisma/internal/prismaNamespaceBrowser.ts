@@ -68,7 +68,9 @@ export const ModelName = {
   ProductionOperation: 'ProductionOperation',
   QualityInspection: 'QualityInspection',
   QualityCheckItem: 'QualityCheckItem',
-  Dispatch: 'Dispatch'
+  Dispatch: 'Dispatch',
+  ServiceContract: 'ServiceContract',
+  ServiceRequest: 'ServiceRequest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -406,6 +408,55 @@ export const DispatchScalarFieldEnum = {
 } as const
 
 export type DispatchScalarFieldEnum = (typeof DispatchScalarFieldEnum)[keyof typeof DispatchScalarFieldEnum]
+
+
+export const ServiceContractScalarFieldEnum = {
+  id: 'id',
+  contractNumber: 'contractNumber',
+  customerId: 'customerId',
+  dispatchId: 'dispatchId',
+  title: 'title',
+  contractType: 'contractType',
+  status: 'status',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  contractValue: 'contractValue',
+  visitsIncluded: 'visitsIncluded',
+  visitsUsed: 'visitsUsed',
+  responseTimeHours: 'responseTimeHours',
+  notes: 'notes',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ServiceContractScalarFieldEnum = (typeof ServiceContractScalarFieldEnum)[keyof typeof ServiceContractScalarFieldEnum]
+
+
+export const ServiceRequestScalarFieldEnum = {
+  id: 'id',
+  ticketNumber: 'ticketNumber',
+  customerId: 'customerId',
+  serviceContractId: 'serviceContractId',
+  requestType: 'requestType',
+  priority: 'priority',
+  status: 'status',
+  subject: 'subject',
+  description: 'description',
+  location: 'location',
+  reportedAt: 'reportedAt',
+  scheduledDate: 'scheduledDate',
+  startedAt: 'startedAt',
+  resolvedAt: 'resolvedAt',
+  closedAt: 'closedAt',
+  assignedToId: 'assignedToId',
+  createdById: 'createdById',
+  resolutionNotes: 'resolutionNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ServiceRequestScalarFieldEnum = (typeof ServiceRequestScalarFieldEnum)[keyof typeof ServiceRequestScalarFieldEnum]
 
 
 export const SortOrder = {

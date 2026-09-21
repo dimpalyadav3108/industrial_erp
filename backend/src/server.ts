@@ -14,6 +14,7 @@ import { leadRouter } from "./routes/lead.routes.js";
 import { productionRouter } from "./routes/production.routes.js";
 import { qualityRouter } from "./routes/quality.routes.js";
 import { quotationRouter } from "./routes/quotation.routes.js";
+import { serviceRouter } from "./routes/service.routes.js";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 5000;
@@ -40,6 +41,7 @@ app.use("/api/production", productionRouter);
 app.use("/api/quality", qualityRouter);
 app.use("/api/quotations", quotationRouter);
 app.use("/api/dispatches", dispatchRouter);
+app.use("/api/service", serviceRouter);
 
 app.get("/api/health", async (_request: Request, response: Response) => {
   try {

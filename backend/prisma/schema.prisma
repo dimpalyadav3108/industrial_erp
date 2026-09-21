@@ -1,4 +1,4 @@
-// Includes the Dispatch module
+// Includes the Service & AMC module
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -124,6 +124,39 @@ enum TransportMode {
   CUSTOMER_PICKUP
 }
 
+enum ServiceContractType {
+  WARRANTY
+  AMC
+  CMC
+  ON_CALL
+}
+
+enum ServiceContractStatus {
+  DRAFT
+  ACTIVE
+  EXPIRED
+  SUSPENDED
+  CANCELLED
+}
+
+enum ServiceRequestType {
+  BREAKDOWN
+  PREVENTIVE_MAINTENANCE
+  INSTALLATION
+  COMMISSIONING
+  INSPECTION
+  OTHER
+}
+
+enum ServiceRequestStatus {
+  OPEN
+  ASSIGNED
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+  CANCELLED
+}
+
 model User {
   id           String     @id @default(uuid())
   employeeCode String     @unique
@@ -147,6 +180,9 @@ model User {
   assignedInspections      QualityInspection[] @relation("AssignedQualityInspections")
   createdInspections       QualityInspection[] @relation("CreatedQualityInspections")
   createdDispatches        Dispatch[]          @relation("CreatedDispatches")
+  createdServiceContracts  ServiceContract[]   @relation("CreatedServiceContracts")
+  assignedServiceRequests  ServiceRequest[]    @relation("AssignedServiceRequests")
+  createdServiceRequests   ServiceRequest[]    @relation("CreatedServiceRequests")
 
   @@index([email])
   @@index([status])
@@ -237,7 +273,9 @@ model Customer {
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
 
-  leads Lead[]
+  leads            Lead[]
+  serviceContracts ServiceContract[]
+  serviceRequests  ServiceRequest[]
 
   @@index([companyName])
   @@index([status])
@@ -531,11 +569,82 @@ model Dispatch {
   productionOrder   ProductionOrder   @relation(fields: [productionOrderId], references: [id], onDelete: Restrict)
   qualityInspection QualityInspection @relation(fields: [qualityInspectionId], references: [id], onDelete: Restrict)
   createdBy         User?             @relation("CreatedDispatches", fields: [createdById], references: [id], onDelete: SetNull)
+  serviceContracts  ServiceContract[]
 
   @@index([status])
   @@index([transportMode])
   @@index([dispatchDate])
   @@index([expectedDeliveryDate])
   @@index([createdById])
+  @@index([createdAt])
+}
+
+model ServiceContract {
+  id                String                @id @default(uuid())
+  contractNumber    String                @unique
+  customerId        String
+  dispatchId        String?
+  title             String
+  contractType      ServiceContractType
+  status            ServiceContractStatus @default(DRAFT)
+  startDate         DateTime
+  endDate           DateTime
+  contractValue     Decimal?              @db.Decimal(15, 2)
+  visitsIncluded    Int                   @default(0)
+  visitsUsed        Int                   @default(0)
+  responseTimeHours Int?
+  notes             String?
+  createdById       String?
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+
+  customer  Customer         @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  dispatch  Dispatch?        @relation(fields: [dispatchId], references: [id], onDelete: SetNull)
+  createdBy User?            @relation("CreatedServiceContracts", fields: [createdById], references: [id], onDelete: SetNull)
+  requests  ServiceRequest[]
+
+  @@index([customerId])
+  @@index([dispatchId])
+  @@index([contractType])
+  @@index([status])
+  @@index([endDate])
+  @@index([createdById])
+  @@index([createdAt])
+}
+
+model ServiceRequest {
+  id                String               @id @default(uuid())
+  ticketNumber      String               @unique
+  customerId        String
+  serviceContractId String?
+  requestType       ServiceRequestType
+  priority          LeadPriority         @default(MEDIUM)
+  status            ServiceRequestStatus @default(OPEN)
+  subject           String
+  description       String
+  location          String?
+  reportedAt        DateTime             @default(now())
+  scheduledDate     DateTime?
+  startedAt         DateTime?
+  resolvedAt        DateTime?
+  closedAt          DateTime?
+  assignedToId      String?
+  createdById       String?
+  resolutionNotes   String?
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+
+  customer        Customer         @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  serviceContract ServiceContract? @relation(fields: [serviceContractId], references: [id], onDelete: SetNull)
+  assignedTo      User?            @relation("AssignedServiceRequests", fields: [assignedToId], references: [id], onDelete: SetNull)
+  createdBy       User?            @relation("CreatedServiceRequests", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([customerId])
+  @@index([serviceContractId])
+  @@index([requestType])
+  @@index([priority])
+  @@index([status])
+  @@index([assignedToId])
+  @@index([scheduledDate])
   @@index([createdAt])
 }

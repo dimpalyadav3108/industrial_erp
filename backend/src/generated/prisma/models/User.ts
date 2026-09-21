@@ -233,6 +233,9 @@ export type UserWhereInput = {
   assignedInspections?: Prisma.QualityInspectionListRelationFilter
   createdInspections?: Prisma.QualityInspectionListRelationFilter
   createdDispatches?: Prisma.DispatchListRelationFilter
+  createdServiceContracts?: Prisma.ServiceContractListRelationFilter
+  assignedServiceRequests?: Prisma.ServiceRequestListRelationFilter
+  createdServiceRequests?: Prisma.ServiceRequestListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -257,6 +260,9 @@ export type UserOrderByWithRelationInput = {
   assignedInspections?: Prisma.QualityInspectionOrderByRelationAggregateInput
   createdInspections?: Prisma.QualityInspectionOrderByRelationAggregateInput
   createdDispatches?: Prisma.DispatchOrderByRelationAggregateInput
+  createdServiceContracts?: Prisma.ServiceContractOrderByRelationAggregateInput
+  assignedServiceRequests?: Prisma.ServiceRequestOrderByRelationAggregateInput
+  createdServiceRequests?: Prisma.ServiceRequestOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -284,6 +290,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   assignedInspections?: Prisma.QualityInspectionListRelationFilter
   createdInspections?: Prisma.QualityInspectionListRelationFilter
   createdDispatches?: Prisma.DispatchListRelationFilter
+  createdServiceContracts?: Prisma.ServiceContractListRelationFilter
+  assignedServiceRequests?: Prisma.ServiceRequestListRelationFilter
+  createdServiceRequests?: Prisma.ServiceRequestListRelationFilter
 }, "id" | "employeeCode" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -340,6 +349,9 @@ export type UserCreateInput = {
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -364,6 +376,9 @@ export type UserUncheckedCreateInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUpdateInput = {
@@ -388,6 +403,9 @@ export type UserUpdateInput = {
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -412,6 +430,9 @@ export type UserUncheckedUpdateInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -692,6 +713,54 @@ export type UserUpdateOneWithoutCreatedDispatchesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedDispatchesInput, Prisma.UserUpdateWithoutCreatedDispatchesInput>, Prisma.UserUncheckedUpdateWithoutCreatedDispatchesInput>
 }
 
+export type UserCreateNestedOneWithoutCreatedServiceContractsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedServiceContractsInput, Prisma.UserUncheckedCreateWithoutCreatedServiceContractsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedServiceContractsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedServiceContractsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedServiceContractsInput, Prisma.UserUncheckedCreateWithoutCreatedServiceContractsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedServiceContractsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedServiceContractsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedServiceContractsInput, Prisma.UserUpdateWithoutCreatedServiceContractsInput>, Prisma.UserUncheckedUpdateWithoutCreatedServiceContractsInput>
+}
+
+export type UserCreateNestedOneWithoutAssignedServiceRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedServiceRequestsInput, Prisma.UserUncheckedCreateWithoutAssignedServiceRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedServiceRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutCreatedServiceRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedServiceRequestsInput, Prisma.UserUncheckedCreateWithoutCreatedServiceRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedServiceRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAssignedServiceRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedServiceRequestsInput, Prisma.UserUncheckedCreateWithoutAssignedServiceRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedServiceRequestsInput
+  upsert?: Prisma.UserUpsertWithoutAssignedServiceRequestsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssignedServiceRequestsInput, Prisma.UserUpdateWithoutAssignedServiceRequestsInput>, Prisma.UserUncheckedUpdateWithoutAssignedServiceRequestsInput>
+}
+
+export type UserUpdateOneWithoutCreatedServiceRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedServiceRequestsInput, Prisma.UserUncheckedCreateWithoutCreatedServiceRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedServiceRequestsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedServiceRequestsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedServiceRequestsInput, Prisma.UserUpdateWithoutCreatedServiceRequestsInput>, Prisma.UserUncheckedUpdateWithoutCreatedServiceRequestsInput>
+}
+
 export type UserCreateWithoutRolesInput = {
   id?: string
   employeeCode: string
@@ -713,6 +782,9 @@ export type UserCreateWithoutRolesInput = {
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRolesInput = {
@@ -736,6 +808,9 @@ export type UserUncheckedCreateWithoutRolesInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRolesInput = {
@@ -775,6 +850,9 @@ export type UserUpdateWithoutRolesInput = {
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRolesInput = {
@@ -798,6 +876,9 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -821,6 +902,9 @@ export type UserCreateWithoutAuditLogsInput = {
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -844,6 +928,9 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -883,6 +970,9 @@ export type UserUpdateWithoutAuditLogsInput = {
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -906,6 +996,9 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAssignedLeadsInput = {
@@ -929,6 +1022,9 @@ export type UserCreateWithoutAssignedLeadsInput = {
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedLeadsInput = {
@@ -952,6 +1048,9 @@ export type UserUncheckedCreateWithoutAssignedLeadsInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedLeadsInput = {
@@ -991,6 +1090,9 @@ export type UserUpdateWithoutAssignedLeadsInput = {
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedLeadsInput = {
@@ -1014,6 +1116,9 @@ export type UserUncheckedUpdateWithoutAssignedLeadsInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedEstimatesInput = {
@@ -1037,6 +1142,9 @@ export type UserCreateWithoutCreatedEstimatesInput = {
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
@@ -1060,6 +1168,9 @@ export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedEstimatesInput = {
@@ -1099,6 +1210,9 @@ export type UserUpdateWithoutCreatedEstimatesInput = {
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
@@ -1122,6 +1236,9 @@ export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedQuotationsInput = {
@@ -1145,6 +1262,9 @@ export type UserCreateWithoutCreatedQuotationsInput = {
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedQuotationsInput = {
@@ -1168,6 +1288,9 @@ export type UserUncheckedCreateWithoutCreatedQuotationsInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedQuotationsInput = {
@@ -1207,6 +1330,9 @@ export type UserUpdateWithoutCreatedQuotationsInput = {
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedQuotationsInput = {
@@ -1230,6 +1356,9 @@ export type UserUncheckedUpdateWithoutCreatedQuotationsInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutStockMovementsInput = {
@@ -1253,6 +1382,9 @@ export type UserCreateWithoutStockMovementsInput = {
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutStockMovementsInput = {
@@ -1276,6 +1408,9 @@ export type UserUncheckedCreateWithoutStockMovementsInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutStockMovementsInput = {
@@ -1315,6 +1450,9 @@ export type UserUpdateWithoutStockMovementsInput = {
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStockMovementsInput = {
@@ -1338,6 +1476,9 @@ export type UserUncheckedUpdateWithoutStockMovementsInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAssignedProductionOrdersInput = {
@@ -1361,6 +1502,9 @@ export type UserCreateWithoutAssignedProductionOrdersInput = {
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedProductionOrdersInput = {
@@ -1384,6 +1528,9 @@ export type UserUncheckedCreateWithoutAssignedProductionOrdersInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedProductionOrdersInput = {
@@ -1412,6 +1559,9 @@ export type UserCreateWithoutCreatedProductionOrdersInput = {
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedProductionOrdersInput = {
@@ -1435,6 +1585,9 @@ export type UserUncheckedCreateWithoutCreatedProductionOrdersInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedProductionOrdersInput = {
@@ -1474,6 +1627,9 @@ export type UserUpdateWithoutAssignedProductionOrdersInput = {
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedProductionOrdersInput = {
@@ -1497,6 +1653,9 @@ export type UserUncheckedUpdateWithoutAssignedProductionOrdersInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedProductionOrdersInput = {
@@ -1531,6 +1690,9 @@ export type UserUpdateWithoutCreatedProductionOrdersInput = {
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedProductionOrdersInput = {
@@ -1554,6 +1716,9 @@ export type UserUncheckedUpdateWithoutCreatedProductionOrdersInput = {
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAssignedInspectionsInput = {
@@ -1577,6 +1742,9 @@ export type UserCreateWithoutAssignedInspectionsInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedInspectionsInput = {
@@ -1600,6 +1768,9 @@ export type UserUncheckedCreateWithoutAssignedInspectionsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedInspectionsInput = {
@@ -1628,6 +1799,9 @@ export type UserCreateWithoutCreatedInspectionsInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedInspectionsInput = {
@@ -1651,6 +1825,9 @@ export type UserUncheckedCreateWithoutCreatedInspectionsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedInspectionsInput = {
@@ -1690,6 +1867,9 @@ export type UserUpdateWithoutAssignedInspectionsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedInspectionsInput = {
@@ -1713,6 +1893,9 @@ export type UserUncheckedUpdateWithoutAssignedInspectionsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedInspectionsInput = {
@@ -1747,6 +1930,9 @@ export type UserUpdateWithoutCreatedInspectionsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedInspectionsInput = {
@@ -1770,6 +1956,9 @@ export type UserUncheckedUpdateWithoutCreatedInspectionsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedDispatchesInput = {
@@ -1793,6 +1982,9 @@ export type UserCreateWithoutCreatedDispatchesInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedDispatchesInput = {
@@ -1816,6 +2008,9 @@ export type UserUncheckedCreateWithoutCreatedDispatchesInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedDispatchesInput = {
@@ -1855,6 +2050,9 @@ export type UserUpdateWithoutCreatedDispatchesInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedDispatchesInput = {
@@ -1878,6 +2076,369 @@ export type UserUncheckedUpdateWithoutCreatedDispatchesInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutCreatedServiceContractsInput = {
+  id?: string
+  employeeCode: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  status?: $Enums.UserStatus
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  createdQuotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatedByInput
+  assignedProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutAssignedToInput
+  createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
+  assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
+  createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutCreatedServiceContractsInput = {
+  id?: string
+  employeeCode: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  status?: $Enums.UserStatus
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  createdQuotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutAssignedToInput
+  createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
+  createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutCreatedServiceContractsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedServiceContractsInput, Prisma.UserUncheckedCreateWithoutCreatedServiceContractsInput>
+}
+
+export type UserUpsertWithoutCreatedServiceContractsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedServiceContractsInput, Prisma.UserUncheckedUpdateWithoutCreatedServiceContractsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedServiceContractsInput, Prisma.UserUncheckedCreateWithoutCreatedServiceContractsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedServiceContractsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedServiceContractsInput, Prisma.UserUncheckedUpdateWithoutCreatedServiceContractsInput>
+}
+
+export type UserUpdateWithoutCreatedServiceContractsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  createdQuotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutCreatedByNestedInput
+  assignedProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutAssignedToNestedInput
+  createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
+  assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
+  createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedServiceContractsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdQuotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutAssignedServiceRequestsInput = {
+  id?: string
+  employeeCode: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  status?: $Enums.UserStatus
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  createdQuotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatedByInput
+  assignedProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutAssignedToInput
+  createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
+  assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
+  createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  createdServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutAssignedServiceRequestsInput = {
+  id?: string
+  employeeCode: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  status?: $Enums.UserStatus
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  createdQuotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutAssignedToInput
+  createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
+  createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutAssignedServiceRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedServiceRequestsInput, Prisma.UserUncheckedCreateWithoutAssignedServiceRequestsInput>
+}
+
+export type UserCreateWithoutCreatedServiceRequestsInput = {
+  id?: string
+  employeeCode: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  status?: $Enums.UserStatus
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  createdQuotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatedByInput
+  assignedProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutAssignedToInput
+  createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
+  assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
+  createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserUncheckedCreateWithoutCreatedServiceRequestsInput = {
+  id?: string
+  employeeCode: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  status?: $Enums.UserStatus
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  createdQuotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutAssignedToInput
+  createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
+  createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserCreateOrConnectWithoutCreatedServiceRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedServiceRequestsInput, Prisma.UserUncheckedCreateWithoutCreatedServiceRequestsInput>
+}
+
+export type UserUpsertWithoutAssignedServiceRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAssignedServiceRequestsInput, Prisma.UserUncheckedUpdateWithoutAssignedServiceRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedServiceRequestsInput, Prisma.UserUncheckedCreateWithoutAssignedServiceRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAssignedServiceRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAssignedServiceRequestsInput, Prisma.UserUncheckedUpdateWithoutAssignedServiceRequestsInput>
+}
+
+export type UserUpdateWithoutAssignedServiceRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  createdQuotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutCreatedByNestedInput
+  assignedProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutAssignedToNestedInput
+  createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
+  assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
+  createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAssignedServiceRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdQuotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUpsertWithoutCreatedServiceRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedServiceRequestsInput, Prisma.UserUncheckedUpdateWithoutCreatedServiceRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedServiceRequestsInput, Prisma.UserUncheckedCreateWithoutCreatedServiceRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedServiceRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedServiceRequestsInput, Prisma.UserUncheckedUpdateWithoutCreatedServiceRequestsInput>
+}
+
+export type UserUpdateWithoutCreatedServiceRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  createdQuotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutCreatedByNestedInput
+  assignedProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutAssignedToNestedInput
+  createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
+  assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
+  createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedServiceRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdQuotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdServiceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedServiceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 
@@ -1897,6 +2458,9 @@ export type UserCountOutputType = {
   assignedInspections: number
   createdInspections: number
   createdDispatches: number
+  createdServiceContracts: number
+  assignedServiceRequests: number
+  createdServiceRequests: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1911,6 +2475,9 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   assignedInspections?: boolean | UserCountOutputTypeCountAssignedInspectionsArgs
   createdInspections?: boolean | UserCountOutputTypeCountCreatedInspectionsArgs
   createdDispatches?: boolean | UserCountOutputTypeCountCreatedDispatchesArgs
+  createdServiceContracts?: boolean | UserCountOutputTypeCountCreatedServiceContractsArgs
+  assignedServiceRequests?: boolean | UserCountOutputTypeCountAssignedServiceRequestsArgs
+  createdServiceRequests?: boolean | UserCountOutputTypeCountCreatedServiceRequestsArgs
 }
 
 /**
@@ -2000,6 +2567,27 @@ export type UserCountOutputTypeCountCreatedDispatchesArgs<ExtArgs extends runtim
   where?: Prisma.DispatchWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedServiceContractsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ServiceContractWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAssignedServiceRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ServiceRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedServiceRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ServiceRequestWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2023,6 +2611,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   assignedInspections?: boolean | Prisma.User$assignedInspectionsArgs<ExtArgs>
   createdInspections?: boolean | Prisma.User$createdInspectionsArgs<ExtArgs>
   createdDispatches?: boolean | Prisma.User$createdDispatchesArgs<ExtArgs>
+  createdServiceContracts?: boolean | Prisma.User$createdServiceContractsArgs<ExtArgs>
+  assignedServiceRequests?: boolean | Prisma.User$assignedServiceRequestsArgs<ExtArgs>
+  createdServiceRequests?: boolean | Prisma.User$createdServiceRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2078,6 +2669,9 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   assignedInspections?: boolean | Prisma.User$assignedInspectionsArgs<ExtArgs>
   createdInspections?: boolean | Prisma.User$createdInspectionsArgs<ExtArgs>
   createdDispatches?: boolean | Prisma.User$createdDispatchesArgs<ExtArgs>
+  createdServiceContracts?: boolean | Prisma.User$createdServiceContractsArgs<ExtArgs>
+  assignedServiceRequests?: boolean | Prisma.User$assignedServiceRequestsArgs<ExtArgs>
+  createdServiceRequests?: boolean | Prisma.User$createdServiceRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2097,6 +2691,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     assignedInspections: Prisma.$QualityInspectionPayload<ExtArgs>[]
     createdInspections: Prisma.$QualityInspectionPayload<ExtArgs>[]
     createdDispatches: Prisma.$DispatchPayload<ExtArgs>[]
+    createdServiceContracts: Prisma.$ServiceContractPayload<ExtArgs>[]
+    assignedServiceRequests: Prisma.$ServiceRequestPayload<ExtArgs>[]
+    createdServiceRequests: Prisma.$ServiceRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2514,6 +3111,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   assignedInspections<T extends Prisma.User$assignedInspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedInspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QualityInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdInspections<T extends Prisma.User$createdInspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdInspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QualityInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdDispatches<T extends Prisma.User$createdDispatchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdDispatchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DispatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdServiceContracts<T extends Prisma.User$createdServiceContractsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdServiceContractsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServiceContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignedServiceRequests<T extends Prisma.User$assignedServiceRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedServiceRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServiceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdServiceRequests<T extends Prisma.User$createdServiceRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdServiceRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServiceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3207,6 +3807,78 @@ export type User$createdDispatchesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.DispatchScalarFieldEnum | Prisma.DispatchScalarFieldEnum[]
+}
+
+/**
+ * User.createdServiceContracts
+ */
+export type User$createdServiceContractsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ServiceContract
+   */
+  select?: Prisma.ServiceContractSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ServiceContract
+   */
+  omit?: Prisma.ServiceContractOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceContractInclude<ExtArgs> | null
+  where?: Prisma.ServiceContractWhereInput
+  orderBy?: Prisma.ServiceContractOrderByWithRelationInput | Prisma.ServiceContractOrderByWithRelationInput[]
+  cursor?: Prisma.ServiceContractWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ServiceContractScalarFieldEnum | Prisma.ServiceContractScalarFieldEnum[]
+}
+
+/**
+ * User.assignedServiceRequests
+ */
+export type User$assignedServiceRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ServiceRequest
+   */
+  select?: Prisma.ServiceRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ServiceRequest
+   */
+  omit?: Prisma.ServiceRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRequestInclude<ExtArgs> | null
+  where?: Prisma.ServiceRequestWhereInput
+  orderBy?: Prisma.ServiceRequestOrderByWithRelationInput | Prisma.ServiceRequestOrderByWithRelationInput[]
+  cursor?: Prisma.ServiceRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ServiceRequestScalarFieldEnum | Prisma.ServiceRequestScalarFieldEnum[]
+}
+
+/**
+ * User.createdServiceRequests
+ */
+export type User$createdServiceRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ServiceRequest
+   */
+  select?: Prisma.ServiceRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ServiceRequest
+   */
+  omit?: Prisma.ServiceRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRequestInclude<ExtArgs> | null
+  where?: Prisma.ServiceRequestWhereInput
+  orderBy?: Prisma.ServiceRequestOrderByWithRelationInput | Prisma.ServiceRequestOrderByWithRelationInput[]
+  cursor?: Prisma.ServiceRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ServiceRequestScalarFieldEnum | Prisma.ServiceRequestScalarFieldEnum[]
 }
 
 /**

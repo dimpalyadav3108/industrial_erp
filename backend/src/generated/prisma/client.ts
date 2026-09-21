@@ -131,3 +131,13 @@ export type QualityCheckItem = Prisma.QualityCheckItemModel
  * 
  */
 export type Dispatch = Prisma.DispatchModel
+/**
+ * Model ServiceContract
+ * 
+ */
+export type ServiceContract = Prisma.ServiceContractModel
+/**
+ * Model ServiceRequest
+ * 
+ */
+export type ServiceRequest = Prisma.ServiceRequestModel

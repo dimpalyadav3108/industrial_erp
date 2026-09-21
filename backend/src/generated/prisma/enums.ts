@@ -168,3 +168,48 @@ export const TransportMode = {
 } as const
 
 export type TransportMode = (typeof TransportMode)[keyof typeof TransportMode]
+
+
+export const ServiceContractType = {
+  WARRANTY: 'WARRANTY',
+  AMC: 'AMC',
+  CMC: 'CMC',
+  ON_CALL: 'ON_CALL'
+} as const
+
+export type ServiceContractType = (typeof ServiceContractType)[keyof typeof ServiceContractType]
+
+
+export const ServiceContractStatus = {
+  DRAFT: 'DRAFT',
+  ACTIVE: 'ACTIVE',
+  EXPIRED: 'EXPIRED',
+  SUSPENDED: 'SUSPENDED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ServiceContractStatus = (typeof ServiceContractStatus)[keyof typeof ServiceContractStatus]
+
+
+export const ServiceRequestType = {
+  BREAKDOWN: 'BREAKDOWN',
+  PREVENTIVE_MAINTENANCE: 'PREVENTIVE_MAINTENANCE',
+  INSTALLATION: 'INSTALLATION',
+  COMMISSIONING: 'COMMISSIONING',
+  INSPECTION: 'INSPECTION',
+  OTHER: 'OTHER'
+} as const
+
+export type ServiceRequestType = (typeof ServiceRequestType)[keyof typeof ServiceRequestType]
+
+
+export const ServiceRequestStatus = {
+  OPEN: 'OPEN',
+  ASSIGNED: 'ASSIGNED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  RESOLVED: 'RESOLVED',
+  CLOSED: 'CLOSED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ServiceRequestStatus = (typeof ServiceRequestStatus)[keyof typeof ServiceRequestStatus]

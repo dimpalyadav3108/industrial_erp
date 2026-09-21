@@ -414,7 +414,9 @@ export const ModelName = {
   ProductionOperation: 'ProductionOperation',
   QualityInspection: 'QualityInspection',
   QualityCheckItem: 'QualityCheckItem',
-  Dispatch: 'Dispatch'
+  Dispatch: 'Dispatch',
+  ServiceContract: 'ServiceContract',
+  ServiceRequest: 'ServiceRequest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -430,7 +432,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "auditLog" | "customer" | "lead" | "estimate" | "estimateItem" | "quotation" | "inventoryItem" | "stockMovement" | "productionOrder" | "productionOperation" | "qualityInspection" | "qualityCheckItem" | "dispatch"
+    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "auditLog" | "customer" | "lead" | "estimate" | "estimateItem" | "quotation" | "inventoryItem" | "stockMovement" | "productionOrder" | "productionOperation" | "qualityInspection" | "qualityCheckItem" | "dispatch" | "serviceContract" | "serviceRequest"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1766,6 +1768,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ServiceContract: {
+      payload: Prisma.$ServiceContractPayload<ExtArgs>
+      fields: Prisma.ServiceContractFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ServiceContractFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ServiceContractFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload>
+        }
+        findFirst: {
+          args: Prisma.ServiceContractFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ServiceContractFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload>
+        }
+        findMany: {
+          args: Prisma.ServiceContractFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload>[]
+        }
+        create: {
+          args: Prisma.ServiceContractCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload>
+        }
+        createMany: {
+          args: Prisma.ServiceContractCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ServiceContractCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload>[]
+        }
+        delete: {
+          args: Prisma.ServiceContractDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload>
+        }
+        update: {
+          args: Prisma.ServiceContractUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload>
+        }
+        deleteMany: {
+          args: Prisma.ServiceContractDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ServiceContractUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ServiceContractUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload>[]
+        }
+        upsert: {
+          args: Prisma.ServiceContractUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceContractPayload>
+        }
+        aggregate: {
+          args: Prisma.ServiceContractAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateServiceContract>
+        }
+        groupBy: {
+          args: Prisma.ServiceContractGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ServiceContractGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ServiceContractCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ServiceContractCountAggregateOutputType> | number
+        }
+      }
+    }
+    ServiceRequest: {
+      payload: Prisma.$ServiceRequestPayload<ExtArgs>
+      fields: Prisma.ServiceRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ServiceRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ServiceRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.ServiceRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ServiceRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload>
+        }
+        findMany: {
+          args: Prisma.ServiceRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload>[]
+        }
+        create: {
+          args: Prisma.ServiceRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload>
+        }
+        createMany: {
+          args: Prisma.ServiceRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ServiceRequestCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload>[]
+        }
+        delete: {
+          args: Prisma.ServiceRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload>
+        }
+        update: {
+          args: Prisma.ServiceRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.ServiceRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ServiceRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ServiceRequestUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload>[]
+        }
+        upsert: {
+          args: Prisma.ServiceRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.ServiceRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateServiceRequest>
+        }
+        groupBy: {
+          args: Prisma.ServiceRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ServiceRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ServiceRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ServiceRequestCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2126,6 +2276,55 @@ export const DispatchScalarFieldEnum = {
 export type DispatchScalarFieldEnum = (typeof DispatchScalarFieldEnum)[keyof typeof DispatchScalarFieldEnum]
 
 
+export const ServiceContractScalarFieldEnum = {
+  id: 'id',
+  contractNumber: 'contractNumber',
+  customerId: 'customerId',
+  dispatchId: 'dispatchId',
+  title: 'title',
+  contractType: 'contractType',
+  status: 'status',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  contractValue: 'contractValue',
+  visitsIncluded: 'visitsIncluded',
+  visitsUsed: 'visitsUsed',
+  responseTimeHours: 'responseTimeHours',
+  notes: 'notes',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ServiceContractScalarFieldEnum = (typeof ServiceContractScalarFieldEnum)[keyof typeof ServiceContractScalarFieldEnum]
+
+
+export const ServiceRequestScalarFieldEnum = {
+  id: 'id',
+  ticketNumber: 'ticketNumber',
+  customerId: 'customerId',
+  serviceContractId: 'serviceContractId',
+  requestType: 'requestType',
+  priority: 'priority',
+  status: 'status',
+  subject: 'subject',
+  description: 'description',
+  location: 'location',
+  reportedAt: 'reportedAt',
+  scheduledDate: 'scheduledDate',
+  startedAt: 'startedAt',
+  resolvedAt: 'resolvedAt',
+  closedAt: 'closedAt',
+  assignedToId: 'assignedToId',
+  createdById: 'createdById',
+  resolutionNotes: 'resolutionNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ServiceRequestScalarFieldEnum = (typeof ServiceRequestScalarFieldEnum)[keyof typeof ServiceRequestScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2475,6 +2674,62 @@ export type ListEnumTransportModeFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
+ * Reference to a field of type 'ServiceContractType'
+ */
+export type EnumServiceContractTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ServiceContractType'>
+    
+
+
+/**
+ * Reference to a field of type 'ServiceContractType[]'
+ */
+export type ListEnumServiceContractTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ServiceContractType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ServiceContractStatus'
+ */
+export type EnumServiceContractStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ServiceContractStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ServiceContractStatus[]'
+ */
+export type ListEnumServiceContractStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ServiceContractStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ServiceRequestType'
+ */
+export type EnumServiceRequestTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ServiceRequestType'>
+    
+
+
+/**
+ * Reference to a field of type 'ServiceRequestType[]'
+ */
+export type ListEnumServiceRequestTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ServiceRequestType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ServiceRequestStatus'
+ */
+export type EnumServiceRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ServiceRequestStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ServiceRequestStatus[]'
+ */
+export type ListEnumServiceRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ServiceRequestStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2656,6 +2911,8 @@ export type GlobalOmitConfig = {
   qualityInspection?: Prisma.QualityInspectionOmit
   qualityCheckItem?: Prisma.QualityCheckItemOmit
   dispatch?: Prisma.DispatchOmit
+  serviceContract?: Prisma.ServiceContractOmit
+  serviceRequest?: Prisma.ServiceRequestOmit
 }
 
 /* Types for Logging */
