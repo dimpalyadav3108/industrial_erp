@@ -7,6 +7,7 @@ import morgan from "morgan";
 import { prisma } from "./config/database.js";
 import { authRouter } from "./routes/auth.routes.js";
 import { customerRouter } from "./routes/customer.routes.js";
+import { dispatchRouter } from "./routes/dispatch.routes.js";
 import { estimateRouter } from "./routes/estimate.routes.js";
 import { inventoryRouter } from "./routes/inventory.routes.js";
 import { leadRouter } from "./routes/lead.routes.js";
@@ -38,6 +39,7 @@ app.use("/api/inventory", inventoryRouter);
 app.use("/api/production", productionRouter);
 app.use("/api/quality", qualityRouter);
 app.use("/api/quotations", quotationRouter);
+app.use("/api/dispatches", dispatchRouter);
 
 app.get("/api/health", async (_request: Request, response: Response) => {
   try {

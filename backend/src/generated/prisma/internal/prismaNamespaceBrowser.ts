@@ -67,7 +67,8 @@ export const ModelName = {
   ProductionOrder: 'ProductionOrder',
   ProductionOperation: 'ProductionOperation',
   QualityInspection: 'QualityInspection',
-  QualityCheckItem: 'QualityCheckItem'
+  QualityCheckItem: 'QualityCheckItem',
+  Dispatch: 'Dispatch'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -378,6 +379,33 @@ export const QualityCheckItemScalarFieldEnum = {
 } as const
 
 export type QualityCheckItemScalarFieldEnum = (typeof QualityCheckItemScalarFieldEnum)[keyof typeof QualityCheckItemScalarFieldEnum]
+
+
+export const DispatchScalarFieldEnum = {
+  id: 'id',
+  dispatchNumber: 'dispatchNumber',
+  productionOrderId: 'productionOrderId',
+  qualityInspectionId: 'qualityInspectionId',
+  status: 'status',
+  transportMode: 'transportMode',
+  dispatchDate: 'dispatchDate',
+  expectedDeliveryDate: 'expectedDeliveryDate',
+  actualDeliveryDate: 'actualDeliveryDate',
+  transporterName: 'transporterName',
+  vehicleNumber: 'vehicleNumber',
+  trackingNumber: 'trackingNumber',
+  destination: 'destination',
+  contactPerson: 'contactPerson',
+  contactPhone: 'contactPhone',
+  packageCount: 'packageCount',
+  totalWeight: 'totalWeight',
+  notes: 'notes',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DispatchScalarFieldEnum = (typeof DispatchScalarFieldEnum)[keyof typeof DispatchScalarFieldEnum]
 
 
 export const SortOrder = {

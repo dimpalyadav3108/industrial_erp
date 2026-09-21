@@ -126,3 +126,8 @@ export type QualityInspection = Prisma.QualityInspectionModel
  * 
  */
 export type QualityCheckItem = Prisma.QualityCheckItemModel
+/**
+ * Model Dispatch
+ * 
+ */
+export type Dispatch = Prisma.DispatchModel

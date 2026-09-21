@@ -413,7 +413,8 @@ export const ModelName = {
   ProductionOrder: 'ProductionOrder',
   ProductionOperation: 'ProductionOperation',
   QualityInspection: 'QualityInspection',
-  QualityCheckItem: 'QualityCheckItem'
+  QualityCheckItem: 'QualityCheckItem',
+  Dispatch: 'Dispatch'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -429,7 +430,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "auditLog" | "customer" | "lead" | "estimate" | "estimateItem" | "quotation" | "inventoryItem" | "stockMovement" | "productionOrder" | "productionOperation" | "qualityInspection" | "qualityCheckItem"
+    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "auditLog" | "customer" | "lead" | "estimate" | "estimateItem" | "quotation" | "inventoryItem" | "stockMovement" | "productionOrder" | "productionOperation" | "qualityInspection" | "qualityCheckItem" | "dispatch"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1691,6 +1692,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Dispatch: {
+      payload: Prisma.$DispatchPayload<ExtArgs>
+      fields: Prisma.DispatchFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DispatchFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DispatchFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload>
+        }
+        findFirst: {
+          args: Prisma.DispatchFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DispatchFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload>
+        }
+        findMany: {
+          args: Prisma.DispatchFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload>[]
+        }
+        create: {
+          args: Prisma.DispatchCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload>
+        }
+        createMany: {
+          args: Prisma.DispatchCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DispatchCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload>[]
+        }
+        delete: {
+          args: Prisma.DispatchDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload>
+        }
+        update: {
+          args: Prisma.DispatchUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload>
+        }
+        deleteMany: {
+          args: Prisma.DispatchDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DispatchUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DispatchUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload>[]
+        }
+        upsert: {
+          args: Prisma.DispatchUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispatchPayload>
+        }
+        aggregate: {
+          args: Prisma.DispatchAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDispatch>
+        }
+        groupBy: {
+          args: Prisma.DispatchGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DispatchGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DispatchCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DispatchCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2024,6 +2099,33 @@ export const QualityCheckItemScalarFieldEnum = {
 export type QualityCheckItemScalarFieldEnum = (typeof QualityCheckItemScalarFieldEnum)[keyof typeof QualityCheckItemScalarFieldEnum]
 
 
+export const DispatchScalarFieldEnum = {
+  id: 'id',
+  dispatchNumber: 'dispatchNumber',
+  productionOrderId: 'productionOrderId',
+  qualityInspectionId: 'qualityInspectionId',
+  status: 'status',
+  transportMode: 'transportMode',
+  dispatchDate: 'dispatchDate',
+  expectedDeliveryDate: 'expectedDeliveryDate',
+  actualDeliveryDate: 'actualDeliveryDate',
+  transporterName: 'transporterName',
+  vehicleNumber: 'vehicleNumber',
+  trackingNumber: 'trackingNumber',
+  destination: 'destination',
+  contactPerson: 'contactPerson',
+  contactPhone: 'contactPhone',
+  packageCount: 'packageCount',
+  totalWeight: 'totalWeight',
+  notes: 'notes',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DispatchScalarFieldEnum = (typeof DispatchScalarFieldEnum)[keyof typeof DispatchScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2345,6 +2447,34 @@ export type ListEnumQualityCheckResultFieldRefInput<$PrismaModel> = FieldRefInpu
 
 
 /**
+ * Reference to a field of type 'DispatchStatus'
+ */
+export type EnumDispatchStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DispatchStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DispatchStatus[]'
+ */
+export type ListEnumDispatchStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DispatchStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TransportMode'
+ */
+export type EnumTransportModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransportMode'>
+    
+
+
+/**
+ * Reference to a field of type 'TransportMode[]'
+ */
+export type ListEnumTransportModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransportMode[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2525,6 +2655,7 @@ export type GlobalOmitConfig = {
   productionOperation?: Prisma.ProductionOperationOmit
   qualityInspection?: Prisma.QualityInspectionOmit
   qualityCheckItem?: Prisma.QualityCheckItemOmit
+  dispatch?: Prisma.DispatchOmit
 }
 
 /* Types for Logging */

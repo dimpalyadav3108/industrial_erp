@@ -146,3 +146,25 @@ export const QualityCheckResult = {
 } as const
 
 export type QualityCheckResult = (typeof QualityCheckResult)[keyof typeof QualityCheckResult]
+
+
+export const DispatchStatus = {
+  PLANNED: 'PLANNED',
+  READY: 'READY',
+  DISPATCHED: 'DISPATCHED',
+  DELIVERED: 'DELIVERED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type DispatchStatus = (typeof DispatchStatus)[keyof typeof DispatchStatus]
+
+
+export const TransportMode = {
+  ROAD: 'ROAD',
+  AIR: 'AIR',
+  RAIL: 'RAIL',
+  COURIER: 'COURIER',
+  CUSTOMER_PICKUP: 'CUSTOMER_PICKUP'
+} as const
+
+export type TransportMode = (typeof TransportMode)[keyof typeof TransportMode]

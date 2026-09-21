@@ -1,13 +1,9 @@
 import type { ReactNode } from "react";
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./components/AppLayout";
 import { CustomersPage } from "./pages/CustomersPage";
 import { DashboardPage } from "./pages/DashboardPage";
+import DispatchPage from "./pages/DispatchPage";
 import EstimationPage from "./pages/EstimationPage";
 import InventoryPage from "./pages/InventoryPage";
 import LeadsPage from "./pages/LeadsPage";
@@ -23,40 +19,25 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
 }
 
 function LoginRoute() {
-  return getStoredUser() ? (
-    <Navigate to="/dashboard" replace />
-  ) : (
-    <LoginPage />
-  );
+  return getStoredUser() ? <Navigate to="/dashboard" replace /> : <LoginPage />;
 }
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginRoute />} />
-
-        <Route
-          element={
-            <ProtectedRoute>
-              <AppLayout />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/customers" element={<CustomersPage />} />
-          <Route path="/leads" element={<LeadsPage />} />
-          <Route path="/estimation" element={<EstimationPage />} />
-          <Route path="/quotations" element={<QuotationsPage />} />
-          <Route path="/inventory" element={<InventoryPage />} />
-          <Route path="/production" element={<ProductionPage />} />
-          <Route path="/quality" element={<QualityPage />} />
-        </Route>
-
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <BrowserRouter><Routes>
+    <Route path="/" element={<LoginRoute />} />
+    <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/customers" element={<CustomersPage />} />
+      <Route path="/leads" element={<LeadsPage />} />
+      <Route path="/estimation" element={<EstimationPage />} />
+      <Route path="/quotations" element={<QuotationsPage />} />
+      <Route path="/inventory" element={<InventoryPage />} />
+      <Route path="/production" element={<ProductionPage />} />
+      <Route path="/quality" element={<QualityPage />} />
+      <Route path="/dispatch" element={<DispatchPage />} />
+    </Route>
+    <Route path="*" element={<Navigate to="/" replace />} />
+  </Routes></BrowserRouter>;
 }
 
 export default App;

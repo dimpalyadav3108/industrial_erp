@@ -232,6 +232,7 @@ export type UserWhereInput = {
   createdProductionOrders?: Prisma.ProductionOrderListRelationFilter
   assignedInspections?: Prisma.QualityInspectionListRelationFilter
   createdInspections?: Prisma.QualityInspectionListRelationFilter
+  createdDispatches?: Prisma.DispatchListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -255,6 +256,7 @@ export type UserOrderByWithRelationInput = {
   createdProductionOrders?: Prisma.ProductionOrderOrderByRelationAggregateInput
   assignedInspections?: Prisma.QualityInspectionOrderByRelationAggregateInput
   createdInspections?: Prisma.QualityInspectionOrderByRelationAggregateInput
+  createdDispatches?: Prisma.DispatchOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -281,6 +283,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdProductionOrders?: Prisma.ProductionOrderListRelationFilter
   assignedInspections?: Prisma.QualityInspectionListRelationFilter
   createdInspections?: Prisma.QualityInspectionListRelationFilter
+  createdDispatches?: Prisma.DispatchListRelationFilter
 }, "id" | "employeeCode" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -336,6 +339,7 @@ export type UserCreateInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -359,6 +363,7 @@ export type UserUncheckedCreateInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUpdateInput = {
@@ -382,6 +387,7 @@ export type UserUpdateInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -405,6 +411,7 @@ export type UserUncheckedUpdateInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -669,6 +676,22 @@ export type UserUpdateOneWithoutCreatedInspectionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedInspectionsInput, Prisma.UserUpdateWithoutCreatedInspectionsInput>, Prisma.UserUncheckedUpdateWithoutCreatedInspectionsInput>
 }
 
+export type UserCreateNestedOneWithoutCreatedDispatchesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedDispatchesInput, Prisma.UserUncheckedCreateWithoutCreatedDispatchesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedDispatchesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedDispatchesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedDispatchesInput, Prisma.UserUncheckedCreateWithoutCreatedDispatchesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedDispatchesInput
+  upsert?: Prisma.UserUpsertWithoutCreatedDispatchesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedDispatchesInput, Prisma.UserUpdateWithoutCreatedDispatchesInput>, Prisma.UserUncheckedUpdateWithoutCreatedDispatchesInput>
+}
+
 export type UserCreateWithoutRolesInput = {
   id?: string
   employeeCode: string
@@ -689,6 +712,7 @@ export type UserCreateWithoutRolesInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRolesInput = {
@@ -711,6 +735,7 @@ export type UserUncheckedCreateWithoutRolesInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRolesInput = {
@@ -749,6 +774,7 @@ export type UserUpdateWithoutRolesInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRolesInput = {
@@ -771,6 +797,7 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -793,6 +820,7 @@ export type UserCreateWithoutAuditLogsInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -815,6 +843,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -853,6 +882,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -875,6 +905,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAssignedLeadsInput = {
@@ -897,6 +928,7 @@ export type UserCreateWithoutAssignedLeadsInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedLeadsInput = {
@@ -919,6 +951,7 @@ export type UserUncheckedCreateWithoutAssignedLeadsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedLeadsInput = {
@@ -957,6 +990,7 @@ export type UserUpdateWithoutAssignedLeadsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedLeadsInput = {
@@ -979,6 +1013,7 @@ export type UserUncheckedUpdateWithoutAssignedLeadsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedEstimatesInput = {
@@ -1001,6 +1036,7 @@ export type UserCreateWithoutCreatedEstimatesInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
@@ -1023,6 +1059,7 @@ export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedEstimatesInput = {
@@ -1061,6 +1098,7 @@ export type UserUpdateWithoutCreatedEstimatesInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
@@ -1083,6 +1121,7 @@ export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedQuotationsInput = {
@@ -1105,6 +1144,7 @@ export type UserCreateWithoutCreatedQuotationsInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedQuotationsInput = {
@@ -1127,6 +1167,7 @@ export type UserUncheckedCreateWithoutCreatedQuotationsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedQuotationsInput = {
@@ -1165,6 +1206,7 @@ export type UserUpdateWithoutCreatedQuotationsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedQuotationsInput = {
@@ -1187,6 +1229,7 @@ export type UserUncheckedUpdateWithoutCreatedQuotationsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutStockMovementsInput = {
@@ -1209,6 +1252,7 @@ export type UserCreateWithoutStockMovementsInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutStockMovementsInput = {
@@ -1231,6 +1275,7 @@ export type UserUncheckedCreateWithoutStockMovementsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutStockMovementsInput = {
@@ -1269,6 +1314,7 @@ export type UserUpdateWithoutStockMovementsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStockMovementsInput = {
@@ -1291,6 +1337,7 @@ export type UserUncheckedUpdateWithoutStockMovementsInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAssignedProductionOrdersInput = {
@@ -1313,6 +1360,7 @@ export type UserCreateWithoutAssignedProductionOrdersInput = {
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedProductionOrdersInput = {
@@ -1335,6 +1383,7 @@ export type UserUncheckedCreateWithoutAssignedProductionOrdersInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedProductionOrdersInput = {
@@ -1362,6 +1411,7 @@ export type UserCreateWithoutCreatedProductionOrdersInput = {
   assignedProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutAssignedToInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedProductionOrdersInput = {
@@ -1384,6 +1434,7 @@ export type UserUncheckedCreateWithoutCreatedProductionOrdersInput = {
   assignedProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutAssignedToInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedProductionOrdersInput = {
@@ -1422,6 +1473,7 @@ export type UserUpdateWithoutAssignedProductionOrdersInput = {
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedProductionOrdersInput = {
@@ -1444,6 +1496,7 @@ export type UserUncheckedUpdateWithoutAssignedProductionOrdersInput = {
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedProductionOrdersInput = {
@@ -1477,6 +1530,7 @@ export type UserUpdateWithoutCreatedProductionOrdersInput = {
   assignedProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutAssignedToNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedProductionOrdersInput = {
@@ -1499,6 +1553,7 @@ export type UserUncheckedUpdateWithoutCreatedProductionOrdersInput = {
   assignedProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutAssignedToNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAssignedInspectionsInput = {
@@ -1521,6 +1576,7 @@ export type UserCreateWithoutAssignedInspectionsInput = {
   assignedProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutAssignedToInput
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedInspectionsInput = {
@@ -1543,6 +1599,7 @@ export type UserUncheckedCreateWithoutAssignedInspectionsInput = {
   assignedProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutAssignedToInput
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedInspectionsInput = {
@@ -1570,6 +1627,7 @@ export type UserCreateWithoutCreatedInspectionsInput = {
   assignedProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutAssignedToInput
   createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
+  createdDispatches?: Prisma.DispatchCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedInspectionsInput = {
@@ -1592,6 +1650,7 @@ export type UserUncheckedCreateWithoutCreatedInspectionsInput = {
   assignedProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutAssignedToInput
   createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
   assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
+  createdDispatches?: Prisma.DispatchUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedInspectionsInput = {
@@ -1630,6 +1689,7 @@ export type UserUpdateWithoutAssignedInspectionsInput = {
   assignedProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutAssignedToNestedInput
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedInspectionsInput = {
@@ -1652,6 +1712,7 @@ export type UserUncheckedUpdateWithoutAssignedInspectionsInput = {
   assignedProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutAssignedToNestedInput
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedInspectionsInput = {
@@ -1685,6 +1746,7 @@ export type UserUpdateWithoutCreatedInspectionsInput = {
   assignedProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutAssignedToNestedInput
   createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
+  createdDispatches?: Prisma.DispatchUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedInspectionsInput = {
@@ -1707,6 +1769,115 @@ export type UserUncheckedUpdateWithoutCreatedInspectionsInput = {
   assignedProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutAssignedToNestedInput
   createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  createdDispatches?: Prisma.DispatchUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutCreatedDispatchesInput = {
+  id?: string
+  employeeCode: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  status?: $Enums.UserStatus
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  createdQuotations?: Prisma.QuotationCreateNestedManyWithoutCreatedByInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatedByInput
+  assignedProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutAssignedToInput
+  createdProductionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutCreatedByInput
+  assignedInspections?: Prisma.QualityInspectionCreateNestedManyWithoutInspectorInput
+  createdInspections?: Prisma.QualityInspectionCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutCreatedDispatchesInput = {
+  id?: string
+  employeeCode: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  status?: $Enums.UserStatus
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  createdQuotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutCreatedByInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutAssignedToInput
+  createdProductionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutInspectorInput
+  createdInspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutCreatedDispatchesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedDispatchesInput, Prisma.UserUncheckedCreateWithoutCreatedDispatchesInput>
+}
+
+export type UserUpsertWithoutCreatedDispatchesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedDispatchesInput, Prisma.UserUncheckedUpdateWithoutCreatedDispatchesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedDispatchesInput, Prisma.UserUncheckedCreateWithoutCreatedDispatchesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedDispatchesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedDispatchesInput, Prisma.UserUncheckedUpdateWithoutCreatedDispatchesInput>
+}
+
+export type UserUpdateWithoutCreatedDispatchesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  createdQuotations?: Prisma.QuotationUpdateManyWithoutCreatedByNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutCreatedByNestedInput
+  assignedProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutAssignedToNestedInput
+  createdProductionOrders?: Prisma.ProductionOrderUpdateManyWithoutCreatedByNestedInput
+  assignedInspections?: Prisma.QualityInspectionUpdateManyWithoutInspectorNestedInput
+  createdInspections?: Prisma.QualityInspectionUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedDispatchesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdQuotations?: Prisma.QuotationUncheckedUpdateManyWithoutCreatedByNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutAssignedToNestedInput
+  createdProductionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  createdInspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 
@@ -1725,6 +1896,7 @@ export type UserCountOutputType = {
   createdProductionOrders: number
   assignedInspections: number
   createdInspections: number
+  createdDispatches: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1738,6 +1910,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   createdProductionOrders?: boolean | UserCountOutputTypeCountCreatedProductionOrdersArgs
   assignedInspections?: boolean | UserCountOutputTypeCountAssignedInspectionsArgs
   createdInspections?: boolean | UserCountOutputTypeCountCreatedInspectionsArgs
+  createdDispatches?: boolean | UserCountOutputTypeCountCreatedDispatchesArgs
 }
 
 /**
@@ -1820,6 +1993,13 @@ export type UserCountOutputTypeCountCreatedInspectionsArgs<ExtArgs extends runti
   where?: Prisma.QualityInspectionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedDispatchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DispatchWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1842,6 +2022,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdProductionOrders?: boolean | Prisma.User$createdProductionOrdersArgs<ExtArgs>
   assignedInspections?: boolean | Prisma.User$assignedInspectionsArgs<ExtArgs>
   createdInspections?: boolean | Prisma.User$createdInspectionsArgs<ExtArgs>
+  createdDispatches?: boolean | Prisma.User$createdDispatchesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1896,6 +2077,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdProductionOrders?: boolean | Prisma.User$createdProductionOrdersArgs<ExtArgs>
   assignedInspections?: boolean | Prisma.User$assignedInspectionsArgs<ExtArgs>
   createdInspections?: boolean | Prisma.User$createdInspectionsArgs<ExtArgs>
+  createdDispatches?: boolean | Prisma.User$createdDispatchesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1914,6 +2096,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdProductionOrders: Prisma.$ProductionOrderPayload<ExtArgs>[]
     assignedInspections: Prisma.$QualityInspectionPayload<ExtArgs>[]
     createdInspections: Prisma.$QualityInspectionPayload<ExtArgs>[]
+    createdDispatches: Prisma.$DispatchPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2330,6 +2513,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   createdProductionOrders<T extends Prisma.User$createdProductionOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdProductionOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductionOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignedInspections<T extends Prisma.User$assignedInspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedInspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QualityInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdInspections<T extends Prisma.User$createdInspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdInspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QualityInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdDispatches<T extends Prisma.User$createdDispatchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdDispatchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DispatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2999,6 +3183,30 @@ export type User$createdInspectionsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.QualityInspectionScalarFieldEnum | Prisma.QualityInspectionScalarFieldEnum[]
+}
+
+/**
+ * User.createdDispatches
+ */
+export type User$createdDispatchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Dispatch
+   */
+  select?: Prisma.DispatchSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Dispatch
+   */
+  omit?: Prisma.DispatchOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DispatchInclude<ExtArgs> | null
+  where?: Prisma.DispatchWhereInput
+  orderBy?: Prisma.DispatchOrderByWithRelationInput | Prisma.DispatchOrderByWithRelationInput[]
+  cursor?: Prisma.DispatchWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DispatchScalarFieldEnum | Prisma.DispatchScalarFieldEnum[]
 }
 
 /**
