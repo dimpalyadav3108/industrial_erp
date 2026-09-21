@@ -1,3 +1,6 @@
+// Interactive ERP topbar: module search, notifications and account menu
+import { useMemo, useState } from "react";
+import type { FormEvent } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   Bell,
@@ -30,9 +33,39 @@ const menuItems = [
   { label: "Service & AMC", icon: Wrench, path: "/service" },
 ];
 
+const searchableItems = [
+  ...menuItems,
+  { label: "Settings", icon: Settings, path: "/settings" },
+];
+
 export function AppLayout() {
   const navigate = useNavigate();
   const user = getStoredUser();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showAccount, setShowAccount] = useState(false);
+
+  const searchResults = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return searchableItems;
+    return searchableItems.filter((item) =>
+      item.label.toLowerCase().includes(query)
+    );
+  }, [searchQuery]);
+
+  function goTo(path: string) {
+    navigate(path);
+    setSearchQuery("");
+    setShowSearchResults(false);
+    setShowNotifications(false);
+    setShowAccount(false);
+  }
+
+  function handleSearch(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (searchResults[0]) goTo(searchResults[0].path);
+  }
 
   function handleLogout() {
     logout();
@@ -92,22 +125,57 @@ export function AppLayout() {
 
       <main className="dashboard-main">
         <header className="topbar">
-          <div className="search-box">
+          <form className="search-box topbar-search" onSubmit={handleSearch}>
             <Search size={18} />
-            <input placeholder="Search projects, customers or jobs..." />
-          </div>
+            <input
+              value={searchQuery}
+              placeholder="Search modules..."
+              onFocus={() => setShowSearchResults(true)}
+              onChange={(event) => {
+                setSearchQuery(event.target.value);
+                setShowSearchResults(true);
+              }}
+              aria-label="Search ERP modules"
+            />
+            {showSearchResults && searchQuery.trim() && (
+              <div className="topbar-search-results">
+                {searchResults.length > 0 ? searchResults.map(({ label, icon: Icon, path }) => (
+                  <button type="button" key={path} onClick={() => goTo(path)}>
+                    <Icon size={17} /><span>{label}</span>
+                  </button>
+                )) : <div className="topbar-empty-result">No matching module found</div>}
+              </div>
+            )}
+          </form>
 
           <div className="topbar-actions">
-            <button
-              className="icon-button"
-              type="button"
-              aria-label="Notifications"
-            >
-              <Bell size={20} />
-              <span className="notification-dot" />
-            </button>
+            <div className="topbar-menu-wrap">
+              <button
+                className="icon-button"
+                type="button"
+                aria-label="Notifications"
+                aria-expanded={showNotifications}
+                onClick={() => {
+                  setShowNotifications((current) => !current);
+                  setShowAccount(false);
+                  setShowSearchResults(false);
+                }}
+              >
+                <Bell size={20} />
+                <span className="notification-dot" />
+              </button>
+              {showNotifications && <div className="topbar-popover notification-popover">
+                <div className="popover-heading"><strong>Notifications</strong><span>System updates</span></div>
+                <div className="notification-empty"><Bell size={24} /><strong>No new notifications</strong><span>Your ERP is operating normally.</span></div>
+              </div>}
+            </div>
 
-            <div className="user-summary">
+            <div className="topbar-menu-wrap">
+            <button className="user-summary account-button" type="button" aria-expanded={showAccount} onClick={() => {
+              setShowAccount((current) => !current);
+              setShowNotifications(false);
+              setShowSearchResults(false);
+            }}>
               <div className="user-avatar">
                 {user?.firstName?.[0] || "A"}
               </div>
@@ -121,6 +189,12 @@ export function AppLayout() {
 
                 <span>{user?.roles.join(", ") || "ADMIN"}</span>
               </div>
+            </button>
+            {showAccount && <div className="topbar-popover account-popover">
+              <div className="account-popover-user"><div className="user-avatar">{user?.firstName?.[0] || "A"}</div><div><strong>{user ? `${user.firstName} ${user.lastName}` : "Administrator"}</strong><span>{user?.roles.join(", ") || "ADMIN"}</span></div></div>
+              <button type="button" onClick={() => goTo("/settings")}><Settings size={17} /> Account settings</button>
+              <button type="button" className="popover-signout" onClick={handleLogout}><LogOut size={17} /> Sign out</button>
+            </div>}
             </div>
           </div>
         </header>
