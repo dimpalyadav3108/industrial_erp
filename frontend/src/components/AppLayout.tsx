@@ -69,10 +69,15 @@ export function AppLayout() {
         </nav>
 
         <div className="sidebar-footer">
-          <button className="nav-item" type="button">
+          <NavLink
+            to="/settings"
+            className={({ isActive }) =>
+              `nav-item ${isActive ? "active" : ""}`
+            }
+          >
             <Settings size={19} />
             <span>Settings</span>
-          </button>
+          </NavLink>
 
           <button
             className="nav-item logout-item"
