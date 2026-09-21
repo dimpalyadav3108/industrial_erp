@@ -29,15 +29,15 @@ export async function login(
 
   const loginResult = result as LoginResponse;
 
-  sessionStorage.setItem(
+  localStorage.setItem(
     "accessToken",
     loginResult.data.accessToken
   );
-  sessionStorage.setItem(
+  localStorage.setItem(
     "refreshToken",
     loginResult.data.refreshToken
   );
-  sessionStorage.setItem(
+  localStorage.setItem(
     "user",
     JSON.stringify(loginResult.data.user)
   );
@@ -46,7 +46,7 @@ export async function login(
 }
 
 export function getStoredUser(): User | null {
-  const storedUser = sessionStorage.getItem("user");
+  const storedUser = localStorage.getItem("user");
 
   if (!storedUser) {
     return null;
@@ -55,13 +55,13 @@ export function getStoredUser(): User | null {
   try {
     return JSON.parse(storedUser) as User;
   } catch {
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
     return null;
   }
 }
 
 export function logout(): void {
-  sessionStorage.removeItem("accessToken");
-  sessionStorage.removeItem("refreshToken");
-  sessionStorage.removeItem("user");
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  localStorage.removeItem("user");
 }

@@ -18,7 +18,7 @@ interface ApiErrorResponse {
 }
 
 const getAccessToken = () => {
-  const token = sessionStorage.getItem("accessToken");
+  const token = localStorage.getItem("accessToken");
 
   if (!token) {
     throw new Error("Your session has expired. Please sign in again.");

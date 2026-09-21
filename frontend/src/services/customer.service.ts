@@ -9,7 +9,7 @@ const API_URL =
   import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 function getAuthorizationHeader(): Record<string, string> {
-  const accessToken = sessionStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("accessToken");
 
   if (!accessToken) {
     throw new Error("Your session has expired. Please sign in again.");

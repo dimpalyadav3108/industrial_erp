@@ -7,7 +7,7 @@ import type {
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 interface ApiErrorResponse { success: false; message: string; errors?: Record<string, string[]> }
 const headers = (json = false) => {
-  const token = sessionStorage.getItem("accessToken");
+  const token = localStorage.getItem("accessToken");
   if (!token) throw new Error("Your session has expired. Please sign in again.");
   return { ...(json ? { "Content-Type": "application/json" } : {}), Authorization: `Bearer ${token}` };
 };
