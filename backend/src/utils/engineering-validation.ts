@@ -12,6 +12,10 @@ const optionalDate = z.preprocess(
   z.string().datetime({ offset: true }).optional()
 );
 
+// ============================================================
+// ENGINEERING PROJECT
+// ============================================================
+
 export const engineeringProjectStatusSchema = z.enum([
   "DRAFT",
   "DESIGN_IN_PROGRESS",
@@ -21,6 +25,10 @@ export const engineeringProjectStatusSchema = z.enum([
   "ON_HOLD",
   "CANCELLED",
 ]);
+
+// ============================================================
+// DRAWING
+// ============================================================
 
 export const drawingCategorySchema = z.enum([
   "GENERAL_ARRANGEMENT",
@@ -41,6 +49,28 @@ export const drawingRevisionStatusSchema = z.enum([
   "REJECTED",
   "SUPERSEDED",
 ]);
+
+// ============================================================
+// BOM
+// ============================================================
+
+export const bomStatusSchema = z.enum([
+  "DRAFT",
+  "IN_REVIEW",
+  "APPROVED",
+  "RELEASED",
+  "SUPERSEDED",
+  "CANCELLED",
+]);
+
+export const bomItemSourceSchema = z.enum([
+  "MAKE",
+  "BUY",
+]);
+
+// ============================================================
+// ENGINEERING PROJECT VALIDATION
+// ============================================================
 
 export const createEngineeringProjectSchema = z
   .object({
@@ -78,6 +108,10 @@ export const updateEngineeringProjectSchema = z
     message: "At least one engineering project field must be provided",
   });
 
+// ============================================================
+// DRAWING VALIDATION
+// ============================================================
+
 export const createEngineeringDrawingSchema = z.object({
   projectId: z.string().uuid("Select a valid engineering project"),
   drawingNumber: z.string().trim().min(2).max(100),
@@ -102,4 +136,169 @@ export const updateDrawingRevisionSchema = z
   })
   .refine((data) => Object.keys(data).length > 0, {
     message: "Provide a revision status or customer approval",
+  });
+
+// ============================================================
+// BOM VALIDATION
+// ============================================================
+
+export const createEngineeringBomSchema = z.object({
+  projectId: z.string().uuid("Select a valid engineering project"),
+
+  bomNumber: z
+    .string()
+    .trim()
+    .min(2, "BOM number is required")
+    .max(100),
+
+  name: z
+    .string()
+    .trim()
+    .min(2, "BOM name is required")
+    .max(200),
+
+  revision: z
+    .number()
+    .int()
+    .min(0)
+    .optional(),
+
+  description: optionalText(2000),
+});
+
+export const updateEngineeringBomSchema = z
+  .object({
+    name: z
+      .string()
+      .trim()
+      .min(2)
+      .max(200)
+      .optional(),
+
+    revision: z
+      .number()
+      .int()
+      .min(0)
+      .optional(),
+
+    status: bomStatusSchema.optional(),
+
+    description: optionalText(2000),
+  })
+  .refine((data) => Object.keys(data).length > 0, {
+    message: "At least one BOM field must be provided",
+  });
+
+// ============================================================
+// BOM ITEM VALIDATION
+// ============================================================
+
+export const createEngineeringBomItemSchema = z.object({
+  parentItemId: z
+    .string()
+    .uuid("Invalid parent BOM item")
+    .nullable()
+    .optional(),
+
+  inventoryItemId: z
+    .string()
+    .uuid("Invalid inventory item")
+    .nullable()
+    .optional(),
+
+  itemNumber: z
+    .number()
+    .int()
+    .positive("Item number must be greater than zero"),
+
+  name: z
+    .string()
+    .trim()
+    .min(1, "Item name is required")
+    .max(200),
+
+  description: optionalText(2000),
+
+  quantity: z
+    .number()
+    .positive("Quantity must be greater than zero"),
+
+  unit: z
+    .string()
+    .trim()
+    .min(1, "Unit is required")
+    .max(50),
+
+  source: bomItemSourceSchema.default("BUY"),
+
+  materialSpec: optionalText(500),
+
+  drawingNumber: optionalText(100),
+
+  remarks: optionalText(1000),
+
+  sortOrder: z
+    .number()
+    .int()
+    .min(0)
+    .optional(),
+});
+
+export const updateEngineeringBomItemSchema = z
+  .object({
+    parentItemId: z
+      .string()
+      .uuid("Invalid parent BOM item")
+      .nullable()
+      .optional(),
+
+    inventoryItemId: z
+      .string()
+      .uuid("Invalid inventory item")
+      .nullable()
+      .optional(),
+
+    itemNumber: z
+      .number()
+      .int()
+      .positive()
+      .optional(),
+
+    name: z
+      .string()
+      .trim()
+      .min(1)
+      .max(200)
+      .optional(),
+
+    description: optionalText(2000),
+
+    quantity: z
+      .number()
+      .positive()
+      .optional(),
+
+    unit: z
+      .string()
+      .trim()
+      .min(1)
+      .max(50)
+      .optional(),
+
+    source: bomItemSourceSchema.optional(),
+
+    materialSpec: optionalText(500),
+
+    drawingNumber: optionalText(100),
+
+    remarks: optionalText(1000),
+
+    sortOrder: z
+      .number()
+      .int()
+      .min(0)
+      .optional(),
+  })
+  .refine((data) => Object.keys(data).length > 0, {
+    message: "At least one BOM item field must be provided",
   });

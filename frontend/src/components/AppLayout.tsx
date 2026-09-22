@@ -7,6 +7,7 @@ import {
   Boxes,
   Calculator,
   ClipboardCheck,
+  DraftingCompass,
   Factory,
   FileText,
   LayoutDashboard,
@@ -18,6 +19,7 @@ import {
   Users,
   Wrench,
 } from "lucide-react";
+
 import { getStoredUser, logout } from "../services/auth.service";
 
 const menuItems = [
@@ -26,6 +28,14 @@ const menuItems = [
   { label: "Leads & Enquiries", icon: Target, path: "/leads" },
   { label: "Estimation", icon: Calculator, path: "/estimation" },
   { label: "Quotations", icon: FileText, path: "/quotations" },
+
+  // Engineering module
+  {
+    label: "Engineering",
+    icon: DraftingCompass,
+    path: "/engineering",
+  },
+
   { label: "Inventory", icon: Boxes, path: "/inventory" },
   { label: "Production", icon: Factory, path: "/production" },
   { label: "Quality", icon: ClipboardCheck, path: "/quality" },
@@ -41,6 +51,7 @@ const searchableItems = [
 export function AppLayout() {
   const navigate = useNavigate();
   const user = getStoredUser();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -48,7 +59,11 @@ export function AppLayout() {
 
   const searchResults = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
-    if (!query) return searchableItems;
+
+    if (!query) {
+      return searchableItems;
+    }
+
     return searchableItems.filter((item) =>
       item.label.toLowerCase().includes(query)
     );
@@ -64,13 +79,20 @@ export function AppLayout() {
 
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (searchResults[0]) goTo(searchResults[0].path);
+
+    if (searchResults[0]) {
+      goTo(searchResults[0].path);
+    }
   }
 
   function handleLogout() {
     logout();
     navigate("/", { replace: true });
   }
+
+  const displayName = user
+    ? [user.firstName, user.lastName].filter(Boolean).join(" ")
+    : "Administrator";
 
   return (
     <div className="dashboard-shell">
@@ -125,8 +147,12 @@ export function AppLayout() {
 
       <main className="dashboard-main">
         <header className="topbar">
-          <form className="search-box topbar-search" onSubmit={handleSearch}>
+          <form
+            className="search-box topbar-search"
+            onSubmit={handleSearch}
+          >
             <Search size={18} />
+
             <input
               value={searchQuery}
               placeholder="Search modules..."
@@ -137,13 +163,27 @@ export function AppLayout() {
               }}
               aria-label="Search ERP modules"
             />
+
             {showSearchResults && searchQuery.trim() && (
               <div className="topbar-search-results">
-                {searchResults.length > 0 ? searchResults.map(({ label, icon: Icon, path }) => (
-                  <button type="button" key={path} onClick={() => goTo(path)}>
-                    <Icon size={17} /><span>{label}</span>
-                  </button>
-                )) : <div className="topbar-empty-result">No matching module found</div>}
+                {searchResults.length > 0 ? (
+                  searchResults.map(
+                    ({ label, icon: Icon, path }) => (
+                      <button
+                        type="button"
+                        key={path}
+                        onClick={() => goTo(path)}
+                      >
+                        <Icon size={17} />
+                        <span>{label}</span>
+                      </button>
+                    )
+                  )
+                ) : (
+                  <div className="topbar-empty-result">
+                    No matching module found
+                  </div>
+                )}
               </div>
             )}
           </form>
@@ -156,7 +196,9 @@ export function AppLayout() {
                 aria-label="Notifications"
                 aria-expanded={showNotifications}
                 onClick={() => {
-                  setShowNotifications((current) => !current);
+                  setShowNotifications(
+                    (current) => !current
+                  );
                   setShowAccount(false);
                   setShowSearchResults(false);
                 }}
@@ -164,37 +206,85 @@ export function AppLayout() {
                 <Bell size={20} />
                 <span className="notification-dot" />
               </button>
-              {showNotifications && <div className="topbar-popover notification-popover">
-                <div className="popover-heading"><strong>Notifications</strong><span>System updates</span></div>
-                <div className="notification-empty"><Bell size={24} /><strong>No new notifications</strong><span>Your ERP is operating normally.</span></div>
-              </div>}
+
+              {showNotifications && (
+                <div className="topbar-popover notification-popover">
+                  <div className="popover-heading">
+                    <strong>Notifications</strong>
+                    <span>System updates</span>
+                  </div>
+
+                  <div className="notification-empty">
+                    <Bell size={24} />
+                    <strong>No new notifications</strong>
+                    <span>
+                      Your ERP is operating normally.
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="topbar-menu-wrap">
-            <button className="user-summary account-button" type="button" aria-expanded={showAccount} onClick={() => {
-              setShowAccount((current) => !current);
-              setShowNotifications(false);
-              setShowSearchResults(false);
-            }}>
-              <div className="user-avatar">
-                {user?.firstName?.[0] || "A"}
-              </div>
+              <button
+                className="user-summary account-button"
+                type="button"
+                aria-expanded={showAccount}
+                onClick={() => {
+                  setShowAccount(
+                    (current) => !current
+                  );
+                  setShowNotifications(false);
+                  setShowSearchResults(false);
+                }}
+              >
+                <div className="user-avatar">
+                  {user?.firstName?.[0] || "A"}
+                </div>
 
-              <div>
-                <strong>
-                  {user
-                    ? `${user.firstName} ${user.lastName}`
-                    : "Administrator"}
-                </strong>
+                <div>
+                  <strong>{displayName}</strong>
 
-                <span>{user?.roles.join(", ") || "ADMIN"}</span>
-              </div>
-            </button>
-            {showAccount && <div className="topbar-popover account-popover">
-              <div className="account-popover-user"><div className="user-avatar">{user?.firstName?.[0] || "A"}</div><div><strong>{user ? `${user.firstName} ${user.lastName}` : "Administrator"}</strong><span>{user?.roles.join(", ") || "ADMIN"}</span></div></div>
-              <button type="button" onClick={() => goTo("/settings")}><Settings size={17} /> Account settings</button>
-              <button type="button" className="popover-signout" onClick={handleLogout}><LogOut size={17} /> Sign out</button>
-            </div>}
+                  <span>
+                    {user?.roles.join(", ") || "ADMIN"}
+                  </span>
+                </div>
+              </button>
+
+              {showAccount && (
+                <div className="topbar-popover account-popover">
+                  <div className="account-popover-user">
+                    <div className="user-avatar">
+                      {user?.firstName?.[0] || "A"}
+                    </div>
+
+                    <div>
+                      <strong>{displayName}</strong>
+
+                      <span>
+                        {user?.roles.join(", ") || "ADMIN"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => goTo("/settings")}
+                  >
+                    <Settings size={17} />
+                    Account settings
+                  </button>
+
+                  <button
+                    type="button"
+                    className="popover-signout"
+                    onClick={handleLogout}
+                  >
+                    <LogOut size={17} />
+                    Sign out
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </header>

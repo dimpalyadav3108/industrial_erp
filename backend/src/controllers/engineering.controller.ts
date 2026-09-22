@@ -3,9 +3,13 @@ import type { Request, Response } from "express";
 import { prisma } from "../config/database.js";
 import {
   createDrawingRevisionSchema,
+  createEngineeringBomItemSchema,
+  createEngineeringBomSchema,
   createEngineeringDrawingSchema,
   createEngineeringProjectSchema,
   updateDrawingRevisionSchema,
+  updateEngineeringBomItemSchema,
+  updateEngineeringBomSchema,
   updateEngineeringProjectSchema,
 } from "../utils/engineering-validation.js";
 
@@ -35,6 +39,27 @@ const drawingInclude = {
   },
 } as const;
 
+const bomItemInclude = {
+  inventoryItem: {
+    select: {
+      id: true,
+      itemCode: true,
+      name: true,
+      itemType: true,
+      unit: true,
+    },
+  },
+} as const;
+
+const bomInclude = {
+  createdBy: { select: userSummary },
+  approvedBy: { select: userSummary },
+  items: {
+    include: bomItemInclude,
+    orderBy: [{ sortOrder: "asc" as const }, { itemNumber: "asc" as const }],
+  },
+};
+
 const projectInclude = {
   quotation: {
     include: {
@@ -51,6 +76,10 @@ const projectInclude = {
   drawings: {
     include: drawingInclude,
     orderBy: [{ category: "asc" as const }, { drawingNumber: "asc" as const }],
+  },
+  boms: {
+    include: bomInclude,
+    orderBy: { createdAt: "desc" as const },
   },
 };
 
@@ -637,3 +666,694 @@ export const updateDrawingRevisionController = async (
     });
   }
 };
+
+const allowedBomTransitions = {
+  DRAFT: ["IN_REVIEW", "CANCELLED"],
+  IN_REVIEW: ["DRAFT", "APPROVED", "CANCELLED"],
+  APPROVED: ["RELEASED", "DRAFT", "CANCELLED"],
+  RELEASED: ["SUPERSEDED"],
+  SUPERSEDED: [],
+  CANCELLED: [],
+} as const;
+
+const isAllowedBomTransition = (
+  currentStatus: keyof typeof allowedBomTransitions,
+  targetStatus: string
+) =>
+  (allowedBomTransitions[currentStatus] as readonly string[]).includes(
+    targetStatus
+  );
+
+export const listEngineeringBomsController = async (
+  request: Request,
+  response: Response
+) => {
+  try {
+    const projectId =
+      typeof request.query.projectId === "string"
+        ? request.query.projectId.trim()
+        : "";
+
+    const boms = await prisma.engineeringBom.findMany({
+      ...(projectId ? { where: { projectId } } : {}),
+      include: bomInclude,
+      orderBy: { createdAt: "desc" },
+    });
+
+    response.status(200).json({ success: true, data: boms });
+  } catch (error) {
+    console.error("Unable to list engineering BOMs:", error);
+    response.status(500).json({
+      success: false,
+      message: "Unable to load engineering BOMs",
+    });
+  }
+};
+
+export const getEngineeringBomController = async (
+  request: Request,
+  response: Response
+) => {
+  try {
+    const bom = await prisma.engineeringBom.findUnique({
+      where: { id: String(request.params.bomId) },
+      include: bomInclude,
+    });
+
+    if (!bom) {
+      response.status(404).json({
+        success: false,
+        message: "Engineering BOM was not found",
+      });
+      return;
+    }
+
+    response.status(200).json({ success: true, data: bom });
+  } catch (error) {
+    console.error("Unable to load engineering BOM:", error);
+    response.status(500).json({
+      success: false,
+      message: "Unable to load engineering BOM",
+    });
+  }
+};
+
+export const createEngineeringBomController = async (
+  request: AuthenticatedRequest,
+  response: Response
+) => {
+  try {
+    const validation = createEngineeringBomSchema.safeParse(request.body);
+
+    if (!validation.success) {
+      response.status(400).json({
+        success: false,
+        message: "Please correct the BOM fields",
+        errors: validation.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const data = validation.data;
+
+    const project = await prisma.engineeringProject.findUnique({
+      where: { id: data.projectId },
+      select: { id: true, status: true },
+    });
+
+    if (!project) {
+      response.status(404).json({
+        success: false,
+        message: "Engineering project was not found",
+      });
+      return;
+    }
+
+    if (project.status === "RELEASED" || project.status === "CANCELLED") {
+      response.status(400).json({
+        success: false,
+        message: "BOMs cannot be added to a released or cancelled project",
+      });
+      return;
+    }
+
+    const duplicate = await prisma.engineeringBom.findUnique({
+      where: { bomNumber: data.bomNumber },
+      select: { id: true },
+    });
+
+    if (duplicate) {
+      response.status(409).json({
+        success: false,
+        message: "This BOM number already exists",
+      });
+      return;
+    }
+
+    const bom = await prisma.engineeringBom.create({
+      data: {
+        projectId: data.projectId,
+        bomNumber: data.bomNumber,
+        name: data.name,
+        revision: data.revision ?? 0,
+        description: data.description ?? null,
+        createdById: request.auth?.userId ?? null,
+      },
+      include: bomInclude,
+    });
+
+    await prisma.auditLog.create({
+      data: {
+        userId: request.auth?.userId ?? null,
+        action: "CREATE",
+        entity: "EngineeringBom",
+        entityId: bom.id,
+        newValues: {
+          projectId: bom.projectId,
+          bomNumber: bom.bomNumber,
+          revision: bom.revision,
+          status: bom.status,
+        },
+        ipAddress: request.ip ?? null,
+      },
+    });
+
+    response.status(201).json({
+      success: true,
+      message: "Engineering BOM created successfully",
+      data: bom,
+    });
+  } catch (error) {
+    console.error("Unable to create engineering BOM:", error);
+    response.status(500).json({
+      success: false,
+      message: "Unable to create engineering BOM",
+    });
+  }
+};
+
+export const updateEngineeringBomController = async (
+  request: AuthenticatedRequest,
+  response: Response
+) => {
+  try {
+    const validation = updateEngineeringBomSchema.safeParse(request.body);
+
+    if (!validation.success) {
+      response.status(400).json({
+        success: false,
+        message: "Please correct the BOM fields",
+        errors: validation.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const bomId = String(request.params.bomId);
+    const existing = await prisma.engineeringBom.findUnique({
+      where: { id: bomId },
+    });
+
+    if (!existing) {
+      response.status(404).json({
+        success: false,
+        message: "Engineering BOM was not found",
+      });
+      return;
+    }
+
+    const data = validation.data;
+
+    if (
+      data.status !== undefined &&
+      data.status !== existing.status &&
+      !isAllowedBomTransition(existing.status, data.status)
+    ) {
+      response.status(400).json({
+        success: false,
+        message: `BOM status cannot change from ${existing.status} to ${data.status}`,
+      });
+      return;
+    }
+
+    const changingContent =
+      data.name !== undefined ||
+      data.revision !== undefined ||
+      data.description !== undefined;
+
+    if (
+      changingContent &&
+      (existing.status === "RELEASED" ||
+        existing.status === "SUPERSEDED" ||
+        existing.status === "CANCELLED")
+    ) {
+      response.status(400).json({
+        success: false,
+        message: "Released, superseded, or cancelled BOM content cannot be edited",
+      });
+      return;
+    }
+
+    const now = new Date();
+
+    const bom = await prisma.engineeringBom.update({
+      where: { id: bomId },
+      data: {
+        ...(data.name !== undefined ? { name: data.name } : {}),
+        ...(data.revision !== undefined ? { revision: data.revision } : {}),
+        ...(data.description !== undefined
+          ? { description: data.description ?? null }
+          : {}),
+        ...(data.status !== undefined ? { status: data.status } : {}),
+        ...(data.status === "APPROVED"
+          ? {
+              approvedAt: now,
+              approvedById: request.auth?.userId ?? null,
+            }
+          : {}),
+        ...(data.status === "RELEASED" ? { releasedAt: now } : {}),
+        ...(data.status === "DRAFT"
+          ? {
+              approvedAt: null,
+              approvedById: null,
+              releasedAt: null,
+            }
+          : {}),
+      },
+      include: bomInclude,
+    });
+
+    await prisma.auditLog.create({
+      data: {
+        userId: request.auth?.userId ?? null,
+        action: "UPDATE",
+        entity: "EngineeringBom",
+        entityId: bom.id,
+        oldValues: {
+          name: existing.name,
+          revision: existing.revision,
+          status: existing.status,
+        },
+        newValues: {
+          name: bom.name,
+          revision: bom.revision,
+          status: bom.status,
+        },
+        ipAddress: request.ip ?? null,
+      },
+    });
+
+    response.status(200).json({
+      success: true,
+      message: "Engineering BOM updated successfully",
+      data: bom,
+    });
+  } catch (error) {
+    console.error("Unable to update engineering BOM:", error);
+    response.status(500).json({
+      success: false,
+      message: "Unable to update engineering BOM",
+    });
+  }
+};
+
+export const createEngineeringBomItemController = async (
+  request: AuthenticatedRequest,
+  response: Response
+) => {
+  try {
+    const validation = createEngineeringBomItemSchema.safeParse(request.body);
+
+    if (!validation.success) {
+      response.status(400).json({
+        success: false,
+        message: "Please correct the BOM item fields",
+        errors: validation.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const bomId = String(request.params.bomId);
+    const bom = await prisma.engineeringBom.findUnique({
+      where: { id: bomId },
+      select: { id: true, status: true },
+    });
+
+    if (!bom) {
+      response.status(404).json({
+        success: false,
+        message: "Engineering BOM was not found",
+      });
+      return;
+    }
+
+    if (bom.status !== "DRAFT") {
+      response.status(400).json({
+        success: false,
+        message: "BOM items can only be added while the BOM is in DRAFT status",
+      });
+      return;
+    }
+
+    const data = validation.data;
+
+    if (data.parentItemId) {
+      const parent = await prisma.engineeringBomItem.findUnique({
+        where: { id: data.parentItemId },
+        select: { id: true, bomId: true },
+      });
+
+      if (!parent || parent.bomId !== bomId) {
+        response.status(400).json({
+          success: false,
+          message: "Parent item must belong to the same BOM",
+        });
+        return;
+      }
+    }
+
+    if (data.inventoryItemId) {
+      const inventoryItem = await prisma.inventoryItem.findUnique({
+        where: { id: data.inventoryItemId },
+        select: { id: true, isActive: true },
+      });
+
+      if (!inventoryItem || !inventoryItem.isActive) {
+        response.status(400).json({
+          success: false,
+          message: "Select a valid active inventory item",
+        });
+        return;
+      }
+    }
+
+    const duplicateItemNumber = await prisma.engineeringBomItem.findUnique({
+      where: {
+        bomId_itemNumber: {
+          bomId,
+          itemNumber: data.itemNumber,
+        },
+      },
+      select: { id: true },
+    });
+
+    if (duplicateItemNumber) {
+      response.status(409).json({
+        success: false,
+        message: "This item number already exists in the BOM",
+      });
+      return;
+    }
+
+    const item = await prisma.engineeringBomItem.create({
+      data: {
+        bomId,
+        parentItemId: data.parentItemId ?? null,
+        inventoryItemId: data.inventoryItemId ?? null,
+        itemNumber: data.itemNumber,
+        name: data.name,
+        description: data.description ?? null,
+        quantity: data.quantity,
+        unit: data.unit,
+        source: data.source,
+        materialSpec: data.materialSpec ?? null,
+        drawingNumber: data.drawingNumber ?? null,
+        remarks: data.remarks ?? null,
+        sortOrder: data.sortOrder ?? 0,
+      },
+      include: bomItemInclude,
+    });
+
+    await prisma.auditLog.create({
+      data: {
+        userId: request.auth?.userId ?? null,
+        action: "CREATE",
+        entity: "EngineeringBomItem",
+        entityId: item.id,
+        newValues: {
+          bomId,
+          itemNumber: item.itemNumber,
+          name: item.name,
+          quantity: item.quantity.toString(),
+          source: item.source,
+        },
+        ipAddress: request.ip ?? null,
+      },
+    });
+
+    response.status(201).json({
+      success: true,
+      message: "BOM item added successfully",
+      data: item,
+    });
+  } catch (error) {
+    console.error("Unable to create engineering BOM item:", error);
+    response.status(500).json({
+      success: false,
+      message: "Unable to add BOM item",
+    });
+  }
+};
+
+export const updateEngineeringBomItemController = async (
+  request: AuthenticatedRequest,
+  response: Response
+) => {
+  try {
+    const validation = updateEngineeringBomItemSchema.safeParse(request.body);
+
+    if (!validation.success) {
+      response.status(400).json({
+        success: false,
+        message: "Please correct the BOM item fields",
+        errors: validation.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const itemId = String(request.params.itemId);
+    const existing = await prisma.engineeringBomItem.findUnique({
+      where: { id: itemId },
+      include: {
+        bom: { select: { id: true, status: true } },
+      },
+    });
+
+    if (!existing) {
+      response.status(404).json({
+        success: false,
+        message: "BOM item was not found",
+      });
+      return;
+    }
+
+    if (existing.bom.status !== "DRAFT") {
+      response.status(400).json({
+        success: false,
+        message: "BOM items can only be edited while the BOM is in DRAFT status",
+      });
+      return;
+    }
+
+    const data = validation.data;
+
+    if (data.parentItemId === itemId) {
+      response.status(400).json({
+        success: false,
+        message: "A BOM item cannot be its own parent",
+      });
+      return;
+    }
+
+    if (data.parentItemId) {
+      const parent = await prisma.engineeringBomItem.findUnique({
+        where: { id: data.parentItemId },
+        select: { id: true, bomId: true, parentItemId: true },
+      });
+
+      if (!parent || parent.bomId !== existing.bomId) {
+        response.status(400).json({
+          success: false,
+          message: "Parent item must belong to the same BOM",
+        });
+        return;
+      }
+
+      let ancestorId: string | null = parent.parentItemId;
+      while (ancestorId) {
+        if (ancestorId === itemId) {
+          response.status(400).json({
+            success: false,
+            message: "This parent selection would create a circular BOM hierarchy",
+          });
+          return;
+        }
+
+        const ancestor = await prisma.engineeringBomItem.findUnique({
+          where: { id: ancestorId },
+          select: { parentItemId: true },
+        });
+
+        ancestorId = ancestor?.parentItemId ?? null;
+      }
+    }
+
+    if (data.inventoryItemId) {
+      const inventoryItem = await prisma.inventoryItem.findUnique({
+        where: { id: data.inventoryItemId },
+        select: { id: true, isActive: true },
+      });
+
+      if (!inventoryItem || !inventoryItem.isActive) {
+        response.status(400).json({
+          success: false,
+          message: "Select a valid active inventory item",
+        });
+        return;
+      }
+    }
+
+    if (
+      data.itemNumber !== undefined &&
+      data.itemNumber !== existing.itemNumber
+    ) {
+      const duplicate = await prisma.engineeringBomItem.findUnique({
+        where: {
+          bomId_itemNumber: {
+            bomId: existing.bomId,
+            itemNumber: data.itemNumber,
+          },
+        },
+        select: { id: true },
+      });
+
+      if (duplicate) {
+        response.status(409).json({
+          success: false,
+          message: "This item number already exists in the BOM",
+        });
+        return;
+      }
+    }
+
+    const item = await prisma.engineeringBomItem.update({
+      where: { id: itemId },
+      data: {
+        ...(data.parentItemId !== undefined
+          ? { parentItemId: data.parentItemId }
+          : {}),
+        ...(data.inventoryItemId !== undefined
+          ? { inventoryItemId: data.inventoryItemId }
+          : {}),
+        ...(data.itemNumber !== undefined
+          ? { itemNumber: data.itemNumber }
+          : {}),
+        ...(data.name !== undefined ? { name: data.name } : {}),
+        ...(data.description !== undefined
+          ? { description: data.description ?? null }
+          : {}),
+        ...(data.quantity !== undefined ? { quantity: data.quantity } : {}),
+        ...(data.unit !== undefined ? { unit: data.unit } : {}),
+        ...(data.source !== undefined ? { source: data.source } : {}),
+        ...(data.materialSpec !== undefined
+          ? { materialSpec: data.materialSpec ?? null }
+          : {}),
+        ...(data.drawingNumber !== undefined
+          ? { drawingNumber: data.drawingNumber ?? null }
+          : {}),
+        ...(data.remarks !== undefined
+          ? { remarks: data.remarks ?? null }
+          : {}),
+        ...(data.sortOrder !== undefined
+          ? { sortOrder: data.sortOrder }
+          : {}),
+      },
+      include: bomItemInclude,
+    });
+
+    await prisma.auditLog.create({
+      data: {
+        userId: request.auth?.userId ?? null,
+        action: "UPDATE",
+        entity: "EngineeringBomItem",
+        entityId: item.id,
+        oldValues: {
+          itemNumber: existing.itemNumber,
+          name: existing.name,
+          quantity: existing.quantity.toString(),
+          source: existing.source,
+        },
+        newValues: {
+          itemNumber: item.itemNumber,
+          name: item.name,
+          quantity: item.quantity.toString(),
+          source: item.source,
+        },
+        ipAddress: request.ip ?? null,
+      },
+    });
+
+    response.status(200).json({
+      success: true,
+      message: "BOM item updated successfully",
+      data: item,
+    });
+  } catch (error) {
+    console.error("Unable to update engineering BOM item:", error);
+    response.status(500).json({
+      success: false,
+      message: "Unable to update BOM item",
+    });
+  }
+};
+
+export const deleteEngineeringBomItemController = async (
+  request: AuthenticatedRequest,
+  response: Response
+) => {
+  try {
+    const itemId = String(request.params.itemId);
+
+    const existing = await prisma.engineeringBomItem.findUnique({
+      where: { id: itemId },
+      include: {
+        bom: { select: { status: true } },
+        _count: { select: { children: true } },
+      },
+    });
+
+    if (!existing) {
+      response.status(404).json({
+        success: false,
+        message: "BOM item was not found",
+      });
+      return;
+    }
+
+    if (existing.bom.status !== "DRAFT") {
+      response.status(400).json({
+        success: false,
+        message: "BOM items can only be deleted while the BOM is in DRAFT status",
+      });
+      return;
+    }
+
+    if (existing._count.children > 0) {
+      response.status(400).json({
+        success: false,
+        message: "Remove or move child items before deleting this BOM item",
+      });
+      return;
+    }
+
+    await prisma.engineeringBomItem.delete({
+      where: { id: itemId },
+    });
+
+    await prisma.auditLog.create({
+      data: {
+        userId: request.auth?.userId ?? null,
+        action: "DELETE",
+        entity: "EngineeringBomItem",
+        entityId: itemId,
+        oldValues: {
+          bomId: existing.bomId,
+          itemNumber: existing.itemNumber,
+          name: existing.name,
+        },
+        ipAddress: request.ip ?? null,
+      },
+    });
+
+    response.status(200).json({
+      success: true,
+      message: "BOM item deleted successfully",
+    });
+  } catch (error) {
+    console.error("Unable to delete engineering BOM item:", error);
+    response.status(500).json({
+      success: false,
+      message: "Unable to delete BOM item",
+    });
+  }
+};
+

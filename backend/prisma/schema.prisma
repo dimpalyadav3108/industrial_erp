@@ -187,6 +187,20 @@ enum DrawingRevisionStatus {
   SUPERSEDED
 }
 
+enum BomStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  RELEASED
+  SUPERSEDED
+  CANCELLED
+}
+
+enum BomItemSource {
+  MAKE
+  BUY
+}
+
 model User {
   id           String     @id @default(uuid())
   employeeCode String     @unique
@@ -217,6 +231,8 @@ model User {
   createdEngineeringDrawings EngineeringDrawing[]         @relation("CreatedEngineeringDrawings")
   createdDrawingRevisions    EngineeringDrawingRevision[] @relation("CreatedDrawingRevisions")
   approvedDrawingRevisions   EngineeringDrawingRevision[] @relation("ApprovedDrawingRevisions")
+  createdEngineeringBoms     EngineeringBom[]             @relation("CreatedEngineeringBoms")
+  approvedEngineeringBoms    EngineeringBom[]             @relation("ApprovedEngineeringBoms")
 
   @@index([email])
   @@index([status])
@@ -441,6 +457,7 @@ model InventoryItem {
   updatedAt    DateTime          @updatedAt
 
   movements StockMovement[]
+  bomItems  EngineeringBomItem[]
 
   @@index([name])
   @@index([itemType])
@@ -703,6 +720,7 @@ model EngineeringProject {
   quotation Quotation            @relation(fields: [quotationId], references: [id], onDelete: Restrict)
   createdBy User?                @relation("CreatedEngineeringProjects", fields: [createdById], references: [id], onDelete: SetNull)
   drawings  EngineeringDrawing[]
+  boms      EngineeringBom[]
 
   @@index([quotationId])
   @@index([status])
@@ -762,6 +780,64 @@ model EngineeringDrawingRevision {
   @@index([createdById])
   @@index([approvedById])
   @@index([customerApproved])
+}
+
+model EngineeringBom {
+  id           String    @id @default(uuid())
+  projectId    String
+  bomNumber    String    @unique
+  name         String
+  revision     Int       @default(0)
+  status       BomStatus @default(DRAFT)
+  description  String?
+  createdById  String?
+  approvedById String?
+  approvedAt   DateTime?
+  releasedAt   DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  project    EngineeringProject   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdBy  User?                @relation("CreatedEngineeringBoms", fields: [createdById], references: [id], onDelete: SetNull)
+  approvedBy User?                @relation("ApprovedEngineeringBoms", fields: [approvedById], references: [id], onDelete: SetNull)
+  items      EngineeringBomItem[]
+
+  @@index([projectId])
+  @@index([status])
+  @@index([createdById])
+  @@index([approvedById])
+  @@index([createdAt])
+}
+
+model EngineeringBomItem {
+  id              String        @id @default(uuid())
+  bomId           String
+  parentItemId    String?
+  inventoryItemId String?
+  itemNumber      Int
+  name            String
+  description     String?
+  quantity        Decimal       @db.Decimal(15, 3)
+  unit            String
+  source          BomItemSource @default(BUY)
+  materialSpec    String?
+  drawingNumber   String?
+  remarks         String?
+  sortOrder       Int           @default(0)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  bom           EngineeringBom @relation(fields: [bomId], references: [id], onDelete: Cascade)
+  inventoryItem InventoryItem? @relation(fields: [inventoryItemId], references: [id], onDelete: Restrict)
+
+  parentItem EngineeringBomItem?  @relation("BomItemHierarchy", fields: [parentItemId], references: [id], onDelete: Cascade)
+  children   EngineeringBomItem[] @relation("BomItemHierarchy")
+
+  @@unique([bomId, itemNumber])
+  @@index([bomId])
+  @@index([parentItemId])
+  @@index([inventoryItemId])
+  @@index([source])
 }
 
 model CompanySettings {
