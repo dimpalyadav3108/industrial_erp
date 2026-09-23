@@ -13,7 +13,7 @@ erp_structure.txt
 frontend_errors.txt
 App-current.tsx
 AppLayout-current.tsx
-sales.controller.ts
+/sales.controller.ts
 schema-current.prisma
 server-current.ts
 frontend/ProcurementPage-upload.tsx
