@@ -1,0 +1,8 @@
+export type ProjectStatus="PLANNED"|"ACTIVE"|"ON_HOLD"|"COMPLETED"|"CANCELLED";
+export type MilestoneStatus="PENDING"|"IN_PROGRESS"|"COMPLETED"|"DELAYED"|"CANCELLED";
+export type TaskStatus="TODO"|"IN_PROGRESS"|"BLOCKED"|"COMPLETED"|"CANCELLED";
+export type Priority="LOW"|"MEDIUM"|"HIGH"|"URGENT";
+export interface EligibleOrder{id:string;salesOrderNumber:string;totalAmount:string;customer:{id:string;companyName:string}}
+export interface ProjectTask{id:string;projectId:string;milestoneId?:string|null;title:string;department?:string|null;status:TaskStatus;priority:Priority;dueDate?:string|null;assignedTo?:{id:string;firstName:string;lastName:string}|null}
+export interface ProjectMilestone{id:string;projectId:string;sequence:number;name:string;status:MilestoneStatus;plannedDate?:string|null;completedAt?:string|null;progressPercent:string;tasks:ProjectTask[]}
+export interface Project{id:string;projectNumber:string;salesOrderId:string;title:string;description?:string|null;status:ProjectStatus;priority:Priority;plannedStartDate?:string|null;plannedEndDate?:string|null;actualStartDate?:string|null;actualEndDate?:string|null;budgetAmount:string;progressPercent:string;notes?:string|null;customer:{id:string;companyName:string};salesOrder:{id:string;salesOrderNumber:string};manager?:{id:string;firstName:string;lastName:string;email:string}|null;milestones:ProjectMilestone[];tasks:ProjectTask[]}

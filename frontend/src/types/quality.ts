@@ -1,98 +1,13 @@
-export type QualityInspectionType = "IN_PROCESS" | "FINAL";
-
-export type QualityInspectionStatus =
-  | "PENDING"
-  | "IN_PROGRESS"
-  | "PASSED"
-  | "FAILED"
-  | "ON_HOLD";
-
-export type QualityCheckResult =
-  | "PENDING"
-  | "PASS"
-  | "FAIL"
-  | "NOT_APPLICABLE";
-
-export interface QualityCheckItem {
-  id: string;
-  qualityInspectionId: string;
-  sequence: number;
-  parameter: string;
-  specification: string | null;
-  observedValue: string | null;
-  result: QualityCheckResult;
-  remarks: string | null;
-}
-
-export interface QualityInspection {
-  id: string;
-  inspectionNumber: string;
-  productionOrderId: string;
-  inspectionType: QualityInspectionType;
-  status: QualityInspectionStatus;
-  scheduledDate: string | null;
-  inspectionDate: string | null;
-  remarks: string | null;
-  failureReason: string | null;
-  createdAt: string;
-  updatedAt: string;
-  productionOrder: {
-    id: string;
-    productionNumber: string;
-    title: string;
-    status: string;
-    quantity: string;
-    unit: string;
-    quotation: {
-      id: string;
-      quotationNumber: string;
-      estimate: {
-        id: string;
-        estimateNumber: string;
-        lead: {
-          id: string;
-          leadNumber: string;
-          title: string;
-          customer: {
-            id: string;
-            customerCode: string;
-            companyName: string;
-          } | null;
-        };
-      };
-    };
-  };
-  inspector: {
-    id: string;
-    employeeCode: string;
-    firstName: string;
-    lastName: string;
-  } | null;
-  checks: QualityCheckItem[];
-}
-
-export interface CreateQualityCheckPayload {
-  parameter: string;
-  specification?: string;
-}
-
-export interface CreateQualityInspectionPayload {
-  productionOrderId: string;
-  inspectionType: QualityInspectionType;
-  scheduledDate?: string;
-  remarks?: string;
-  checks: CreateQualityCheckPayload[];
-}
-
-export interface QualityListResponse {
-  success: boolean;
-  data: QualityInspection[];
-  message?: string;
-}
-
-export interface QualityResponse {
-  success: boolean;
-  data: QualityInspection;
-  message?: string;
-}
-
+export type QualityInspectionType="IN_PROCESS"|"FINAL"; export type QualityInspectionStatus="PENDING"|"IN_PROGRESS"|"PASSED"|"FAILED"|"ON_HOLD"; export type QualityCheckResult="PENDING"|"PASS"|"FAIL"|"NOT_APPLICABLE";
+export interface QualityCheckItem{id:string;qualityInspectionId:string;sequence:number;parameter:string;specification:string|null;observedValue:string|null;result:QualityCheckResult;remarks:string|null}
+export interface QualityInspection{id:string;inspectionNumber:string;productionOrderId:string;inspectionType:QualityInspectionType;status:QualityInspectionStatus;scheduledDate:string|null;inspectionDate:string|null;remarks:string|null;failureReason:string|null;createdAt:string;updatedAt:string;productionOrder:{id:string;productionNumber:string;title:string;status:string;quantity:string;unit:string;quotation:{id:string;quotationNumber:string;estimate:{id:string;estimateNumber:string;lead:{id:string;leadNumber:string;title:string;customer:{id:string;customerCode:string;companyName:string}|null}}}};inspector:{id:string;employeeCode:string;firstName:string;lastName:string}|null;checks:QualityCheckItem[]}
+export interface CreateQualityCheckPayload{parameter:string;specification?:string} export interface CreateQualityInspectionPayload{productionOrderId:string;inspectionType:QualityInspectionType;scheduledDate?:string;inspectorId?:string|null;remarks?:string;checks:CreateQualityCheckPayload[]}
+export interface InspectionTestPlan{id:string;itpNumber:string;productionOrderId:string|null;title:string;revision:string;status:string;remarks:string|null;createdAt:string;items:{id:string;sequence:number;activity:string;acceptanceCriteria:string|null;inspectionMethod:string|null;holdPoint:boolean;witnessPoint:boolean}[];productionOrder?:{productionNumber:string;title:string}|null}
+export interface IbrDocument{id:string;documentType:string;documentNumber:string;title:string;revision:string;status:string;issueDate:string|null;expiryDate:string|null;documentUrl:string|null;remarks:string|null}
+export interface WeldingProcedure{id:string;procedureType:"WPS"|"PQR";procedureNumber:string;title:string;revision:string;process:string;baseMaterial:string|null;fillerMaterial:string|null;status:string;qualifiedDate:string|null;expiryDate:string|null}
+export interface WelderQualification{id:string;welderCode:string;welderName:string;qualificationNumber:string;process:string;position:string|null;status:string;expiryDate:string|null}
+export interface WeldJoint{id:string;jointNumber:string;productionOrderId:string;drawingNumber:string|null;status:string;material:string|null;size:string|null;inspectionMethod:string|null;inspectionResult:string|null;productionOrder?:{productionNumber:string;title:string}}
+export interface NCR{id:string;ncrNumber:string;productionOrderId:string|null;qualityInspectionId:string|null;title:string;description:string;severity:string;status:string;disposition:string|null;rootCause:string|null;dueDate:string|null;closedAt:string|null;capas?:CAPA[]}
+export interface CAPA{id:string;capaNumber:string;ncrId:string;title:string;correctiveAction:string;preventiveAction:string|null;status:string;dueDate:string|null;effectivenessCheck:string|null;closedAt:string|null}
+export interface QualityDashboard{inspections:number;itps:number;ibr:number;wps:number;welders:number;joints:number;openNcrs:number;openCapas:number}
+export interface QualityListResponse{success:boolean;data:QualityInspection[];message?:string} export interface QualityResponse{success:boolean;data:QualityInspection;message?:string}

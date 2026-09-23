@@ -328,6 +328,7 @@ export type ServiceContractWhereInput = {
   dispatch?: Prisma.XOR<Prisma.DispatchNullableScalarRelationFilter, Prisma.DispatchWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   requests?: Prisma.ServiceRequestListRelationFilter
+  installationWarrantyJobs?: Prisma.InstallationJobListRelationFilter
 }
 
 export type ServiceContractOrderByWithRelationInput = {
@@ -352,6 +353,7 @@ export type ServiceContractOrderByWithRelationInput = {
   dispatch?: Prisma.DispatchOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   requests?: Prisma.ServiceRequestOrderByRelationAggregateInput
+  installationWarrantyJobs?: Prisma.InstallationJobOrderByRelationAggregateInput
 }
 
 export type ServiceContractWhereUniqueInput = Prisma.AtLeast<{
@@ -379,6 +381,7 @@ export type ServiceContractWhereUniqueInput = Prisma.AtLeast<{
   dispatch?: Prisma.XOR<Prisma.DispatchNullableScalarRelationFilter, Prisma.DispatchWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   requests?: Prisma.ServiceRequestListRelationFilter
+  installationWarrantyJobs?: Prisma.InstallationJobListRelationFilter
 }, "id" | "contractNumber">
 
 export type ServiceContractOrderByWithAggregationInput = {
@@ -448,6 +451,7 @@ export type ServiceContractCreateInput = {
   dispatch?: Prisma.DispatchCreateNestedOneWithoutServiceContractsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedServiceContractsInput
   requests?: Prisma.ServiceRequestCreateNestedManyWithoutServiceContractInput
+  installationWarrantyJobs?: Prisma.InstallationJobCreateNestedManyWithoutWarrantyContractInput
 }
 
 export type ServiceContractUncheckedCreateInput = {
@@ -469,6 +473,7 @@ export type ServiceContractUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   requests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutServiceContractInput
+  installationWarrantyJobs?: Prisma.InstallationJobUncheckedCreateNestedManyWithoutWarrantyContractInput
 }
 
 export type ServiceContractUpdateInput = {
@@ -490,6 +495,7 @@ export type ServiceContractUpdateInput = {
   dispatch?: Prisma.DispatchUpdateOneWithoutServiceContractsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedServiceContractsNestedInput
   requests?: Prisma.ServiceRequestUpdateManyWithoutServiceContractNestedInput
+  installationWarrantyJobs?: Prisma.InstallationJobUpdateManyWithoutWarrantyContractNestedInput
 }
 
 export type ServiceContractUncheckedUpdateInput = {
@@ -511,6 +517,7 @@ export type ServiceContractUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutServiceContractNestedInput
+  installationWarrantyJobs?: Prisma.InstallationJobUncheckedUpdateManyWithoutWarrantyContractNestedInput
 }
 
 export type ServiceContractCreateManyInput = {
@@ -793,14 +800,6 @@ export type EnumServiceContractStatusFieldUpdateOperationsInput = {
   set?: $Enums.ServiceContractStatus
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type ServiceContractCreateNestedOneWithoutRequestsInput = {
   create?: Prisma.XOR<Prisma.ServiceContractCreateWithoutRequestsInput, Prisma.ServiceContractUncheckedCreateWithoutRequestsInput>
   connectOrCreate?: Prisma.ServiceContractCreateOrConnectWithoutRequestsInput
@@ -815,6 +814,22 @@ export type ServiceContractUpdateOneWithoutRequestsNestedInput = {
   delete?: Prisma.ServiceContractWhereInput | boolean
   connect?: Prisma.ServiceContractWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ServiceContractUpdateToOneWithWhereWithoutRequestsInput, Prisma.ServiceContractUpdateWithoutRequestsInput>, Prisma.ServiceContractUncheckedUpdateWithoutRequestsInput>
+}
+
+export type ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput = {
+  create?: Prisma.XOR<Prisma.ServiceContractCreateWithoutInstallationWarrantyJobsInput, Prisma.ServiceContractUncheckedCreateWithoutInstallationWarrantyJobsInput>
+  connectOrCreate?: Prisma.ServiceContractCreateOrConnectWithoutInstallationWarrantyJobsInput
+  connect?: Prisma.ServiceContractWhereUniqueInput
+}
+
+export type ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput = {
+  create?: Prisma.XOR<Prisma.ServiceContractCreateWithoutInstallationWarrantyJobsInput, Prisma.ServiceContractUncheckedCreateWithoutInstallationWarrantyJobsInput>
+  connectOrCreate?: Prisma.ServiceContractCreateOrConnectWithoutInstallationWarrantyJobsInput
+  upsert?: Prisma.ServiceContractUpsertWithoutInstallationWarrantyJobsInput
+  disconnect?: Prisma.ServiceContractWhereInput | boolean
+  delete?: Prisma.ServiceContractWhereInput | boolean
+  connect?: Prisma.ServiceContractWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ServiceContractUpdateToOneWithWhereWithoutInstallationWarrantyJobsInput, Prisma.ServiceContractUpdateWithoutInstallationWarrantyJobsInput>, Prisma.ServiceContractUncheckedUpdateWithoutInstallationWarrantyJobsInput>
 }
 
 export type ServiceContractCreateWithoutCreatedByInput = {
@@ -835,6 +850,7 @@ export type ServiceContractCreateWithoutCreatedByInput = {
   customer: Prisma.CustomerCreateNestedOneWithoutServiceContractsInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutServiceContractsInput
   requests?: Prisma.ServiceRequestCreateNestedManyWithoutServiceContractInput
+  installationWarrantyJobs?: Prisma.InstallationJobCreateNestedManyWithoutWarrantyContractInput
 }
 
 export type ServiceContractUncheckedCreateWithoutCreatedByInput = {
@@ -855,6 +871,7 @@ export type ServiceContractUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   requests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutServiceContractInput
+  installationWarrantyJobs?: Prisma.InstallationJobUncheckedCreateNestedManyWithoutWarrantyContractInput
 }
 
 export type ServiceContractCreateOrConnectWithoutCreatedByInput = {
@@ -924,6 +941,7 @@ export type ServiceContractCreateWithoutCustomerInput = {
   dispatch?: Prisma.DispatchCreateNestedOneWithoutServiceContractsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedServiceContractsInput
   requests?: Prisma.ServiceRequestCreateNestedManyWithoutServiceContractInput
+  installationWarrantyJobs?: Prisma.InstallationJobCreateNestedManyWithoutWarrantyContractInput
 }
 
 export type ServiceContractUncheckedCreateWithoutCustomerInput = {
@@ -944,6 +962,7 @@ export type ServiceContractUncheckedCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   requests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutServiceContractInput
+  installationWarrantyJobs?: Prisma.InstallationJobUncheckedCreateNestedManyWithoutWarrantyContractInput
 }
 
 export type ServiceContractCreateOrConnectWithoutCustomerInput = {
@@ -990,6 +1009,7 @@ export type ServiceContractCreateWithoutDispatchInput = {
   customer: Prisma.CustomerCreateNestedOneWithoutServiceContractsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedServiceContractsInput
   requests?: Prisma.ServiceRequestCreateNestedManyWithoutServiceContractInput
+  installationWarrantyJobs?: Prisma.InstallationJobCreateNestedManyWithoutWarrantyContractInput
 }
 
 export type ServiceContractUncheckedCreateWithoutDispatchInput = {
@@ -1010,6 +1030,7 @@ export type ServiceContractUncheckedCreateWithoutDispatchInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   requests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutServiceContractInput
+  installationWarrantyJobs?: Prisma.InstallationJobUncheckedCreateNestedManyWithoutWarrantyContractInput
 }
 
 export type ServiceContractCreateOrConnectWithoutDispatchInput = {
@@ -1056,6 +1077,7 @@ export type ServiceContractCreateWithoutRequestsInput = {
   customer: Prisma.CustomerCreateNestedOneWithoutServiceContractsInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutServiceContractsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedServiceContractsInput
+  installationWarrantyJobs?: Prisma.InstallationJobCreateNestedManyWithoutWarrantyContractInput
 }
 
 export type ServiceContractUncheckedCreateWithoutRequestsInput = {
@@ -1076,6 +1098,7 @@ export type ServiceContractUncheckedCreateWithoutRequestsInput = {
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  installationWarrantyJobs?: Prisma.InstallationJobUncheckedCreateNestedManyWithoutWarrantyContractInput
 }
 
 export type ServiceContractCreateOrConnectWithoutRequestsInput = {
@@ -1112,6 +1135,7 @@ export type ServiceContractUpdateWithoutRequestsInput = {
   customer?: Prisma.CustomerUpdateOneRequiredWithoutServiceContractsNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutServiceContractsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedServiceContractsNestedInput
+  installationWarrantyJobs?: Prisma.InstallationJobUpdateManyWithoutWarrantyContractNestedInput
 }
 
 export type ServiceContractUncheckedUpdateWithoutRequestsInput = {
@@ -1132,6 +1156,107 @@ export type ServiceContractUncheckedUpdateWithoutRequestsInput = {
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  installationWarrantyJobs?: Prisma.InstallationJobUncheckedUpdateManyWithoutWarrantyContractNestedInput
+}
+
+export type ServiceContractCreateWithoutInstallationWarrantyJobsInput = {
+  id?: string
+  contractNumber: string
+  title: string
+  contractType: $Enums.ServiceContractType
+  status?: $Enums.ServiceContractStatus
+  startDate: Date | string
+  endDate: Date | string
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  visitsIncluded?: number
+  visitsUsed?: number
+  responseTimeHours?: number | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutServiceContractsInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutServiceContractsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedServiceContractsInput
+  requests?: Prisma.ServiceRequestCreateNestedManyWithoutServiceContractInput
+}
+
+export type ServiceContractUncheckedCreateWithoutInstallationWarrantyJobsInput = {
+  id?: string
+  contractNumber: string
+  customerId: string
+  dispatchId?: string | null
+  title: string
+  contractType: $Enums.ServiceContractType
+  status?: $Enums.ServiceContractStatus
+  startDate: Date | string
+  endDate: Date | string
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  visitsIncluded?: number
+  visitsUsed?: number
+  responseTimeHours?: number | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  requests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutServiceContractInput
+}
+
+export type ServiceContractCreateOrConnectWithoutInstallationWarrantyJobsInput = {
+  where: Prisma.ServiceContractWhereUniqueInput
+  create: Prisma.XOR<Prisma.ServiceContractCreateWithoutInstallationWarrantyJobsInput, Prisma.ServiceContractUncheckedCreateWithoutInstallationWarrantyJobsInput>
+}
+
+export type ServiceContractUpsertWithoutInstallationWarrantyJobsInput = {
+  update: Prisma.XOR<Prisma.ServiceContractUpdateWithoutInstallationWarrantyJobsInput, Prisma.ServiceContractUncheckedUpdateWithoutInstallationWarrantyJobsInput>
+  create: Prisma.XOR<Prisma.ServiceContractCreateWithoutInstallationWarrantyJobsInput, Prisma.ServiceContractUncheckedCreateWithoutInstallationWarrantyJobsInput>
+  where?: Prisma.ServiceContractWhereInput
+}
+
+export type ServiceContractUpdateToOneWithWhereWithoutInstallationWarrantyJobsInput = {
+  where?: Prisma.ServiceContractWhereInput
+  data: Prisma.XOR<Prisma.ServiceContractUpdateWithoutInstallationWarrantyJobsInput, Prisma.ServiceContractUncheckedUpdateWithoutInstallationWarrantyJobsInput>
+}
+
+export type ServiceContractUpdateWithoutInstallationWarrantyJobsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  contractNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  contractType?: Prisma.EnumServiceContractTypeFieldUpdateOperationsInput | $Enums.ServiceContractType
+  status?: Prisma.EnumServiceContractStatusFieldUpdateOperationsInput | $Enums.ServiceContractStatus
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  visitsIncluded?: Prisma.IntFieldUpdateOperationsInput | number
+  visitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  responseTimeHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutServiceContractsNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutServiceContractsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedServiceContractsNestedInput
+  requests?: Prisma.ServiceRequestUpdateManyWithoutServiceContractNestedInput
+}
+
+export type ServiceContractUncheckedUpdateWithoutInstallationWarrantyJobsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  contractNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  dispatchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  contractType?: Prisma.EnumServiceContractTypeFieldUpdateOperationsInput | $Enums.ServiceContractType
+  status?: Prisma.EnumServiceContractStatusFieldUpdateOperationsInput | $Enums.ServiceContractStatus
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  visitsIncluded?: Prisma.IntFieldUpdateOperationsInput | number
+  visitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  responseTimeHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  requests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutServiceContractNestedInput
 }
 
 export type ServiceContractCreateManyCreatedByInput = {
@@ -1171,6 +1296,7 @@ export type ServiceContractUpdateWithoutCreatedByInput = {
   customer?: Prisma.CustomerUpdateOneRequiredWithoutServiceContractsNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutServiceContractsNestedInput
   requests?: Prisma.ServiceRequestUpdateManyWithoutServiceContractNestedInput
+  installationWarrantyJobs?: Prisma.InstallationJobUpdateManyWithoutWarrantyContractNestedInput
 }
 
 export type ServiceContractUncheckedUpdateWithoutCreatedByInput = {
@@ -1191,6 +1317,7 @@ export type ServiceContractUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutServiceContractNestedInput
+  installationWarrantyJobs?: Prisma.InstallationJobUncheckedUpdateManyWithoutWarrantyContractNestedInput
 }
 
 export type ServiceContractUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1249,6 +1376,7 @@ export type ServiceContractUpdateWithoutCustomerInput = {
   dispatch?: Prisma.DispatchUpdateOneWithoutServiceContractsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedServiceContractsNestedInput
   requests?: Prisma.ServiceRequestUpdateManyWithoutServiceContractNestedInput
+  installationWarrantyJobs?: Prisma.InstallationJobUpdateManyWithoutWarrantyContractNestedInput
 }
 
 export type ServiceContractUncheckedUpdateWithoutCustomerInput = {
@@ -1269,6 +1397,7 @@ export type ServiceContractUncheckedUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutServiceContractNestedInput
+  installationWarrantyJobs?: Prisma.InstallationJobUncheckedUpdateManyWithoutWarrantyContractNestedInput
 }
 
 export type ServiceContractUncheckedUpdateManyWithoutCustomerInput = {
@@ -1327,6 +1456,7 @@ export type ServiceContractUpdateWithoutDispatchInput = {
   customer?: Prisma.CustomerUpdateOneRequiredWithoutServiceContractsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedServiceContractsNestedInput
   requests?: Prisma.ServiceRequestUpdateManyWithoutServiceContractNestedInput
+  installationWarrantyJobs?: Prisma.InstallationJobUpdateManyWithoutWarrantyContractNestedInput
 }
 
 export type ServiceContractUncheckedUpdateWithoutDispatchInput = {
@@ -1347,6 +1477,7 @@ export type ServiceContractUncheckedUpdateWithoutDispatchInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutServiceContractNestedInput
+  installationWarrantyJobs?: Prisma.InstallationJobUncheckedUpdateManyWithoutWarrantyContractNestedInput
 }
 
 export type ServiceContractUncheckedUpdateManyWithoutDispatchInput = {
@@ -1375,10 +1506,12 @@ export type ServiceContractUncheckedUpdateManyWithoutDispatchInput = {
 
 export type ServiceContractCountOutputType = {
   requests: number
+  installationWarrantyJobs: number
 }
 
 export type ServiceContractCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   requests?: boolean | ServiceContractCountOutputTypeCountRequestsArgs
+  installationWarrantyJobs?: boolean | ServiceContractCountOutputTypeCountInstallationWarrantyJobsArgs
 }
 
 /**
@@ -1396,6 +1529,13 @@ export type ServiceContractCountOutputTypeDefaultArgs<ExtArgs extends runtime.Ty
  */
 export type ServiceContractCountOutputTypeCountRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ServiceRequestWhereInput
+}
+
+/**
+ * ServiceContractCountOutputType without action
+ */
+export type ServiceContractCountOutputTypeCountInstallationWarrantyJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InstallationJobWhereInput
 }
 
 
@@ -1421,6 +1561,7 @@ export type ServiceContractSelect<ExtArgs extends runtime.Types.Extensions.Inter
   dispatch?: boolean | Prisma.ServiceContract$dispatchArgs<ExtArgs>
   createdBy?: boolean | Prisma.ServiceContract$createdByArgs<ExtArgs>
   requests?: boolean | Prisma.ServiceContract$requestsArgs<ExtArgs>
+  installationWarrantyJobs?: boolean | Prisma.ServiceContract$installationWarrantyJobsArgs<ExtArgs>
   _count?: boolean | Prisma.ServiceContractCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["serviceContract"]>
 
@@ -1496,6 +1637,7 @@ export type ServiceContractInclude<ExtArgs extends runtime.Types.Extensions.Inte
   dispatch?: boolean | Prisma.ServiceContract$dispatchArgs<ExtArgs>
   createdBy?: boolean | Prisma.ServiceContract$createdByArgs<ExtArgs>
   requests?: boolean | Prisma.ServiceContract$requestsArgs<ExtArgs>
+  installationWarrantyJobs?: boolean | Prisma.ServiceContract$installationWarrantyJobsArgs<ExtArgs>
   _count?: boolean | Prisma.ServiceContractCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ServiceContractIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1516,6 +1658,7 @@ export type $ServiceContractPayload<ExtArgs extends runtime.Types.Extensions.Int
     dispatch: Prisma.$DispatchPayload<ExtArgs> | null
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     requests: Prisma.$ServiceRequestPayload<ExtArgs>[]
+    installationWarrantyJobs: Prisma.$InstallationJobPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1933,6 +2076,7 @@ export interface Prisma__ServiceContractClient<T, Null = never, ExtArgs extends 
   dispatch<T extends Prisma.ServiceContract$dispatchArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServiceContract$dispatchArgs<ExtArgs>>): Prisma.Prisma__DispatchClient<runtime.Types.Result.GetResult<Prisma.$DispatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.ServiceContract$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServiceContract$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   requests<T extends Prisma.ServiceContract$requestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServiceContract$requestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServiceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  installationWarrantyJobs<T extends Prisma.ServiceContract$installationWarrantyJobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServiceContract$installationWarrantyJobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InstallationJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2439,6 +2583,30 @@ export type ServiceContract$requestsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.ServiceRequestScalarFieldEnum | Prisma.ServiceRequestScalarFieldEnum[]
+}
+
+/**
+ * ServiceContract.installationWarrantyJobs
+ */
+export type ServiceContract$installationWarrantyJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InstallationJob
+   */
+  select?: Prisma.InstallationJobSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InstallationJob
+   */
+  omit?: Prisma.InstallationJobOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InstallationJobInclude<ExtArgs> | null
+  where?: Prisma.InstallationJobWhereInput
+  orderBy?: Prisma.InstallationJobOrderByWithRelationInput | Prisma.InstallationJobOrderByWithRelationInput[]
+  cursor?: Prisma.InstallationJobWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InstallationJobScalarFieldEnum | Prisma.InstallationJobScalarFieldEnum[]
 }
 
 /**

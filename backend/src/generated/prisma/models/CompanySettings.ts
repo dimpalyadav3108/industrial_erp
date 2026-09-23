@@ -58,6 +58,15 @@ export type CompanySettingsMinAggregateOutputType = {
   quotationPrefix: string | null
   productionPrefix: string | null
   dispatchPrefix: string | null
+  vendorPrefix: string | null
+  requisitionPrefix: string | null
+  rfqPrefix: string | null
+  purchaseOrderPrefix: string | null
+  grnPrefix: string | null
+  salesOrderPrefix: string | null
+  invoicePrefix: string | null
+  paymentPrefix: string | null
+  projectPrefix: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -84,6 +93,15 @@ export type CompanySettingsMaxAggregateOutputType = {
   quotationPrefix: string | null
   productionPrefix: string | null
   dispatchPrefix: string | null
+  vendorPrefix: string | null
+  requisitionPrefix: string | null
+  rfqPrefix: string | null
+  purchaseOrderPrefix: string | null
+  grnPrefix: string | null
+  salesOrderPrefix: string | null
+  invoicePrefix: string | null
+  paymentPrefix: string | null
+  projectPrefix: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -110,6 +128,15 @@ export type CompanySettingsCountAggregateOutputType = {
   quotationPrefix: number
   productionPrefix: number
   dispatchPrefix: number
+  vendorPrefix: number
+  requisitionPrefix: number
+  rfqPrefix: number
+  purchaseOrderPrefix: number
+  grnPrefix: number
+  salesOrderPrefix: number
+  invoicePrefix: number
+  paymentPrefix: number
+  projectPrefix: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -148,6 +175,15 @@ export type CompanySettingsMinAggregateInputType = {
   quotationPrefix?: true
   productionPrefix?: true
   dispatchPrefix?: true
+  vendorPrefix?: true
+  requisitionPrefix?: true
+  rfqPrefix?: true
+  purchaseOrderPrefix?: true
+  grnPrefix?: true
+  salesOrderPrefix?: true
+  invoicePrefix?: true
+  paymentPrefix?: true
+  projectPrefix?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -174,6 +210,15 @@ export type CompanySettingsMaxAggregateInputType = {
   quotationPrefix?: true
   productionPrefix?: true
   dispatchPrefix?: true
+  vendorPrefix?: true
+  requisitionPrefix?: true
+  rfqPrefix?: true
+  purchaseOrderPrefix?: true
+  grnPrefix?: true
+  salesOrderPrefix?: true
+  invoicePrefix?: true
+  paymentPrefix?: true
+  projectPrefix?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -200,6 +245,15 @@ export type CompanySettingsCountAggregateInputType = {
   quotationPrefix?: true
   productionPrefix?: true
   dispatchPrefix?: true
+  vendorPrefix?: true
+  requisitionPrefix?: true
+  rfqPrefix?: true
+  purchaseOrderPrefix?: true
+  grnPrefix?: true
+  salesOrderPrefix?: true
+  invoicePrefix?: true
+  paymentPrefix?: true
+  projectPrefix?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -313,6 +367,15 @@ export type CompanySettingsGroupByOutputType = {
   quotationPrefix: string
   productionPrefix: string
   dispatchPrefix: string
+  vendorPrefix: string
+  requisitionPrefix: string
+  rfqPrefix: string
+  purchaseOrderPrefix: string
+  grnPrefix: string
+  salesOrderPrefix: string
+  invoicePrefix: string
+  paymentPrefix: string
+  projectPrefix: string
   createdAt: Date
   updatedAt: Date
   _count: CompanySettingsCountAggregateOutputType | null
@@ -362,6 +425,15 @@ export type CompanySettingsWhereInput = {
   quotationPrefix?: Prisma.StringFilter<"CompanySettings"> | string
   productionPrefix?: Prisma.StringFilter<"CompanySettings"> | string
   dispatchPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  vendorPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  requisitionPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  rfqPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  purchaseOrderPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  grnPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  salesOrderPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  invoicePrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  paymentPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  projectPrefix?: Prisma.StringFilter<"CompanySettings"> | string
   createdAt?: Prisma.DateTimeFilter<"CompanySettings"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CompanySettings"> | Date | string
 }
@@ -388,6 +460,15 @@ export type CompanySettingsOrderByWithRelationInput = {
   quotationPrefix?: Prisma.SortOrder
   productionPrefix?: Prisma.SortOrder
   dispatchPrefix?: Prisma.SortOrder
+  vendorPrefix?: Prisma.SortOrder
+  requisitionPrefix?: Prisma.SortOrder
+  rfqPrefix?: Prisma.SortOrder
+  purchaseOrderPrefix?: Prisma.SortOrder
+  grnPrefix?: Prisma.SortOrder
+  salesOrderPrefix?: Prisma.SortOrder
+  invoicePrefix?: Prisma.SortOrder
+  paymentPrefix?: Prisma.SortOrder
+  projectPrefix?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -417,6 +498,15 @@ export type CompanySettingsWhereUniqueInput = Prisma.AtLeast<{
   quotationPrefix?: Prisma.StringFilter<"CompanySettings"> | string
   productionPrefix?: Prisma.StringFilter<"CompanySettings"> | string
   dispatchPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  vendorPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  requisitionPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  rfqPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  purchaseOrderPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  grnPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  salesOrderPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  invoicePrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  paymentPrefix?: Prisma.StringFilter<"CompanySettings"> | string
+  projectPrefix?: Prisma.StringFilter<"CompanySettings"> | string
   createdAt?: Prisma.DateTimeFilter<"CompanySettings"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CompanySettings"> | Date | string
 }, "id">
@@ -443,6 +533,15 @@ export type CompanySettingsOrderByWithAggregationInput = {
   quotationPrefix?: Prisma.SortOrder
   productionPrefix?: Prisma.SortOrder
   dispatchPrefix?: Prisma.SortOrder
+  vendorPrefix?: Prisma.SortOrder
+  requisitionPrefix?: Prisma.SortOrder
+  rfqPrefix?: Prisma.SortOrder
+  purchaseOrderPrefix?: Prisma.SortOrder
+  grnPrefix?: Prisma.SortOrder
+  salesOrderPrefix?: Prisma.SortOrder
+  invoicePrefix?: Prisma.SortOrder
+  paymentPrefix?: Prisma.SortOrder
+  projectPrefix?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CompanySettingsCountOrderByAggregateInput
@@ -477,6 +576,15 @@ export type CompanySettingsScalarWhereWithAggregatesInput = {
   quotationPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
   productionPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
   dispatchPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
+  vendorPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
+  requisitionPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
+  rfqPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
+  purchaseOrderPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
+  grnPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
+  salesOrderPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
+  invoicePrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
+  paymentPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
+  projectPrefix?: Prisma.StringWithAggregatesFilter<"CompanySettings"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CompanySettings"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CompanySettings"> | Date | string
 }
@@ -503,6 +611,15 @@ export type CompanySettingsCreateInput = {
   quotationPrefix?: string
   productionPrefix?: string
   dispatchPrefix?: string
+  vendorPrefix?: string
+  requisitionPrefix?: string
+  rfqPrefix?: string
+  purchaseOrderPrefix?: string
+  grnPrefix?: string
+  salesOrderPrefix?: string
+  invoicePrefix?: string
+  paymentPrefix?: string
+  projectPrefix?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -529,6 +646,15 @@ export type CompanySettingsUncheckedCreateInput = {
   quotationPrefix?: string
   productionPrefix?: string
   dispatchPrefix?: string
+  vendorPrefix?: string
+  requisitionPrefix?: string
+  rfqPrefix?: string
+  purchaseOrderPrefix?: string
+  grnPrefix?: string
+  salesOrderPrefix?: string
+  invoicePrefix?: string
+  paymentPrefix?: string
+  projectPrefix?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -555,6 +681,15 @@ export type CompanySettingsUpdateInput = {
   quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   productionPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  requisitionPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  rfqPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  purchaseOrderPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  grnPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  projectPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -581,6 +716,15 @@ export type CompanySettingsUncheckedUpdateInput = {
   quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   productionPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  requisitionPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  rfqPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  purchaseOrderPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  grnPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  projectPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -607,6 +751,15 @@ export type CompanySettingsCreateManyInput = {
   quotationPrefix?: string
   productionPrefix?: string
   dispatchPrefix?: string
+  vendorPrefix?: string
+  requisitionPrefix?: string
+  rfqPrefix?: string
+  purchaseOrderPrefix?: string
+  grnPrefix?: string
+  salesOrderPrefix?: string
+  invoicePrefix?: string
+  paymentPrefix?: string
+  projectPrefix?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -633,6 +786,15 @@ export type CompanySettingsUpdateManyMutationInput = {
   quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   productionPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  requisitionPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  rfqPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  purchaseOrderPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  grnPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  projectPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -659,6 +821,15 @@ export type CompanySettingsUncheckedUpdateManyInput = {
   quotationPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   productionPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  requisitionPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  rfqPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  purchaseOrderPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  grnPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentPrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  projectPrefix?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -685,6 +856,15 @@ export type CompanySettingsCountOrderByAggregateInput = {
   quotationPrefix?: Prisma.SortOrder
   productionPrefix?: Prisma.SortOrder
   dispatchPrefix?: Prisma.SortOrder
+  vendorPrefix?: Prisma.SortOrder
+  requisitionPrefix?: Prisma.SortOrder
+  rfqPrefix?: Prisma.SortOrder
+  purchaseOrderPrefix?: Prisma.SortOrder
+  grnPrefix?: Prisma.SortOrder
+  salesOrderPrefix?: Prisma.SortOrder
+  invoicePrefix?: Prisma.SortOrder
+  paymentPrefix?: Prisma.SortOrder
+  projectPrefix?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -716,6 +896,15 @@ export type CompanySettingsMaxOrderByAggregateInput = {
   quotationPrefix?: Prisma.SortOrder
   productionPrefix?: Prisma.SortOrder
   dispatchPrefix?: Prisma.SortOrder
+  vendorPrefix?: Prisma.SortOrder
+  requisitionPrefix?: Prisma.SortOrder
+  rfqPrefix?: Prisma.SortOrder
+  purchaseOrderPrefix?: Prisma.SortOrder
+  grnPrefix?: Prisma.SortOrder
+  salesOrderPrefix?: Prisma.SortOrder
+  invoicePrefix?: Prisma.SortOrder
+  paymentPrefix?: Prisma.SortOrder
+  projectPrefix?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -742,6 +931,15 @@ export type CompanySettingsMinOrderByAggregateInput = {
   quotationPrefix?: Prisma.SortOrder
   productionPrefix?: Prisma.SortOrder
   dispatchPrefix?: Prisma.SortOrder
+  vendorPrefix?: Prisma.SortOrder
+  requisitionPrefix?: Prisma.SortOrder
+  rfqPrefix?: Prisma.SortOrder
+  purchaseOrderPrefix?: Prisma.SortOrder
+  grnPrefix?: Prisma.SortOrder
+  salesOrderPrefix?: Prisma.SortOrder
+  invoicePrefix?: Prisma.SortOrder
+  paymentPrefix?: Prisma.SortOrder
+  projectPrefix?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -775,6 +973,15 @@ export type CompanySettingsSelect<ExtArgs extends runtime.Types.Extensions.Inter
   quotationPrefix?: boolean
   productionPrefix?: boolean
   dispatchPrefix?: boolean
+  vendorPrefix?: boolean
+  requisitionPrefix?: boolean
+  rfqPrefix?: boolean
+  purchaseOrderPrefix?: boolean
+  grnPrefix?: boolean
+  salesOrderPrefix?: boolean
+  invoicePrefix?: boolean
+  paymentPrefix?: boolean
+  projectPrefix?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["companySettings"]>
@@ -801,6 +1008,15 @@ export type CompanySettingsSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   quotationPrefix?: boolean
   productionPrefix?: boolean
   dispatchPrefix?: boolean
+  vendorPrefix?: boolean
+  requisitionPrefix?: boolean
+  rfqPrefix?: boolean
+  purchaseOrderPrefix?: boolean
+  grnPrefix?: boolean
+  salesOrderPrefix?: boolean
+  invoicePrefix?: boolean
+  paymentPrefix?: boolean
+  projectPrefix?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["companySettings"]>
@@ -827,6 +1043,15 @@ export type CompanySettingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   quotationPrefix?: boolean
   productionPrefix?: boolean
   dispatchPrefix?: boolean
+  vendorPrefix?: boolean
+  requisitionPrefix?: boolean
+  rfqPrefix?: boolean
+  purchaseOrderPrefix?: boolean
+  grnPrefix?: boolean
+  salesOrderPrefix?: boolean
+  invoicePrefix?: boolean
+  paymentPrefix?: boolean
+  projectPrefix?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["companySettings"]>
@@ -853,11 +1078,20 @@ export type CompanySettingsSelectScalar = {
   quotationPrefix?: boolean
   productionPrefix?: boolean
   dispatchPrefix?: boolean
+  vendorPrefix?: boolean
+  requisitionPrefix?: boolean
+  rfqPrefix?: boolean
+  purchaseOrderPrefix?: boolean
+  grnPrefix?: boolean
+  salesOrderPrefix?: boolean
+  invoicePrefix?: boolean
+  paymentPrefix?: boolean
+  projectPrefix?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CompanySettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyName" | "legalName" | "gstNumber" | "panNumber" | "email" | "phone" | "website" | "address" | "city" | "state" | "country" | "postalCode" | "currency" | "timezone" | "financialYearStart" | "defaultTaxPercent" | "estimatePrefix" | "quotationPrefix" | "productionPrefix" | "dispatchPrefix" | "createdAt" | "updatedAt", ExtArgs["result"]["companySettings"]>
+export type CompanySettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyName" | "legalName" | "gstNumber" | "panNumber" | "email" | "phone" | "website" | "address" | "city" | "state" | "country" | "postalCode" | "currency" | "timezone" | "financialYearStart" | "defaultTaxPercent" | "estimatePrefix" | "quotationPrefix" | "productionPrefix" | "dispatchPrefix" | "vendorPrefix" | "requisitionPrefix" | "rfqPrefix" | "purchaseOrderPrefix" | "grnPrefix" | "salesOrderPrefix" | "invoicePrefix" | "paymentPrefix" | "projectPrefix" | "createdAt" | "updatedAt", ExtArgs["result"]["companySettings"]>
 
 export type $CompanySettingsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CompanySettings"
@@ -884,6 +1118,15 @@ export type $CompanySettingsPayload<ExtArgs extends runtime.Types.Extensions.Int
     quotationPrefix: string
     productionPrefix: string
     dispatchPrefix: string
+    vendorPrefix: string
+    requisitionPrefix: string
+    rfqPrefix: string
+    purchaseOrderPrefix: string
+    grnPrefix: string
+    salesOrderPrefix: string
+    invoicePrefix: string
+    paymentPrefix: string
+    projectPrefix: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["companySettings"]>
@@ -1330,6 +1573,15 @@ export interface CompanySettingsFieldRefs {
   readonly quotationPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
   readonly productionPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
   readonly dispatchPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
+  readonly vendorPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
+  readonly requisitionPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
+  readonly rfqPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
+  readonly purchaseOrderPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
+  readonly grnPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
+  readonly salesOrderPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
+  readonly invoicePrefix: Prisma.FieldRef<"CompanySettings", 'String'>
+  readonly paymentPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
+  readonly projectPrefix: Prisma.FieldRef<"CompanySettings", 'String'>
   readonly createdAt: Prisma.FieldRef<"CompanySettings", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"CompanySettings", 'DateTime'>
 }

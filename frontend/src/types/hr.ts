@@ -1,0 +1,14 @@
+export type EmployeeStatus="ACTIVE"|"ON_LEAVE"|"INACTIVE"|"TERMINATED";
+export type AttendanceStatus="PRESENT"|"ABSENT"|"HALF_DAY"|"PAID_LEAVE"|"WEEK_OFF"|"HOLIDAY";
+export type LeaveStatus="PENDING"|"APPROVED"|"REJECTED"|"CANCELLED";
+export type PayrollStatus="DRAFT"|"PROCESSED"|"PAID"|"CANCELLED";
+export interface Designation{id:string;departmentId:string;code:string;name:string;isActive:boolean}
+export interface Department{id:string;code:string;name:string;description:string|null;isActive:boolean;designations:Designation[];_count?:{employees:number}}
+export interface Salary{id:string;basicSalary:string;hra:string;allowances:string;pfDeduction:string;esiDeduction:string;taxDeduction:string;otherDeduction:string;effectiveFrom:string}
+export interface Employee{id:string;employeeCode:string;firstName:string;lastName:string;email:string|null;phone:string|null;joiningDate:string;status:EmployeeStatus;employmentType:string;department:Department|null;designation:Designation|null;salary:Salary|null}
+export interface Attendance{id:string;date:string;status:AttendanceStatus;workHours:string;notes:string|null;employee:{id:string;employeeCode:string;firstName:string;lastName:string}}
+export interface Leave{id:string;leaveNumber:string;leaveType:string;startDate:string;endDate:string;days:string;reason:string|null;status:LeaveStatus;remarks:string|null;employee:Employee}
+export interface PayrollItem{id:string;basicSalary:string;hra:string;allowances:string;grossSalary:string;deductions:string;netSalary:string;payableDays:string;paidDays:string;employee:Employee}
+export interface PayrollRun{id:string;payrollNumber:string;month:number;year:number;status:PayrollStatus;processedAt:string|null;paidAt:string|null;items:PayrollItem[]}
+export interface HrDashboard{activeEmployees:number;departments:number;pendingLeave:number;payrollTotal:number}
+export interface PayrollControl{month:number;year:number;activeEmployees:number;employeesWithoutSalary:number;attendanceRecords:number;paidAttendanceDays:number;absenceRecords:number;pendingLeave:number;payrollStatus:string;payrollNet:number}

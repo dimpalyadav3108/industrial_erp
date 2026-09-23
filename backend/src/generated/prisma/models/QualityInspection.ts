@@ -251,6 +251,7 @@ export type QualityInspectionWhereInput = {
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   checks?: Prisma.QualityCheckItemListRelationFilter
   dispatch?: Prisma.XOR<Prisma.DispatchNullableScalarRelationFilter, Prisma.DispatchWhereInput> | null
+  ncrs?: Prisma.NonConformanceReportListRelationFilter
 }
 
 export type QualityInspectionOrderByWithRelationInput = {
@@ -272,6 +273,7 @@ export type QualityInspectionOrderByWithRelationInput = {
   createdBy?: Prisma.UserOrderByWithRelationInput
   checks?: Prisma.QualityCheckItemOrderByRelationAggregateInput
   dispatch?: Prisma.DispatchOrderByWithRelationInput
+  ncrs?: Prisma.NonConformanceReportOrderByRelationAggregateInput
 }
 
 export type QualityInspectionWhereUniqueInput = Prisma.AtLeast<{
@@ -297,6 +299,7 @@ export type QualityInspectionWhereUniqueInput = Prisma.AtLeast<{
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   checks?: Prisma.QualityCheckItemListRelationFilter
   dispatch?: Prisma.XOR<Prisma.DispatchNullableScalarRelationFilter, Prisma.DispatchWhereInput> | null
+  ncrs?: Prisma.NonConformanceReportListRelationFilter
 }, "id" | "inspectionNumber" | "productionOrderId_inspectionType">
 
 export type QualityInspectionOrderByWithAggregationInput = {
@@ -353,6 +356,7 @@ export type QualityInspectionCreateInput = {
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInspectionsInput
   checks?: Prisma.QualityCheckItemCreateNestedManyWithoutQualityInspectionInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionUncheckedCreateInput = {
@@ -371,6 +375,7 @@ export type QualityInspectionUncheckedCreateInput = {
   updatedAt?: Date | string
   checks?: Prisma.QualityCheckItemUncheckedCreateNestedManyWithoutQualityInspectionInput
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionUpdateInput = {
@@ -389,6 +394,7 @@ export type QualityInspectionUpdateInput = {
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInspectionsNestedInput
   checks?: Prisma.QualityCheckItemUpdateManyWithoutQualityInspectionNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionUncheckedUpdateInput = {
@@ -407,6 +413,7 @@ export type QualityInspectionUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checks?: Prisma.QualityCheckItemUncheckedUpdateManyWithoutQualityInspectionNestedInput
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionCreateManyInput = {
@@ -520,6 +527,11 @@ export type QualityInspectionMinOrderByAggregateInput = {
 export type QualityInspectionScalarRelationFilter = {
   is?: Prisma.QualityInspectionWhereInput
   isNot?: Prisma.QualityInspectionWhereInput
+}
+
+export type QualityInspectionNullableScalarRelationFilter = {
+  is?: Prisma.QualityInspectionWhereInput | null
+  isNot?: Prisma.QualityInspectionWhereInput | null
 }
 
 export type QualityInspectionCreateNestedManyWithoutInspectorInput = {
@@ -684,6 +696,22 @@ export type QualityInspectionUpdateOneRequiredWithoutDispatchNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QualityInspectionUpdateToOneWithWhereWithoutDispatchInput, Prisma.QualityInspectionUpdateWithoutDispatchInput>, Prisma.QualityInspectionUncheckedUpdateWithoutDispatchInput>
 }
 
+export type QualityInspectionCreateNestedOneWithoutNcrsInput = {
+  create?: Prisma.XOR<Prisma.QualityInspectionCreateWithoutNcrsInput, Prisma.QualityInspectionUncheckedCreateWithoutNcrsInput>
+  connectOrCreate?: Prisma.QualityInspectionCreateOrConnectWithoutNcrsInput
+  connect?: Prisma.QualityInspectionWhereUniqueInput
+}
+
+export type QualityInspectionUpdateOneWithoutNcrsNestedInput = {
+  create?: Prisma.XOR<Prisma.QualityInspectionCreateWithoutNcrsInput, Prisma.QualityInspectionUncheckedCreateWithoutNcrsInput>
+  connectOrCreate?: Prisma.QualityInspectionCreateOrConnectWithoutNcrsInput
+  upsert?: Prisma.QualityInspectionUpsertWithoutNcrsInput
+  disconnect?: Prisma.QualityInspectionWhereInput | boolean
+  delete?: Prisma.QualityInspectionWhereInput | boolean
+  connect?: Prisma.QualityInspectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QualityInspectionUpdateToOneWithWhereWithoutNcrsInput, Prisma.QualityInspectionUpdateWithoutNcrsInput>, Prisma.QualityInspectionUncheckedUpdateWithoutNcrsInput>
+}
+
 export type QualityInspectionCreateWithoutInspectorInput = {
   id?: string
   inspectionNumber: string
@@ -699,6 +727,7 @@ export type QualityInspectionCreateWithoutInspectorInput = {
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInspectionsInput
   checks?: Prisma.QualityCheckItemCreateNestedManyWithoutQualityInspectionInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionUncheckedCreateWithoutInspectorInput = {
@@ -716,6 +745,7 @@ export type QualityInspectionUncheckedCreateWithoutInspectorInput = {
   updatedAt?: Date | string
   checks?: Prisma.QualityCheckItemUncheckedCreateNestedManyWithoutQualityInspectionInput
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionCreateOrConnectWithoutInspectorInput = {
@@ -743,6 +773,7 @@ export type QualityInspectionCreateWithoutCreatedByInput = {
   inspector?: Prisma.UserCreateNestedOneWithoutAssignedInspectionsInput
   checks?: Prisma.QualityCheckItemCreateNestedManyWithoutQualityInspectionInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionUncheckedCreateWithoutCreatedByInput = {
@@ -760,6 +791,7 @@ export type QualityInspectionUncheckedCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   checks?: Prisma.QualityCheckItemUncheckedCreateNestedManyWithoutQualityInspectionInput
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionCreateOrConnectWithoutCreatedByInput = {
@@ -838,6 +870,7 @@ export type QualityInspectionCreateWithoutProductionOrderInput = {
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInspectionsInput
   checks?: Prisma.QualityCheckItemCreateNestedManyWithoutQualityInspectionInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionUncheckedCreateWithoutProductionOrderInput = {
@@ -855,6 +888,7 @@ export type QualityInspectionUncheckedCreateWithoutProductionOrderInput = {
   updatedAt?: Date | string
   checks?: Prisma.QualityCheckItemUncheckedCreateNestedManyWithoutQualityInspectionInput
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionCreateOrConnectWithoutProductionOrderInput = {
@@ -898,6 +932,7 @@ export type QualityInspectionCreateWithoutChecksInput = {
   inspector?: Prisma.UserCreateNestedOneWithoutAssignedInspectionsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInspectionsInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionUncheckedCreateWithoutChecksInput = {
@@ -915,6 +950,7 @@ export type QualityInspectionUncheckedCreateWithoutChecksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionCreateOrConnectWithoutChecksInput = {
@@ -948,6 +984,7 @@ export type QualityInspectionUpdateWithoutChecksInput = {
   inspector?: Prisma.UserUpdateOneWithoutAssignedInspectionsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInspectionsNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionUncheckedUpdateWithoutChecksInput = {
@@ -965,6 +1002,7 @@ export type QualityInspectionUncheckedUpdateWithoutChecksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionCreateWithoutDispatchInput = {
@@ -982,6 +1020,7 @@ export type QualityInspectionCreateWithoutDispatchInput = {
   inspector?: Prisma.UserCreateNestedOneWithoutAssignedInspectionsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInspectionsInput
   checks?: Prisma.QualityCheckItemCreateNestedManyWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionUncheckedCreateWithoutDispatchInput = {
@@ -999,6 +1038,7 @@ export type QualityInspectionUncheckedCreateWithoutDispatchInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   checks?: Prisma.QualityCheckItemUncheckedCreateNestedManyWithoutQualityInspectionInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutQualityInspectionInput
 }
 
 export type QualityInspectionCreateOrConnectWithoutDispatchInput = {
@@ -1032,6 +1072,7 @@ export type QualityInspectionUpdateWithoutDispatchInput = {
   inspector?: Prisma.UserUpdateOneWithoutAssignedInspectionsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInspectionsNestedInput
   checks?: Prisma.QualityCheckItemUpdateManyWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionUncheckedUpdateWithoutDispatchInput = {
@@ -1049,6 +1090,95 @@ export type QualityInspectionUncheckedUpdateWithoutDispatchInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checks?: Prisma.QualityCheckItemUncheckedUpdateManyWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutQualityInspectionNestedInput
+}
+
+export type QualityInspectionCreateWithoutNcrsInput = {
+  id?: string
+  inspectionNumber: string
+  inspectionType: $Enums.QualityInspectionType
+  status?: $Enums.QualityInspectionStatus
+  scheduledDate?: Date | string | null
+  inspectionDate?: Date | string | null
+  remarks?: string | null
+  failureReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutInspectionsInput
+  inspector?: Prisma.UserCreateNestedOneWithoutAssignedInspectionsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInspectionsInput
+  checks?: Prisma.QualityCheckItemCreateNestedManyWithoutQualityInspectionInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutQualityInspectionInput
+}
+
+export type QualityInspectionUncheckedCreateWithoutNcrsInput = {
+  id?: string
+  inspectionNumber: string
+  productionOrderId: string
+  inspectionType: $Enums.QualityInspectionType
+  status?: $Enums.QualityInspectionStatus
+  scheduledDate?: Date | string | null
+  inspectionDate?: Date | string | null
+  inspectorId?: string | null
+  createdById?: string | null
+  remarks?: string | null
+  failureReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  checks?: Prisma.QualityCheckItemUncheckedCreateNestedManyWithoutQualityInspectionInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutQualityInspectionInput
+}
+
+export type QualityInspectionCreateOrConnectWithoutNcrsInput = {
+  where: Prisma.QualityInspectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.QualityInspectionCreateWithoutNcrsInput, Prisma.QualityInspectionUncheckedCreateWithoutNcrsInput>
+}
+
+export type QualityInspectionUpsertWithoutNcrsInput = {
+  update: Prisma.XOR<Prisma.QualityInspectionUpdateWithoutNcrsInput, Prisma.QualityInspectionUncheckedUpdateWithoutNcrsInput>
+  create: Prisma.XOR<Prisma.QualityInspectionCreateWithoutNcrsInput, Prisma.QualityInspectionUncheckedCreateWithoutNcrsInput>
+  where?: Prisma.QualityInspectionWhereInput
+}
+
+export type QualityInspectionUpdateToOneWithWhereWithoutNcrsInput = {
+  where?: Prisma.QualityInspectionWhereInput
+  data: Prisma.XOR<Prisma.QualityInspectionUpdateWithoutNcrsInput, Prisma.QualityInspectionUncheckedUpdateWithoutNcrsInput>
+}
+
+export type QualityInspectionUpdateWithoutNcrsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  inspectionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  inspectionType?: Prisma.EnumQualityInspectionTypeFieldUpdateOperationsInput | $Enums.QualityInspectionType
+  status?: Prisma.EnumQualityInspectionStatusFieldUpdateOperationsInput | $Enums.QualityInspectionStatus
+  scheduledDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inspectionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutInspectionsNestedInput
+  inspector?: Prisma.UserUpdateOneWithoutAssignedInspectionsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedInspectionsNestedInput
+  checks?: Prisma.QualityCheckItemUpdateManyWithoutQualityInspectionNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutQualityInspectionNestedInput
+}
+
+export type QualityInspectionUncheckedUpdateWithoutNcrsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  inspectionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  inspectionType?: Prisma.EnumQualityInspectionTypeFieldUpdateOperationsInput | $Enums.QualityInspectionType
+  status?: Prisma.EnumQualityInspectionStatusFieldUpdateOperationsInput | $Enums.QualityInspectionStatus
+  scheduledDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inspectionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inspectorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checks?: Prisma.QualityCheckItemUncheckedUpdateManyWithoutQualityInspectionNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionCreateManyInspectorInput = {
@@ -1096,6 +1226,7 @@ export type QualityInspectionUpdateWithoutInspectorInput = {
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInspectionsNestedInput
   checks?: Prisma.QualityCheckItemUpdateManyWithoutQualityInspectionNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionUncheckedUpdateWithoutInspectorInput = {
@@ -1113,6 +1244,7 @@ export type QualityInspectionUncheckedUpdateWithoutInspectorInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checks?: Prisma.QualityCheckItemUncheckedUpdateManyWithoutQualityInspectionNestedInput
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionUncheckedUpdateManyWithoutInspectorInput = {
@@ -1145,6 +1277,7 @@ export type QualityInspectionUpdateWithoutCreatedByInput = {
   inspector?: Prisma.UserUpdateOneWithoutAssignedInspectionsNestedInput
   checks?: Prisma.QualityCheckItemUpdateManyWithoutQualityInspectionNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionUncheckedUpdateWithoutCreatedByInput = {
@@ -1162,6 +1295,7 @@ export type QualityInspectionUncheckedUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checks?: Prisma.QualityCheckItemUncheckedUpdateManyWithoutQualityInspectionNestedInput
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1209,6 +1343,7 @@ export type QualityInspectionUpdateWithoutProductionOrderInput = {
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInspectionsNestedInput
   checks?: Prisma.QualityCheckItemUpdateManyWithoutQualityInspectionNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionUncheckedUpdateWithoutProductionOrderInput = {
@@ -1226,6 +1361,7 @@ export type QualityInspectionUncheckedUpdateWithoutProductionOrderInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checks?: Prisma.QualityCheckItemUncheckedUpdateManyWithoutQualityInspectionNestedInput
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutQualityInspectionNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutQualityInspectionNestedInput
 }
 
 export type QualityInspectionUncheckedUpdateManyWithoutProductionOrderInput = {
@@ -1250,10 +1386,12 @@ export type QualityInspectionUncheckedUpdateManyWithoutProductionOrderInput = {
 
 export type QualityInspectionCountOutputType = {
   checks: number
+  ncrs: number
 }
 
 export type QualityInspectionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   checks?: boolean | QualityInspectionCountOutputTypeCountChecksArgs
+  ncrs?: boolean | QualityInspectionCountOutputTypeCountNcrsArgs
 }
 
 /**
@@ -1271,6 +1409,13 @@ export type QualityInspectionCountOutputTypeDefaultArgs<ExtArgs extends runtime.
  */
 export type QualityInspectionCountOutputTypeCountChecksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.QualityCheckItemWhereInput
+}
+
+/**
+ * QualityInspectionCountOutputType without action
+ */
+export type QualityInspectionCountOutputTypeCountNcrsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NonConformanceReportWhereInput
 }
 
 
@@ -1293,6 +1438,7 @@ export type QualityInspectionSelect<ExtArgs extends runtime.Types.Extensions.Int
   createdBy?: boolean | Prisma.QualityInspection$createdByArgs<ExtArgs>
   checks?: boolean | Prisma.QualityInspection$checksArgs<ExtArgs>
   dispatch?: boolean | Prisma.QualityInspection$dispatchArgs<ExtArgs>
+  ncrs?: boolean | Prisma.QualityInspection$ncrsArgs<ExtArgs>
   _count?: boolean | Prisma.QualityInspectionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qualityInspection"]>
 
@@ -1357,6 +1503,7 @@ export type QualityInspectionInclude<ExtArgs extends runtime.Types.Extensions.In
   createdBy?: boolean | Prisma.QualityInspection$createdByArgs<ExtArgs>
   checks?: boolean | Prisma.QualityInspection$checksArgs<ExtArgs>
   dispatch?: boolean | Prisma.QualityInspection$dispatchArgs<ExtArgs>
+  ncrs?: boolean | Prisma.QualityInspection$ncrsArgs<ExtArgs>
   _count?: boolean | Prisma.QualityInspectionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QualityInspectionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1378,6 +1525,7 @@ export type $QualityInspectionPayload<ExtArgs extends runtime.Types.Extensions.I
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     checks: Prisma.$QualityCheckItemPayload<ExtArgs>[]
     dispatch: Prisma.$DispatchPayload<ExtArgs> | null
+    ncrs: Prisma.$NonConformanceReportPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1792,6 +1940,7 @@ export interface Prisma__QualityInspectionClient<T, Null = never, ExtArgs extend
   createdBy<T extends Prisma.QualityInspection$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QualityInspection$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   checks<T extends Prisma.QualityInspection$checksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QualityInspection$checksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QualityCheckItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dispatch<T extends Prisma.QualityInspection$dispatchArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QualityInspection$dispatchArgs<ExtArgs>>): Prisma.Prisma__DispatchClient<runtime.Types.Result.GetResult<Prisma.$DispatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  ncrs<T extends Prisma.QualityInspection$ncrsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QualityInspection$ncrsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NonConformanceReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2313,6 +2462,30 @@ export type QualityInspection$dispatchArgs<ExtArgs extends runtime.Types.Extensi
    */
   include?: Prisma.DispatchInclude<ExtArgs> | null
   where?: Prisma.DispatchWhereInput
+}
+
+/**
+ * QualityInspection.ncrs
+ */
+export type QualityInspection$ncrsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NonConformanceReport
+   */
+  select?: Prisma.NonConformanceReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NonConformanceReport
+   */
+  omit?: Prisma.NonConformanceReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NonConformanceReportInclude<ExtArgs> | null
+  where?: Prisma.NonConformanceReportWhereInput
+  orderBy?: Prisma.NonConformanceReportOrderByWithRelationInput | Prisma.NonConformanceReportOrderByWithRelationInput[]
+  cursor?: Prisma.NonConformanceReportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NonConformanceReportScalarFieldEnum | Prisma.NonConformanceReportScalarFieldEnum[]
 }
 
 /**

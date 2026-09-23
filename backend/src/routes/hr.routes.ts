@@ -1,0 +1,12 @@
+import { Router } from "express";
+import { authenticate } from "../middleware/auth.middleware.js";
+import * as hr from "../controllers/hr.controller.js";
+export const hrRouter = Router(); hrRouter.use(authenticate);
+hrRouter.get("/dashboard", hr.dashboard);
+hrRouter.get("/departments", hr.listDepartments); hrRouter.post("/departments", hr.createDepartment); hrRouter.post("/designations", hr.createDesignation);
+hrRouter.get("/employees", hr.listEmployees); hrRouter.post("/employees", hr.createEmployee); hrRouter.patch("/employees/:id", hr.updateEmployee);
+hrRouter.get("/attendance", hr.listAttendance); hrRouter.post("/attendance", hr.recordAttendance);
+hrRouter.get("/leaves", hr.listLeaves); hrRouter.post("/leaves", hr.createLeave); hrRouter.patch("/leaves/:id", hr.updateLeave);
+hrRouter.put("/employees/:employeeId/salary", hr.setSalary);
+hrRouter.get("/payroll/control",hr.payrollControl);
+hrRouter.get("/payroll", hr.listPayroll); hrRouter.post("/payroll", hr.createPayroll); hrRouter.patch("/payroll/:id", hr.updatePayroll);

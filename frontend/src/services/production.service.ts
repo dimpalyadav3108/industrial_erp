@@ -1,114 +1,18 @@
-import type {
-  CreateProductionOrderPayload,
-  ProductionOperationStatus,
-  ProductionOrder,
-  ProductionOrderStatus,
-  ProductionListResponse,
-  ProductionResponse,
-} from "../types/production";
-
-const API_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-
-interface ApiErrorResponse {
-  success: false;
-  message: string;
-  errors?: Record<string, string[]>;
-}
-
-const headers = (json = false) => {
-  const token = localStorage.getItem("accessToken");
-
-  if (!token) {
-    throw new Error("Your session has expired. Please sign in again.");
-  }
-
-  return {
-    ...(json ? { "Content-Type": "application/json" } : {}),
-    Authorization: `Bearer ${token}`,
-  };
-};
-
-export const getProductionOrders = async (
-  search = ""
-): Promise<ProductionOrder[]> => {
-  const query = search.trim()
-    ? `?search=${encodeURIComponent(search.trim())}`
-    : "";
-  const response = await fetch(`${API_URL}/production${query}`, {
-    headers: headers(),
-  });
-  const result = (await response.json()) as
-    | ProductionListResponse
-    | ApiErrorResponse;
-
-  if (!response.ok) {
-    throw new Error(result.message || "Unable to load production orders");
-  }
-
-  return (result as ProductionListResponse).data;
-};
-
-export const createProductionOrder = async (
-  payload: CreateProductionOrderPayload
-): Promise<ProductionOrder> => {
-  const response = await fetch(`${API_URL}/production`, {
-    method: "POST",
-    headers: headers(true),
-    body: JSON.stringify(payload),
-  });
-  const result = (await response.json()) as
-    | ProductionResponse
-    | ApiErrorResponse;
-
-  if (!response.ok) {
-    throw new Error(result.message || "Unable to create production order");
-  }
-
-  return (result as ProductionResponse).data;
-};
-
-export const updateProductionOrderStatus = async (
-  orderId: string,
-  status: ProductionOrderStatus
-): Promise<ProductionOrder> => {
-  const response = await fetch(`${API_URL}/production/${orderId}`, {
-    method: "PATCH",
-    headers: headers(true),
-    body: JSON.stringify({ status }),
-  });
-  const result = (await response.json()) as
-    | ProductionResponse
-    | ApiErrorResponse;
-
-  if (!response.ok) {
-    throw new Error(result.message || "Unable to update production status");
-  }
-
-  return (result as ProductionResponse).data;
-};
-
-export const updateProductionOperation = async (
-  orderId: string,
-  operationId: string,
-  status: ProductionOperationStatus
-): Promise<ProductionOrder> => {
-  const response = await fetch(
-    `${API_URL}/production/${orderId}/operations/${operationId}`,
-    {
-      method: "PATCH",
-      headers: headers(true),
-      body: JSON.stringify({ status }),
-    }
-  );
-  const result = (await response.json()) as
-    | ProductionResponse
-    | ApiErrorResponse;
-
-  if (!response.ok) {
-    throw new Error(result.message || "Unable to update operation");
-  }
-
-  return (result as ProductionResponse).data;
-};
-
+import type {CreateProductionOrderPayload,DowntimeRecord,JobCardStatus,MaterialConsumptionType,ProductionInventoryItem,ProductionOperationStatus,ProductionOrder,ProductionOrderStatus,TraceabilityRecord,WorkCenter} from "../types/production";
+const API_URL=import.meta.env.VITE_API_URL||"http://localhost:5000/api";
+interface Err{success:false;message:string}
+const headers=(json=false)=>{const token=localStorage.getItem("accessToken");if(!token)throw new Error("Your session has expired. Please sign in again.");return {...(json?{"Content-Type":"application/json"}:{}),Authorization:`Bearer ${token}`};};
+async function request<T>(url:string,options:RequestInit={}){const r=await fetch(`${API_URL}${url}`,options);const x=await r.json();if(!r.ok)throw new Error((x as Err).message||"Request failed");return x.data as T;}
+export const getProductionOrders=(search="")=>request<ProductionOrder[]>(`/production${search.trim()?`?search=${encodeURIComponent(search.trim())}`:""}`,{headers:headers()});
+export const createProductionOrder=(payload:CreateProductionOrderPayload)=>request<ProductionOrder>("/production",{method:"POST",headers:headers(true),body:JSON.stringify(payload)});
+export const updateProductionOrderStatus=(id:string,status:ProductionOrderStatus)=>request<ProductionOrder>(`/production/${id}`,{method:"PATCH",headers:headers(true),body:JSON.stringify({status})});
+export const updateProductionOperation=(orderId:string,operationId:string,payload:ProductionOperationStatus|Record<string,unknown>)=>request<ProductionOrder>(`/production/${orderId}/operations/${operationId}`,{method:"PATCH",headers:headers(true),body:JSON.stringify(typeof payload==="string"?{status:payload}:payload)});
+export const getWorkCenters=()=>request<WorkCenter[]>("/production/work-centers",{headers:headers()});
+export const getProductionInventory=()=>request<ProductionInventoryItem[]>("/production/inventory-items",{headers:headers()});
+export const createWorkCenter=(payload:{code:string;name:string;department?:string;location?:string;capacityPerDay?:number})=>request<WorkCenter>("/production/work-centers",{method:"POST",headers:headers(true),body:JSON.stringify(payload)});
+export const createMachine=(payload:{machineCode:string;name:string;workCenterId:string;serialNumber?:string})=>request("/production/machines",{method:"POST",headers:headers(true),body:JSON.stringify(payload)});
+export const createJobCard=(payload:{productionOrderId:string;operationId:string;assignedToId?:string|null;plannedHours?:number;notes?:string})=>request("/production/job-cards",{method:"POST",headers:headers(true),body:JSON.stringify(payload)});
+export const updateJobCard=(id:string,payload:{status:JobCardStatus;actualHours?:number;producedQuantity?:number;rejectedQuantity?:number;scrapQuantity?:number;reworkQuantity?:number;downtimeMinutes?:number;notes?:string})=>request(`/production/job-cards/${id}`,{method:"PATCH",headers:headers(true),body:JSON.stringify(payload)});
+export const recordMaterialMovement=(orderId:string,payload:{inventoryItemId:string;movementType:MaterialConsumptionType;quantity:number;heatNumber?:string;batchNumber?:string;serialNumber?:string;materialCertificateNumber?:string;notes?:string})=>request(`/production/${orderId}/materials`,{method:"POST",headers:headers(true),body:JSON.stringify(payload)});
+export const createTraceability=(orderId:string,payload:{operationId?:string|null;inventoryItemId?:string|null;componentName:string;heatNumber?:string;batchNumber?:string;serialNumber?:string;materialCertificateNumber?:string;quantity:number;unit:string;notes?:string})=>request<TraceabilityRecord>(`/production/${orderId}/traceability`,{method:"POST",headers:headers(true),body:JSON.stringify(payload)});
+export const recordDowntime=(orderId:string,payload:{operationId?:string|null;machineId?:string|null;category:string;reason:string;startedAt:string;endedAt:string;notes?:string})=>request<DowntimeRecord>(`/production/${orderId}/downtime`,{method:"POST",headers:headers(true),body:JSON.stringify(payload)});

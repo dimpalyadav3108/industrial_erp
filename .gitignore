@@ -7,3 +7,22 @@ dist/
 !.env.example
 *.log
 coverage/
+
+# Local ERP audit / temporary files
+erp_structure.txt
+frontend_errors.txt
+App-current.tsx
+AppLayout-current.tsx
+sales.controller.ts
+schema-current.prisma
+server-current.ts
+frontend/ProcurementPage-upload.tsx
+
+# Local backup files
+*.bak
+*.backup
+*.backup.prisma
+*.before-*.prisma
+*.before-*.ts
+*.before-*.tsx
+*.module9-*.bak

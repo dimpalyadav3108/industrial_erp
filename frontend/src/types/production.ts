@@ -1,107 +1,19 @@
-export type ProductionOrderStatus =
-  | "PLANNED"
-  | "RELEASED"
-  | "IN_PROGRESS"
-  | "ON_HOLD"
-  | "COMPLETED"
-  | "CANCELLED";
-
-export type ProductionOperationStatus =
-  | "PENDING"
-  | "IN_PROGRESS"
-  | "COMPLETED"
-  | "SKIPPED";
-
-export type ProductionPriority = "LOW" | "MEDIUM" | "HIGH" | "URGENT";
-
-export interface ProductionOperation {
-  id: string;
-  productionOrderId: string;
-  sequence: number;
-  name: string;
-  workCenter: string | null;
-  status: ProductionOperationStatus;
-  plannedStartDate: string | null;
-  plannedEndDate: string | null;
-  actualStartDate: string | null;
-  actualEndDate: string | null;
-  notes: string | null;
-}
-
-export interface ProductionOrder {
-  id: string;
-  productionNumber: string;
-  quotationId: string;
-  title: string;
-  status: ProductionOrderStatus;
-  priority: ProductionPriority;
-  quantity: string;
-  unit: string;
-  plannedStartDate: string | null;
-  plannedEndDate: string | null;
-  actualStartDate: string | null;
-  actualEndDate: string | null;
-  progressPercent: string;
-  assignedToId: string | null;
-  notes: string | null;
-  createdAt: string;
-  updatedAt: string;
-  quotation: {
-    id: string;
-    quotationNumber: string;
-    totalAmount: string;
-    status: string;
-    estimate: {
-      id: string;
-      estimateNumber: string;
-      lead: {
-        id: string;
-        leadNumber: string;
-        title: string;
-        customer: {
-          id: string;
-          customerCode: string;
-          companyName: string;
-        } | null;
-      };
-    };
-  };
-  assignedTo: {
-    id: string;
-    employeeCode: string;
-    firstName: string;
-    lastName: string;
-  } | null;
-  operations: ProductionOperation[];
-}
-
-export interface CreateProductionOperationPayload {
-  name: string;
-  workCenter?: string;
-  notes?: string;
-}
-
-export interface CreateProductionOrderPayload {
-  quotationId: string;
-  title: string;
-  priority: ProductionPriority;
-  quantity: number;
-  unit: string;
-  plannedStartDate?: string;
-  plannedEndDate?: string;
-  notes?: string;
-  operations: CreateProductionOperationPayload[];
-}
-
-export interface ProductionListResponse {
-  success: boolean;
-  data: ProductionOrder[];
-  message?: string;
-}
-
-export interface ProductionResponse {
-  success: boolean;
-  data: ProductionOrder;
-  message?: string;
-}
-
+export type ProductionOrderStatus="PLANNED"|"RELEASED"|"IN_PROGRESS"|"ON_HOLD"|"COMPLETED"|"CANCELLED";
+export type ProductionOperationStatus="PENDING"|"IN_PROGRESS"|"COMPLETED"|"SKIPPED";
+export type ProductionPriority="LOW"|"MEDIUM"|"HIGH"|"URGENT";
+export type JobCardStatus="PLANNED"|"RELEASED"|"IN_PROGRESS"|"PAUSED"|"COMPLETED"|"CANCELLED";
+export type MaterialConsumptionType="ISSUE"|"CONSUMPTION"|"RETURN"|"SCRAP";
+export interface Person{id:string;employeeCode:string;firstName:string;lastName:string}
+export interface Machine{id:string;machineCode:string;name:string;workCenterId:string;status:string}
+export interface WorkCenter{id:string;code:string;name:string;description:string|null;department:string|null;location:string|null;status:string;capacityPerDay:string|null;machines:Machine[]}
+export interface JobCard{id:string;jobCardNumber:string;status:JobCardStatus;assignedTo:Person|null;plannedHours:string|null;actualHours:string;producedQuantity:string;rejectedQuantity:string;scrapQuantity:string;reworkQuantity:string;downtimeMinutes:number;startedAt:string|null;pausedAt:string|null;completedAt:string|null}
+export interface ProductionOperation{id:string;productionOrderId:string;sequence:number;name:string;workCenter:string|null;workCenterId:string|null;machineId:string|null;assignedToId:string|null;status:ProductionOperationStatus;plannedStartDate:string|null;plannedEndDate:string|null;actualStartDate:string|null;actualEndDate:string|null;plannedHours:string|null;actualHours:string;producedQuantity:string;rejectedQuantity:string;scrapQuantity:string;reworkQuantity:string;downtimeMinutes:number;notes:string|null;workCenterRef:WorkCenter|null;machine:Machine|null;assignedTo:Person|null;jobCards:JobCard[]}
+export interface MaterialMovement{id:string;movementType:MaterialConsumptionType;quantity:string;unitCost:string|null;heatNumber:string|null;batchNumber:string|null;serialNumber:string|null;materialCertificateNumber:string|null;createdAt:string;inventoryItem:{id:string;itemCode:string;name:string;unit:string}}
+export interface TraceabilityRecord{id:string;operationId:string|null;inventoryItemId:string|null;componentName:string;heatNumber:string|null;batchNumber:string|null;serialNumber:string|null;materialCertificateNumber:string|null;quantity:string;unit:string;notes:string|null;createdAt:string}
+export interface DowntimeRecord{id:string;operationId:string|null;machineId:string|null;category:string;reason:string;startedAt:string;endedAt:string;durationMinutes:number;notes:string|null;createdAt:string}
+export interface ProductionInventoryItem{id:string;itemCode:string;name:string;unit:string;currentStock:string}
+export interface ProductionOrder{id:string;productionNumber:string;quotationId:string;title:string;status:ProductionOrderStatus;priority:ProductionPriority;quantity:string;unit:string;plannedStartDate:string|null;plannedEndDate:string|null;actualStartDate:string|null;actualEndDate:string|null;progressPercent:string;producedQuantity:string;rejectedQuantity:string;scrapQuantity:string;assignedToId:string|null;notes:string|null;createdAt:string;updatedAt:string;quotation:{id:string;quotationNumber:string;totalAmount:string;status:string;estimate:{id:string;estimateNumber:string;lead:{id:string;leadNumber:string;title:string;customer:{id:string;customerCode:string;companyName:string}|null}}};assignedTo:Person|null;operations:ProductionOperation[];materialMovements:MaterialMovement[];traceabilityRecords:TraceabilityRecord[];downtimeRecords:DowntimeRecord[]}
+export interface CreateProductionOperationPayload{name:string;workCenter?:string;workCenterId?:string|null;machineId?:string|null;assignedToId?:string|null;plannedStartDate?:string;plannedEndDate?:string;plannedHours?:number;notes?:string}
+export interface CreateProductionOrderPayload{quotationId:string;title:string;priority:ProductionPriority;quantity:number;unit:string;plannedStartDate?:string;plannedEndDate?:string;assignedToId?:string|null;notes?:string;operations:CreateProductionOperationPayload[]}
+export interface ProductionListResponse{success:boolean;data:ProductionOrder[];message?:string}
+export interface ProductionResponse{success:boolean;data:ProductionOrder;message?:string}

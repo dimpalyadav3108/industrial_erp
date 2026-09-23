@@ -1,64 +1,18 @@
 import { z } from "zod";
-
-const optionalText = (maximum = 2000) =>
-  z.preprocess(
-    (value) =>
-      typeof value === "string" && value.trim() === "" ? undefined : value,
-    z.string().trim().max(maximum).optional()
-  );
-
-const optionalDate = z.preprocess(
-  (value) =>
-    typeof value === "string" && value.trim() === "" ? undefined : value,
-  z.string().trim().optional()
-);
-
-export const qualityInspectionTypeSchema = z.enum(["IN_PROCESS", "FINAL"]);
-
-export const qualityInspectionStatusSchema = z.enum([
-  "PENDING",
-  "IN_PROGRESS",
-  "PASSED",
-  "FAILED",
-  "ON_HOLD",
-]);
-
-export const qualityCheckResultSchema = z.enum([
-  "PENDING",
-  "PASS",
-  "FAIL",
-  "NOT_APPLICABLE",
-]);
-
-const qualityCheckSchema = z.object({
-  parameter: z.string().trim().min(2).max(200),
-  specification: optionalText(500),
-});
-
-export const createQualityInspectionSchema = z.object({
-  productionOrderId: z.string().uuid("Select a valid production order"),
-  inspectionType: qualityInspectionTypeSchema,
-  scheduledDate: optionalDate,
-  inspectorId: z.string().uuid().optional().nullable(),
-  remarks: optionalText(),
-  checks: z.array(qualityCheckSchema).min(1).max(50),
-});
-
-export const updateQualityInspectionSchema = z
-  .object({
-    status: qualityInspectionStatusSchema.optional(),
-    scheduledDate: optionalDate,
-    inspectorId: z.string().uuid().optional().nullable(),
-    remarks: optionalText(),
-    failureReason: optionalText(),
-  })
-  .refine((data) => Object.keys(data).length > 0, {
-    message: "At least one inspection field must be provided",
-  });
-
-export const updateQualityCheckSchema = z.object({
-  result: qualityCheckResultSchema,
-  observedValue: optionalText(500),
-  remarks: optionalText(1000),
-});
-
+const opt=(n=2000)=>z.preprocess(v=>typeof v==="string"&&!v.trim()?undefined:v,z.string().trim().max(n).optional());
+const date=z.preprocess(v=>v===""||v===null?undefined:v,z.string().datetime({offset:true}).optional());
+export const qualityInspectionTypeSchema=z.enum(["IN_PROCESS","FINAL"]);
+export const qualityInspectionStatusSchema=z.enum(["PENDING","IN_PROGRESS","PASSED","FAILED","ON_HOLD"]);
+export const qualityCheckResultSchema=z.enum(["PENDING","PASS","FAIL","NOT_APPLICABLE"]);
+export const createQualityInspectionSchema=z.object({productionOrderId:z.string().uuid(),inspectionType:qualityInspectionTypeSchema,scheduledDate:date,inspectorId:z.string().uuid().optional().nullable(),remarks:opt(),checks:z.array(z.object({parameter:z.string().trim().min(2).max(200),specification:opt(500)})).min(1).max(50)});
+export const updateQualityInspectionSchema=z.object({status:qualityInspectionStatusSchema.optional(),scheduledDate:date,inspectorId:z.string().uuid().optional().nullable(),remarks:opt(),failureReason:opt()}).refine(d=>Object.keys(d).length>0,{message:"At least one inspection field must be provided"});
+export const updateQualityCheckSchema=z.object({result:qualityCheckResultSchema,observedValue:opt(500),remarks:opt(1000)});
+export const createItpSchema=z.object({productionOrderId:z.string().uuid().optional().nullable(),title:z.string().trim().min(2).max(200),revision:opt(30),status:z.enum(["DRAFT","IN_REVIEW","APPROVED","RELEASED"]).default("DRAFT"),remarks:opt(),items:z.array(z.object({activity:z.string().trim().min(2).max(200),acceptanceCriteria:opt(1000),inspectionMethod:opt(500),holdPoint:z.boolean().default(false),witnessPoint:z.boolean().default(false)})).min(1).max(100)});
+export const createIbrSchema=z.object({productionOrderId:z.string().uuid().optional().nullable(),documentType:z.enum(["FORM_III","FORM_IV","FORM_XVI","DRAWING","MATERIAL_CERTIFICATE","TEST_CERTIFICATE","OTHER"]),documentNumber:z.string().trim().min(1).max(100),title:z.string().trim().min(2).max(200),revision:opt(30),status:z.enum(["DRAFT","SUBMITTED","APPROVED","REJECTED"]).default("DRAFT"),issueDate:date,expiryDate:date,documentUrl:opt(1000),remarks:opt()});
+export const createWeldingProcedureSchema=z.object({procedureType:z.enum(["WPS","PQR"]),procedureNumber:z.string().trim().min(1).max(100),title:z.string().trim().min(2).max(200),revision:opt(30),process:z.string().trim().min(1).max(100),baseMaterial:opt(300),fillerMaterial:opt(300),thicknessRange:opt(100),position:opt(100),status:z.enum(["DRAFT","QUALIFIED","EXPIRED","SUPERSEDED"]).default("DRAFT"),qualifiedDate:date,expiryDate:date,documentUrl:opt(1000),remarks:opt()});
+export const createWelderQualificationSchema=z.object({welderCode:z.string().trim().min(1).max(80),welderName:z.string().trim().min(2).max(150),qualificationNumber:z.string().trim().min(1).max(100),process:z.string().trim().min(1).max(100),position:opt(100),materialGroup:opt(200),qualifiedDate:date,expiryDate:date,status:z.enum(["ACTIVE","EXPIRED","SUSPENDED"]).default("ACTIVE"),documentUrl:opt(1000),remarks:opt()});
+export const createWeldJointSchema=z.object({productionOrderId:z.string().uuid(),jointNumber:z.string().trim().min(1).max(100),drawingNumber:opt(100),wpsId:z.string().uuid().optional().nullable(),welderQualificationId:z.string().uuid().optional().nullable(),material:opt(300),size:opt(100),status:z.enum(["PLANNED","WELDED","INSPECTED","ACCEPTED","REJECTED","REPAIR"]).default("PLANNED"),weldedAt:date,inspectionMethod:opt(200),inspectionResult:opt(500),remarks:opt()});
+export const createNcrSchema=z.object({productionOrderId:z.string().uuid().optional().nullable(),qualityInspectionId:z.string().uuid().optional().nullable(),title:z.string().trim().min(2).max(200),description:z.string().trim().min(2).max(3000),severity:z.enum(["MINOR","MAJOR","CRITICAL"]).default("MINOR"),status:z.enum(["OPEN","UNDER_REVIEW","ACTION_REQUIRED","CLOSED","CANCELLED"]).default("OPEN"),disposition:opt(2000),rootCause:opt(2000),dueDate:date});
+export const updateNcrSchema=z.object({status:z.enum(["OPEN","UNDER_REVIEW","ACTION_REQUIRED","CLOSED","CANCELLED"]).optional(),disposition:opt(2000),rootCause:opt(2000),dueDate:date}).refine(d=>Object.keys(d).length>0);
+export const createCapaSchema=z.object({ncrId:z.string().uuid(),title:z.string().trim().min(2).max(200),correctiveAction:z.string().trim().min(2).max(3000),preventiveAction:opt(3000),ownerId:z.string().uuid().optional().nullable(),dueDate:date,status:z.enum(["OPEN","IN_PROGRESS","VERIFICATION","CLOSED"]).default("OPEN"),effectivenessCheck:opt(2000)});
+export const updateCapaSchema=z.object({status:z.enum(["OPEN","IN_PROGRESS","VERIFICATION","CLOSED"]).optional(),correctiveAction:opt(3000),preventiveAction:opt(3000),ownerId:z.string().uuid().optional().nullable(),dueDate:date,effectivenessCheck:opt(2000)}).refine(d=>Object.keys(d).length>0);

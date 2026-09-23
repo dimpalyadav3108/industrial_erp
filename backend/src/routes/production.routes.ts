@@ -1,23 +1,18 @@
 import { Router } from "express";
-import {
-  createProductionOrderController,
-  getProductionOrderController,
-  listProductionOrdersController,
-  updateProductionOperationController,
-  updateProductionOrderController,
-} from "../controllers/production.controller.js";
+import {createDowntimeController,createJobCardController,createMachineController,createProductionOrderController,createTraceabilityController,createWorkCenterController,getProductionOrderController,listProductionInventoryController,listProductionOrdersController,listWorkCentersController,recordMaterialMovementController,updateJobCardController,updateProductionOperationController,updateProductionOrderController} from "../controllers/production.controller.js";
 import { authenticate } from "../middleware/auth.middleware.js";
-
-export const productionRouter = Router();
-
-productionRouter.use(authenticate);
-
-productionRouter.get("/", listProductionOrdersController);
-productionRouter.get("/:id", getProductionOrderController);
-productionRouter.post("/", createProductionOrderController);
-productionRouter.patch("/:id", updateProductionOrderController);
-productionRouter.patch(
-  "/:id/operations/:operationId",
-  updateProductionOperationController
-);
-
+export const productionRouter=Router(); productionRouter.use(authenticate);
+productionRouter.get("/work-centers",listWorkCentersController);
+productionRouter.post("/work-centers",createWorkCenterController);
+productionRouter.get("/inventory-items",listProductionInventoryController);
+productionRouter.post("/machines",createMachineController);
+productionRouter.post("/job-cards",createJobCardController);
+productionRouter.patch("/job-cards/:jobCardId",updateJobCardController);
+productionRouter.get("/",listProductionOrdersController);
+productionRouter.post("/",createProductionOrderController);
+productionRouter.get("/:id",getProductionOrderController);
+productionRouter.patch("/:id",updateProductionOrderController);
+productionRouter.patch("/:id/operations/:operationId",updateProductionOperationController);
+productionRouter.post("/:id/materials",recordMaterialMovementController);
+productionRouter.post("/:id/traceability",createTraceabilityController);
+productionRouter.post("/:id/downtime",createDowntimeController);

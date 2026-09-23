@@ -1,0 +1,244 @@
+/* Engineering — visual alignment with Advanced Production */
+
+.engineering-page{
+  padding:38px 34px 50px !important;
+  min-height:calc(100vh - 76px);
+  box-sizing:border-box;
+  background:radial-gradient(circle at 92% 8%,rgba(22,119,255,.055),transparent 28%),#f3f6fa;
+}
+
+.engineering-page .engineering-header{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:28px;
+  margin:0 0 30px !important;
+}
+
+.engineering-page .engineering-eyebrow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  color:#1677ff;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.engineering-page .engineering-eyebrow:before{
+  content:"";
+  width:22px;
+  height:2px;
+  border-radius:999px;
+  background:#1677ff;
+}
+
+.engineering-page .engineering-header h1{
+  margin:0;
+  color:#101828;
+  font-size:clamp(1.8rem,3vw,2.55rem);
+  line-height:1.15;
+  font-weight:750;
+  letter-spacing:-.045em;
+}
+
+.engineering-page .engineering-header p{
+  margin:9px 0 0;
+  color:#667085;
+  font-size:14px;
+}
+
+.engineering-page .primary-button,
+.engineering-page .secondary-button{
+  min-height:44px;
+  padding:0 18px;
+  border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.engineering-page .primary-button{
+  border:1px solid #1677ff;
+  background:#1677ff;
+  color:#fff;
+  box-shadow:0 8px 18px rgba(22,119,255,.16);
+}
+
+.engineering-page .secondary-button{
+  border:1px solid #d9dee7;
+  background:#fff;
+  color:#344054;
+}
+
+.engineering-page .card{
+  border:1px solid #e5e9f0 !important;
+  border-radius:15px !important;
+  background:#fff;
+  box-shadow:0 8px 25px rgba(16,24,40,.045) !important;
+}
+
+/* The first grid after alerts is the four KPI cards. */
+.engineering-page > div[style*="repeat(auto-fit, minmax(190px, 1fr))"]{
+  gap:18px !important;
+  margin-bottom:28px !important;
+}
+
+.engineering-page > div[style*="repeat(auto-fit, minmax(190px, 1fr))"] > .card{
+  min-height:104px;
+  padding:21px !important;
+  box-sizing:border-box;
+}
+
+/* KPI icon treatment */
+.engineering-page > div[style*="repeat(auto-fit, minmax(190px, 1fr))"] > .card > div > div:last-child{
+  width:48px;
+  height:48px;
+  flex:0 0 48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:#edf5ff;
+  color:#1677ff;
+}
+
+/* Main two-column engineering workspace */
+.engineering-page > div[style*="minmax(300px, 0.8fr)"]{
+  gap:18px !important;
+  align-items:stretch !important;
+}
+
+.engineering-page > div[style*="minmax(300px, 0.8fr)"] > .card{
+  min-height:375px;
+  overflow:hidden;
+}
+
+.engineering-page .search-box{
+  height:46px;
+  box-sizing:border-box;
+  padding:0 14px;
+  border:1px solid #dfe4eb;
+  border-radius:10px;
+  background:#f8fafc;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#98a2b3;
+}
+
+.engineering-page .search-box:focus-within{
+  border-color:#9cc9ff;
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(22,119,255,.08);
+}
+
+.engineering-page .search-box input{
+  width:100%;
+  height:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#344054;
+  font-size:.8rem;
+}
+
+.engineering-page .icon-button{
+  width:38px;
+  height:38px;
+  border:1px solid #e4e7ec;
+  border-radius:9px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  color:#667085;
+  cursor:pointer;
+}
+
+/* Modal form controls */
+.engineering-page label > span{
+  display:block;
+  margin-bottom:7px;
+  color:#475467;
+  font-size:.76rem;
+  font-weight:700;
+}
+
+.engineering-page label input,
+.engineering-page label select,
+.engineering-page label textarea{
+  width:100%;
+  min-height:44px;
+  box-sizing:border-box;
+  border:1px solid #d9dee7;
+  border-radius:10px;
+  padding:9px 12px;
+  outline:0;
+  background:#fff;
+  color:#344054;
+  font:inherit;
+  font-size:13px;
+}
+
+.engineering-page label textarea{min-height:100px;resize:vertical}
+
+.engineering-page label input:focus,
+.engineering-page label select:focus,
+.engineering-page label textarea:focus{
+  border-color:#1677ff;
+  box-shadow:0 0 0 4px rgba(22,119,255,.09);
+}
+
+@media(max-width:1050px){
+  .engineering-page > div[style*="minmax(300px, 0.8fr)"]{
+    grid-template-columns:1fr !important;
+  }
+}
+
+@media(max-width:900px){
+  .engineering-page{padding:28px 18px 40px !important}
+  .engineering-page .engineering-header{
+    align-items:stretch;
+    flex-direction:column;
+  }
+}
+
+@media(max-width:600px){
+  .engineering-page .engineering-header > div:last-child{
+    width:100%;
+    flex-direction:column;
+    align-items:stretch !important;
+  }
+  .engineering-page .engineering-header .primary-button,
+  .engineering-page .engineering-header .secondary-button{width:100%}
+}
+
+/* Add this block to the BOTTOM of EngineeringPage.css */
+.engineering-modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.52);display:flex;align-items:center;justify-content:center;padding:20px;z-index:1200}
+.engineering-modal-card{width:min(760px,96vw);max-height:92vh;overflow:auto;background:#fff}
+.engineering-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px;border-bottom:1px solid #e5e7eb}
+.engineering-modal-head h2{margin:0;color:#142038}.engineering-modal-head p{margin:5px 0 0;color:#64748b;font-size:13px}
+.engineering-simple-form{padding:20px;display:grid;gap:15px}.engineering-simple-form label{display:grid;gap:7px}.engineering-simple-form label>span{font-size:13px;font-weight:700;color:#334155}
+.engineering-simple-form input,.engineering-simple-form select,.engineering-simple-form textarea{width:100%;box-sizing:border-box;border:1px solid #d7e0eb;border-radius:10px;padding:11px 12px;background:#fff;color:#142038;font:inherit;outline:none}
+.engineering-simple-form input:focus,.engineering-simple-form select:focus,.engineering-simple-form textarea:focus{border-color:#1677ff;box-shadow:0 0 0 3px rgba(22,119,255,.10)}
+.engineering-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.engineering-modal-actions{display:flex;justify-content:flex-end;gap:10px;padding-top:6px}
+@media(max-width:700px){.engineering-form-grid{grid-template-columns:1fr}}
+/* Batch 3 — Engineering revision history + hierarchical BOM */
+.drawing-revision-history{margin-top:12px;border:1px solid #e8edf3;border-radius:10px;overflow:hidden;background:#fbfdff}
+.drawing-revision-row{display:grid;grid-template-columns:70px 120px minmax(180px,1fr) 160px minmax(120px,.7fr);gap:10px;align-items:center;padding:9px 11px;border-top:1px solid #edf2f7;font-size:12px}
+.drawing-revision-row:first-child{border-top:0}.drawing-revision-row span{color:#64748b}.drawing-revision-row a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bom-tree-wrap{margin-top:12px;border:1px solid #e8edf3;border-radius:10px;overflow:auto}
+.bom-tree-head,.bom-tree-row{min-width:760px;display:grid;grid-template-columns:70px minmax(220px,1.5fr) 100px 85px minmax(170px,1fr) 82px;gap:8px;align-items:center}
+.bom-tree-head{padding:9px 11px;background:#f8fafc;color:#64748b;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+.bom-tree-row{padding:9px 11px;border-top:1px solid #eef2f7;font-size:13px;background:#fff}
+.bom-tree-name{display:flex;gap:7px;align-items:center;min-width:0}.bom-tree-name>span:last-child,.bom-material{display:grid;gap:2px;min-width:0}.bom-tree-name small,.bom-material small{color:#64748b;font-size:11px}.bom-branch{color:#94a3b8}
+.bom-source{display:inline-flex;padding:3px 7px;border-radius:999px;font-size:10px;font-weight:800;background:#eef2ff}.bom-source.make{background:#ecfdf5}.bom-source.buy{background:#fff7ed}
+.bom-row-actions{display:flex;justify-content:flex-end;gap:4px}
+@media(max-width:900px){.drawing-revision-row{grid-template-columns:70px 110px 1fr}.drawing-revision-row>*:nth-child(n+4){grid-column:3}}

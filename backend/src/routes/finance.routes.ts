@@ -1,0 +1,14 @@
+import { Router } from "express";
+import { authenticate } from "../middleware/auth.middleware.js";
+import * as c from "../controllers/finance.controller.js";
+export const financeRouter=Router(); financeRouter.use(authenticate);
+financeRouter.get("/dashboard",c.dashboard);
+financeRouter.get("/accounts",c.listAccounts); financeRouter.post("/accounts",c.createAccount);
+financeRouter.get("/journals",c.listJournals); financeRouter.post("/journals",c.createJournal); financeRouter.post("/journals/:id/post",c.postJournal);
+financeRouter.get("/receivables",c.receivables);
+financeRouter.get("/eligible-grns",c.eligibleGrns);
+financeRouter.get("/vendor-bills",c.listBills); financeRouter.post("/vendor-bills",c.createBill);
+financeRouter.post("/vendor-payments",c.createVendorPayment);
+financeRouter.get("/expenses",c.listExpenses); financeRouter.post("/expenses",c.createExpense); financeRouter.patch("/expenses/:id",c.updateExpense);
+financeRouter.get("/gst-summary",c.gstSummary);
+financeRouter.get("/reports/trial-balance",c.trialBalance); financeRouter.get("/reports/profit-loss",c.profitLoss); financeRouter.get("/reports/balance-sheet",c.balanceSheet);

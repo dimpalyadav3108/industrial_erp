@@ -28,10 +28,24 @@ export type AggregateProductionOperation = {
 
 export type ProductionOperationAvgAggregateOutputType = {
   sequence: number | null
+  plannedHours: runtime.Decimal | null
+  actualHours: runtime.Decimal | null
+  producedQuantity: runtime.Decimal | null
+  rejectedQuantity: runtime.Decimal | null
+  scrapQuantity: runtime.Decimal | null
+  reworkQuantity: runtime.Decimal | null
+  downtimeMinutes: number | null
 }
 
 export type ProductionOperationSumAggregateOutputType = {
   sequence: number | null
+  plannedHours: runtime.Decimal | null
+  actualHours: runtime.Decimal | null
+  producedQuantity: runtime.Decimal | null
+  rejectedQuantity: runtime.Decimal | null
+  scrapQuantity: runtime.Decimal | null
+  reworkQuantity: runtime.Decimal | null
+  downtimeMinutes: number | null
 }
 
 export type ProductionOperationMinAggregateOutputType = {
@@ -40,11 +54,21 @@ export type ProductionOperationMinAggregateOutputType = {
   sequence: number | null
   name: string | null
   workCenter: string | null
+  workCenterId: string | null
+  machineId: string | null
+  assignedToId: string | null
   status: $Enums.ProductionOperationStatus | null
   plannedStartDate: Date | null
   plannedEndDate: Date | null
   actualStartDate: Date | null
   actualEndDate: Date | null
+  plannedHours: runtime.Decimal | null
+  actualHours: runtime.Decimal | null
+  producedQuantity: runtime.Decimal | null
+  rejectedQuantity: runtime.Decimal | null
+  scrapQuantity: runtime.Decimal | null
+  reworkQuantity: runtime.Decimal | null
+  downtimeMinutes: number | null
   notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -56,11 +80,21 @@ export type ProductionOperationMaxAggregateOutputType = {
   sequence: number | null
   name: string | null
   workCenter: string | null
+  workCenterId: string | null
+  machineId: string | null
+  assignedToId: string | null
   status: $Enums.ProductionOperationStatus | null
   plannedStartDate: Date | null
   plannedEndDate: Date | null
   actualStartDate: Date | null
   actualEndDate: Date | null
+  plannedHours: runtime.Decimal | null
+  actualHours: runtime.Decimal | null
+  producedQuantity: runtime.Decimal | null
+  rejectedQuantity: runtime.Decimal | null
+  scrapQuantity: runtime.Decimal | null
+  reworkQuantity: runtime.Decimal | null
+  downtimeMinutes: number | null
   notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -72,11 +106,21 @@ export type ProductionOperationCountAggregateOutputType = {
   sequence: number
   name: number
   workCenter: number
+  workCenterId: number
+  machineId: number
+  assignedToId: number
   status: number
   plannedStartDate: number
   plannedEndDate: number
   actualStartDate: number
   actualEndDate: number
+  plannedHours: number
+  actualHours: number
+  producedQuantity: number
+  rejectedQuantity: number
+  scrapQuantity: number
+  reworkQuantity: number
+  downtimeMinutes: number
   notes: number
   createdAt: number
   updatedAt: number
@@ -86,10 +130,24 @@ export type ProductionOperationCountAggregateOutputType = {
 
 export type ProductionOperationAvgAggregateInputType = {
   sequence?: true
+  plannedHours?: true
+  actualHours?: true
+  producedQuantity?: true
+  rejectedQuantity?: true
+  scrapQuantity?: true
+  reworkQuantity?: true
+  downtimeMinutes?: true
 }
 
 export type ProductionOperationSumAggregateInputType = {
   sequence?: true
+  plannedHours?: true
+  actualHours?: true
+  producedQuantity?: true
+  rejectedQuantity?: true
+  scrapQuantity?: true
+  reworkQuantity?: true
+  downtimeMinutes?: true
 }
 
 export type ProductionOperationMinAggregateInputType = {
@@ -98,11 +156,21 @@ export type ProductionOperationMinAggregateInputType = {
   sequence?: true
   name?: true
   workCenter?: true
+  workCenterId?: true
+  machineId?: true
+  assignedToId?: true
   status?: true
   plannedStartDate?: true
   plannedEndDate?: true
   actualStartDate?: true
   actualEndDate?: true
+  plannedHours?: true
+  actualHours?: true
+  producedQuantity?: true
+  rejectedQuantity?: true
+  scrapQuantity?: true
+  reworkQuantity?: true
+  downtimeMinutes?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
@@ -114,11 +182,21 @@ export type ProductionOperationMaxAggregateInputType = {
   sequence?: true
   name?: true
   workCenter?: true
+  workCenterId?: true
+  machineId?: true
+  assignedToId?: true
   status?: true
   plannedStartDate?: true
   plannedEndDate?: true
   actualStartDate?: true
   actualEndDate?: true
+  plannedHours?: true
+  actualHours?: true
+  producedQuantity?: true
+  rejectedQuantity?: true
+  scrapQuantity?: true
+  reworkQuantity?: true
+  downtimeMinutes?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
@@ -130,11 +208,21 @@ export type ProductionOperationCountAggregateInputType = {
   sequence?: true
   name?: true
   workCenter?: true
+  workCenterId?: true
+  machineId?: true
+  assignedToId?: true
   status?: true
   plannedStartDate?: true
   plannedEndDate?: true
   actualStartDate?: true
   actualEndDate?: true
+  plannedHours?: true
+  actualHours?: true
+  producedQuantity?: true
+  rejectedQuantity?: true
+  scrapQuantity?: true
+  reworkQuantity?: true
+  downtimeMinutes?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
@@ -233,11 +321,21 @@ export type ProductionOperationGroupByOutputType = {
   sequence: number
   name: string
   workCenter: string | null
+  workCenterId: string | null
+  machineId: string | null
+  assignedToId: string | null
   status: $Enums.ProductionOperationStatus
   plannedStartDate: Date | null
   plannedEndDate: Date | null
   actualStartDate: Date | null
   actualEndDate: Date | null
+  plannedHours: runtime.Decimal | null
+  actualHours: runtime.Decimal
+  producedQuantity: runtime.Decimal
+  rejectedQuantity: runtime.Decimal
+  scrapQuantity: runtime.Decimal
+  reworkQuantity: runtime.Decimal
+  downtimeMinutes: number
   notes: string | null
   createdAt: Date
   updatedAt: Date
@@ -272,15 +370,29 @@ export type ProductionOperationWhereInput = {
   sequence?: Prisma.IntFilter<"ProductionOperation"> | number
   name?: Prisma.StringFilter<"ProductionOperation"> | string
   workCenter?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  workCenterId?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  machineId?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  assignedToId?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
   status?: Prisma.EnumProductionOperationStatusFilter<"ProductionOperation"> | $Enums.ProductionOperationStatus
   plannedStartDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
   plannedEndDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
   actualStartDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
   actualEndDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
+  plannedHours?: Prisma.DecimalNullableFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFilter<"ProductionOperation"> | number
   notes?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ProductionOperation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProductionOperation"> | Date | string
   productionOrder?: Prisma.XOR<Prisma.ProductionOrderScalarRelationFilter, Prisma.ProductionOrderWhereInput>
+  workCenterRef?: Prisma.XOR<Prisma.WorkCenterNullableScalarRelationFilter, Prisma.WorkCenterWhereInput> | null
+  machine?: Prisma.XOR<Prisma.ProductionMachineNullableScalarRelationFilter, Prisma.ProductionMachineWhereInput> | null
+  assignedTo?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  jobCards?: Prisma.ProductionJobCardListRelationFilter
 }
 
 export type ProductionOperationOrderByWithRelationInput = {
@@ -289,15 +401,29 @@ export type ProductionOperationOrderByWithRelationInput = {
   sequence?: Prisma.SortOrder
   name?: Prisma.SortOrder
   workCenter?: Prisma.SortOrderInput | Prisma.SortOrder
+  workCenterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  machineId?: Prisma.SortOrderInput | Prisma.SortOrder
+  assignedToId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   plannedStartDate?: Prisma.SortOrderInput | Prisma.SortOrder
   plannedEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
   actualStartDate?: Prisma.SortOrderInput | Prisma.SortOrder
   actualEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  plannedHours?: Prisma.SortOrderInput | Prisma.SortOrder
+  actualHours?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
+  reworkQuantity?: Prisma.SortOrder
+  downtimeMinutes?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   productionOrder?: Prisma.ProductionOrderOrderByWithRelationInput
+  workCenterRef?: Prisma.WorkCenterOrderByWithRelationInput
+  machine?: Prisma.ProductionMachineOrderByWithRelationInput
+  assignedTo?: Prisma.UserOrderByWithRelationInput
+  jobCards?: Prisma.ProductionJobCardOrderByRelationAggregateInput
 }
 
 export type ProductionOperationWhereUniqueInput = Prisma.AtLeast<{
@@ -310,15 +436,29 @@ export type ProductionOperationWhereUniqueInput = Prisma.AtLeast<{
   sequence?: Prisma.IntFilter<"ProductionOperation"> | number
   name?: Prisma.StringFilter<"ProductionOperation"> | string
   workCenter?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  workCenterId?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  machineId?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  assignedToId?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
   status?: Prisma.EnumProductionOperationStatusFilter<"ProductionOperation"> | $Enums.ProductionOperationStatus
   plannedStartDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
   plannedEndDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
   actualStartDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
   actualEndDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
+  plannedHours?: Prisma.DecimalNullableFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFilter<"ProductionOperation"> | number
   notes?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ProductionOperation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProductionOperation"> | Date | string
   productionOrder?: Prisma.XOR<Prisma.ProductionOrderScalarRelationFilter, Prisma.ProductionOrderWhereInput>
+  workCenterRef?: Prisma.XOR<Prisma.WorkCenterNullableScalarRelationFilter, Prisma.WorkCenterWhereInput> | null
+  machine?: Prisma.XOR<Prisma.ProductionMachineNullableScalarRelationFilter, Prisma.ProductionMachineWhereInput> | null
+  assignedTo?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  jobCards?: Prisma.ProductionJobCardListRelationFilter
 }, "id" | "productionOrderId_sequence">
 
 export type ProductionOperationOrderByWithAggregationInput = {
@@ -327,11 +467,21 @@ export type ProductionOperationOrderByWithAggregationInput = {
   sequence?: Prisma.SortOrder
   name?: Prisma.SortOrder
   workCenter?: Prisma.SortOrderInput | Prisma.SortOrder
+  workCenterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  machineId?: Prisma.SortOrderInput | Prisma.SortOrder
+  assignedToId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   plannedStartDate?: Prisma.SortOrderInput | Prisma.SortOrder
   plannedEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
   actualStartDate?: Prisma.SortOrderInput | Prisma.SortOrder
   actualEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  plannedHours?: Prisma.SortOrderInput | Prisma.SortOrder
+  actualHours?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
+  reworkQuantity?: Prisma.SortOrder
+  downtimeMinutes?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -351,11 +501,21 @@ export type ProductionOperationScalarWhereWithAggregatesInput = {
   sequence?: Prisma.IntWithAggregatesFilter<"ProductionOperation"> | number
   name?: Prisma.StringWithAggregatesFilter<"ProductionOperation"> | string
   workCenter?: Prisma.StringNullableWithAggregatesFilter<"ProductionOperation"> | string | null
+  workCenterId?: Prisma.StringNullableWithAggregatesFilter<"ProductionOperation"> | string | null
+  machineId?: Prisma.StringNullableWithAggregatesFilter<"ProductionOperation"> | string | null
+  assignedToId?: Prisma.StringNullableWithAggregatesFilter<"ProductionOperation"> | string | null
   status?: Prisma.EnumProductionOperationStatusWithAggregatesFilter<"ProductionOperation"> | $Enums.ProductionOperationStatus
   plannedStartDate?: Prisma.DateTimeNullableWithAggregatesFilter<"ProductionOperation"> | Date | string | null
   plannedEndDate?: Prisma.DateTimeNullableWithAggregatesFilter<"ProductionOperation"> | Date | string | null
   actualStartDate?: Prisma.DateTimeNullableWithAggregatesFilter<"ProductionOperation"> | Date | string | null
   actualEndDate?: Prisma.DateTimeNullableWithAggregatesFilter<"ProductionOperation"> | Date | string | null
+  plannedHours?: Prisma.DecimalNullableWithAggregatesFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalWithAggregatesFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalWithAggregatesFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalWithAggregatesFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalWithAggregatesFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalWithAggregatesFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntWithAggregatesFilter<"ProductionOperation"> | number
   notes?: Prisma.StringNullableWithAggregatesFilter<"ProductionOperation"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProductionOperation"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ProductionOperation"> | Date | string
@@ -371,10 +531,21 @@ export type ProductionOperationCreateInput = {
   plannedEndDate?: Date | string | null
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutOperationsInput
+  workCenterRef?: Prisma.WorkCenterCreateNestedOneWithoutOperationsInput
+  machine?: Prisma.ProductionMachineCreateNestedOneWithoutOperationsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOperationsInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutOperationInput
 }
 
 export type ProductionOperationUncheckedCreateInput = {
@@ -383,14 +554,25 @@ export type ProductionOperationUncheckedCreateInput = {
   sequence: number
   name: string
   workCenter?: string | null
+  workCenterId?: string | null
+  machineId?: string | null
+  assignedToId?: string | null
   status?: $Enums.ProductionOperationStatus
   plannedStartDate?: Date | string | null
   plannedEndDate?: Date | string | null
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutOperationInput
 }
 
 export type ProductionOperationUpdateInput = {
@@ -403,10 +585,21 @@ export type ProductionOperationUpdateInput = {
   plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutOperationsNestedInput
+  workCenterRef?: Prisma.WorkCenterUpdateOneWithoutOperationsNestedInput
+  machine?: Prisma.ProductionMachineUpdateOneWithoutOperationsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOperationsNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutOperationNestedInput
 }
 
 export type ProductionOperationUncheckedUpdateInput = {
@@ -415,14 +608,25 @@ export type ProductionOperationUncheckedUpdateInput = {
   sequence?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  machineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutOperationNestedInput
 }
 
 export type ProductionOperationCreateManyInput = {
@@ -431,11 +635,21 @@ export type ProductionOperationCreateManyInput = {
   sequence: number
   name: string
   workCenter?: string | null
+  workCenterId?: string | null
+  machineId?: string | null
+  assignedToId?: string | null
   status?: $Enums.ProductionOperationStatus
   plannedStartDate?: Date | string | null
   plannedEndDate?: Date | string | null
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -451,6 +665,13 @@ export type ProductionOperationUpdateManyMutationInput = {
   plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -462,11 +683,21 @@ export type ProductionOperationUncheckedUpdateManyInput = {
   sequence?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  machineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -493,11 +724,21 @@ export type ProductionOperationCountOrderByAggregateInput = {
   sequence?: Prisma.SortOrder
   name?: Prisma.SortOrder
   workCenter?: Prisma.SortOrder
+  workCenterId?: Prisma.SortOrder
+  machineId?: Prisma.SortOrder
+  assignedToId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   plannedStartDate?: Prisma.SortOrder
   plannedEndDate?: Prisma.SortOrder
   actualStartDate?: Prisma.SortOrder
   actualEndDate?: Prisma.SortOrder
+  plannedHours?: Prisma.SortOrder
+  actualHours?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
+  reworkQuantity?: Prisma.SortOrder
+  downtimeMinutes?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -505,6 +746,13 @@ export type ProductionOperationCountOrderByAggregateInput = {
 
 export type ProductionOperationAvgOrderByAggregateInput = {
   sequence?: Prisma.SortOrder
+  plannedHours?: Prisma.SortOrder
+  actualHours?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
+  reworkQuantity?: Prisma.SortOrder
+  downtimeMinutes?: Prisma.SortOrder
 }
 
 export type ProductionOperationMaxOrderByAggregateInput = {
@@ -513,11 +761,21 @@ export type ProductionOperationMaxOrderByAggregateInput = {
   sequence?: Prisma.SortOrder
   name?: Prisma.SortOrder
   workCenter?: Prisma.SortOrder
+  workCenterId?: Prisma.SortOrder
+  machineId?: Prisma.SortOrder
+  assignedToId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   plannedStartDate?: Prisma.SortOrder
   plannedEndDate?: Prisma.SortOrder
   actualStartDate?: Prisma.SortOrder
   actualEndDate?: Prisma.SortOrder
+  plannedHours?: Prisma.SortOrder
+  actualHours?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
+  reworkQuantity?: Prisma.SortOrder
+  downtimeMinutes?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -529,11 +787,21 @@ export type ProductionOperationMinOrderByAggregateInput = {
   sequence?: Prisma.SortOrder
   name?: Prisma.SortOrder
   workCenter?: Prisma.SortOrder
+  workCenterId?: Prisma.SortOrder
+  machineId?: Prisma.SortOrder
+  assignedToId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   plannedStartDate?: Prisma.SortOrder
   plannedEndDate?: Prisma.SortOrder
   actualStartDate?: Prisma.SortOrder
   actualEndDate?: Prisma.SortOrder
+  plannedHours?: Prisma.SortOrder
+  actualHours?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
+  reworkQuantity?: Prisma.SortOrder
+  downtimeMinutes?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -541,6 +809,60 @@ export type ProductionOperationMinOrderByAggregateInput = {
 
 export type ProductionOperationSumOrderByAggregateInput = {
   sequence?: Prisma.SortOrder
+  plannedHours?: Prisma.SortOrder
+  actualHours?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
+  reworkQuantity?: Prisma.SortOrder
+  downtimeMinutes?: Prisma.SortOrder
+}
+
+export type ProductionOperationScalarRelationFilter = {
+  is?: Prisma.ProductionOperationWhereInput
+  isNot?: Prisma.ProductionOperationWhereInput
+}
+
+export type ProductionOperationCreateNestedManyWithoutAssignedToInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutAssignedToInput, Prisma.ProductionOperationUncheckedCreateWithoutAssignedToInput> | Prisma.ProductionOperationCreateWithoutAssignedToInput[] | Prisma.ProductionOperationUncheckedCreateWithoutAssignedToInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutAssignedToInput | Prisma.ProductionOperationCreateOrConnectWithoutAssignedToInput[]
+  createMany?: Prisma.ProductionOperationCreateManyAssignedToInputEnvelope
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+}
+
+export type ProductionOperationUncheckedCreateNestedManyWithoutAssignedToInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutAssignedToInput, Prisma.ProductionOperationUncheckedCreateWithoutAssignedToInput> | Prisma.ProductionOperationCreateWithoutAssignedToInput[] | Prisma.ProductionOperationUncheckedCreateWithoutAssignedToInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutAssignedToInput | Prisma.ProductionOperationCreateOrConnectWithoutAssignedToInput[]
+  createMany?: Prisma.ProductionOperationCreateManyAssignedToInputEnvelope
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+}
+
+export type ProductionOperationUpdateManyWithoutAssignedToNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutAssignedToInput, Prisma.ProductionOperationUncheckedCreateWithoutAssignedToInput> | Prisma.ProductionOperationCreateWithoutAssignedToInput[] | Prisma.ProductionOperationUncheckedCreateWithoutAssignedToInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutAssignedToInput | Prisma.ProductionOperationCreateOrConnectWithoutAssignedToInput[]
+  upsert?: Prisma.ProductionOperationUpsertWithWhereUniqueWithoutAssignedToInput | Prisma.ProductionOperationUpsertWithWhereUniqueWithoutAssignedToInput[]
+  createMany?: Prisma.ProductionOperationCreateManyAssignedToInputEnvelope
+  set?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  disconnect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  delete?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  update?: Prisma.ProductionOperationUpdateWithWhereUniqueWithoutAssignedToInput | Prisma.ProductionOperationUpdateWithWhereUniqueWithoutAssignedToInput[]
+  updateMany?: Prisma.ProductionOperationUpdateManyWithWhereWithoutAssignedToInput | Prisma.ProductionOperationUpdateManyWithWhereWithoutAssignedToInput[]
+  deleteMany?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
+}
+
+export type ProductionOperationUncheckedUpdateManyWithoutAssignedToNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutAssignedToInput, Prisma.ProductionOperationUncheckedCreateWithoutAssignedToInput> | Prisma.ProductionOperationCreateWithoutAssignedToInput[] | Prisma.ProductionOperationUncheckedCreateWithoutAssignedToInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutAssignedToInput | Prisma.ProductionOperationCreateOrConnectWithoutAssignedToInput[]
+  upsert?: Prisma.ProductionOperationUpsertWithWhereUniqueWithoutAssignedToInput | Prisma.ProductionOperationUpsertWithWhereUniqueWithoutAssignedToInput[]
+  createMany?: Prisma.ProductionOperationCreateManyAssignedToInputEnvelope
+  set?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  disconnect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  delete?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  update?: Prisma.ProductionOperationUpdateWithWhereUniqueWithoutAssignedToInput | Prisma.ProductionOperationUpdateWithWhereUniqueWithoutAssignedToInput[]
+  updateMany?: Prisma.ProductionOperationUpdateManyWithWhereWithoutAssignedToInput | Prisma.ProductionOperationUpdateManyWithWhereWithoutAssignedToInput[]
+  deleteMany?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
 }
 
 export type ProductionOperationCreateNestedManyWithoutProductionOrderInput = {
@@ -585,8 +907,213 @@ export type ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedIn
   deleteMany?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
 }
 
+export type ProductionOperationCreateNestedManyWithoutWorkCenterRefInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutWorkCenterRefInput, Prisma.ProductionOperationUncheckedCreateWithoutWorkCenterRefInput> | Prisma.ProductionOperationCreateWithoutWorkCenterRefInput[] | Prisma.ProductionOperationUncheckedCreateWithoutWorkCenterRefInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutWorkCenterRefInput | Prisma.ProductionOperationCreateOrConnectWithoutWorkCenterRefInput[]
+  createMany?: Prisma.ProductionOperationCreateManyWorkCenterRefInputEnvelope
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+}
+
+export type ProductionOperationUncheckedCreateNestedManyWithoutWorkCenterRefInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutWorkCenterRefInput, Prisma.ProductionOperationUncheckedCreateWithoutWorkCenterRefInput> | Prisma.ProductionOperationCreateWithoutWorkCenterRefInput[] | Prisma.ProductionOperationUncheckedCreateWithoutWorkCenterRefInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutWorkCenterRefInput | Prisma.ProductionOperationCreateOrConnectWithoutWorkCenterRefInput[]
+  createMany?: Prisma.ProductionOperationCreateManyWorkCenterRefInputEnvelope
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+}
+
+export type ProductionOperationUpdateManyWithoutWorkCenterRefNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutWorkCenterRefInput, Prisma.ProductionOperationUncheckedCreateWithoutWorkCenterRefInput> | Prisma.ProductionOperationCreateWithoutWorkCenterRefInput[] | Prisma.ProductionOperationUncheckedCreateWithoutWorkCenterRefInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutWorkCenterRefInput | Prisma.ProductionOperationCreateOrConnectWithoutWorkCenterRefInput[]
+  upsert?: Prisma.ProductionOperationUpsertWithWhereUniqueWithoutWorkCenterRefInput | Prisma.ProductionOperationUpsertWithWhereUniqueWithoutWorkCenterRefInput[]
+  createMany?: Prisma.ProductionOperationCreateManyWorkCenterRefInputEnvelope
+  set?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  disconnect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  delete?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  update?: Prisma.ProductionOperationUpdateWithWhereUniqueWithoutWorkCenterRefInput | Prisma.ProductionOperationUpdateWithWhereUniqueWithoutWorkCenterRefInput[]
+  updateMany?: Prisma.ProductionOperationUpdateManyWithWhereWithoutWorkCenterRefInput | Prisma.ProductionOperationUpdateManyWithWhereWithoutWorkCenterRefInput[]
+  deleteMany?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
+}
+
+export type ProductionOperationUncheckedUpdateManyWithoutWorkCenterRefNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutWorkCenterRefInput, Prisma.ProductionOperationUncheckedCreateWithoutWorkCenterRefInput> | Prisma.ProductionOperationCreateWithoutWorkCenterRefInput[] | Prisma.ProductionOperationUncheckedCreateWithoutWorkCenterRefInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutWorkCenterRefInput | Prisma.ProductionOperationCreateOrConnectWithoutWorkCenterRefInput[]
+  upsert?: Prisma.ProductionOperationUpsertWithWhereUniqueWithoutWorkCenterRefInput | Prisma.ProductionOperationUpsertWithWhereUniqueWithoutWorkCenterRefInput[]
+  createMany?: Prisma.ProductionOperationCreateManyWorkCenterRefInputEnvelope
+  set?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  disconnect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  delete?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  update?: Prisma.ProductionOperationUpdateWithWhereUniqueWithoutWorkCenterRefInput | Prisma.ProductionOperationUpdateWithWhereUniqueWithoutWorkCenterRefInput[]
+  updateMany?: Prisma.ProductionOperationUpdateManyWithWhereWithoutWorkCenterRefInput | Prisma.ProductionOperationUpdateManyWithWhereWithoutWorkCenterRefInput[]
+  deleteMany?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
+}
+
+export type ProductionOperationCreateNestedManyWithoutMachineInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutMachineInput, Prisma.ProductionOperationUncheckedCreateWithoutMachineInput> | Prisma.ProductionOperationCreateWithoutMachineInput[] | Prisma.ProductionOperationUncheckedCreateWithoutMachineInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutMachineInput | Prisma.ProductionOperationCreateOrConnectWithoutMachineInput[]
+  createMany?: Prisma.ProductionOperationCreateManyMachineInputEnvelope
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+}
+
+export type ProductionOperationUncheckedCreateNestedManyWithoutMachineInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutMachineInput, Prisma.ProductionOperationUncheckedCreateWithoutMachineInput> | Prisma.ProductionOperationCreateWithoutMachineInput[] | Prisma.ProductionOperationUncheckedCreateWithoutMachineInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutMachineInput | Prisma.ProductionOperationCreateOrConnectWithoutMachineInput[]
+  createMany?: Prisma.ProductionOperationCreateManyMachineInputEnvelope
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+}
+
+export type ProductionOperationUpdateManyWithoutMachineNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutMachineInput, Prisma.ProductionOperationUncheckedCreateWithoutMachineInput> | Prisma.ProductionOperationCreateWithoutMachineInput[] | Prisma.ProductionOperationUncheckedCreateWithoutMachineInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutMachineInput | Prisma.ProductionOperationCreateOrConnectWithoutMachineInput[]
+  upsert?: Prisma.ProductionOperationUpsertWithWhereUniqueWithoutMachineInput | Prisma.ProductionOperationUpsertWithWhereUniqueWithoutMachineInput[]
+  createMany?: Prisma.ProductionOperationCreateManyMachineInputEnvelope
+  set?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  disconnect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  delete?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  update?: Prisma.ProductionOperationUpdateWithWhereUniqueWithoutMachineInput | Prisma.ProductionOperationUpdateWithWhereUniqueWithoutMachineInput[]
+  updateMany?: Prisma.ProductionOperationUpdateManyWithWhereWithoutMachineInput | Prisma.ProductionOperationUpdateManyWithWhereWithoutMachineInput[]
+  deleteMany?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
+}
+
+export type ProductionOperationUncheckedUpdateManyWithoutMachineNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutMachineInput, Prisma.ProductionOperationUncheckedCreateWithoutMachineInput> | Prisma.ProductionOperationCreateWithoutMachineInput[] | Prisma.ProductionOperationUncheckedCreateWithoutMachineInput[]
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutMachineInput | Prisma.ProductionOperationCreateOrConnectWithoutMachineInput[]
+  upsert?: Prisma.ProductionOperationUpsertWithWhereUniqueWithoutMachineInput | Prisma.ProductionOperationUpsertWithWhereUniqueWithoutMachineInput[]
+  createMany?: Prisma.ProductionOperationCreateManyMachineInputEnvelope
+  set?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  disconnect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  delete?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  connect?: Prisma.ProductionOperationWhereUniqueInput | Prisma.ProductionOperationWhereUniqueInput[]
+  update?: Prisma.ProductionOperationUpdateWithWhereUniqueWithoutMachineInput | Prisma.ProductionOperationUpdateWithWhereUniqueWithoutMachineInput[]
+  updateMany?: Prisma.ProductionOperationUpdateManyWithWhereWithoutMachineInput | Prisma.ProductionOperationUpdateManyWithWhereWithoutMachineInput[]
+  deleteMany?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
+}
+
 export type EnumProductionOperationStatusFieldUpdateOperationsInput = {
   set?: $Enums.ProductionOperationStatus
+}
+
+export type ProductionOperationCreateNestedOneWithoutJobCardsInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutJobCardsInput, Prisma.ProductionOperationUncheckedCreateWithoutJobCardsInput>
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutJobCardsInput
+  connect?: Prisma.ProductionOperationWhereUniqueInput
+}
+
+export type ProductionOperationUpdateOneRequiredWithoutJobCardsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOperationCreateWithoutJobCardsInput, Prisma.ProductionOperationUncheckedCreateWithoutJobCardsInput>
+  connectOrCreate?: Prisma.ProductionOperationCreateOrConnectWithoutJobCardsInput
+  upsert?: Prisma.ProductionOperationUpsertWithoutJobCardsInput
+  connect?: Prisma.ProductionOperationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOperationUpdateToOneWithWhereWithoutJobCardsInput, Prisma.ProductionOperationUpdateWithoutJobCardsInput>, Prisma.ProductionOperationUncheckedUpdateWithoutJobCardsInput>
+}
+
+export type ProductionOperationCreateWithoutAssignedToInput = {
+  id?: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutOperationsInput
+  workCenterRef?: Prisma.WorkCenterCreateNestedOneWithoutOperationsInput
+  machine?: Prisma.ProductionMachineCreateNestedOneWithoutOperationsInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutOperationInput
+}
+
+export type ProductionOperationUncheckedCreateWithoutAssignedToInput = {
+  id?: string
+  productionOrderId: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  workCenterId?: string | null
+  machineId?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutOperationInput
+}
+
+export type ProductionOperationCreateOrConnectWithoutAssignedToInput = {
+  where: Prisma.ProductionOperationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOperationCreateWithoutAssignedToInput, Prisma.ProductionOperationUncheckedCreateWithoutAssignedToInput>
+}
+
+export type ProductionOperationCreateManyAssignedToInputEnvelope = {
+  data: Prisma.ProductionOperationCreateManyAssignedToInput | Prisma.ProductionOperationCreateManyAssignedToInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProductionOperationUpsertWithWhereUniqueWithoutAssignedToInput = {
+  where: Prisma.ProductionOperationWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProductionOperationUpdateWithoutAssignedToInput, Prisma.ProductionOperationUncheckedUpdateWithoutAssignedToInput>
+  create: Prisma.XOR<Prisma.ProductionOperationCreateWithoutAssignedToInput, Prisma.ProductionOperationUncheckedCreateWithoutAssignedToInput>
+}
+
+export type ProductionOperationUpdateWithWhereUniqueWithoutAssignedToInput = {
+  where: Prisma.ProductionOperationWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProductionOperationUpdateWithoutAssignedToInput, Prisma.ProductionOperationUncheckedUpdateWithoutAssignedToInput>
+}
+
+export type ProductionOperationUpdateManyWithWhereWithoutAssignedToInput = {
+  where: Prisma.ProductionOperationScalarWhereInput
+  data: Prisma.XOR<Prisma.ProductionOperationUpdateManyMutationInput, Prisma.ProductionOperationUncheckedUpdateManyWithoutAssignedToInput>
+}
+
+export type ProductionOperationScalarWhereInput = {
+  AND?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
+  OR?: Prisma.ProductionOperationScalarWhereInput[]
+  NOT?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
+  id?: Prisma.StringFilter<"ProductionOperation"> | string
+  productionOrderId?: Prisma.StringFilter<"ProductionOperation"> | string
+  sequence?: Prisma.IntFilter<"ProductionOperation"> | number
+  name?: Prisma.StringFilter<"ProductionOperation"> | string
+  workCenter?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  workCenterId?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  machineId?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  assignedToId?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  status?: Prisma.EnumProductionOperationStatusFilter<"ProductionOperation"> | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
+  plannedEndDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
+  actualStartDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
+  actualEndDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
+  plannedHours?: Prisma.DecimalNullableFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFilter<"ProductionOperation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFilter<"ProductionOperation"> | number
+  notes?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"ProductionOperation"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"ProductionOperation"> | Date | string
 }
 
 export type ProductionOperationCreateWithoutProductionOrderInput = {
@@ -599,9 +1126,20 @@ export type ProductionOperationCreateWithoutProductionOrderInput = {
   plannedEndDate?: Date | string | null
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workCenterRef?: Prisma.WorkCenterCreateNestedOneWithoutOperationsInput
+  machine?: Prisma.ProductionMachineCreateNestedOneWithoutOperationsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOperationsInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutOperationInput
 }
 
 export type ProductionOperationUncheckedCreateWithoutProductionOrderInput = {
@@ -609,14 +1147,25 @@ export type ProductionOperationUncheckedCreateWithoutProductionOrderInput = {
   sequence: number
   name: string
   workCenter?: string | null
+  workCenterId?: string | null
+  machineId?: string | null
+  assignedToId?: string | null
   status?: $Enums.ProductionOperationStatus
   plannedStartDate?: Date | string | null
   plannedEndDate?: Date | string | null
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutOperationInput
 }
 
 export type ProductionOperationCreateOrConnectWithoutProductionOrderInput = {
@@ -645,26 +1194,7 @@ export type ProductionOperationUpdateManyWithWhereWithoutProductionOrderInput = 
   data: Prisma.XOR<Prisma.ProductionOperationUpdateManyMutationInput, Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderInput>
 }
 
-export type ProductionOperationScalarWhereInput = {
-  AND?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
-  OR?: Prisma.ProductionOperationScalarWhereInput[]
-  NOT?: Prisma.ProductionOperationScalarWhereInput | Prisma.ProductionOperationScalarWhereInput[]
-  id?: Prisma.StringFilter<"ProductionOperation"> | string
-  productionOrderId?: Prisma.StringFilter<"ProductionOperation"> | string
-  sequence?: Prisma.IntFilter<"ProductionOperation"> | number
-  name?: Prisma.StringFilter<"ProductionOperation"> | string
-  workCenter?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
-  status?: Prisma.EnumProductionOperationStatusFilter<"ProductionOperation"> | $Enums.ProductionOperationStatus
-  plannedStartDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
-  plannedEndDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
-  actualStartDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
-  actualEndDate?: Prisma.DateTimeNullableFilter<"ProductionOperation"> | Date | string | null
-  notes?: Prisma.StringNullableFilter<"ProductionOperation"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"ProductionOperation"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"ProductionOperation"> | Date | string
-}
-
-export type ProductionOperationCreateManyProductionOrderInput = {
+export type ProductionOperationCreateWithoutWorkCenterRefInput = {
   id?: string
   sequence: number
   name: string
@@ -674,6 +1204,394 @@ export type ProductionOperationCreateManyProductionOrderInput = {
   plannedEndDate?: Date | string | null
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutOperationsInput
+  machine?: Prisma.ProductionMachineCreateNestedOneWithoutOperationsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOperationsInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutOperationInput
+}
+
+export type ProductionOperationUncheckedCreateWithoutWorkCenterRefInput = {
+  id?: string
+  productionOrderId: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  machineId?: string | null
+  assignedToId?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutOperationInput
+}
+
+export type ProductionOperationCreateOrConnectWithoutWorkCenterRefInput = {
+  where: Prisma.ProductionOperationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOperationCreateWithoutWorkCenterRefInput, Prisma.ProductionOperationUncheckedCreateWithoutWorkCenterRefInput>
+}
+
+export type ProductionOperationCreateManyWorkCenterRefInputEnvelope = {
+  data: Prisma.ProductionOperationCreateManyWorkCenterRefInput | Prisma.ProductionOperationCreateManyWorkCenterRefInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProductionOperationUpsertWithWhereUniqueWithoutWorkCenterRefInput = {
+  where: Prisma.ProductionOperationWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProductionOperationUpdateWithoutWorkCenterRefInput, Prisma.ProductionOperationUncheckedUpdateWithoutWorkCenterRefInput>
+  create: Prisma.XOR<Prisma.ProductionOperationCreateWithoutWorkCenterRefInput, Prisma.ProductionOperationUncheckedCreateWithoutWorkCenterRefInput>
+}
+
+export type ProductionOperationUpdateWithWhereUniqueWithoutWorkCenterRefInput = {
+  where: Prisma.ProductionOperationWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProductionOperationUpdateWithoutWorkCenterRefInput, Prisma.ProductionOperationUncheckedUpdateWithoutWorkCenterRefInput>
+}
+
+export type ProductionOperationUpdateManyWithWhereWithoutWorkCenterRefInput = {
+  where: Prisma.ProductionOperationScalarWhereInput
+  data: Prisma.XOR<Prisma.ProductionOperationUpdateManyMutationInput, Prisma.ProductionOperationUncheckedUpdateManyWithoutWorkCenterRefInput>
+}
+
+export type ProductionOperationCreateWithoutMachineInput = {
+  id?: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutOperationsInput
+  workCenterRef?: Prisma.WorkCenterCreateNestedOneWithoutOperationsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOperationsInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutOperationInput
+}
+
+export type ProductionOperationUncheckedCreateWithoutMachineInput = {
+  id?: string
+  productionOrderId: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  workCenterId?: string | null
+  assignedToId?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutOperationInput
+}
+
+export type ProductionOperationCreateOrConnectWithoutMachineInput = {
+  where: Prisma.ProductionOperationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOperationCreateWithoutMachineInput, Prisma.ProductionOperationUncheckedCreateWithoutMachineInput>
+}
+
+export type ProductionOperationCreateManyMachineInputEnvelope = {
+  data: Prisma.ProductionOperationCreateManyMachineInput | Prisma.ProductionOperationCreateManyMachineInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProductionOperationUpsertWithWhereUniqueWithoutMachineInput = {
+  where: Prisma.ProductionOperationWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProductionOperationUpdateWithoutMachineInput, Prisma.ProductionOperationUncheckedUpdateWithoutMachineInput>
+  create: Prisma.XOR<Prisma.ProductionOperationCreateWithoutMachineInput, Prisma.ProductionOperationUncheckedCreateWithoutMachineInput>
+}
+
+export type ProductionOperationUpdateWithWhereUniqueWithoutMachineInput = {
+  where: Prisma.ProductionOperationWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProductionOperationUpdateWithoutMachineInput, Prisma.ProductionOperationUncheckedUpdateWithoutMachineInput>
+}
+
+export type ProductionOperationUpdateManyWithWhereWithoutMachineInput = {
+  where: Prisma.ProductionOperationScalarWhereInput
+  data: Prisma.XOR<Prisma.ProductionOperationUpdateManyMutationInput, Prisma.ProductionOperationUncheckedUpdateManyWithoutMachineInput>
+}
+
+export type ProductionOperationCreateWithoutJobCardsInput = {
+  id?: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutOperationsInput
+  workCenterRef?: Prisma.WorkCenterCreateNestedOneWithoutOperationsInput
+  machine?: Prisma.ProductionMachineCreateNestedOneWithoutOperationsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOperationsInput
+}
+
+export type ProductionOperationUncheckedCreateWithoutJobCardsInput = {
+  id?: string
+  productionOrderId: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  workCenterId?: string | null
+  machineId?: string | null
+  assignedToId?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProductionOperationCreateOrConnectWithoutJobCardsInput = {
+  where: Prisma.ProductionOperationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOperationCreateWithoutJobCardsInput, Prisma.ProductionOperationUncheckedCreateWithoutJobCardsInput>
+}
+
+export type ProductionOperationUpsertWithoutJobCardsInput = {
+  update: Prisma.XOR<Prisma.ProductionOperationUpdateWithoutJobCardsInput, Prisma.ProductionOperationUncheckedUpdateWithoutJobCardsInput>
+  create: Prisma.XOR<Prisma.ProductionOperationCreateWithoutJobCardsInput, Prisma.ProductionOperationUncheckedCreateWithoutJobCardsInput>
+  where?: Prisma.ProductionOperationWhereInput
+}
+
+export type ProductionOperationUpdateToOneWithWhereWithoutJobCardsInput = {
+  where?: Prisma.ProductionOperationWhereInput
+  data: Prisma.XOR<Prisma.ProductionOperationUpdateWithoutJobCardsInput, Prisma.ProductionOperationUncheckedUpdateWithoutJobCardsInput>
+}
+
+export type ProductionOperationUpdateWithoutJobCardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutOperationsNestedInput
+  workCenterRef?: Prisma.WorkCenterUpdateOneWithoutOperationsNestedInput
+  machine?: Prisma.ProductionMachineUpdateOneWithoutOperationsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOperationsNestedInput
+}
+
+export type ProductionOperationUncheckedUpdateWithoutJobCardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  machineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProductionOperationCreateManyAssignedToInput = {
+  id?: string
+  productionOrderId: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  workCenterId?: string | null
+  machineId?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProductionOperationUpdateWithoutAssignedToInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutOperationsNestedInput
+  workCenterRef?: Prisma.WorkCenterUpdateOneWithoutOperationsNestedInput
+  machine?: Prisma.ProductionMachineUpdateOneWithoutOperationsNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutOperationNestedInput
+}
+
+export type ProductionOperationUncheckedUpdateWithoutAssignedToInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  machineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutOperationNestedInput
+}
+
+export type ProductionOperationUncheckedUpdateManyWithoutAssignedToInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  machineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProductionOperationCreateManyProductionOrderInput = {
+  id?: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  workCenterId?: string | null
+  machineId?: string | null
+  assignedToId?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -689,9 +1607,20 @@ export type ProductionOperationUpdateWithoutProductionOrderInput = {
   plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workCenterRef?: Prisma.WorkCenterUpdateOneWithoutOperationsNestedInput
+  machine?: Prisma.ProductionMachineUpdateOneWithoutOperationsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOperationsNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutOperationNestedInput
 }
 
 export type ProductionOperationUncheckedUpdateWithoutProductionOrderInput = {
@@ -699,17 +1628,78 @@ export type ProductionOperationUncheckedUpdateWithoutProductionOrderInput = {
   sequence?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  machineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutOperationNestedInput
+}
+
+export type ProductionOperationUncheckedUpdateManyWithoutProductionOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  machineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type ProductionOperationUncheckedUpdateManyWithoutProductionOrderInput = {
+export type ProductionOperationCreateManyWorkCenterRefInput = {
+  id?: string
+  productionOrderId: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  machineId?: string | null
+  assignedToId?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProductionOperationUpdateWithoutWorkCenterRefInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sequence?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -719,11 +1709,204 @@ export type ProductionOperationUncheckedUpdateManyWithoutProductionOrderInput = 
   plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutOperationsNestedInput
+  machine?: Prisma.ProductionMachineUpdateOneWithoutOperationsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOperationsNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutOperationNestedInput
+}
+
+export type ProductionOperationUncheckedUpdateWithoutWorkCenterRefInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  machineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutOperationNestedInput
+}
+
+export type ProductionOperationUncheckedUpdateManyWithoutWorkCenterRefInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  machineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type ProductionOperationCreateManyMachineInput = {
+  id?: string
+  productionOrderId: string
+  sequence: number
+  name: string
+  workCenter?: string | null
+  workCenterId?: string | null
+  assignedToId?: string | null
+  status?: $Enums.ProductionOperationStatus
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  plannedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProductionOperationUpdateWithoutMachineInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutOperationsNestedInput
+  workCenterRef?: Prisma.WorkCenterUpdateOneWithoutOperationsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOperationsNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutOperationNestedInput
+}
+
+export type ProductionOperationUncheckedUpdateWithoutMachineInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutOperationNestedInput
+}
+
+export type ProductionOperationUncheckedUpdateManyWithoutMachineInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  workCenter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProductionOperationStatusFieldUpdateOperationsInput | $Enums.ProductionOperationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  actualHours?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reworkQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  downtimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type ProductionOperationCountOutputType
+ */
+
+export type ProductionOperationCountOutputType = {
+  jobCards: number
+}
+
+export type ProductionOperationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  jobCards?: boolean | ProductionOperationCountOutputTypeCountJobCardsArgs
+}
+
+/**
+ * ProductionOperationCountOutputType without action
+ */
+export type ProductionOperationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductionOperationCountOutputType
+   */
+  select?: Prisma.ProductionOperationCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ProductionOperationCountOutputType without action
+ */
+export type ProductionOperationCountOutputTypeCountJobCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductionJobCardWhereInput
+}
 
 
 export type ProductionOperationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -732,15 +1915,30 @@ export type ProductionOperationSelect<ExtArgs extends runtime.Types.Extensions.I
   sequence?: boolean
   name?: boolean
   workCenter?: boolean
+  workCenterId?: boolean
+  machineId?: boolean
+  assignedToId?: boolean
   status?: boolean
   plannedStartDate?: boolean
   plannedEndDate?: boolean
   actualStartDate?: boolean
   actualEndDate?: boolean
+  plannedHours?: boolean
+  actualHours?: boolean
+  producedQuantity?: boolean
+  rejectedQuantity?: boolean
+  scrapQuantity?: boolean
+  reworkQuantity?: boolean
+  downtimeMinutes?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  workCenterRef?: boolean | Prisma.ProductionOperation$workCenterRefArgs<ExtArgs>
+  machine?: boolean | Prisma.ProductionOperation$machineArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ProductionOperation$assignedToArgs<ExtArgs>
+  jobCards?: boolean | Prisma.ProductionOperation$jobCardsArgs<ExtArgs>
+  _count?: boolean | Prisma.ProductionOperationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["productionOperation"]>
 
 export type ProductionOperationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -749,15 +1947,28 @@ export type ProductionOperationSelectCreateManyAndReturn<ExtArgs extends runtime
   sequence?: boolean
   name?: boolean
   workCenter?: boolean
+  workCenterId?: boolean
+  machineId?: boolean
+  assignedToId?: boolean
   status?: boolean
   plannedStartDate?: boolean
   plannedEndDate?: boolean
   actualStartDate?: boolean
   actualEndDate?: boolean
+  plannedHours?: boolean
+  actualHours?: boolean
+  producedQuantity?: boolean
+  rejectedQuantity?: boolean
+  scrapQuantity?: boolean
+  reworkQuantity?: boolean
+  downtimeMinutes?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  workCenterRef?: boolean | Prisma.ProductionOperation$workCenterRefArgs<ExtArgs>
+  machine?: boolean | Prisma.ProductionOperation$machineArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ProductionOperation$assignedToArgs<ExtArgs>
 }, ExtArgs["result"]["productionOperation"]>
 
 export type ProductionOperationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -766,15 +1977,28 @@ export type ProductionOperationSelectUpdateManyAndReturn<ExtArgs extends runtime
   sequence?: boolean
   name?: boolean
   workCenter?: boolean
+  workCenterId?: boolean
+  machineId?: boolean
+  assignedToId?: boolean
   status?: boolean
   plannedStartDate?: boolean
   plannedEndDate?: boolean
   actualStartDate?: boolean
   actualEndDate?: boolean
+  plannedHours?: boolean
+  actualHours?: boolean
+  producedQuantity?: boolean
+  rejectedQuantity?: boolean
+  scrapQuantity?: boolean
+  reworkQuantity?: boolean
+  downtimeMinutes?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  workCenterRef?: boolean | Prisma.ProductionOperation$workCenterRefArgs<ExtArgs>
+  machine?: boolean | Prisma.ProductionOperation$machineArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ProductionOperation$assignedToArgs<ExtArgs>
 }, ExtArgs["result"]["productionOperation"]>
 
 export type ProductionOperationSelectScalar = {
@@ -783,31 +2007,56 @@ export type ProductionOperationSelectScalar = {
   sequence?: boolean
   name?: boolean
   workCenter?: boolean
+  workCenterId?: boolean
+  machineId?: boolean
+  assignedToId?: boolean
   status?: boolean
   plannedStartDate?: boolean
   plannedEndDate?: boolean
   actualStartDate?: boolean
   actualEndDate?: boolean
+  plannedHours?: boolean
+  actualHours?: boolean
+  producedQuantity?: boolean
+  rejectedQuantity?: boolean
+  scrapQuantity?: boolean
+  reworkQuantity?: boolean
+  downtimeMinutes?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProductionOperationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productionOrderId" | "sequence" | "name" | "workCenter" | "status" | "plannedStartDate" | "plannedEndDate" | "actualStartDate" | "actualEndDate" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["productionOperation"]>
+export type ProductionOperationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productionOrderId" | "sequence" | "name" | "workCenter" | "workCenterId" | "machineId" | "assignedToId" | "status" | "plannedStartDate" | "plannedEndDate" | "actualStartDate" | "actualEndDate" | "plannedHours" | "actualHours" | "producedQuantity" | "rejectedQuantity" | "scrapQuantity" | "reworkQuantity" | "downtimeMinutes" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["productionOperation"]>
 export type ProductionOperationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  workCenterRef?: boolean | Prisma.ProductionOperation$workCenterRefArgs<ExtArgs>
+  machine?: boolean | Prisma.ProductionOperation$machineArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ProductionOperation$assignedToArgs<ExtArgs>
+  jobCards?: boolean | Prisma.ProductionOperation$jobCardsArgs<ExtArgs>
+  _count?: boolean | Prisma.ProductionOperationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProductionOperationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  workCenterRef?: boolean | Prisma.ProductionOperation$workCenterRefArgs<ExtArgs>
+  machine?: boolean | Prisma.ProductionOperation$machineArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ProductionOperation$assignedToArgs<ExtArgs>
 }
 export type ProductionOperationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  workCenterRef?: boolean | Prisma.ProductionOperation$workCenterRefArgs<ExtArgs>
+  machine?: boolean | Prisma.ProductionOperation$machineArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ProductionOperation$assignedToArgs<ExtArgs>
 }
 
 export type $ProductionOperationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ProductionOperation"
   objects: {
     productionOrder: Prisma.$ProductionOrderPayload<ExtArgs>
+    workCenterRef: Prisma.$WorkCenterPayload<ExtArgs> | null
+    machine: Prisma.$ProductionMachinePayload<ExtArgs> | null
+    assignedTo: Prisma.$UserPayload<ExtArgs> | null
+    jobCards: Prisma.$ProductionJobCardPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -815,11 +2064,21 @@ export type $ProductionOperationPayload<ExtArgs extends runtime.Types.Extensions
     sequence: number
     name: string
     workCenter: string | null
+    workCenterId: string | null
+    machineId: string | null
+    assignedToId: string | null
     status: $Enums.ProductionOperationStatus
     plannedStartDate: Date | null
     plannedEndDate: Date | null
     actualStartDate: Date | null
     actualEndDate: Date | null
+    plannedHours: runtime.Decimal | null
+    actualHours: runtime.Decimal
+    producedQuantity: runtime.Decimal
+    rejectedQuantity: runtime.Decimal
+    scrapQuantity: runtime.Decimal
+    reworkQuantity: runtime.Decimal
+    downtimeMinutes: number
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -1218,6 +2477,10 @@ readonly fields: ProductionOperationFieldRefs;
 export interface Prisma__ProductionOperationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   productionOrder<T extends Prisma.ProductionOrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrderDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductionOrderClient<runtime.Types.Result.GetResult<Prisma.$ProductionOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  workCenterRef<T extends Prisma.ProductionOperation$workCenterRefArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOperation$workCenterRefArgs<ExtArgs>>): Prisma.Prisma__WorkCenterClient<runtime.Types.Result.GetResult<Prisma.$WorkCenterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  machine<T extends Prisma.ProductionOperation$machineArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOperation$machineArgs<ExtArgs>>): Prisma.Prisma__ProductionMachineClient<runtime.Types.Result.GetResult<Prisma.$ProductionMachinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  assignedTo<T extends Prisma.ProductionOperation$assignedToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOperation$assignedToArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  jobCards<T extends Prisma.ProductionOperation$jobCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOperation$jobCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductionJobCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1252,11 +2515,21 @@ export interface ProductionOperationFieldRefs {
   readonly sequence: Prisma.FieldRef<"ProductionOperation", 'Int'>
   readonly name: Prisma.FieldRef<"ProductionOperation", 'String'>
   readonly workCenter: Prisma.FieldRef<"ProductionOperation", 'String'>
+  readonly workCenterId: Prisma.FieldRef<"ProductionOperation", 'String'>
+  readonly machineId: Prisma.FieldRef<"ProductionOperation", 'String'>
+  readonly assignedToId: Prisma.FieldRef<"ProductionOperation", 'String'>
   readonly status: Prisma.FieldRef<"ProductionOperation", 'ProductionOperationStatus'>
   readonly plannedStartDate: Prisma.FieldRef<"ProductionOperation", 'DateTime'>
   readonly plannedEndDate: Prisma.FieldRef<"ProductionOperation", 'DateTime'>
   readonly actualStartDate: Prisma.FieldRef<"ProductionOperation", 'DateTime'>
   readonly actualEndDate: Prisma.FieldRef<"ProductionOperation", 'DateTime'>
+  readonly plannedHours: Prisma.FieldRef<"ProductionOperation", 'Decimal'>
+  readonly actualHours: Prisma.FieldRef<"ProductionOperation", 'Decimal'>
+  readonly producedQuantity: Prisma.FieldRef<"ProductionOperation", 'Decimal'>
+  readonly rejectedQuantity: Prisma.FieldRef<"ProductionOperation", 'Decimal'>
+  readonly scrapQuantity: Prisma.FieldRef<"ProductionOperation", 'Decimal'>
+  readonly reworkQuantity: Prisma.FieldRef<"ProductionOperation", 'Decimal'>
+  readonly downtimeMinutes: Prisma.FieldRef<"ProductionOperation", 'Int'>
   readonly notes: Prisma.FieldRef<"ProductionOperation", 'String'>
   readonly createdAt: Prisma.FieldRef<"ProductionOperation", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ProductionOperation", 'DateTime'>
@@ -1658,6 +2931,87 @@ export type ProductionOperationDeleteManyArgs<ExtArgs extends runtime.Types.Exte
    * Limit how many ProductionOperations to delete.
    */
   limit?: number
+}
+
+/**
+ * ProductionOperation.workCenterRef
+ */
+export type ProductionOperation$workCenterRefArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkCenter
+   */
+  select?: Prisma.WorkCenterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkCenter
+   */
+  omit?: Prisma.WorkCenterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkCenterInclude<ExtArgs> | null
+  where?: Prisma.WorkCenterWhereInput
+}
+
+/**
+ * ProductionOperation.machine
+ */
+export type ProductionOperation$machineArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductionMachine
+   */
+  select?: Prisma.ProductionMachineSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProductionMachine
+   */
+  omit?: Prisma.ProductionMachineOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductionMachineInclude<ExtArgs> | null
+  where?: Prisma.ProductionMachineWhereInput
+}
+
+/**
+ * ProductionOperation.assignedTo
+ */
+export type ProductionOperation$assignedToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * ProductionOperation.jobCards
+ */
+export type ProductionOperation$jobCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductionJobCard
+   */
+  select?: Prisma.ProductionJobCardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProductionJobCard
+   */
+  omit?: Prisma.ProductionJobCardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductionJobCardInclude<ExtArgs> | null
+  where?: Prisma.ProductionJobCardWhereInput
+  orderBy?: Prisma.ProductionJobCardOrderByWithRelationInput | Prisma.ProductionJobCardOrderByWithRelationInput[]
+  cursor?: Prisma.ProductionJobCardWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductionJobCardScalarFieldEnum | Prisma.ProductionJobCardScalarFieldEnum[]
 }
 
 /**

@@ -1,0 +1,463 @@
+/* Installation & Commissioning — matched to Advanced Production layout */
+
+.installation-page {
+  padding: 38px 34px 50px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(22,119,255,.055), transparent 28%),
+    #f3f6fa;
+  min-height: calc(100vh - 76px);
+}
+
+.installation-page .module-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 30px;
+}
+
+.installation-page .page-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #1677ff;
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.installation-page .page-eyebrow::before {
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: #1677ff;
+  content: "";
+}
+
+.installation-page .module-heading h1 {
+  margin: 0;
+  color: #101828;
+  font-size: clamp(1.8rem,3vw,2.55rem);
+  letter-spacing: -.045em;
+}
+
+.installation-page .module-heading p {
+  margin: 9px 0 0;
+  color: #667085;
+}
+
+.installation-page .primary-action {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 10px;
+}
+
+/* Summary cards */
+.installation-summary {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.installation-summary article {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 104px;
+  padding: 21px;
+  border: 1px solid #e5e9f0;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(16,24,40,.045);
+}
+
+.installation-summary article > svg {
+  box-sizing: content-box;
+  padding: 12px;
+  border-radius: 12px;
+  color: #1677ff;
+  background: #edf5ff;
+}
+
+.installation-summary article > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.installation-summary strong {
+  color: #101828;
+  font-size: 1.45rem;
+}
+
+.installation-summary span {
+  color: #8490a2;
+  font-size: .76rem;
+}
+
+/* Installation register — same spacing/shape as Production register */
+.installation-page .directory-card {
+  width: 100%;
+  min-height: 375px;
+  overflow: hidden;
+  border: 1px solid #e5e9f0;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(16,24,40,.045);
+}
+
+.installation-page .directory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 92px;
+  padding: 22px 26px;
+  border-bottom: 1px solid #e9edf2;
+}
+
+.installation-page .directory-header h2 {
+  margin: 0 0 5px;
+  color: #1d2939;
+  font-size: 1rem;
+}
+
+.installation-page .directory-header p {
+  margin: 0;
+  color: #98a2b3;
+  font-size: .74rem;
+}
+
+.installation-page .directory-search {
+  display: flex;
+  align-items: center;
+  width: min(490px,48%);
+  height: 46px;
+  padding-left: 14px;
+  overflow: hidden;
+  border: 1px solid #dfe4eb;
+  border-radius: 10px;
+  color: #98a2b3;
+  background: #f8fafc;
+}
+
+.installation-page .directory-search:focus-within {
+  border-color: #9cc9ff;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(22,119,255,.08);
+}
+
+.installation-page .directory-search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 12px;
+  border: 0;
+  outline: 0;
+  color: #344054;
+  background: transparent;
+  font-size: .8rem;
+}
+
+.installation-page .directory-search button {
+  align-self: stretch;
+  min-width: 100px;
+  padding: 0 18px;
+  border: 0;
+  color: #fff;
+  background: #1677ff;
+  font-size: .76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.installation-page .directory-search button:hover {
+  background: #0f62dc;
+}
+
+.installation-page .empty-state {
+  min-height: 280px;
+}
+
+.installation-page .data-table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+.installation-page .data-table th {
+  padding: 13px 20px;
+  border-bottom: 1px solid #e9edf2;
+  color: #8490a2;
+  background: #f8fafc;
+  font-size: .67rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.installation-page .data-table td {
+  padding: 17px 20px;
+  border-bottom: 1px solid #eef1f5;
+  color: #667085;
+  font-size: .78rem;
+}
+
+.installation-page .data-table td strong { color:#344054; }
+.installation-page .data-table td small { color:#98a2b3; }
+.installation-page .data-table tbody tr:hover { background:#f8fbff; }
+
+.installation-page .row-action-button {
+  display:grid;
+  width:34px;
+  height:34px;
+  padding:0;
+  border:1px solid #dfe4eb;
+  border-radius:8px;
+  place-items:center;
+  color:#1677ff;
+  background:#fff;
+  cursor:pointer;
+}
+
+.installation-page .row-action-button:hover { background:#edf5ff; }
+
+.installation-page .page-error {
+  margin:16px 22px;
+  padding:12px 14px;
+  border:1px solid #fecaca;
+  border-radius:10px;
+  color:#b42318;
+  background:#fff5f5;
+  font-size:.82rem;
+}
+
+/* Modals */
+.installation-modal,
+.installation-detail {
+  width:min(960px,calc(100vw - 36px));
+  max-height:calc(100vh - 36px);
+  overflow:auto;
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 35px 90px rgba(3,12,28,.3);
+}
+
+.installation-modal .modal-header,
+.installation-detail > .modal-header {
+  position:sticky;
+  z-index:3;
+  top:0;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:20px;
+  padding:22px 24px;
+  border-bottom:1px solid #eaecf0;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(14px);
+}
+
+.installation-modal .modal-header h2,
+.installation-detail .modal-header h2 {
+  margin:0 0 5px;
+  color:#101828;
+  font-size:1.35rem;
+}
+
+.installation-modal .modal-header p,
+.installation-detail .modal-header p {
+  margin:0;
+  color:#8490a2;
+  font-size:.8rem;
+}
+
+.installation-modal form { padding-bottom:22px; }
+
+.installation-form {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  padding:24px;
+}
+
+.installation-form label {
+  display:grid;
+  gap:8px;
+  color:#475467;
+  font-size:.76rem;
+  font-weight:700;
+}
+
+.installation-form input,
+.installation-form select,
+.installation-form textarea,
+.installation-status select,
+.site-list select,
+.spare-form select,
+.spare-form input {
+  width:100%;
+  border:1px solid #d9dee7;
+  border-radius:10px;
+  outline:0;
+  color:#344054;
+  background:#fff;
+  font:inherit;
+}
+
+.installation-form input,
+.installation-form select,
+.installation-status select,
+.site-list select,
+.spare-form select,
+.spare-form input {
+  min-height:44px;
+  padding:0 12px;
+}
+
+.installation-form textarea {
+  min-height:92px;
+  padding:12px;
+  resize:vertical;
+}
+
+.installation-form input:focus,
+.installation-form select:focus,
+.installation-form textarea:focus,
+.installation-status select:focus,
+.site-list select:focus,
+.spare-form select:focus,
+.spare-form input:focus {
+  border-color:#1677ff;
+  box-shadow:0 0 0 4px rgba(22,119,255,.09);
+}
+
+.installation-form .wide { grid-column:1/-1; }
+
+.installation-modal .modal-actions {
+  display:flex;
+  justify-content:flex-end;
+  gap:11px;
+  padding:0 24px;
+}
+
+.installation-modal .modal-actions > button:not(.primary-action) {
+  min-height:44px;
+  padding:0 18px;
+  border:1px solid #d9dee7;
+  border-radius:10px;
+  color:#475467;
+  background:#fff;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.installation-detail { padding-bottom:24px; }
+
+.installation-detail > h3 {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:26px 24px 12px;
+  color:#1d2939;
+  font-size:.95rem;
+}
+
+.installation-detail > h3 svg { color:#1677ff; }
+
+.installation-status {
+  display:flex;
+  align-items:end;
+  gap:18px;
+  margin:20px 24px 0;
+  padding:16px;
+  flex-wrap:wrap;
+  border:1px solid #e8edf3;
+  border-radius:12px;
+  background:#f8fafc;
+  color:#667085;
+  font-size:.8rem;
+}
+
+.installation-status label {
+  display:grid;
+  min-width:180px;
+  gap:6px;
+  color:#475467;
+  font-size:.74rem;
+  font-weight:700;
+}
+
+.installation-status span { padding-bottom:11px; }
+.installation-status .primary-action { margin-left:auto; }
+
+.site-list {
+  margin:0 24px;
+  overflow:hidden;
+  border:1px solid #e0e7f0;
+  border-radius:12px;
+  background:#fff;
+}
+
+.site-list > div {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:13px 15px;
+  border-bottom:1px solid #edf1f6;
+  color:#475467;
+  font-size:.8rem;
+}
+
+.site-list > div:last-child { border-bottom:0; }
+.site-list > div > span { min-width:0;flex:1; }
+.site-list select { width:165px;flex:0 0 165px; }
+.site-list small { display:block;margin-top:4px;color:#8491a4; }
+
+.spare-form {
+  display:grid;
+  grid-template-columns:minmax(240px,2fr) minmax(130px,1fr) 120px auto;
+  gap:10px;
+  margin:0 24px;
+}
+
+.spare-form .primary-action { min-height:44px; }
+
+.spare-history {
+  display:grid;
+  gap:7px;
+  margin:14px 24px 0;
+  color:#65738a;
+  font-size:.78rem;
+}
+
+@media(max-width:1100px){
+  .installation-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:800px){
+  .installation-page{padding:28px 18px 40px}
+  .installation-page .module-heading,
+  .installation-page .directory-header{align-items:stretch;flex-direction:column}
+  .installation-page .directory-search{width:100%}
+  .installation-form{grid-template-columns:1fr}
+  .installation-form .wide{grid-column:auto}
+  .spare-form{grid-template-columns:1fr}
+  .site-list>div{align-items:stretch;flex-direction:column}
+  .site-list select{width:100%;flex-basis:auto}
+}
+
+@media(max-width:650px){
+  .installation-summary{grid-template-columns:1fr}
+  .installation-page .module-heading .primary-action,
+  .installation-status .primary-action{width:100%}
+  .installation-modal,.installation-detail{width:calc(100vw - 24px);max-height:calc(100vh - 24px)}
+  .installation-status{align-items:stretch;flex-direction:column}
+  .installation-status span{padding-bottom:0}
+}

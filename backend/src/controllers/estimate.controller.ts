@@ -7,133 +7,80 @@ import {
   type CreateEstimateInput,
 } from "../utils/estimate-validation.js";
 
-type AuthenticatedRequest = Request & {
-  auth?: {
-    userId: string;
-  };
-};
+type AuthenticatedRequest = Request & { auth?: { userId: string } };
 
 const estimateInclude = {
   lead: {
     select: {
-      id: true,
-      leadNumber: true,
-      title: true,
-      status: true,
-      customer: {
-        select: {
-          id: true,
-          customerCode: true,
-          companyName: true,
-        },
-      },
+      id: true, leadNumber: true, title: true, status: true,
+      customer: { select: { id: true, customerCode: true, companyName: true } },
     },
   },
-  createdBy: {
-    select: {
-      id: true,
-      employeeCode: true,
-      firstName: true,
-      lastName: true,
-    },
-  },
-  items: {
-    orderBy: {
-      sortOrder: "asc" as const,
-    },
-  },
+  createdBy: { select: { id: true, employeeCode: true, firstName: true, lastName: true } },
+  items: { orderBy: { sortOrder: "asc" as const } },
 } as const;
 
 const roundMoney = (value: number) => Math.round(value * 100) / 100;
+const round3 = (value: number) => Math.round(value * 1000) / 1000;
 
 const calculateEstimate = (data: CreateEstimateInput) => {
   const items = data.items.map((item, index) => ({
-    ...item,
-    amount: roundMoney(item.quantity * item.unitRate),
-    sortOrder: index,
+    ...item, amount: roundMoney(item.quantity * item.unitRate), sortOrder: index,
   }));
-
-  const materialCost = roundMoney(
-    items
-      .filter((item) => item.itemType === "MATERIAL")
-      .reduce((total, item) => total + item.amount, 0)
-  );
-  const labourCost = roundMoney(
-    items
-      .filter((item) => item.itemType === "LABOUR")
-      .reduce((total, item) => total + item.amount, 0)
-  );
-  const overheadCost = roundMoney(
-    items
-      .filter((item) =>
-        item.itemType === "OVERHEAD" || item.itemType === "SERVICE"
-      )
-      .reduce((total, item) => total + item.amount, 0)
-  );
+  const materialCost = roundMoney(items.filter(i => i.itemType === "MATERIAL").reduce((t,i)=>t+i.amount,0));
+  const labourCost = roundMoney(items.filter(i => i.itemType === "LABOUR").reduce((t,i)=>t+i.amount,0));
+  const overheadCost = roundMoney(items.filter(i => i.itemType === "OVERHEAD" || i.itemType === "SERVICE").reduce((t,i)=>t+i.amount,0));
   const baseCost = roundMoney(materialCost + labourCost + overheadCost);
-  const marginAmount = roundMoney(baseCost * (data.marginPercent / 100));
+  const marginAmount = roundMoney(baseCost * data.marginPercent / 100);
   const subtotal = roundMoney(baseCost + marginAmount);
-  const taxAmount = roundMoney(subtotal * (data.taxPercent / 100));
-  const totalAmount = roundMoney(subtotal + taxAmount);
-
-  return {
-    items,
-    materialCost,
-    labourCost,
-    overheadCost,
-    subtotal,
-    taxAmount,
-    totalAmount,
-  };
+  const taxAmount = roundMoney(subtotal * data.taxPercent / 100);
+  return { items, materialCost, labourCost, overheadCost, subtotal, taxAmount, totalAmount: roundMoney(subtotal + taxAmount) };
 };
 
-export const listEstimatesController = async (
-  request: Request,
-  response: Response
-) => {
+const calculateEngineering = (data: CreateEstimateInput) => {
+  const proposed = data.proposedBoilerEfficiency;
+  const existing = data.existingBoilerEfficiency;
+  const fuel = data.fuelConsumptionPerHour;
+  const hours = data.operatingHoursPerDay;
+  const days = data.operatingDaysPerYear;
+  const fuelPrice = data.fuelPricePerUnit;
+  const cv = data.fuelCalorificValueKcalKg;
+
+  const calculatedThermalEfficiency = proposed ?? null;
+  const calculatedBoilerOutput =
+    fuel !== undefined && cv !== undefined && proposed !== undefined
+      ? round3((fuel * cv * (proposed / 100)) / 539000)
+      : data.capacityTph ?? null;
+
+  const estimatedFuelSavingPerHour =
+    fuel !== undefined && existing !== undefined && proposed !== undefined && proposed > 0 && proposed > existing
+      ? round3(fuel * (1 - existing / proposed))
+      : 0;
+
+  const annualFuelSaving =
+    estimatedFuelSavingPerHour > 0 && hours !== undefined && days !== undefined
+      ? round3(estimatedFuelSavingPerHour * hours * days)
+      : 0;
+
+  const annualCostSaving =
+    annualFuelSaving > 0 && fuelPrice !== undefined ? roundMoney(annualFuelSaving * fuelPrice) : 0;
+
+  return { calculatedThermalEfficiency, calculatedBoilerOutput, estimatedFuelSavingPerHour, annualFuelSaving, annualCostSaving };
+};
+
+export const listEstimatesController = async (request: Request, response: Response) => {
   try {
-    const search =
-      typeof request.query.search === "string" ? request.query.search.trim() : "";
-
+    const search = typeof request.query.search === "string" ? request.query.search.trim() : "";
     const estimates = await prisma.estimate.findMany({
-      ...(search
-        ? {
-            where: {
-              OR: [
-                {
-                  estimateNumber: {
-                    contains: search,
-                    mode: "insensitive" as const,
-                  },
-                },
-                {
-                  lead: {
-                    title: {
-                      contains: search,
-                      mode: "insensitive" as const,
-                    },
-                  },
-                },
-                {
-                  lead: {
-                    customer: {
-                      companyName: {
-                        contains: search,
-                        mode: "insensitive" as const,
-                      },
-                    },
-                  },
-                },
-              ],
-            },
-          }
-        : {}),
-      include: estimateInclude,
-      orderBy: {
-        createdAt: "desc",
-      },
+      ...(search ? { where: { OR: [
+        { estimateNumber: { contains: search, mode: "insensitive" as const } },
+        { productFamily: { contains: search, mode: "insensitive" as const } },
+        { productModel: { contains: search, mode: "insensitive" as const } },
+        { lead: { title: { contains: search, mode: "insensitive" as const } } },
+        { lead: { customer: { companyName: { contains: search, mode: "insensitive" as const } } } },
+      ] } } : {}),
+      include: estimateInclude, orderBy: { createdAt: "desc" },
     });
-
     response.status(200).json({ success: true, data: estimates });
   } catch (error) {
     console.error("Unable to list estimates:", error);
@@ -141,21 +88,10 @@ export const listEstimatesController = async (
   }
 };
 
-export const getEstimateController = async (
-  request: Request,
-  response: Response
-) => {
+export const getEstimateController = async (request: Request, response: Response) => {
   try {
-    const estimate = await prisma.estimate.findUnique({
-      where: { id: String(request.params.id) },
-      include: estimateInclude,
-    });
-
-    if (!estimate) {
-      response.status(404).json({ success: false, message: "Estimate was not found" });
-      return;
-    }
-
+    const estimate = await prisma.estimate.findUnique({ where: { id: String(request.params.id) }, include: estimateInclude });
+    if (!estimate) { response.status(404).json({ success: false, message: "Estimate was not found" }); return; }
     response.status(200).json({ success: true, data: estimate });
   } catch (error) {
     console.error("Unable to load estimate:", error);
@@ -163,150 +99,98 @@ export const getEstimateController = async (
   }
 };
 
-export const createEstimateController = async (
-  request: AuthenticatedRequest,
-  response: Response
-) => {
+export const createEstimateController = async (request: AuthenticatedRequest, response: Response) => {
   try {
     const validation = createEstimateSchema.safeParse(request.body);
-
     if (!validation.success) {
-      response.status(400).json({
-        success: false,
-        message: "Please correct the estimate fields",
-        errors: validation.error.flatten().fieldErrors,
-      });
+      response.status(400).json({ success: false, message: "Please correct the estimate fields", errors: validation.error.flatten().fieldErrors });
       return;
     }
-
     const data = validation.data;
-    const lead = await prisma.lead.findUnique({
-      where: { id: data.leadId },
-      select: { id: true },
-    });
+    const lead = await prisma.lead.findUnique({ where: { id: data.leadId }, select: { id: true } });
+    if (!lead) { response.status(404).json({ success: false, message: "Selected lead was not found" }); return; }
 
-    if (!lead) {
-      response.status(404).json({ success: false, message: "Selected lead was not found" });
-      return;
-    }
-
-    const latestVersion = await prisma.estimate.aggregate({
-      where: { leadId: data.leadId },
-      _max: { version: true },
-    });
+    const latestVersion = await prisma.estimate.aggregate({ where: { leadId: data.leadId }, _max: { version: true } });
     const version = (latestVersion._max.version ?? 0) + 1;
     const totals = calculateEstimate(data);
-    const estimateNumber = `EST-${new Date().getFullYear()}-${randomUUID()
-      .slice(0, 8)
-      .toUpperCase()}`;
+    const engineering = calculateEngineering(data);
+    const estimateNumber = `EST-${new Date().getFullYear()}-${randomUUID().slice(0,8).toUpperCase()}`;
 
     const estimate = await prisma.$transaction(async (transaction) => {
       const created = await transaction.estimate.create({
         data: {
-          estimateNumber,
-          leadId: data.leadId,
-          version,
-          status: data.status,
-          marginPercent: data.marginPercent,
-          taxPercent: data.taxPercent,
+          estimateNumber, leadId: data.leadId, version, status: data.status,
+          marginPercent: data.marginPercent, taxPercent: data.taxPercent,
           validUntil: data.validUntil ? new Date(data.validUntil) : null,
           notes: data.notes ?? null,
           createdById: request.auth?.userId ?? null,
-          materialCost: totals.materialCost,
-          labourCost: totals.labourCost,
-          overheadCost: totals.overheadCost,
-          subtotal: totals.subtotal,
-          taxAmount: totals.taxAmount,
-          totalAmount: totals.totalAmount,
-          items: {
-            create: totals.items,
-          },
+          materialCost: totals.materialCost, labourCost: totals.labourCost,
+          overheadCost: totals.overheadCost, subtotal: totals.subtotal,
+          taxAmount: totals.taxAmount, totalAmount: totals.totalAmount,
+
+          productFamily: data.productFamily ?? null,
+          productModel: data.productModel ?? null,
+          processIndustry: data.processIndustry ?? null,
+          fuelType: data.fuelType ?? null,
+          capacityTph: data.capacityTph ?? null,
+          requiredSteamConsumption: data.requiredSteamConsumption ?? null,
+          workingPressureBar: data.workingPressureBar ?? null,
+          designPressureBar: data.designPressureBar ?? null,
+          steamTemperatureC: data.steamTemperatureC ?? null,
+          feedWaterTemperatureC: data.feedWaterTemperatureC ?? null,
+          flueGasTemperatureC: data.flueGasTemperatureC ?? null,
+          operatingHoursPerDay: data.operatingHoursPerDay ?? null,
+          operatingDaysPerYear: data.operatingDaysPerYear ?? null,
+          fuelConsumptionPerHour: data.fuelConsumptionPerHour ?? null,
+          fuelCalorificValueKcalKg: data.fuelCalorificValueKcalKg ?? null,
+          fuelPricePerUnit: data.fuelPricePerUnit ?? null,
+          existingBoilerEfficiency: data.existingBoilerEfficiency ?? null,
+          proposedBoilerEfficiency: data.proposedBoilerEfficiency ?? null,
+          calculatedThermalEfficiency: engineering.calculatedThermalEfficiency,
+          calculatedBoilerOutput: engineering.calculatedBoilerOutput,
+          estimatedFuelSavingPerHour: engineering.estimatedFuelSavingPerHour,
+          annualFuelSaving: engineering.annualFuelSaving,
+          annualCostSaving: engineering.annualCostSaving,
+          technicalNotes: data.technicalNotes ?? null,
+          items: { create: totals.items },
         },
         include: estimateInclude,
       });
-
-      await transaction.lead.update({
-        where: { id: data.leadId },
-        data: { status: "ESTIMATION" },
-      });
-
+      await transaction.lead.update({ where: { id: data.leadId }, data: { status: "ESTIMATION" } });
       return created;
     });
 
     await prisma.auditLog.create({
       data: {
-        userId: request.auth?.userId ?? null,
-        action: "CREATE",
-        entity: "Estimate",
-        entityId: estimate.id,
+        userId: request.auth?.userId ?? null, action: "CREATE", entity: "Estimate", entityId: estimate.id,
         newValues: {
-          estimateNumber: estimate.estimateNumber,
-          leadId: estimate.leadId,
-          version: estimate.version,
-          status: estimate.status,
-          totalAmount: estimate.totalAmount.toString(),
+          estimateNumber: estimate.estimateNumber, leadId: estimate.leadId, version: estimate.version,
+          status: estimate.status, totalAmount: estimate.totalAmount.toString(),
+          productFamily: estimate.productFamily, productModel: estimate.productModel,
         },
         ipAddress: request.ip ?? null,
       },
     });
-
-    response.status(201).json({
-      success: true,
-      message: "Estimate created successfully",
-      data: estimate,
-    });
+    response.status(201).json({ success: true, message: "Estimate created successfully", data: estimate });
   } catch (error) {
     console.error("Unable to create estimate:", error);
     response.status(500).json({ success: false, message: "Unable to create estimate" });
   }
 };
 
-export const updateEstimateStatusController = async (
-  request: AuthenticatedRequest,
-  response: Response
-) => {
+export const updateEstimateStatusController = async (request: AuthenticatedRequest, response: Response) => {
   try {
     const validation = updateEstimateStatusSchema.safeParse(request.body);
-
-    if (!validation.success) {
-      response.status(400).json({ success: false, message: "Invalid estimate status" });
-      return;
-    }
-
+    if (!validation.success) { response.status(400).json({ success: false, message: "Invalid estimate status" }); return; }
     const estimateId = String(request.params.id);
-    const existing = await prisma.estimate.findUnique({
-      where: { id: estimateId },
-      select: { id: true, status: true, leadId: true },
-    });
-
-    if (!existing) {
-      response.status(404).json({ success: false, message: "Estimate was not found" });
-      return;
-    }
-
-    const estimate = await prisma.estimate.update({
-      where: { id: estimateId },
-      data: { status: validation.data.status },
-      include: estimateInclude,
-    });
-
+    const existing = await prisma.estimate.findUnique({ where: { id: estimateId }, select: { id: true, status: true, leadId: true } });
+    if (!existing) { response.status(404).json({ success: false, message: "Estimate was not found" }); return; }
+    const estimate = await prisma.estimate.update({ where: { id: estimateId }, data: { status: validation.data.status }, include: estimateInclude });
     await prisma.auditLog.create({
-      data: {
-        userId: request.auth?.userId ?? null,
-        action: "STATUS_UPDATE",
-        entity: "Estimate",
-        entityId: estimate.id,
-        oldValues: { status: existing.status },
-        newValues: { status: estimate.status },
-        ipAddress: request.ip ?? null,
-      },
+      data: { userId: request.auth?.userId ?? null, action: "STATUS_UPDATE", entity: "Estimate", entityId: estimate.id,
+        oldValues: { status: existing.status }, newValues: { status: estimate.status }, ipAddress: request.ip ?? null },
     });
-
-    response.status(200).json({
-      success: true,
-      message: "Estimate status updated successfully",
-      data: estimate,
-    });
+    response.status(200).json({ success: true, message: "Estimate status updated successfully", data: estimate });
   } catch (error) {
     console.error("Unable to update estimate status:", error);
     response.status(500).json({ success: false, message: "Unable to update estimate status" });

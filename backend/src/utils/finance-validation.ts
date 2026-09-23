@@ -1,0 +1,8 @@
+import { z } from "zod";
+const optDate=z.string().datetime().optional();
+export const accountSchema=z.object({code:z.string().min(1).max(30),name:z.string().min(1).max(120),accountType:z.enum(["ASSET","LIABILITY","EQUITY","INCOME","EXPENSE"]),parentId:z.string().uuid().optional(),description:z.string().max(500).optional()});
+export const journalSchema=z.object({journalDate:optDate,description:z.string().min(1).max(500),referenceType:z.string().max(60).optional(),referenceId:z.string().max(100).optional(),lines:z.array(z.object({accountId:z.string().uuid(),description:z.string().max(300).optional(),debit:z.number().min(0).default(0),credit:z.number().min(0).default(0)})).min(2)});
+export const vendorBillSchema=z.object({grnId:z.string().uuid(),dueDate:optDate,notes:z.string().max(1000).optional()});
+export const vendorPaymentSchema=z.object({vendorBillId:z.string().uuid(),amount:z.number().positive(),method:z.enum(["CASH","BANK_TRANSFER","UPI","CHEQUE","CARD","OTHER"]),paymentDate:optDate,referenceNumber:z.string().max(120).optional(),notes:z.string().max(500).optional()});
+export const expenseSchema=z.object({expenseDate:optDate,category:z.string().min(1).max(100),description:z.string().min(1).max(500),vendorId:z.string().uuid().optional(),amount:z.number().positive(),gstType:z.enum(["NONE","CGST_SGST","IGST"]).default("NONE"),gstRate:z.number().min(0).max(100).default(0),paymentMethod:z.enum(["CASH","BANK_TRANSFER","UPI","CHEQUE","CARD","OTHER"]).optional(),referenceNumber:z.string().max(120).optional(),notes:z.string().max(500).optional()}).refine(x=>x.gstType!=="NONE"||x.gstRate===0,{message:"GST rate must be 0 when GST type is NONE"});
+export const expenseUpdateSchema=z.object({status:z.enum(["DRAFT","APPROVED","PAID","CANCELLED"])});

@@ -88,10 +88,40 @@ export type StockMovement = Prisma.StockMovementModel
  */
 export type ProductionOrder = Prisma.ProductionOrderModel
 /**
+ * Model WorkCenter
+ * 
+ */
+export type WorkCenter = Prisma.WorkCenterModel
+/**
+ * Model ProductionMachine
+ * 
+ */
+export type ProductionMachine = Prisma.ProductionMachineModel
+/**
  * Model ProductionOperation
  * 
  */
 export type ProductionOperation = Prisma.ProductionOperationModel
+/**
+ * Model ProductionJobCard
+ * 
+ */
+export type ProductionJobCard = Prisma.ProductionJobCardModel
+/**
+ * Model ProductionMaterialConsumption
+ * 
+ */
+export type ProductionMaterialConsumption = Prisma.ProductionMaterialConsumptionModel
+/**
+ * Model ProductionTraceability
+ * 
+ */
+export type ProductionTraceability = Prisma.ProductionTraceabilityModel
+/**
+ * Model ProductionDowntime
+ * 
+ */
+export type ProductionDowntime = Prisma.ProductionDowntimeModel
 /**
  * Model QualityInspection
  * 
@@ -143,7 +173,252 @@ export type EngineeringBom = Prisma.EngineeringBomModel
  */
 export type EngineeringBomItem = Prisma.EngineeringBomItemModel
 /**
+ * Model Vendor
+ * 
+ */
+export type Vendor = Prisma.VendorModel
+/**
+ * Model PurchaseRequisition
+ * 
+ */
+export type PurchaseRequisition = Prisma.PurchaseRequisitionModel
+/**
+ * Model PurchaseRequisitionItem
+ * 
+ */
+export type PurchaseRequisitionItem = Prisma.PurchaseRequisitionItemModel
+/**
+ * Model ProcurementRfq
+ * 
+ */
+export type ProcurementRfq = Prisma.ProcurementRfqModel
+/**
+ * Model ProcurementRfqItem
+ * 
+ */
+export type ProcurementRfqItem = Prisma.ProcurementRfqItemModel
+/**
+ * Model ProcurementRfqVendor
+ * 
+ */
+export type ProcurementRfqVendor = Prisma.ProcurementRfqVendorModel
+/**
+ * Model VendorQuotation
+ * 
+ */
+export type VendorQuotation = Prisma.VendorQuotationModel
+/**
+ * Model VendorQuotationItem
+ * 
+ */
+export type VendorQuotationItem = Prisma.VendorQuotationItemModel
+/**
+ * Model PurchaseOrder
+ * 
+ */
+export type PurchaseOrder = Prisma.PurchaseOrderModel
+/**
+ * Model PurchaseOrderItem
+ * 
+ */
+export type PurchaseOrderItem = Prisma.PurchaseOrderItemModel
+/**
+ * Model GoodsReceiptNote
+ * 
+ */
+export type GoodsReceiptNote = Prisma.GoodsReceiptNoteModel
+/**
+ * Model GoodsReceiptNoteItem
+ * 
+ */
+export type GoodsReceiptNoteItem = Prisma.GoodsReceiptNoteItemModel
+/**
+ * Model SalesOrder
+ * 
+ */
+export type SalesOrder = Prisma.SalesOrderModel
+/**
+ * Model SalesOrderItem
+ * 
+ */
+export type SalesOrderItem = Prisma.SalesOrderItemModel
+/**
+ * Model SalesInvoice
+ * 
+ */
+export type SalesInvoice = Prisma.SalesInvoiceModel
+/**
+ * Model SalesInvoiceItem
+ * 
+ */
+export type SalesInvoiceItem = Prisma.SalesInvoiceItemModel
+/**
+ * Model SalesPayment
+ * 
+ */
+export type SalesPayment = Prisma.SalesPaymentModel
+/**
  * Model CompanySettings
  * 
  */
 export type CompanySettings = Prisma.CompanySettingsModel
+/**
+ * Model Project
+ * 
+ */
+export type Project = Prisma.ProjectModel
+/**
+ * Model ProjectMilestone
+ * 
+ */
+export type ProjectMilestone = Prisma.ProjectMilestoneModel
+/**
+ * Model ProjectTask
+ * 
+ */
+export type ProjectTask = Prisma.ProjectTaskModel
+/**
+ * Model InspectionTestPlan
+ * 
+ */
+export type InspectionTestPlan = Prisma.InspectionTestPlanModel
+/**
+ * Model InspectionTestPlanItem
+ * 
+ */
+export type InspectionTestPlanItem = Prisma.InspectionTestPlanItemModel
+/**
+ * Model IbrDocument
+ * 
+ */
+export type IbrDocument = Prisma.IbrDocumentModel
+/**
+ * Model WeldingProcedure
+ * 
+ */
+export type WeldingProcedure = Prisma.WeldingProcedureModel
+/**
+ * Model WelderQualification
+ * 
+ */
+export type WelderQualification = Prisma.WelderQualificationModel
+/**
+ * Model WeldJoint
+ * 
+ */
+export type WeldJoint = Prisma.WeldJointModel
+/**
+ * Model NonConformanceReport
+ * 
+ */
+export type NonConformanceReport = Prisma.NonConformanceReportModel
+/**
+ * Model CorrectivePreventiveAction
+ * 
+ */
+export type CorrectivePreventiveAction = Prisma.CorrectivePreventiveActionModel
+/**
+ * Model InstallationJob
+ * 
+ */
+export type InstallationJob = Prisma.InstallationJobModel
+/**
+ * Model InstallationChecklistItem
+ * 
+ */
+export type InstallationChecklistItem = Prisma.InstallationChecklistItemModel
+/**
+ * Model CommissioningTest
+ * 
+ */
+export type CommissioningTest = Prisma.CommissioningTestModel
+/**
+ * Model InstallationSpareMovement
+ * 
+ */
+export type InstallationSpareMovement = Prisma.InstallationSpareMovementModel
+/**
+ * Model FinanceAccount
+ * 
+ */
+export type FinanceAccount = Prisma.FinanceAccountModel
+/**
+ * Model FinanceJournalEntry
+ * 
+ */
+export type FinanceJournalEntry = Prisma.FinanceJournalEntryModel
+/**
+ * Model FinanceJournalLine
+ * 
+ */
+export type FinanceJournalLine = Prisma.FinanceJournalLineModel
+/**
+ * Model VendorBill
+ * 
+ */
+export type VendorBill = Prisma.VendorBillModel
+/**
+ * Model VendorPayment
+ * 
+ */
+export type VendorPayment = Prisma.VendorPaymentModel
+/**
+ * Model FinanceExpense
+ * 
+ */
+export type FinanceExpense = Prisma.FinanceExpenseModel
+/**
+ * Model HrDepartment
+ * 
+ */
+export type HrDepartment = Prisma.HrDepartmentModel
+/**
+ * Model HrDesignation
+ * 
+ */
+export type HrDesignation = Prisma.HrDesignationModel
+/**
+ * Model HrEmployee
+ * 
+ */
+export type HrEmployee = Prisma.HrEmployeeModel
+/**
+ * Model HrAttendance
+ * 
+ */
+export type HrAttendance = Prisma.HrAttendanceModel
+/**
+ * Model HrLeaveRequest
+ * 
+ */
+export type HrLeaveRequest = Prisma.HrLeaveRequestModel
+/**
+ * Model HrSalaryStructure
+ * 
+ */
+export type HrSalaryStructure = Prisma.HrSalaryStructureModel
+/**
+ * Model HrPayrollRun
+ * 
+ */
+export type HrPayrollRun = Prisma.HrPayrollRunModel
+/**
+ * Model HrPayrollItem
+ * 
+ */
+export type HrPayrollItem = Prisma.HrPayrollItemModel
+/**
+ * Model IotDevice
+ * 
+ */
+export type IotDevice = Prisma.IotDeviceModel
+/**
+ * Model IotSensorReading
+ * 
+ */
+export type IotSensorReading = Prisma.IotSensorReadingModel
+/**
+ * Model IotAlert
+ * 
+ */
+export type IotAlert = Prisma.IotAlertModel

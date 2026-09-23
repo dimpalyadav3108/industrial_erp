@@ -19,18 +19,34 @@ import {
 } from "lucide-react";
 
 import {
+  createDrawingRevision,
+  createEngineeringBom,
+  createEngineeringBomItem,
+  createEngineeringDrawing,
   createEngineeringProject,
+  deleteEngineeringBomItem,
   getEngineeringProjects,
+  updateDrawingRevision,
+  updateEngineeringBom,
 } from "../services/engineering.service";
 
 import { getQuotations } from "../services/quotation.service";
 
 import type {
+  CreateEngineeringBomItemPayload,
+  CreateEngineeringBomPayload,
+  CreateEngineeringDrawingPayload,
   CreateEngineeringProjectPayload,
+  DrawingCategory,
+  DrawingRevisionStatus,
+  EngineeringBom,
+  EngineeringDrawing,
   EngineeringProject,
 } from "../types/engineering";
 
 import type { Quotation } from "../types/quotation";
+
+import "./EngineeringPage.css";
 
 // ============================================================
 // HELPERS
@@ -105,6 +121,64 @@ const initialProjectForm: ProjectFormState = {
   notes: "",
 };
 
+interface DrawingFormState {
+  drawingNumber: string;
+  title: string;
+  category: DrawingCategory;
+  description: string;
+  documentName: string;
+  documentUrl: string;
+  changeReason: string;
+}
+
+const initialDrawingForm: DrawingFormState = {
+  drawingNumber: "",
+  title: "",
+  category: "GENERAL_ARRANGEMENT",
+  description: "",
+  documentName: "",
+  documentUrl: "",
+  changeReason: "Initial issue",
+};
+
+interface BomFormState {
+  bomNumber: string;
+  name: string;
+  revision: string;
+  description: string;
+}
+
+const initialBomForm: BomFormState = {
+  bomNumber: "",
+  name: "",
+  revision: "0",
+  description: "",
+};
+
+interface BomItemFormState {
+  parentItemId: string;
+  itemNumber: string;
+  name: string;
+  quantity: string;
+  unit: string;
+  source: "MAKE" | "BUY";
+  materialSpec: string;
+  drawingNumber: string;
+  remarks: string;
+}
+
+const initialBomItemForm: BomItemFormState = {
+  parentItemId: "",
+  itemNumber: "1",
+  name: "",
+  quantity: "1",
+  unit: "Nos",
+  source: "BUY",
+  materialSpec: "",
+  drawingNumber: "",
+  remarks: "",
+};
+
 // ============================================================
 // PAGE
 // ============================================================
@@ -138,6 +212,25 @@ export default function EngineeringPage() {
 
   const [projectForm, setProjectForm] =
     useState<ProjectFormState>(initialProjectForm);
+
+  const [showDrawingModal, setShowDrawingModal] = useState(false);
+  const [drawingForm, setDrawingForm] = useState<DrawingFormState>(initialDrawingForm);
+  const [savingDrawing, setSavingDrawing] = useState(false);
+
+  const [showBomModal, setShowBomModal] = useState(false);
+  const [bomForm, setBomForm] = useState<BomFormState>(initialBomForm);
+  const [savingBom, setSavingBom] = useState(false);
+
+  const [selectedBomId, setSelectedBomId] = useState("");
+  const [showBomItemModal, setShowBomItemModal] = useState(false);
+  const [bomItemForm, setBomItemForm] = useState<BomItemFormState>(initialBomItemForm);
+  const [savingBomItem, setSavingBomItem] = useState(false);
+
+  const [revisionDrawing, setRevisionDrawing] = useState<EngineeringDrawing | null>(null);
+  const [revisionReason, setRevisionReason] = useState("");
+  const [revisionDocumentName, setRevisionDocumentName] = useState("");
+  const [revisionDocumentUrl, setRevisionDocumentUrl] = useState("");
+  const [savingRevision, setSavingRevision] = useState(false);
 
   // ==========================================================
   // LOAD DATA
@@ -421,6 +514,125 @@ export default function EngineeringPage() {
     }
   }
 
+
+  function refreshSelectedProject(projectId: string) {
+    return loadData(true).then(() => setSelectedProjectId(projectId));
+  }
+
+  async function handleCreateDrawing(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!selectedProject) return;
+    try {
+      setSavingDrawing(true); setError(""); setSuccess("");
+      const payload: CreateEngineeringDrawingPayload = {
+        projectId: selectedProject.id,
+        drawingNumber: drawingForm.drawingNumber.trim(),
+        title: drawingForm.title.trim(),
+        category: drawingForm.category,
+        changeReason: drawingForm.changeReason.trim(),
+      };
+      if (drawingForm.description.trim()) payload.description = drawingForm.description.trim();
+      if (drawingForm.documentName.trim()) payload.documentName = drawingForm.documentName.trim();
+      if (drawingForm.documentUrl.trim()) payload.documentUrl = drawingForm.documentUrl.trim();
+      const created = await createEngineeringDrawing(payload);
+      setSuccess(`${created.drawingNumber} created successfully.`);
+      setShowDrawingModal(false); setDrawingForm(initialDrawingForm);
+      await refreshSelectedProject(selectedProject.id);
+    } catch (e) { setError(e instanceof Error ? e.message : "Unable to create drawing."); }
+    finally { setSavingDrawing(false); }
+  }
+
+  async function handleCreateBom(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!selectedProject) return;
+    try {
+      setSavingBom(true); setError(""); setSuccess("");
+      const payload: CreateEngineeringBomPayload = {
+        projectId: selectedProject.id,
+        bomNumber: bomForm.bomNumber.trim(),
+        name: bomForm.name.trim(),
+        revision: Number(bomForm.revision || 0),
+      };
+      if (bomForm.description.trim()) payload.description = bomForm.description.trim();
+      const created = await createEngineeringBom(payload);
+      setSelectedBomId(created.id);
+      setSuccess(`${created.bomNumber} created successfully.`);
+      setShowBomModal(false); setBomForm(initialBomForm);
+      await refreshSelectedProject(selectedProject.id);
+    } catch (e) { setError(e instanceof Error ? e.message : "Unable to create BOM."); }
+    finally { setSavingBom(false); }
+  }
+
+  async function handleCreateBomItem(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!selectedProject || !selectedBomId) return;
+    try {
+      setSavingBomItem(true); setError(""); setSuccess("");
+      const payload: CreateEngineeringBomItemPayload = {
+        itemNumber: Number(bomItemForm.itemNumber),
+        name: bomItemForm.name.trim(),
+        quantity: Number(bomItemForm.quantity),
+        unit: bomItemForm.unit.trim(),
+        source: bomItemForm.source,
+      };
+      if (bomItemForm.parentItemId) payload.parentItemId = bomItemForm.parentItemId;
+      if (bomItemForm.materialSpec.trim()) payload.materialSpec = bomItemForm.materialSpec.trim();
+      if (bomItemForm.drawingNumber.trim()) payload.drawingNumber = bomItemForm.drawingNumber.trim();
+      if (bomItemForm.remarks.trim()) payload.remarks = bomItemForm.remarks.trim();
+      await createEngineeringBomItem(selectedBomId, payload);
+      setSuccess("BOM item added successfully.");
+      setShowBomItemModal(false); setBomItemForm(initialBomItemForm);
+      await refreshSelectedProject(selectedProject.id);
+    } catch (e) { setError(e instanceof Error ? e.message : "Unable to add BOM item."); }
+    finally { setSavingBomItem(false); }
+  }
+
+  async function handleDeleteBomItem(itemId: string) {
+    if (!selectedProject || !window.confirm("Delete this BOM item?")) return;
+    try {
+      setError(""); await deleteEngineeringBomItem(itemId);
+      setSuccess("BOM item deleted.");
+      await refreshSelectedProject(selectedProject.id);
+    } catch (e) { setError(e instanceof Error ? e.message : "Unable to delete BOM item."); }
+  }
+
+  async function handleBomStatus(bom: EngineeringBom, status: "IN_REVIEW" | "APPROVED" | "RELEASED") {
+    if (!selectedProject) return;
+    try {
+      setError(""); await updateEngineeringBom(bom.id, { status });
+      setSuccess(`${bom.bomNumber} moved to ${formatStatus(status)}.`);
+      await refreshSelectedProject(selectedProject.id);
+    } catch (e) { setError(e instanceof Error ? e.message : "Unable to update BOM."); }
+  }
+
+  async function handleRevisionStatus(drawing: EngineeringDrawing, status: DrawingRevisionStatus, customerApproved?: boolean) {
+    if (!selectedProject) return;
+    const revision = drawing.revisions?.find(r => r.revisionNumber === drawing.currentRevision) || drawing.revisions?.[0];
+    if (!revision) return;
+    try {
+      setError(""); await updateDrawingRevision(revision.id, customerApproved === undefined ? { status } : { status, customerApproved });
+      setSuccess(`${drawing.drawingNumber} updated.`);
+      await refreshSelectedProject(selectedProject.id);
+    } catch (e) { setError(e instanceof Error ? e.message : "Unable to update revision."); }
+  }
+
+  async function handleCreateRevision(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!selectedProject || !revisionDrawing) return;
+    try {
+      setSavingRevision(true); setError("");
+      await createDrawingRevision(revisionDrawing.id, {
+        changeReason: revisionReason.trim(),
+        ...(revisionDocumentName.trim() ? { documentName: revisionDocumentName.trim() } : {}),
+        ...(revisionDocumentUrl.trim() ? { documentUrl: revisionDocumentUrl.trim() } : {}),
+      });
+      setSuccess(`New revision added to ${revisionDrawing.drawingNumber}.`);
+      setRevisionDrawing(null); setRevisionReason(""); setRevisionDocumentName(""); setRevisionDocumentUrl("");
+      await refreshSelectedProject(selectedProject.id);
+    } catch (e) { setError(e instanceof Error ? e.message : "Unable to create revision."); }
+    finally { setSavingRevision(false); }
+  }
+
   // ==========================================================
   // LOADING
   // ==========================================================
@@ -455,14 +667,14 @@ export default function EngineeringPage() {
   // ==========================================================
 
   return (
-    <div className="page-content">
+    <div className="page-content engineering-page">
       {/* ====================================================
           HEADER
       ==================================================== */}
 
-      <div className="page-header">
+      <div className="page-header engineering-header">
         <div>
-          <span className="eyebrow">
+          <span className="eyebrow engineering-eyebrow">
             ENGINEERING CONTROL
           </span>
 
@@ -906,28 +1118,92 @@ export default function EngineeringPage() {
                   }}
                 >
                   <MiniModule
-                    icon={
-                      <FileText size={20} />
-                    }
+                    icon={<FileText size={20} />}
                     title="Drawings"
-                    value={
-                      selectedProject.drawings
-                        ?.length || 0
-                    }
+                    value={selectedProject.drawings?.length || 0}
                     description="Engineering drawings and revisions"
                   />
-
                   <MiniModule
-                    icon={
-                      <PackageOpen size={20} />
-                    }
+                    icon={<PackageOpen size={20} />}
                     title="BOM"
-                    value={
-                      selectedProject.boms?.length ||
-                      0
-                    }
+                    value={selectedProject.boms?.length || 0}
                     description="Bills of materials"
                   />
+                </div>
+
+                <div style={{marginTop:"24px",border:"1px solid #e5e7eb",borderRadius:"12px",overflow:"hidden"}}>
+                  <div style={{padding:"14px 16px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"1px solid #e5e7eb"}}>
+                    <div><strong>Engineering Drawings</strong><div style={{fontSize:"12px",color:"#64748b",marginTop:"3px"}}>GA, P&ID, fabrication and revision control</div></div>
+                    <button className="primary-button" type="button" onClick={()=>setShowDrawingModal(true)}><Plus size={16}/> Add Drawing</button>
+                  </div>
+                  {(selectedProject.drawings?.length || 0)===0 ? <div style={{padding:"22px",color:"#64748b"}}>No drawings yet.</div> :
+                    selectedProject.drawings.map(d=><div key={d.id} style={{padding:"14px 16px",borderBottom:"1px solid #eef2f7"}}>
+                      <div style={{display:"flex",justifyContent:"space-between",gap:"12px",alignItems:"center"}}>
+                        <div><strong>{d.drawingNumber} — {d.title}</strong><div style={{fontSize:"12px",color:"#64748b",marginTop:"4px"}}>{formatStatus(d.category)} · Revision {d.currentRevision} · {formatStatus(d.status)}</div></div>
+                        <div style={{display:"flex",gap:"7px",flexWrap:"wrap",justifyContent:"flex-end"}}>
+                          <button className="secondary-button" type="button" onClick={()=>{setRevisionDrawing(d);setRevisionReason("");}}>+ Revision</button>
+                          {d.status==="DRAFT" && <button className="secondary-button" type="button" onClick={()=>void handleRevisionStatus(d,"INTERNAL_REVIEW")}>Internal Review</button>}
+                          {d.status==="INTERNAL_REVIEW" && <button className="secondary-button" type="button" onClick={()=>void handleRevisionStatus(d,"CUSTOMER_REVIEW")}>Customer Review</button>}
+                          {d.status==="CUSTOMER_REVIEW" && <button className="primary-button" type="button" onClick={()=>void handleRevisionStatus(d,"APPROVED",true)}>Approve</button>}
+                        </div>
+                      </div>
+                      {(d.revisions?.length||0)>0 && (
+                        <div className="drawing-revision-history">
+                          {[...d.revisions]
+                            .sort((a,b)=>b.revisionNumber-a.revisionNumber)
+                            .map(r=>(
+                              <div className="drawing-revision-row" key={r.id}>
+                                <strong>Rev {r.revisionNumber}</strong>
+                                <span>{formatStatus(r.status)}</span>
+                                <span>{r.changeReason}</span>
+                                <span>{r.customerApproved ? "Customer approved" : "Customer approval pending"}</span>
+                                {r.documentUrl ? <a href={r.documentUrl} target="_blank" rel="noreferrer">{r.documentName || "Open document"}</a> : <span>{r.documentName || "No document"}</span>}
+                              </div>
+                            ))}
+                        </div>
+                      )}
+                    </div>)}
+                </div>
+
+                <div style={{marginTop:"18px",border:"1px solid #e5e7eb",borderRadius:"12px",overflow:"hidden"}}>
+                  <div style={{padding:"14px 16px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"1px solid #e5e7eb"}}>
+                    <div><strong>Bill of Materials</strong><div style={{fontSize:"12px",color:"#64748b",marginTop:"3px"}}>Multi-level material structure and release workflow</div></div>
+                    <button className="primary-button" type="button" onClick={()=>setShowBomModal(true)}><Plus size={16}/> Create BOM</button>
+                  </div>
+                  {(selectedProject.boms?.length || 0)===0 ? <div style={{padding:"22px",color:"#64748b"}}>No BOMs yet.</div> :
+                    selectedProject.boms.map(b=><div key={b.id} style={{padding:"14px 16px",borderBottom:"1px solid #eef2f7"}}>
+                      <div style={{display:"flex",justifyContent:"space-between",gap:"12px",alignItems:"center"}}>
+                        <button type="button" onClick={()=>setSelectedBomId(b.id)} style={{border:0,background:"transparent",padding:0,textAlign:"left",cursor:"pointer"}}>
+                          <strong>{b.bomNumber} — {b.name}</strong><div style={{fontSize:"12px",color:"#64748b",marginTop:"4px"}}>Rev {b.revision} · {formatStatus(b.status)} · {b.items?.length || 0} items</div>
+                        </button>
+                        <div style={{display:"flex",gap:"7px",flexWrap:"wrap"}}>
+                          <button className="secondary-button" type="button" onClick={()=>{setSelectedBomId(b.id);setBomItemForm({...initialBomItemForm,itemNumber:String((b.items?.length||0)+1)});setShowBomItemModal(true)}}>+ Item</button>
+                          {b.status==="DRAFT" && <button className="secondary-button" type="button" onClick={()=>void handleBomStatus(b,"IN_REVIEW")}>Review</button>}
+                          {b.status==="IN_REVIEW" && <button className="secondary-button" type="button" onClick={()=>void handleBomStatus(b,"APPROVED")}>Approve</button>}
+                          {b.status==="APPROVED" && <button className="primary-button" type="button" onClick={()=>void handleBomStatus(b,"RELEASED")}>Release</button>}
+                        </div>
+                      </div>
+                      {(b.items?.length||0)>0 && (
+                        <div className="bom-tree-wrap">
+                          <div className="bom-tree-head">
+                            <span>Item</span><span>Assembly / Component</span><span>Qty</span><span>Source</span><span>Material / Drawing</span><span></span>
+                          </div>
+                          <BomTree
+                            items={b.items}
+                            onDelete={(itemId)=>void handleDeleteBomItem(itemId)}
+                            onAddChild={(parent)=>{
+                              setSelectedBomId(b.id);
+                              setBomItemForm({
+                                ...initialBomItemForm,
+                                parentItemId: parent.id,
+                                itemNumber: String((b.items?.length||0)+1),
+                              });
+                              setShowBomItemModal(true);
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>)}
                 </div>
 
                 {selectedProject.notes && (
@@ -961,6 +1237,58 @@ export default function EngineeringPage() {
           )}
         </section>
       </div>
+
+
+      {showDrawingModal && selectedProject && (
+        <SimpleModal title="Add Engineering Drawing" subtitle={selectedProject.engineeringNumber} onClose={()=>!savingDrawing&&setShowDrawingModal(false)}>
+          <form onSubmit={handleCreateDrawing} className="engineering-simple-form">
+            <div className="engineering-form-grid">
+              <label><span>Drawing Number *</span><input required value={drawingForm.drawingNumber} onChange={e=>setDrawingForm(c=>({...c,drawingNumber:e.target.value}))} placeholder="GA-001"/></label>
+              <label><span>Category *</span><select value={drawingForm.category} onChange={e=>setDrawingForm(c=>({...c,category:e.target.value as DrawingCategory}))}><option value="GENERAL_ARRANGEMENT">General Arrangement</option><option value="PID">P&ID</option><option value="FABRICATION">Fabrication</option><option value="TUBE_LAYOUT">Tube Layout</option><option value="ELECTRICAL">Electrical</option><option value="INSTRUMENTATION">Instrumentation</option><option value="FOUNDATION">Foundation</option><option value="OTHER">Other</option></select></label>
+            </div>
+            <label><span>Title *</span><input required value={drawingForm.title} onChange={e=>setDrawingForm(c=>({...c,title:e.target.value}))} placeholder="Boiler General Arrangement"/></label>
+            <label><span>Description</span><textarea rows={3} value={drawingForm.description} onChange={e=>setDrawingForm(c=>({...c,description:e.target.value}))}/></label>
+            <div className="engineering-form-grid"><label><span>Document Name</span><input value={drawingForm.documentName} onChange={e=>setDrawingForm(c=>({...c,documentName:e.target.value}))} placeholder="GA-001.pdf"/></label><label><span>Document URL</span><input value={drawingForm.documentUrl} onChange={e=>setDrawingForm(c=>({...c,documentUrl:e.target.value}))} placeholder="https://..."/></label></div>
+            <label><span>Change Reason *</span><input required value={drawingForm.changeReason} onChange={e=>setDrawingForm(c=>({...c,changeReason:e.target.value}))}/></label>
+            <ModalActions busy={savingDrawing} busyText="Creating..." submitText="Create Drawing" onCancel={()=>setShowDrawingModal(false)}/>
+          </form>
+        </SimpleModal>
+      )}
+
+      {showBomModal && selectedProject && (
+        <SimpleModal title="Create Bill of Materials" subtitle={selectedProject.engineeringNumber} onClose={()=>!savingBom&&setShowBomModal(false)}>
+          <form onSubmit={handleCreateBom} className="engineering-simple-form">
+            <div className="engineering-form-grid"><label><span>BOM Number *</span><input required value={bomForm.bomNumber} onChange={e=>setBomForm(c=>({...c,bomNumber:e.target.value}))} placeholder="BOM-IB-500-001"/></label><label><span>Revision</span><input type="number" min="0" value={bomForm.revision} onChange={e=>setBomForm(c=>({...c,revision:e.target.value}))}/></label></div>
+            <label><span>BOM Name *</span><input required value={bomForm.name} onChange={e=>setBomForm(c=>({...c,name:e.target.value}))} placeholder="Industrial Boiler Main BOM"/></label>
+            <label><span>Description</span><textarea rows={4} value={bomForm.description} onChange={e=>setBomForm(c=>({...c,description:e.target.value}))}/></label>
+            <ModalActions busy={savingBom} busyText="Creating..." submitText="Create BOM" onCancel={()=>setShowBomModal(false)}/>
+          </form>
+        </SimpleModal>
+      )}
+
+      {showBomItemModal && selectedProject && selectedBomId && (
+        <SimpleModal title="Add BOM Item" subtitle="Add material, assembly or purchased component" onClose={()=>!savingBomItem&&setShowBomItemModal(false)}>
+          <form onSubmit={handleCreateBomItem} className="engineering-simple-form">
+            <div className="engineering-form-grid"><label><span>Item No. *</span><input required type="number" min="1" value={bomItemForm.itemNumber} onChange={e=>setBomItemForm(c=>({...c,itemNumber:e.target.value}))}/></label><label><span>Source</span><select value={bomItemForm.source} onChange={e=>setBomItemForm(c=>({...c,source:e.target.value as "MAKE"|"BUY"}))}><option value="BUY">Buy</option><option value="MAKE">Make</option></select></label></div>
+            <label><span>Item Name *</span><input required value={bomItemForm.name} onChange={e=>setBomItemForm(c=>({...c,name:e.target.value}))} placeholder="Boiler shell plate"/></label>
+            <div className="engineering-form-grid"><label><span>Quantity *</span><input required type="number" min="0.0001" step="any" value={bomItemForm.quantity} onChange={e=>setBomItemForm(c=>({...c,quantity:e.target.value}))}/></label><label><span>Unit *</span><input required value={bomItemForm.unit} onChange={e=>setBomItemForm(c=>({...c,unit:e.target.value}))}/></label></div>
+            <label><span>Parent Item</span><select value={bomItemForm.parentItemId} onChange={e=>setBomItemForm(c=>({...c,parentItemId:e.target.value}))}><option value="">Top level</option>{selectedProject.boms.find(b=>b.id===selectedBomId)?.items.map(i=><option key={i.id} value={i.id}>#{i.itemNumber} {i.name}</option>)}</select></label>
+            <div className="engineering-form-grid"><label><span>Material Spec</span><input value={bomItemForm.materialSpec} onChange={e=>setBomItemForm(c=>({...c,materialSpec:e.target.value}))} placeholder="IS 2062 E250"/></label><label><span>Drawing Number</span><input value={bomItemForm.drawingNumber} onChange={e=>setBomItemForm(c=>({...c,drawingNumber:e.target.value}))}/></label></div>
+            <label><span>Remarks</span><textarea rows={3} value={bomItemForm.remarks} onChange={e=>setBomItemForm(c=>({...c,remarks:e.target.value}))}/></label>
+            <ModalActions busy={savingBomItem} busyText="Adding..." submitText="Add Item" onCancel={()=>setShowBomItemModal(false)}/>
+          </form>
+        </SimpleModal>
+      )}
+
+      {revisionDrawing && (
+        <SimpleModal title={`New Revision — ${revisionDrawing.drawingNumber}`} subtitle={`Current revision: ${revisionDrawing.currentRevision}`} onClose={()=>!savingRevision&&setRevisionDrawing(null)}>
+          <form onSubmit={handleCreateRevision} className="engineering-simple-form">
+            <label><span>Change Reason *</span><textarea required rows={4} value={revisionReason} onChange={e=>setRevisionReason(e.target.value)} placeholder="Describe what changed in this revision"/></label>
+            <div className="engineering-form-grid"><label><span>Document Name</span><input value={revisionDocumentName} onChange={e=>setRevisionDocumentName(e.target.value)}/></label><label><span>Document URL</span><input value={revisionDocumentUrl} onChange={e=>setRevisionDocumentUrl(e.target.value)}/></label></div>
+            <ModalActions busy={savingRevision} busyText="Creating..." submitText="Create Revision" onCancel={()=>setRevisionDrawing(null)}/>
+          </form>
+        </SimpleModal>
+      )}
 
       {/* ====================================================
           CREATE PROJECT MODAL
@@ -1477,4 +1805,68 @@ function MiniModule({
       </div>
     </div>
   );
+}
+
+
+function BomTree({
+  items,
+  onDelete,
+  onAddChild,
+}: {
+  items: EngineeringBom["items"];
+  onDelete: (itemId: string) => void;
+  onAddChild: (item: EngineeringBom["items"][number]) => void;
+}) {
+  const childrenByParent = new Map<string | null, EngineeringBom["items"]>();
+
+  for (const item of items) {
+    const parent = item.parentItemId || null;
+    const list = childrenByParent.get(parent) || [];
+    list.push(item);
+    childrenByParent.set(parent, list);
+  }
+
+  for (const list of childrenByParent.values()) {
+    list.sort((a, b) => (a.sortOrder - b.sortOrder) || (a.itemNumber - b.itemNumber));
+  }
+
+  const renderLevel = (parentId: string | null, depth: number): React.ReactNode =>
+    (childrenByParent.get(parentId) || []).map((item) => {
+      const children = childrenByParent.get(item.id) || [];
+      return (
+        <div key={item.id}>
+          <div className="bom-tree-row">
+            <span>#{item.itemNumber}</span>
+            <span className="bom-tree-name" style={{ paddingLeft: `${depth * 22}px` }}>
+              {depth > 0 && <span className="bom-branch">↳</span>}
+              <span>
+                <strong>{item.name}</strong>
+                <small>{children.length > 0 ? `${children.length} child item${children.length === 1 ? "" : "s"}` : "Component"}</small>
+              </span>
+            </span>
+            <span>{item.quantity} {item.unit}</span>
+            <span><span className={`bom-source ${item.source.toLowerCase()}`}>{item.source}</span></span>
+            <span className="bom-material">
+              <strong>{item.materialSpec || "—"}</strong>
+              <small>{item.drawingNumber ? `Drawing ${item.drawingNumber}` : item.inventoryItem?.itemCode || "No linked drawing"}</small>
+            </span>
+            <span className="bom-row-actions">
+              <button type="button" className="icon-button" onClick={()=>onAddChild(item)} title="Add child item"><Plus size={15}/></button>
+              <button type="button" className="icon-button" onClick={()=>onDelete(item.id)} title="Delete item"><X size={15}/></button>
+            </span>
+          </div>
+          {renderLevel(item.id, depth + 1)}
+        </div>
+      );
+    });
+
+  return <div className="bom-tree-body">{renderLevel(null, 0)}</div>;
+}
+
+function SimpleModal({title,subtitle,onClose,children}:{title:string;subtitle:string;onClose:()=>void;children:React.ReactNode}) {
+  return <div className="engineering-modal-backdrop"><div className="card engineering-modal-card"><div className="engineering-modal-head"><div><h2>{title}</h2><p>{subtitle}</p></div><button type="button" className="icon-button" onClick={onClose}><X size={20}/></button></div>{children}</div></div>;
+}
+
+function ModalActions({busy,busyText,submitText,onCancel}:{busy:boolean;busyText:string;submitText:string;onCancel:()=>void}) {
+  return <div className="engineering-modal-actions"><button type="button" className="secondary-button" onClick={onCancel} disabled={busy}>Cancel</button><button type="submit" className="primary-button" disabled={busy}>{busy?<><Loader2 size={16} className="spin"/>{busyText}</>:<><Plus size={16}/>{submitText}</>}</button></div>;
 }

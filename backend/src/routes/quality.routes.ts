@@ -1,20 +1,13 @@
 import { Router } from "express";
-import {
-  createQualityInspectionController,
-  getQualityInspectionController,
-  listQualityInspectionsController,
-  updateQualityCheckController,
-  updateQualityInspectionController,
-} from "../controllers/quality.controller.js";
 import { authenticate } from "../middleware/auth.middleware.js";
-
-export const qualityRouter = Router();
-
-qualityRouter.use(authenticate);
-
-qualityRouter.get("/", listQualityInspectionsController);
-qualityRouter.get("/:id", getQualityInspectionController);
-qualityRouter.post("/", createQualityInspectionController);
-qualityRouter.patch("/:id", updateQualityInspectionController);
-qualityRouter.patch("/:id/checks/:checkId", updateQualityCheckController);
-
+import * as q from "../controllers/quality.controller.js";
+export const qualityRouter=Router(); qualityRouter.use(authenticate);
+qualityRouter.get("/dashboard",q.getQualityDashboardController);
+qualityRouter.get("/itps",q.listItpsController); qualityRouter.post("/itps",q.createItpController);
+qualityRouter.get("/ibr",q.listIbrController); qualityRouter.post("/ibr",q.createIbrController);
+qualityRouter.get("/welding/procedures",q.listWeldingProceduresController); qualityRouter.post("/welding/procedures",q.createWeldingProcedureController);
+qualityRouter.get("/welding/welders",q.listWelderQualificationsController); qualityRouter.post("/welding/welders",q.createWelderQualificationController);
+qualityRouter.get("/welding/joints",q.listWeldJointsController); qualityRouter.post("/welding/joints",q.createWeldJointController);
+qualityRouter.get("/ncrs",q.listNcrsController); qualityRouter.post("/ncrs",q.createNcrController); qualityRouter.patch("/ncrs/:id",q.updateNcrController);
+qualityRouter.get("/capas",q.listCapasController); qualityRouter.post("/capas",q.createCapaController); qualityRouter.patch("/capas/:id",q.updateCapaController);
+qualityRouter.get("/",q.listQualityInspectionsController); qualityRouter.get("/:id",q.getQualityInspectionController); qualityRouter.post("/",q.createQualityInspectionController); qualityRouter.patch("/:id",q.updateQualityInspectionController); qualityRouter.patch("/:id/checks/:checkId",q.updateQualityCheckController);

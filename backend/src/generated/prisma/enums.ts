@@ -119,6 +119,47 @@ export const ProductionOperationStatus = {
 export type ProductionOperationStatus = (typeof ProductionOperationStatus)[keyof typeof ProductionOperationStatus]
 
 
+export const WorkCenterStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  MAINTENANCE: 'MAINTENANCE'
+} as const
+
+export type WorkCenterStatus = (typeof WorkCenterStatus)[keyof typeof WorkCenterStatus]
+
+
+export const MachineStatus = {
+  AVAILABLE: 'AVAILABLE',
+  IN_USE: 'IN_USE',
+  MAINTENANCE: 'MAINTENANCE',
+  OUT_OF_SERVICE: 'OUT_OF_SERVICE'
+} as const
+
+export type MachineStatus = (typeof MachineStatus)[keyof typeof MachineStatus]
+
+
+export const JobCardStatus = {
+  PLANNED: 'PLANNED',
+  RELEASED: 'RELEASED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  PAUSED: 'PAUSED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type JobCardStatus = (typeof JobCardStatus)[keyof typeof JobCardStatus]
+
+
+export const MaterialConsumptionType = {
+  ISSUE: 'ISSUE',
+  CONSUMPTION: 'CONSUMPTION',
+  RETURN: 'RETURN',
+  SCRAP: 'SCRAP'
+} as const
+
+export type MaterialConsumptionType = (typeof MaterialConsumptionType)[keyof typeof MaterialConsumptionType]
+
+
 export const QualityInspectionType = {
   IN_PROCESS: 'IN_PROCESS',
   FINAL: 'FINAL'
@@ -272,3 +313,398 @@ export const BomItemSource = {
 } as const
 
 export type BomItemSource = (typeof BomItemSource)[keyof typeof BomItemSource]
+
+
+export const VendorStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  BLOCKED: 'BLOCKED'
+} as const
+
+export type VendorStatus = (typeof VendorStatus)[keyof typeof VendorStatus]
+
+
+export const PurchaseRequisitionStatus = {
+  DRAFT: 'DRAFT',
+  SUBMITTED: 'SUBMITTED',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  RFQ_CREATED: 'RFQ_CREATED',
+  CLOSED: 'CLOSED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type PurchaseRequisitionStatus = (typeof PurchaseRequisitionStatus)[keyof typeof PurchaseRequisitionStatus]
+
+
+export const RfqStatus = {
+  DRAFT: 'DRAFT',
+  SENT: 'SENT',
+  QUOTES_RECEIVED: 'QUOTES_RECEIVED',
+  EVALUATED: 'EVALUATED',
+  AWARDED: 'AWARDED',
+  CLOSED: 'CLOSED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type RfqStatus = (typeof RfqStatus)[keyof typeof RfqStatus]
+
+
+export const VendorQuotationStatus = {
+  RECEIVED: 'RECEIVED',
+  UNDER_REVIEW: 'UNDER_REVIEW',
+  SELECTED: 'SELECTED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type VendorQuotationStatus = (typeof VendorQuotationStatus)[keyof typeof VendorQuotationStatus]
+
+
+export const PurchaseOrderStatus = {
+  DRAFT: 'DRAFT',
+  APPROVED: 'APPROVED',
+  SENT: 'SENT',
+  PARTIALLY_RECEIVED: 'PARTIALLY_RECEIVED',
+  RECEIVED: 'RECEIVED',
+  CLOSED: 'CLOSED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type PurchaseOrderStatus = (typeof PurchaseOrderStatus)[keyof typeof PurchaseOrderStatus]
+
+
+export const GrnStatus = {
+  DRAFT: 'DRAFT',
+  RECEIVED: 'RECEIVED',
+  INSPECTED: 'INSPECTED',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+  PARTIALLY_ACCEPTED: 'PARTIALLY_ACCEPTED'
+} as const
+
+export type GrnStatus = (typeof GrnStatus)[keyof typeof GrnStatus]
+
+
+export const SalesOrderStatus = {
+  DRAFT: 'DRAFT',
+  CONFIRMED: 'CONFIRMED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  READY_TO_INVOICE: 'READY_TO_INVOICE',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type SalesOrderStatus = (typeof SalesOrderStatus)[keyof typeof SalesOrderStatus]
+
+
+export const InvoiceStatus = {
+  DRAFT: 'DRAFT',
+  ISSUED: 'ISSUED',
+  PARTIALLY_PAID: 'PARTIALLY_PAID',
+  PAID: 'PAID',
+  OVERDUE: 'OVERDUE',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
+
+
+export const PaymentMethod = {
+  CASH: 'CASH',
+  BANK_TRANSFER: 'BANK_TRANSFER',
+  UPI: 'UPI',
+  CHEQUE: 'CHEQUE',
+  CARD: 'CARD',
+  OTHER: 'OTHER'
+} as const
+
+export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]
+
+
+export const ProjectStatus = {
+  PLANNED: 'PLANNED',
+  ACTIVE: 'ACTIVE',
+  ON_HOLD: 'ON_HOLD',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
+
+
+export const ProjectMilestoneStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  DELAYED: 'DELAYED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ProjectMilestoneStatus = (typeof ProjectMilestoneStatus)[keyof typeof ProjectMilestoneStatus]
+
+
+export const ProjectTaskStatus = {
+  TODO: 'TODO',
+  IN_PROGRESS: 'IN_PROGRESS',
+  BLOCKED: 'BLOCKED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ProjectTaskStatus = (typeof ProjectTaskStatus)[keyof typeof ProjectTaskStatus]
+
+
+export const QualityDocumentStatus = {
+  DRAFT: 'DRAFT',
+  IN_REVIEW: 'IN_REVIEW',
+  APPROVED: 'APPROVED',
+  RELEASED: 'RELEASED'
+} as const
+
+export type QualityDocumentStatus = (typeof QualityDocumentStatus)[keyof typeof QualityDocumentStatus]
+
+
+export const IbrDocumentType = {
+  FORM_III: 'FORM_III',
+  FORM_IV: 'FORM_IV',
+  FORM_XVI: 'FORM_XVI',
+  DRAWING: 'DRAWING',
+  MATERIAL_CERTIFICATE: 'MATERIAL_CERTIFICATE',
+  TEST_CERTIFICATE: 'TEST_CERTIFICATE',
+  OTHER: 'OTHER'
+} as const
+
+export type IbrDocumentType = (typeof IbrDocumentType)[keyof typeof IbrDocumentType]
+
+
+export const IbrDocumentStatus = {
+  DRAFT: 'DRAFT',
+  SUBMITTED: 'SUBMITTED',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type IbrDocumentStatus = (typeof IbrDocumentStatus)[keyof typeof IbrDocumentStatus]
+
+
+export const WeldingProcedureType = {
+  WPS: 'WPS',
+  PQR: 'PQR'
+} as const
+
+export type WeldingProcedureType = (typeof WeldingProcedureType)[keyof typeof WeldingProcedureType]
+
+
+export const WeldingProcedureStatus = {
+  DRAFT: 'DRAFT',
+  QUALIFIED: 'QUALIFIED',
+  EXPIRED: 'EXPIRED',
+  SUPERSEDED: 'SUPERSEDED'
+} as const
+
+export type WeldingProcedureStatus = (typeof WeldingProcedureStatus)[keyof typeof WeldingProcedureStatus]
+
+
+export const WelderQualificationStatus = {
+  ACTIVE: 'ACTIVE',
+  EXPIRED: 'EXPIRED',
+  SUSPENDED: 'SUSPENDED'
+} as const
+
+export type WelderQualificationStatus = (typeof WelderQualificationStatus)[keyof typeof WelderQualificationStatus]
+
+
+export const WeldJointStatus = {
+  PLANNED: 'PLANNED',
+  WELDED: 'WELDED',
+  INSPECTED: 'INSPECTED',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+  REPAIR: 'REPAIR'
+} as const
+
+export type WeldJointStatus = (typeof WeldJointStatus)[keyof typeof WeldJointStatus]
+
+
+export const NcrSeverity = {
+  MINOR: 'MINOR',
+  MAJOR: 'MAJOR',
+  CRITICAL: 'CRITICAL'
+} as const
+
+export type NcrSeverity = (typeof NcrSeverity)[keyof typeof NcrSeverity]
+
+
+export const NcrStatus = {
+  OPEN: 'OPEN',
+  UNDER_REVIEW: 'UNDER_REVIEW',
+  ACTION_REQUIRED: 'ACTION_REQUIRED',
+  CLOSED: 'CLOSED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type NcrStatus = (typeof NcrStatus)[keyof typeof NcrStatus]
+
+
+export const CapaStatus = {
+  OPEN: 'OPEN',
+  IN_PROGRESS: 'IN_PROGRESS',
+  VERIFICATION: 'VERIFICATION',
+  CLOSED: 'CLOSED'
+} as const
+
+export type CapaStatus = (typeof CapaStatus)[keyof typeof CapaStatus]
+
+
+export const FinanceAccountType = {
+  ASSET: 'ASSET',
+  LIABILITY: 'LIABILITY',
+  EQUITY: 'EQUITY',
+  INCOME: 'INCOME',
+  EXPENSE: 'EXPENSE'
+} as const
+
+export type FinanceAccountType = (typeof FinanceAccountType)[keyof typeof FinanceAccountType]
+
+
+export const FinanceJournalStatus = {
+  DRAFT: 'DRAFT',
+  POSTED: 'POSTED',
+  VOID: 'VOID'
+} as const
+
+export type FinanceJournalStatus = (typeof FinanceJournalStatus)[keyof typeof FinanceJournalStatus]
+
+
+export const VendorBillStatus = {
+  DRAFT: 'DRAFT',
+  OPEN: 'OPEN',
+  PARTIALLY_PAID: 'PARTIALLY_PAID',
+  PAID: 'PAID',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type VendorBillStatus = (typeof VendorBillStatus)[keyof typeof VendorBillStatus]
+
+
+export const ExpenseStatus = {
+  DRAFT: 'DRAFT',
+  APPROVED: 'APPROVED',
+  PAID: 'PAID',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ExpenseStatus = (typeof ExpenseStatus)[keyof typeof ExpenseStatus]
+
+
+export const InstallationStatus = {
+  PLANNED: 'PLANNED',
+  SITE_READY: 'SITE_READY',
+  IN_PROGRESS: 'IN_PROGRESS',
+  INSTALLED: 'INSTALLED',
+  COMMISSIONING: 'COMMISSIONING',
+  HANDED_OVER: 'HANDED_OVER',
+  ON_HOLD: 'ON_HOLD',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type InstallationStatus = (typeof InstallationStatus)[keyof typeof InstallationStatus]
+
+
+export const InstallationCheckStatus = {
+  PENDING: 'PENDING',
+  PASS: 'PASS',
+  FAIL: 'FAIL',
+  NOT_APPLICABLE: 'NOT_APPLICABLE'
+} as const
+
+export type InstallationCheckStatus = (typeof InstallationCheckStatus)[keyof typeof InstallationCheckStatus]
+
+
+export const CommissioningTestStatus = {
+  PENDING: 'PENDING',
+  PASS: 'PASS',
+  FAIL: 'FAIL'
+} as const
+
+export type CommissioningTestStatus = (typeof CommissioningTestStatus)[keyof typeof CommissioningTestStatus]
+
+
+export const SpareMovementType = {
+  ISSUE: 'ISSUE',
+  RETURN: 'RETURN',
+  USED: 'USED'
+} as const
+
+export type SpareMovementType = (typeof SpareMovementType)[keyof typeof SpareMovementType]
+
+
+export const HrEmployeeStatus = {
+  ACTIVE: 'ACTIVE',
+  ON_LEAVE: 'ON_LEAVE',
+  INACTIVE: 'INACTIVE',
+  TERMINATED: 'TERMINATED'
+} as const
+
+export type HrEmployeeStatus = (typeof HrEmployeeStatus)[keyof typeof HrEmployeeStatus]
+
+
+export const AttendanceStatus = {
+  PRESENT: 'PRESENT',
+  ABSENT: 'ABSENT',
+  HALF_DAY: 'HALF_DAY',
+  PAID_LEAVE: 'PAID_LEAVE',
+  WEEK_OFF: 'WEEK_OFF',
+  HOLIDAY: 'HOLIDAY'
+} as const
+
+export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
+
+
+export const LeaveRequestStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type LeaveRequestStatus = (typeof LeaveRequestStatus)[keyof typeof LeaveRequestStatus]
+
+
+export const PayrollRunStatus = {
+  DRAFT: 'DRAFT',
+  PROCESSED: 'PROCESSED',
+  PAID: 'PAID',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type PayrollRunStatus = (typeof PayrollRunStatus)[keyof typeof PayrollRunStatus]
+
+
+export const IotDeviceStatus = {
+  ONLINE: 'ONLINE',
+  OFFLINE: 'OFFLINE',
+  WARNING: 'WARNING',
+  MAINTENANCE: 'MAINTENANCE',
+  DISABLED: 'DISABLED'
+} as const
+
+export type IotDeviceStatus = (typeof IotDeviceStatus)[keyof typeof IotDeviceStatus]
+
+
+export const IotAlertSeverity = {
+  INFO: 'INFO',
+  WARNING: 'WARNING',
+  CRITICAL: 'CRITICAL'
+} as const
+
+export type IotAlertSeverity = (typeof IotAlertSeverity)[keyof typeof IotAlertSeverity]
+
+
+export const IotAlertStatus = {
+  OPEN: 'OPEN',
+  ACKNOWLEDGED: 'ACKNOWLEDGED',
+  RESOLVED: 'RESOLVED'
+} as const
+
+export type IotAlertStatus = (typeof IotAlertStatus)[keyof typeof IotAlertStatus]

@@ -1,0 +1,11 @@
+import type {IotAlert,IotDevice,IotDeviceStatus,ManagementDashboard} from "../types/iot";
+const API=import.meta.env.VITE_API_URL||"http://localhost:5000/api";
+const headers=(json=false)=>{const token=localStorage.getItem("accessToken");if(!token)throw new Error("Your session has expired. Please sign in again.");return {...(json?{"Content-Type":"application/json"}:{}),Authorization:`Bearer ${token}`}};
+async function read<T>(r:Response,f:string):Promise<T>{const x=await r.json() as {success:boolean;message?:string;data:T};if(!r.ok)throw new Error(x.message||f);return x.data}
+export const getManagementDashboard=()=>fetch(`${API}/iot/dashboard`,{headers:headers()}).then(r=>read<ManagementDashboard>(r,"Unable to load dashboard"));
+export const getIotDevices=(search="")=>fetch(`${API}/iot/devices${search.trim()?`?search=${encodeURIComponent(search.trim())}`:""}`,{headers:headers()}).then(r=>read<IotDevice[]>(r,"Unable to load devices"));
+export const createIotDevice=(p:{deviceCode:string;name:string;deviceType:string;machineId?:string;workCenterId?:string;location?:string;firmware?:string;notes?:string})=>fetch(`${API}/iot/devices`,{method:"POST",headers:headers(true),body:JSON.stringify(p)}).then(r=>read<IotDevice>(r,"Unable to create device"));
+export const updateIotDevice=(id:string,p:{status?:IotDeviceStatus})=>fetch(`${API}/iot/devices/${id}`,{method:"PATCH",headers:headers(true),body:JSON.stringify(p)}).then(r=>read<IotDevice>(r,"Unable to update device"));
+export const addSensorReading=(id:string,p:{sensorType:string;value:number;unit:string})=>fetch(`${API}/iot/devices/${id}/readings`,{method:"POST",headers:headers(true),body:JSON.stringify(p)}).then(r=>read<unknown>(r,"Unable to add reading"));
+export const createIotAlert=(id:string,p:{title:string;message?:string;severity:"INFO"|"WARNING"|"CRITICAL"})=>fetch(`${API}/iot/devices/${id}/alerts`,{method:"POST",headers:headers(true),body:JSON.stringify(p)}).then(r=>read<IotAlert>(r,"Unable to create alert"));
+export const updateIotAlert=(id:string,status:"ACKNOWLEDGED"|"RESOLVED")=>fetch(`${API}/iot/alerts/${id}`,{method:"PATCH",headers:headers(true),body:JSON.stringify({status})}).then(r=>read<IotAlert>(r,"Unable to update alert"));

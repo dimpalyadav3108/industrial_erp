@@ -306,6 +306,7 @@ export type ServiceRequestWhereInput = {
   serviceContract?: Prisma.XOR<Prisma.ServiceContractNullableScalarRelationFilter, Prisma.ServiceContractWhereInput> | null
   assignedTo?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  installationJob?: Prisma.XOR<Prisma.InstallationJobNullableScalarRelationFilter, Prisma.InstallationJobWhereInput> | null
 }
 
 export type ServiceRequestOrderByWithRelationInput = {
@@ -333,6 +334,7 @@ export type ServiceRequestOrderByWithRelationInput = {
   serviceContract?: Prisma.ServiceContractOrderByWithRelationInput
   assignedTo?: Prisma.UserOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
+  installationJob?: Prisma.InstallationJobOrderByWithRelationInput
 }
 
 export type ServiceRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -363,6 +365,7 @@ export type ServiceRequestWhereUniqueInput = Prisma.AtLeast<{
   serviceContract?: Prisma.XOR<Prisma.ServiceContractNullableScalarRelationFilter, Prisma.ServiceContractWhereInput> | null
   assignedTo?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  installationJob?: Prisma.XOR<Prisma.InstallationJobNullableScalarRelationFilter, Prisma.InstallationJobWhereInput> | null
 }, "id" | "ticketNumber">
 
 export type ServiceRequestOrderByWithAggregationInput = {
@@ -438,6 +441,7 @@ export type ServiceRequestCreateInput = {
   serviceContract?: Prisma.ServiceContractCreateNestedOneWithoutRequestsInput
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedServiceRequestsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedServiceRequestsInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutServiceRequestInput
 }
 
 export type ServiceRequestUncheckedCreateInput = {
@@ -461,6 +465,7 @@ export type ServiceRequestUncheckedCreateInput = {
   resolutionNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutServiceRequestInput
 }
 
 export type ServiceRequestUpdateInput = {
@@ -484,6 +489,7 @@ export type ServiceRequestUpdateInput = {
   serviceContract?: Prisma.ServiceContractUpdateOneWithoutRequestsNestedInput
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedServiceRequestsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedServiceRequestsNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutServiceRequestNestedInput
 }
 
 export type ServiceRequestUncheckedUpdateInput = {
@@ -507,6 +513,7 @@ export type ServiceRequestUncheckedUpdateInput = {
   resolutionNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutServiceRequestNestedInput
 }
 
 export type ServiceRequestCreateManyInput = {
@@ -651,6 +658,11 @@ export type ServiceRequestMinOrderByAggregateInput = {
   resolutionNotes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ServiceRequestNullableScalarRelationFilter = {
+  is?: Prisma.ServiceRequestWhereInput | null
+  isNot?: Prisma.ServiceRequestWhereInput | null
 }
 
 export type ServiceRequestCreateNestedManyWithoutAssignedToInput = {
@@ -829,6 +841,22 @@ export type EnumServiceRequestStatusFieldUpdateOperationsInput = {
   set?: $Enums.ServiceRequestStatus
 }
 
+export type ServiceRequestCreateNestedOneWithoutInstallationJobInput = {
+  create?: Prisma.XOR<Prisma.ServiceRequestCreateWithoutInstallationJobInput, Prisma.ServiceRequestUncheckedCreateWithoutInstallationJobInput>
+  connectOrCreate?: Prisma.ServiceRequestCreateOrConnectWithoutInstallationJobInput
+  connect?: Prisma.ServiceRequestWhereUniqueInput
+}
+
+export type ServiceRequestUpdateOneWithoutInstallationJobNestedInput = {
+  create?: Prisma.XOR<Prisma.ServiceRequestCreateWithoutInstallationJobInput, Prisma.ServiceRequestUncheckedCreateWithoutInstallationJobInput>
+  connectOrCreate?: Prisma.ServiceRequestCreateOrConnectWithoutInstallationJobInput
+  upsert?: Prisma.ServiceRequestUpsertWithoutInstallationJobInput
+  disconnect?: Prisma.ServiceRequestWhereInput | boolean
+  delete?: Prisma.ServiceRequestWhereInput | boolean
+  connect?: Prisma.ServiceRequestWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ServiceRequestUpdateToOneWithWhereWithoutInstallationJobInput, Prisma.ServiceRequestUpdateWithoutInstallationJobInput>, Prisma.ServiceRequestUncheckedUpdateWithoutInstallationJobInput>
+}
+
 export type ServiceRequestCreateWithoutAssignedToInput = {
   id?: string
   ticketNumber: string
@@ -849,6 +877,7 @@ export type ServiceRequestCreateWithoutAssignedToInput = {
   customer: Prisma.CustomerCreateNestedOneWithoutServiceRequestsInput
   serviceContract?: Prisma.ServiceContractCreateNestedOneWithoutRequestsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedServiceRequestsInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutServiceRequestInput
 }
 
 export type ServiceRequestUncheckedCreateWithoutAssignedToInput = {
@@ -871,6 +900,7 @@ export type ServiceRequestUncheckedCreateWithoutAssignedToInput = {
   resolutionNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutServiceRequestInput
 }
 
 export type ServiceRequestCreateOrConnectWithoutAssignedToInput = {
@@ -903,6 +933,7 @@ export type ServiceRequestCreateWithoutCreatedByInput = {
   customer: Prisma.CustomerCreateNestedOneWithoutServiceRequestsInput
   serviceContract?: Prisma.ServiceContractCreateNestedOneWithoutRequestsInput
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedServiceRequestsInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutServiceRequestInput
 }
 
 export type ServiceRequestUncheckedCreateWithoutCreatedByInput = {
@@ -925,6 +956,7 @@ export type ServiceRequestUncheckedCreateWithoutCreatedByInput = {
   resolutionNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutServiceRequestInput
 }
 
 export type ServiceRequestCreateOrConnectWithoutCreatedByInput = {
@@ -1015,6 +1047,7 @@ export type ServiceRequestCreateWithoutCustomerInput = {
   serviceContract?: Prisma.ServiceContractCreateNestedOneWithoutRequestsInput
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedServiceRequestsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedServiceRequestsInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutServiceRequestInput
 }
 
 export type ServiceRequestUncheckedCreateWithoutCustomerInput = {
@@ -1037,6 +1070,7 @@ export type ServiceRequestUncheckedCreateWithoutCustomerInput = {
   resolutionNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutServiceRequestInput
 }
 
 export type ServiceRequestCreateOrConnectWithoutCustomerInput = {
@@ -1085,6 +1119,7 @@ export type ServiceRequestCreateWithoutServiceContractInput = {
   customer: Prisma.CustomerCreateNestedOneWithoutServiceRequestsInput
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedServiceRequestsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedServiceRequestsInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutServiceRequestInput
 }
 
 export type ServiceRequestUncheckedCreateWithoutServiceContractInput = {
@@ -1107,6 +1142,7 @@ export type ServiceRequestUncheckedCreateWithoutServiceContractInput = {
   resolutionNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutServiceRequestInput
 }
 
 export type ServiceRequestCreateOrConnectWithoutServiceContractInput = {
@@ -1133,6 +1169,114 @@ export type ServiceRequestUpdateWithWhereUniqueWithoutServiceContractInput = {
 export type ServiceRequestUpdateManyWithWhereWithoutServiceContractInput = {
   where: Prisma.ServiceRequestScalarWhereInput
   data: Prisma.XOR<Prisma.ServiceRequestUpdateManyMutationInput, Prisma.ServiceRequestUncheckedUpdateManyWithoutServiceContractInput>
+}
+
+export type ServiceRequestCreateWithoutInstallationJobInput = {
+  id?: string
+  ticketNumber: string
+  requestType: $Enums.ServiceRequestType
+  priority?: $Enums.LeadPriority
+  status?: $Enums.ServiceRequestStatus
+  subject: string
+  description: string
+  location?: string | null
+  reportedAt?: Date | string
+  scheduledDate?: Date | string | null
+  startedAt?: Date | string | null
+  resolvedAt?: Date | string | null
+  closedAt?: Date | string | null
+  resolutionNotes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutServiceRequestsInput
+  serviceContract?: Prisma.ServiceContractCreateNestedOneWithoutRequestsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedServiceRequestsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedServiceRequestsInput
+}
+
+export type ServiceRequestUncheckedCreateWithoutInstallationJobInput = {
+  id?: string
+  ticketNumber: string
+  customerId: string
+  serviceContractId?: string | null
+  requestType: $Enums.ServiceRequestType
+  priority?: $Enums.LeadPriority
+  status?: $Enums.ServiceRequestStatus
+  subject: string
+  description: string
+  location?: string | null
+  reportedAt?: Date | string
+  scheduledDate?: Date | string | null
+  startedAt?: Date | string | null
+  resolvedAt?: Date | string | null
+  closedAt?: Date | string | null
+  assignedToId?: string | null
+  createdById?: string | null
+  resolutionNotes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ServiceRequestCreateOrConnectWithoutInstallationJobInput = {
+  where: Prisma.ServiceRequestWhereUniqueInput
+  create: Prisma.XOR<Prisma.ServiceRequestCreateWithoutInstallationJobInput, Prisma.ServiceRequestUncheckedCreateWithoutInstallationJobInput>
+}
+
+export type ServiceRequestUpsertWithoutInstallationJobInput = {
+  update: Prisma.XOR<Prisma.ServiceRequestUpdateWithoutInstallationJobInput, Prisma.ServiceRequestUncheckedUpdateWithoutInstallationJobInput>
+  create: Prisma.XOR<Prisma.ServiceRequestCreateWithoutInstallationJobInput, Prisma.ServiceRequestUncheckedCreateWithoutInstallationJobInput>
+  where?: Prisma.ServiceRequestWhereInput
+}
+
+export type ServiceRequestUpdateToOneWithWhereWithoutInstallationJobInput = {
+  where?: Prisma.ServiceRequestWhereInput
+  data: Prisma.XOR<Prisma.ServiceRequestUpdateWithoutInstallationJobInput, Prisma.ServiceRequestUncheckedUpdateWithoutInstallationJobInput>
+}
+
+export type ServiceRequestUpdateWithoutInstallationJobInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ticketNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  requestType?: Prisma.EnumServiceRequestTypeFieldUpdateOperationsInput | $Enums.ServiceRequestType
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumServiceRequestStatusFieldUpdateOperationsInput | $Enums.ServiceRequestStatus
+  subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reportedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scheduledDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resolutionNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutServiceRequestsNestedInput
+  serviceContract?: Prisma.ServiceContractUpdateOneWithoutRequestsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedServiceRequestsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedServiceRequestsNestedInput
+}
+
+export type ServiceRequestUncheckedUpdateWithoutInstallationJobInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ticketNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requestType?: Prisma.EnumServiceRequestTypeFieldUpdateOperationsInput | $Enums.ServiceRequestType
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumServiceRequestStatusFieldUpdateOperationsInput | $Enums.ServiceRequestStatus
+  subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reportedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scheduledDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resolutionNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ServiceRequestCreateManyAssignedToInput = {
@@ -1199,6 +1343,7 @@ export type ServiceRequestUpdateWithoutAssignedToInput = {
   customer?: Prisma.CustomerUpdateOneRequiredWithoutServiceRequestsNestedInput
   serviceContract?: Prisma.ServiceContractUpdateOneWithoutRequestsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedServiceRequestsNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutServiceRequestNestedInput
 }
 
 export type ServiceRequestUncheckedUpdateWithoutAssignedToInput = {
@@ -1221,6 +1366,7 @@ export type ServiceRequestUncheckedUpdateWithoutAssignedToInput = {
   resolutionNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutServiceRequestNestedInput
 }
 
 export type ServiceRequestUncheckedUpdateManyWithoutAssignedToInput = {
@@ -1265,6 +1411,7 @@ export type ServiceRequestUpdateWithoutCreatedByInput = {
   customer?: Prisma.CustomerUpdateOneRequiredWithoutServiceRequestsNestedInput
   serviceContract?: Prisma.ServiceContractUpdateOneWithoutRequestsNestedInput
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedServiceRequestsNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutServiceRequestNestedInput
 }
 
 export type ServiceRequestUncheckedUpdateWithoutCreatedByInput = {
@@ -1287,6 +1434,7 @@ export type ServiceRequestUncheckedUpdateWithoutCreatedByInput = {
   resolutionNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutServiceRequestNestedInput
 }
 
 export type ServiceRequestUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1353,6 +1501,7 @@ export type ServiceRequestUpdateWithoutCustomerInput = {
   serviceContract?: Prisma.ServiceContractUpdateOneWithoutRequestsNestedInput
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedServiceRequestsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedServiceRequestsNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutServiceRequestNestedInput
 }
 
 export type ServiceRequestUncheckedUpdateWithoutCustomerInput = {
@@ -1375,6 +1524,7 @@ export type ServiceRequestUncheckedUpdateWithoutCustomerInput = {
   resolutionNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutServiceRequestNestedInput
 }
 
 export type ServiceRequestUncheckedUpdateManyWithoutCustomerInput = {
@@ -1441,6 +1591,7 @@ export type ServiceRequestUpdateWithoutServiceContractInput = {
   customer?: Prisma.CustomerUpdateOneRequiredWithoutServiceRequestsNestedInput
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedServiceRequestsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedServiceRequestsNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutServiceRequestNestedInput
 }
 
 export type ServiceRequestUncheckedUpdateWithoutServiceContractInput = {
@@ -1463,6 +1614,7 @@ export type ServiceRequestUncheckedUpdateWithoutServiceContractInput = {
   resolutionNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutServiceRequestNestedInput
 }
 
 export type ServiceRequestUncheckedUpdateManyWithoutServiceContractInput = {
@@ -1514,6 +1666,7 @@ export type ServiceRequestSelect<ExtArgs extends runtime.Types.Extensions.Intern
   serviceContract?: boolean | Prisma.ServiceRequest$serviceContractArgs<ExtArgs>
   assignedTo?: boolean | Prisma.ServiceRequest$assignedToArgs<ExtArgs>
   createdBy?: boolean | Prisma.ServiceRequest$createdByArgs<ExtArgs>
+  installationJob?: boolean | Prisma.ServiceRequest$installationJobArgs<ExtArgs>
 }, ExtArgs["result"]["serviceRequest"]>
 
 export type ServiceRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1599,6 +1752,7 @@ export type ServiceRequestInclude<ExtArgs extends runtime.Types.Extensions.Inter
   serviceContract?: boolean | Prisma.ServiceRequest$serviceContractArgs<ExtArgs>
   assignedTo?: boolean | Prisma.ServiceRequest$assignedToArgs<ExtArgs>
   createdBy?: boolean | Prisma.ServiceRequest$createdByArgs<ExtArgs>
+  installationJob?: boolean | Prisma.ServiceRequest$installationJobArgs<ExtArgs>
 }
 export type ServiceRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
@@ -1620,6 +1774,7 @@ export type $ServiceRequestPayload<ExtArgs extends runtime.Types.Extensions.Inte
     serviceContract: Prisma.$ServiceContractPayload<ExtArgs> | null
     assignedTo: Prisma.$UserPayload<ExtArgs> | null
     createdBy: Prisma.$UserPayload<ExtArgs> | null
+    installationJob: Prisma.$InstallationJobPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2040,6 +2195,7 @@ export interface Prisma__ServiceRequestClient<T, Null = never, ExtArgs extends r
   serviceContract<T extends Prisma.ServiceRequest$serviceContractArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServiceRequest$serviceContractArgs<ExtArgs>>): Prisma.Prisma__ServiceContractClient<runtime.Types.Result.GetResult<Prisma.$ServiceContractPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   assignedTo<T extends Prisma.ServiceRequest$assignedToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServiceRequest$assignedToArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.ServiceRequest$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServiceRequest$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  installationJob<T extends Prisma.ServiceRequest$installationJobArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServiceRequest$installationJobArgs<ExtArgs>>): Prisma.Prisma__InstallationJobClient<runtime.Types.Result.GetResult<Prisma.$InstallationJobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2544,6 +2700,25 @@ export type ServiceRequest$createdByArgs<ExtArgs extends runtime.Types.Extension
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * ServiceRequest.installationJob
+ */
+export type ServiceRequest$installationJobArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InstallationJob
+   */
+  select?: Prisma.InstallationJobSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InstallationJob
+   */
+  omit?: Prisma.InstallationJobOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InstallationJobInclude<ExtArgs> | null
+  where?: Prisma.InstallationJobWhereInput
 }
 
 /**

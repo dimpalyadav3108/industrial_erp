@@ -1,0 +1,14 @@
+import { Router } from "express";
+import { authenticate } from "../middleware/auth.middleware.js";
+import { createMilestone,createProject,createTask,eligibleOrders,getProject,listProjects,updateMilestone,updateProject,updateTask } from "../controllers/project.controller.js";
+export const projectRouter=Router();
+projectRouter.use(authenticate);
+projectRouter.get("/eligible-orders",eligibleOrders);
+projectRouter.get("/",listProjects);
+projectRouter.get("/:id",getProject);
+projectRouter.post("/",createProject);
+projectRouter.patch("/:id",updateProject);
+projectRouter.post("/milestones/create",createMilestone);
+projectRouter.patch("/milestones/:id",updateMilestone);
+projectRouter.post("/tasks/create",createTask);
+projectRouter.patch("/tasks/:id",updateTask);

@@ -1,411 +1,55 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import type { FormEvent } from "react";
-import {
-  CircleCheck,
-  Clock3,
-  Eye,
-  Factory,
-  PauseCircle,
-  Plus,
-  Search,
-  Trash2,
-  X,
-} from "lucide-react";
-import {
-  createProductionOrder,
-  getProductionOrders,
-  updateProductionOperation,
-  updateProductionOrderStatus,
-} from "../services/production.service";
-import { getQuotations } from "../services/quotation.service";
-import type {
-  CreateProductionOperationPayload,
-  CreateProductionOrderPayload,
-  ProductionOperationStatus,
-  ProductionOrder,
-  ProductionOrderStatus,
-  ProductionPriority,
-} from "../types/production";
-import type { Quotation } from "../types/quotation";
+import {useCallback,useEffect,useMemo,useState} from "react";
+import type {FormEvent} from "react";
+import {CircleCheck,Eye,Factory,PauseCircle,Plus,Search,Trash2,X,Wrench,Play} from "lucide-react";
+import {createJobCard,createMachine,createProductionOrder,createWorkCenter,getProductionOrders,getWorkCenters,updateJobCard,updateProductionOperation,updateProductionOrderStatus} from "../services/production.service";
+import {getQuotations} from "../services/quotation.service";
+import type {CreateProductionOperationPayload,JobCardStatus,ProductionOperationStatus,ProductionOrder,ProductionOrderStatus,ProductionPriority,WorkCenter} from "../types/production";
+import type {Quotation} from "../types/quotation";
+import "./ProductionPage.css";
+import ProductionTraceabilityPanel from "./ProductionTraceabilityPanel";
+const ol:Record<ProductionOrderStatus,string>={PLANNED:"Planned",RELEASED:"Released",IN_PROGRESS:"In progress",ON_HOLD:"On hold",COMPLETED:"Completed",CANCELLED:"Cancelled"};
+const opl:Record<ProductionOperationStatus,string>={PENDING:"Pending",IN_PROGRESS:"In progress",COMPLETED:"Completed",SKIPPED:"Skipped"};
+const pl:Record<ProductionPriority,string>={LOW:"Low",MEDIUM:"Medium",HIGH:"High",URGENT:"Urgent"};
+const date=(v:string|null)=>v?new Intl.DateTimeFormat("en-IN",{day:"2-digit",month:"short",year:"numeric"}).format(new Date(v)):"Not specified";
+const api=(v:string)=>new Date(`${v}T00:00:00.000Z`).toISOString();
+const blank=():CreateProductionOperationPayload=>({name:"",workCenter:""});
+const initial=():CreateProductionOperationPayload[]=>[{name:"Engineering and drawing approval",workCenter:"Engineering"},{name:"Panel assembly and wiring",workCenter:"Assembly"},{name:"Testing and quality inspection",workCenter:"Testing"}];
 
-const orderStatusLabels: Record<ProductionOrderStatus, string> = {
-  PLANNED: "Planned",
-  RELEASED: "Released",
-  IN_PROGRESS: "In progress",
-  ON_HOLD: "On hold",
-  COMPLETED: "Completed",
-  CANCELLED: "Cancelled",
-};
-
-const operationStatusLabels: Record<ProductionOperationStatus, string> = {
-  PENDING: "Pending",
-  IN_PROGRESS: "In progress",
-  COMPLETED: "Completed",
-  SKIPPED: "Skipped",
-};
-
-const priorityLabels: Record<ProductionPriority, string> = {
-  LOW: "Low",
-  MEDIUM: "Medium",
-  HIGH: "High",
-  URGENT: "Urgent",
-};
-
-const displayDate = (value: string | null) =>
-  value
-    ? new Intl.DateTimeFormat("en-IN", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      }).format(new Date(value))
-    : "Not specified";
-
-const apiDate = (value: string) =>
-  new Date(`${value}T00:00:00.000Z`).toISOString();
-
-const emptyOperation = (): CreateProductionOperationPayload => ({
-  name: "",
-  workCenter: "",
-});
-
-const initialOperations = (): CreateProductionOperationPayload[] => [
-  { name: "Engineering and drawing approval", workCenter: "Engineering" },
-  { name: "Panel assembly and wiring", workCenter: "Assembly" },
-  { name: "Testing and quality inspection", workCenter: "Testing" },
-];
-
-export default function ProductionPage() {
-  const [orders, setOrders] = useState<ProductionOrder[]>([]);
-  const [quotations, setQuotations] = useState<Quotation[]>([]);
-  const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [busyId, setBusyId] = useState<string | null>(null);
-  const [error, setError] = useState("");
-  const [showForm, setShowForm] = useState(false);
-  const [selected, setSelected] = useState<ProductionOrder | null>(null);
-  const [quotationId, setQuotationId] = useState("");
-  const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState<ProductionPriority>("MEDIUM");
-  const [quantity, setQuantity] = useState("1");
-  const [unit, setUnit] = useState("Nos");
-  const [plannedStartDate, setPlannedStartDate] = useState("");
-  const [plannedEndDate, setPlannedEndDate] = useState("");
-  const [notes, setNotes] = useState("");
-  const [operations, setOperations] = useState(initialOperations());
-
-  const loadData = useCallback(async (searchValue = "") => {
-    try {
-      setLoading(true);
-      setError("");
-      const [productionRecords, quotationRecords] = await Promise.all([
-        getProductionOrders(searchValue),
-        getQuotations(),
-      ]);
-      setOrders(productionRecords);
-      setQuotations(quotationRecords);
-    } catch (loadError) {
-      setError(
-        loadError instanceof Error
-          ? loadError.message
-          : "Unable to load production orders"
-      );
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    void loadData();
-  }, [loadData]);
-
-  const summary = useMemo(
-    () => ({
-      total: orders.length,
-      planned: orders.filter((order) =>
-        ["PLANNED", "RELEASED"].includes(order.status)
-      ).length,
-      active: orders.filter((order) => order.status === "IN_PROGRESS").length,
-      held: orders.filter((order) => order.status === "ON_HOLD").length,
-      completed: orders.filter((order) => order.status === "COMPLETED").length,
-    }),
-    [orders]
-  );
-
-  const availableQuotations = useMemo(
-    () =>
-      quotations.filter(
-        (quotation) =>
-          ["ACCEPTED", "CONVERTED"].includes(quotation.status) &&
-          !orders.some((order) => order.quotationId === quotation.id)
-      ),
-    [orders, quotations]
-  );
-
-  const selectedQuotation = useMemo(
-    () => quotations.find((quotation) => quotation.id === quotationId) ?? null,
-    [quotationId, quotations]
-  );
-
-  const resetForm = () => {
-    setQuotationId("");
-    setTitle("");
-    setPriority("MEDIUM");
-    setQuantity("1");
-    setUnit("Nos");
-    setPlannedStartDate("");
-    setPlannedEndDate("");
-    setNotes("");
-    setOperations(initialOperations());
-    setError("");
-  };
-
-  const selectQuotation = (id: string) => {
-    setQuotationId(id);
-    const quotation = quotations.find((record) => record.id === id);
-    if (quotation) {
-      setTitle(quotation.estimate.lead.title);
-    }
-  };
-
-  const changeOperation = (
-    index: number,
-    field: "name" | "workCenter",
-    value: string
-  ) => {
-    setOperations((current) =>
-      current.map((operation, operationIndex) =>
-        operationIndex === index ? { ...operation, [field]: value } : operation
-      )
-    );
-  };
-
-  const handleCreate = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (!quotationId) {
-      setError("Please select an accepted quotation");
-      return;
-    }
-
-    if (operations.some((operation) => !operation.name.trim())) {
-      setError("Every operation must have a name");
-      return;
-    }
-
-    try {
-      setSaving(true);
-      setError("");
-      const payload: CreateProductionOrderPayload = {
-        quotationId,
-        title,
-        priority,
-        quantity: Number(quantity),
-        unit,
-        ...(plannedStartDate
-          ? { plannedStartDate: apiDate(plannedStartDate) }
-          : {}),
-        ...(plannedEndDate ? { plannedEndDate: apiDate(plannedEndDate) } : {}),
-        ...(notes ? { notes } : {}),
-        operations: operations.map((operation) => ({
-          name: operation.name.trim(),
-          ...(operation.workCenter?.trim()
-            ? { workCenter: operation.workCenter.trim() }
-            : {}),
-        })),
-      };
-      await createProductionOrder(payload);
-      setShowForm(false);
-      resetForm();
-      await loadData(search);
-    } catch (saveError) {
-      setError(
-        saveError instanceof Error
-          ? saveError.message
-          : "Unable to create production order"
-      );
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  const handleOrderStatus = async (
-    order: ProductionOrder,
-    status: ProductionOrderStatus
-  ) => {
-    try {
-      setBusyId(order.id);
-      setError("");
-      const updated = await updateProductionOrderStatus(order.id, status);
-      setOrders((current) =>
-        current.map((record) => (record.id === updated.id ? updated : record))
-      );
-      if (selected?.id === updated.id) setSelected(updated);
-    } catch (statusError) {
-      setError(
-        statusError instanceof Error
-          ? statusError.message
-          : "Unable to update production status"
-      );
-    } finally {
-      setBusyId(null);
-    }
-  };
-
-  const handleOperationStatus = async (
-    order: ProductionOrder,
-    operationId: string,
-    status: ProductionOperationStatus
-  ) => {
-    try {
-      setBusyId(operationId);
-      setError("");
-      const updated = await updateProductionOperation(
-        order.id,
-        operationId,
-        status
-      );
-      setOrders((current) =>
-        current.map((record) => (record.id === updated.id ? updated : record))
-      );
-      setSelected(updated);
-    } catch (statusError) {
-      setError(
-        statusError instanceof Error
-          ? statusError.message
-          : "Unable to update operation"
-      );
-    } finally {
-      setBusyId(null);
-    }
-  };
-
-  return (
-    <section className="module-page production-page">
-      <div className="module-heading">
-        <div>
-          <span className="page-eyebrow">SHOP FLOOR CONTROL</span>
-          <h1>Production</h1>
-          <p>Plan manufacturing orders, operations and completion progress.</p>
-        </div>
-        <button
-          className="primary-action"
-          type="button"
-          onClick={() => {
-            resetForm();
-            setShowForm(true);
-          }}
-        >
-          <Plus size={19} /> New production order
-        </button>
-      </div>
-
-      <div className="production-summary-grid">
-        <article><Factory size={24} /><div><strong>{summary.total}</strong><span>Total orders</span></div></article>
-        <article><Clock3 size={24} /><div><strong>{summary.planned}</strong><span>Planned / released</span></div></article>
-        <article><Factory size={24} /><div><strong>{summary.active}</strong><span>In progress</span></div></article>
-        <article><PauseCircle size={24} /><div><strong>{summary.held}</strong><span>On hold</span></div></article>
-        <article><CircleCheck size={24} /><div><strong>{summary.completed}</strong><span>Completed</span></div></article>
-      </div>
-
-      <div className="directory-card">
-        <div className="directory-header">
-          <div><h2>Production register</h2><p>{orders.length} records shown</p></div>
-          <form className="directory-search" onSubmit={(event) => { event.preventDefault(); void loadData(search); }}>
-            <Search size={19} />
-            <input value={search} placeholder="Search order, quotation or customer..." onChange={(event) => setSearch(event.target.value)} />
-            <button type="submit">Search</button>
-          </form>
-        </div>
-
-        {error && !showForm && <div className="page-error">{error}</div>}
-        {loading ? (
-          <div className="empty-state"><div className="loading-spinner" /><h3>Loading production...</h3></div>
-        ) : orders.length === 0 ? (
-          <div className="empty-state"><span className="empty-state-icon"><Factory size={34} /></span><h3>No production orders found</h3><p>Create an order from an accepted quotation.</p></div>
-        ) : (
-          <div className="table-scroll">
-            <table className="data-table production-table">
-              <thead><tr><th>Production order</th><th>Customer / Product</th><th>Priority</th><th>Plan</th><th>Progress</th><th>Status</th><th>Action</th></tr></thead>
-              <tbody>
-                {orders.map((order) => (
-                  <tr key={order.id}>
-                    <td><div className="lead-title-cell"><strong>{order.productionNumber}</strong><span>{order.quotation.quotationNumber}</span></div></td>
-                    <td><div className="lead-title-cell"><strong>{order.title}</strong><span>{order.quotation.estimate.lead.customer?.companyName || "No customer"}</span></div></td>
-                    <td><span className={`production-priority ${order.priority.toLowerCase()}`}>{priorityLabels[order.priority]}</span></td>
-                    <td><div className="lead-title-cell"><strong>{order.quantity} {order.unit}</strong><span>{displayDate(order.plannedEndDate)}</span></div></td>
-                    <td><div className="production-progress"><div><span style={{ width: `${Number(order.progressPercent)}%` }} /></div><strong>{Number(order.progressPercent)}%</strong></div></td>
-                    <td><select className="production-status-select" value={order.status} disabled={busyId === order.id} onChange={(event) => void handleOrderStatus(order, event.target.value as ProductionOrderStatus)}>{Object.entries(orderStatusLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></td>
-                    <td><button className="row-action-button" type="button" title="View production order" onClick={() => setSelected(order)}><Eye size={17} /></button></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-
-      {showForm && (
-        <div className="modal-backdrop" role="presentation" onMouseDown={() => !saving && setShowForm(false)}>
-          <div className="production-form-modal" role="dialog" aria-modal="true" onMouseDown={(event) => event.stopPropagation()}>
-            <div className="modal-header">
-              <div><span className="page-eyebrow">NEW WORK ORDER</span><h2>Create production order</h2><p>Convert an accepted quotation into a manufacturing plan.</p></div>
-              <button className="icon-button" type="button" onClick={() => setShowForm(false)}><X size={21} /></button>
-            </div>
-            <form onSubmit={handleCreate}>
-              {error && <div className="page-error">{error}</div>}
-              <div className="production-form-grid">
-                <label className="wide-field">Accepted quotation<select required value={quotationId} onChange={(event) => selectQuotation(event.target.value)}><option value="">Select quotation</option>{availableQuotations.map((quotation) => <option key={quotation.id} value={quotation.id}>{quotation.quotationNumber} — {quotation.estimate.lead.customer?.companyName || "No customer"} — {quotation.estimate.lead.title}</option>)}</select></label>
-                <label className="wide-field">Production title<input required minLength={2} value={title} onChange={(event) => setTitle(event.target.value)} /></label>
-                <label>Priority<select value={priority} onChange={(event) => setPriority(event.target.value as ProductionPriority)}>{Object.entries(priorityLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
-                <label>Quantity<input required type="number" min="0.001" step="0.001" value={quantity} onChange={(event) => setQuantity(event.target.value)} /></label>
-                <label>Unit<input required value={unit} onChange={(event) => setUnit(event.target.value)} /></label>
-                <label>Planned start<input type="date" value={plannedStartDate} onChange={(event) => setPlannedStartDate(event.target.value)} /></label>
-                <label>Planned completion<input type="date" min={plannedStartDate || undefined} value={plannedEndDate} onChange={(event) => setPlannedEndDate(event.target.value)} /></label>
-              </div>
-
-              {selectedQuotation && (
-                <div className="production-source-preview"><span>Customer<strong>{selectedQuotation.estimate.lead.customer?.companyName || "No customer"}</strong></span><span>Lead<strong>{selectedQuotation.estimate.lead.title}</strong></span><span>Quotation<strong>{selectedQuotation.quotationNumber}</strong></span></div>
-              )}
-
-              <div className="operation-editor-heading"><div><h3>Production operations</h3><p>Add the shop-floor steps in execution order.</p></div><button className="secondary-action" type="button" onClick={() => setOperations((current) => [...current, emptyOperation()])}><Plus size={17} /> Add operation</button></div>
-              <div className="operation-editor-list">
-                {operations.map((operation, index) => (
-                  <div className="operation-editor-row" key={index}>
-                    <span>{index + 1}</span>
-                    <input required placeholder="Operation name" value={operation.name} onChange={(event) => changeOperation(index, "name", event.target.value)} />
-                    <input placeholder="Work centre" value={operation.workCenter || ""} onChange={(event) => changeOperation(index, "workCenter", event.target.value)} />
-                    <button className="icon-button" type="button" disabled={operations.length === 1} onClick={() => setOperations((current) => current.filter((_, operationIndex) => operationIndex !== index))}><Trash2 size={17} /></button>
-                  </div>
-                ))}
-              </div>
-              <label className="production-notes">Notes<textarea rows={3} value={notes} onChange={(event) => setNotes(event.target.value)} /></label>
-              <div className="modal-actions"><button className="secondary-action" type="button" onClick={() => setShowForm(false)}>Cancel</button><button className="primary-action" type="submit" disabled={saving}>{saving ? "Creating..." : "Create production order"}</button></div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {selected && (
-        <div className="modal-backdrop" role="presentation" onMouseDown={() => setSelected(null)}>
-          <div className="production-detail-modal" role="dialog" aria-modal="true" onMouseDown={(event) => event.stopPropagation()}>
-            <div className="modal-header"><div><span className="page-eyebrow">PRODUCTION DETAILS</span><h2>{selected.productionNumber}</h2><p>{selected.title} · {selected.quantity} {selected.unit}</p></div><button className="icon-button" type="button" onClick={() => setSelected(null)}><X size={21} /></button></div>
-            {error && <div className="page-error">{error}</div>}
-            <div className="production-detail-meta"><span>Customer<strong>{selected.quotation.estimate.lead.customer?.companyName || "No customer"}</strong></span><span>Quotation<strong>{selected.quotation.quotationNumber}</strong></span><span>Priority<strong>{priorityLabels[selected.priority]}</strong></span><span>Planned completion<strong>{displayDate(selected.plannedEndDate)}</strong></span><span>Progress<strong>{Number(selected.progressPercent)}%</strong></span></div>
-            <div className="production-operation-list">
-              <h3>Operations</h3>
-              {selected.operations.map((operation) => (
-                <div key={operation.id} className="production-operation-row">
-                  <span className="operation-sequence">{operation.sequence}</span>
-                  <div><strong>{operation.name}</strong><small>{operation.workCenter || "No work centre"}</small></div>
-                  <select value={operation.status} disabled={busyId === operation.id} onChange={(event) => void handleOperationStatus(selected, operation.id, event.target.value as ProductionOperationStatus)}>{Object.entries(operationStatusLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-    </section>
-  );
+export default function ProductionPage(){
+ const[orders,setOrders]=useState<ProductionOrder[]>([]),[quotes,setQuotes]=useState<Quotation[]>([]),[centers,setCenters]=useState<WorkCenter[]>([]);
+ const[search,setSearch]=useState(""),[loading,setLoading]=useState(true),[saving,setSaving]=useState(false),[busy,setBusy]=useState<string|null>(null),[error,setError]=useState("");
+ const[show,setShow]=useState(false),[manage,setManage]=useState(false),[selected,setSelected]=useState<ProductionOrder|null>(null);
+ const[qid,setQid]=useState(""),[title,setTitle]=useState(""),[priority,setPriority]=useState<ProductionPriority>("MEDIUM"),[qty,setQty]=useState("1"),[unit,setUnit]=useState("Nos"),[ps,setPs]=useState(""),[pe,setPe]=useState(""),[notes,setNotes]=useState(""),[ops,setOps]=useState(initial());
+ const[wcCode,setWcCode]=useState(""),[wcName,setWcName]=useState(""),[machineCode,setMachineCode]=useState(""),[machineName,setMachineName]=useState(""),[machineWc,setMachineWc]=useState("");
+ const load=useCallback(async(s="")=>{try{setLoading(true);setError("");const[a,b,c]=await Promise.all([getProductionOrders(s),getQuotations(),getWorkCenters()]);setOrders(a);setQuotes(b);setCenters(c);}catch(e){setError(e instanceof Error?e.message:"Unable to load production");}finally{setLoading(false)}},[]);
+ useEffect(()=>{void load()},[load]);
+ const summary=useMemo(()=>({total:orders.length,planned:orders.filter(o=>["PLANNED","RELEASED"].includes(o.status)).length,active:orders.filter(o=>o.status==="IN_PROGRESS").length,held:orders.filter(o=>o.status==="ON_HOLD").length,completed:orders.filter(o=>o.status==="COMPLETED").length}),[orders]);
+ const available=useMemo(()=>quotes.filter(q=>["ACCEPTED","CONVERTED"].includes(q.status)&&!orders.some(o=>o.quotationId===q.id)),[quotes,orders]);
+ const reset=()=>{setQid("");setTitle("");setPriority("MEDIUM");setQty("1");setUnit("Nos");setPs("");setPe("");setNotes("");setOps(initial());setError("")};
+ const change=(i:number,k:keyof CreateProductionOperationPayload,v:string)=>setOps(x=>x.map((o,n)=>n===i?{...o,[k]:v}:o));
+ async function create(e:FormEvent){e.preventDefault();try{setSaving(true);await createProductionOrder({quotationId:qid,title,priority,quantity:Number(qty),unit,...(ps?{plannedStartDate:api(ps)}:{}),...(pe?{plannedEndDate:api(pe)}:{}),...(notes?{notes}:{}),operations:ops.map(o=>({...o,name:o.name.trim(),...(o.plannedHours?{plannedHours:Number(o.plannedHours)}:{})}))});setShow(false);reset();await load(search)}catch(e){setError(e instanceof Error?e.message:"Unable to create order")}finally{setSaving(false)}}
+ async function orderStatus(o:ProductionOrder,status:ProductionOrderStatus){try{setBusy(o.id);const u=await updateProductionOrderStatus(o.id,status);setOrders(x=>x.map(a=>a.id===u.id?u:a));if(selected?.id===u.id)setSelected(u)}catch(e){setError(e instanceof Error?e.message:"Update failed")}finally{setBusy(null)}}
+ async function opStatus(o:ProductionOrder,id:string,status:ProductionOperationStatus){try{setBusy(id);const u=await updateProductionOperation(o.id,id,status);setOrders(x=>x.map(a=>a.id===u.id?u:a));setSelected(u)}catch(e){setError(e instanceof Error?e.message:"Update failed")}finally{setBusy(null)}}
+ async function addJob(opId:string){if(!selected)return;try{setBusy(opId);await createJobCard({productionOrderId:selected.id,operationId:opId});await load(search);const fresh=(await getProductionOrders(search)).find(o=>o.id===selected.id);if(fresh)setSelected(fresh)}catch(e){setError(e instanceof Error?e.message:"Unable to create job card")}finally{setBusy(null)}}
+ async function job(id:string,status:JobCardStatus){try{setBusy(id);await updateJobCard(id,{status});const all=await getProductionOrders(search);setOrders(all);const fresh=all.find(o=>o.id===selected?.id);if(fresh)setSelected(fresh)}catch(e){setError(e instanceof Error?e.message:"Unable to update job card")}finally{setBusy(null)}}
+ return <section className="module-page production-page">
+  <div className="module-heading"><div><span className="page-eyebrow">SHOP FLOOR CONTROL</span><h1>Advanced Production</h1><p>Production orders, work centers, machines, job cards and shop-floor execution.</p></div><div className="production-actions"><button className="secondary-action" onClick={()=>setManage(true)}><Wrench size={18}/> Work centers</button><button className="primary-action" onClick={()=>{reset();setShow(true)}}><Plus size={19}/> New production order</button></div></div>
+  <div className="production-summary-grid">{[["Total orders",summary.total],["Planned / released",summary.planned],["In progress",summary.active],["On hold",summary.held],["Completed",summary.completed]].map(([a,b])=><article key={a}><Factory size={23}/><div><strong>{b}</strong><span>{a}</span></div></article>)}</div>
+  <div className="directory-card"><div className="directory-header"><div><h2>Production register</h2><p>{orders.length} records shown</p></div><form className="directory-search" onSubmit={e=>{e.preventDefault();void load(search)}}><Search size={19}/><input value={search} placeholder="Search production..." onChange={e=>setSearch(e.target.value)}/><button>Search</button></form></div>
+  {error&&!show&&<div className="page-error">{error}</div>}{loading?<div className="empty-state">Loading production...</div>:orders.length===0?<div className="empty-state"><Factory size={34}/><h3>No production orders found</h3></div>:<div className="table-scroll"><table className="data-table production-table"><thead><tr><th>Order</th><th>Customer / Product</th><th>Qty</th><th>Output</th><th>Progress</th><th>Status</th><th></th></tr></thead><tbody>{orders.map(o=><tr key={o.id}><td><strong>{o.productionNumber}</strong><small>{o.quotation.quotationNumber}</small></td><td><strong>{o.title}</strong><small>{o.quotation.estimate.lead.customer?.companyName||"No customer"}</small></td><td>{o.quantity} {o.unit}</td><td><span className="good">{o.producedQuantity}</span> / <span className="bad">{Number(o.rejectedQuantity)+Number(o.scrapQuantity)}</span></td><td>{Number(o.progressPercent)}%</td><td><select value={o.status} disabled={busy===o.id} onChange={e=>void orderStatus(o,e.target.value as ProductionOrderStatus)}>{Object.entries(ol).map(([v,l])=><option value={v} key={v}>{l}</option>)}</select></td><td><button className="row-action-button" onClick={()=>setSelected(o)}><Eye size={17}/></button></td></tr>)}</tbody></table></div>}</div>
+  {show&&<div className="modal-backdrop" onMouseDown={()=>!saving&&setShow(false)}><div className="production-form-modal" onMouseDown={e=>e.stopPropagation()}><div className="modal-header"><div><span className="page-eyebrow">NEW WORK ORDER</span><h2>Create production order</h2></div><button className="icon-button" onClick={()=>setShow(false)}><X/></button></div><form onSubmit={create}>{error&&<div className="page-error">{error}</div>}<div className="production-form-grid"><label className="wide-field">Accepted quotation<select required value={qid} onChange={e=>{setQid(e.target.value);const q=quotes.find(x=>x.id===e.target.value);if(q)setTitle(q.estimate.lead.title)}}><option value="">Select quotation</option>{available.map(q=><option value={q.id} key={q.id}>{q.quotationNumber} — {q.estimate.lead.title}</option>)}</select></label><label className="wide-field">Title<input required value={title} onChange={e=>setTitle(e.target.value)}/></label><label>Priority<select value={priority} onChange={e=>setPriority(e.target.value as ProductionPriority)}>{Object.entries(pl).map(([v,l])=><option value={v} key={v}>{l}</option>)}</select></label><label>Quantity<input type="number" min=".001" step=".001" required value={qty} onChange={e=>setQty(e.target.value)}/></label><label>Unit<input required value={unit} onChange={e=>setUnit(e.target.value)}/></label><label>Planned start<input type="date" value={ps} onChange={e=>setPs(e.target.value)}/></label><label>Planned end<input type="date" value={pe} onChange={e=>setPe(e.target.value)}/></label></div><div className="operation-editor-heading"><h3>Routing / operations</h3><button type="button" className="secondary-action" onClick={()=>setOps(x=>[...x,blank()])}><Plus size={16}/> Add</button></div><div className="operation-editor-list">{ops.map((o,i)=><div className="operation-editor-row advanced" key={i}><span>{i+1}</span><input required placeholder="Operation" value={o.name} onChange={e=>change(i,"name",e.target.value)}/><select value={o.workCenterId||""} onChange={e=>{const wc=centers.find(x=>x.id===e.target.value);setOps(x=>x.map((a,n)=>n===i?{...a,workCenterId:e.target.value||null,workCenter:wc?.name||a.workCenter}:a))}}><option value="">Work center</option>{centers.map(w=><option key={w.id} value={w.id}>{w.code} — {w.name}</option>)}</select><input type="number" min="0" step=".25" placeholder="Hours" value={o.plannedHours??""} onChange={e=>setOps(x=>x.map((a,n)=>n===i?{...a,plannedHours:Number(e.target.value)}:a))}/><button type="button" className="icon-button" disabled={ops.length===1} onClick={()=>setOps(x=>x.filter((_,n)=>n!==i))}><Trash2 size={16}/></button></div>)}</div><label className="production-notes">Notes<textarea rows={3} value={notes} onChange={e=>setNotes(e.target.value)}/></label><div className="modal-actions"><button type="button" className="secondary-action" onClick={()=>setShow(false)}>Cancel</button><button className="primary-action" disabled={saving}>{saving?"Creating...":"Create production order"}</button></div></form></div></div>}
+  {selected&&<div className="modal-backdrop" onMouseDown={()=>setSelected(null)}><div className="production-detail-modal advanced-detail" onMouseDown={e=>e.stopPropagation()}><div className="modal-header"><div><span className="page-eyebrow">SHOP FLOOR DETAILS</span><h2>{selected.productionNumber}</h2><p>{selected.title} · {selected.quantity} {selected.unit}</p></div><button className="icon-button" onClick={()=>setSelected(null)}><X/></button></div><div className="production-detail-meta"><span>Customer<strong>{selected.quotation.estimate.lead.customer?.companyName||"No customer"}</strong></span><span>Due<strong>{date(selected.plannedEndDate)}</strong></span><span>Produced<strong>{selected.producedQuantity}</strong></span><span>Rejected<strong>{selected.rejectedQuantity}</strong></span><span>Scrap<strong>{selected.scrapQuantity}</strong></span></div><h3>Routing & job cards</h3>{selected.operations.map(op=><div className="shop-operation" key={op.id}><div className="shop-op-main"><b>{op.sequence}. {op.name}</b><small>{op.workCenterRef?.name||op.workCenter||"No work center"}{op.machine?` · ${op.machine.name}`:""} · {op.plannedHours||0} planned hrs</small></div><select value={op.status} disabled={busy===op.id} onChange={e=>void opStatus(selected,op.id,e.target.value as ProductionOperationStatus)}>{Object.entries(opl).map(([v,l])=><option value={v} key={v}>{l}</option>)}</select><button className="secondary-action compact" onClick={()=>void addJob(op.id)}><Plus size={14}/> Job card</button><div className="job-cards">{op.jobCards.map(j=><div className="job-card" key={j.id}><span><b>{j.jobCardNumber}</b><small>{j.status} · {j.actualHours} hrs</small></span><div>{j.status!=="IN_PROGRESS"&&j.status!=="COMPLETED"&&<button onClick={()=>void job(j.id,"IN_PROGRESS")}><Play size={14}/> Start</button>}{j.status==="IN_PROGRESS"&&<button onClick={()=>void job(j.id,"PAUSED")}><PauseCircle size={14}/> Pause</button>}{j.status!=="COMPLETED"&&<button onClick={()=>void job(j.id,"COMPLETED")}><CircleCheck size={14}/> Complete</button>}</div></div>)}</div></div>)}
+  <ProductionTraceabilityPanel
+   order={selected}
+   onRefresh={async()=>{
+    const all=await getProductionOrders(search);
+    setOrders(all);
+    const fresh=all.find(o=>o.id===selected.id);
+    if(fresh)setSelected(fresh);
+   }}
+  />
+ </div></div>}
+  {manage&&<div className="modal-backdrop" onMouseDown={()=>setManage(false)}><div className="production-form-modal manage-modal" onMouseDown={e=>e.stopPropagation()}><div className="modal-header"><div><span className="page-eyebrow">SHOP FLOOR MASTER</span><h2>Work centers & machines</h2></div><button className="icon-button" onClick={()=>setManage(false)}><X/></button></div><div className="master-grid"><form onSubmit={async e=>{e.preventDefault();await createWorkCenter({code:wcCode,name:wcName});setWcCode("");setWcName("");setCenters(await getWorkCenters())}}><h3>New work center</h3><input required placeholder="Code e.g. WC-ASM" value={wcCode} onChange={e=>setWcCode(e.target.value)}/><input required placeholder="Name" value={wcName} onChange={e=>setWcName(e.target.value)}/><button className="primary-action">Add work center</button></form><form onSubmit={async e=>{e.preventDefault();await createMachine({machineCode,name:machineName,workCenterId:machineWc});setMachineCode("");setMachineName("");setCenters(await getWorkCenters())}}><h3>New machine</h3><select required value={machineWc} onChange={e=>setMachineWc(e.target.value)}><option value="">Work center</option>{centers.map(w=><option value={w.id} key={w.id}>{w.name}</option>)}</select><input required placeholder="Machine code" value={machineCode} onChange={e=>setMachineCode(e.target.value)}/><input required placeholder="Machine name" value={machineName} onChange={e=>setMachineName(e.target.value)}/><button className="primary-action">Add machine</button></form></div><div className="work-center-list">{centers.map(w=><div key={w.id}><b>{w.code} — {w.name}</b><span>{w.machines.length} machines</span>{w.machines.map(m=><small key={m.id}>{m.machineCode} · {m.name} · {m.status}</small>)}</div>)}</div></div></div>}
+ </section>
 }
 

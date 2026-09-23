@@ -29,11 +29,17 @@ export type AggregateProductionOrder = {
 export type ProductionOrderAvgAggregateOutputType = {
   quantity: runtime.Decimal | null
   progressPercent: runtime.Decimal | null
+  producedQuantity: runtime.Decimal | null
+  rejectedQuantity: runtime.Decimal | null
+  scrapQuantity: runtime.Decimal | null
 }
 
 export type ProductionOrderSumAggregateOutputType = {
   quantity: runtime.Decimal | null
   progressPercent: runtime.Decimal | null
+  producedQuantity: runtime.Decimal | null
+  rejectedQuantity: runtime.Decimal | null
+  scrapQuantity: runtime.Decimal | null
 }
 
 export type ProductionOrderMinAggregateOutputType = {
@@ -50,6 +56,9 @@ export type ProductionOrderMinAggregateOutputType = {
   actualStartDate: Date | null
   actualEndDate: Date | null
   progressPercent: runtime.Decimal | null
+  producedQuantity: runtime.Decimal | null
+  rejectedQuantity: runtime.Decimal | null
+  scrapQuantity: runtime.Decimal | null
   assignedToId: string | null
   createdById: string | null
   notes: string | null
@@ -71,6 +80,9 @@ export type ProductionOrderMaxAggregateOutputType = {
   actualStartDate: Date | null
   actualEndDate: Date | null
   progressPercent: runtime.Decimal | null
+  producedQuantity: runtime.Decimal | null
+  rejectedQuantity: runtime.Decimal | null
+  scrapQuantity: runtime.Decimal | null
   assignedToId: string | null
   createdById: string | null
   notes: string | null
@@ -92,6 +104,9 @@ export type ProductionOrderCountAggregateOutputType = {
   actualStartDate: number
   actualEndDate: number
   progressPercent: number
+  producedQuantity: number
+  rejectedQuantity: number
+  scrapQuantity: number
   assignedToId: number
   createdById: number
   notes: number
@@ -104,11 +119,17 @@ export type ProductionOrderCountAggregateOutputType = {
 export type ProductionOrderAvgAggregateInputType = {
   quantity?: true
   progressPercent?: true
+  producedQuantity?: true
+  rejectedQuantity?: true
+  scrapQuantity?: true
 }
 
 export type ProductionOrderSumAggregateInputType = {
   quantity?: true
   progressPercent?: true
+  producedQuantity?: true
+  rejectedQuantity?: true
+  scrapQuantity?: true
 }
 
 export type ProductionOrderMinAggregateInputType = {
@@ -125,6 +146,9 @@ export type ProductionOrderMinAggregateInputType = {
   actualStartDate?: true
   actualEndDate?: true
   progressPercent?: true
+  producedQuantity?: true
+  rejectedQuantity?: true
+  scrapQuantity?: true
   assignedToId?: true
   createdById?: true
   notes?: true
@@ -146,6 +170,9 @@ export type ProductionOrderMaxAggregateInputType = {
   actualStartDate?: true
   actualEndDate?: true
   progressPercent?: true
+  producedQuantity?: true
+  rejectedQuantity?: true
+  scrapQuantity?: true
   assignedToId?: true
   createdById?: true
   notes?: true
@@ -167,6 +194,9 @@ export type ProductionOrderCountAggregateInputType = {
   actualStartDate?: true
   actualEndDate?: true
   progressPercent?: true
+  producedQuantity?: true
+  rejectedQuantity?: true
+  scrapQuantity?: true
   assignedToId?: true
   createdById?: true
   notes?: true
@@ -275,6 +305,9 @@ export type ProductionOrderGroupByOutputType = {
   actualStartDate: Date | null
   actualEndDate: Date | null
   progressPercent: runtime.Decimal
+  producedQuantity: runtime.Decimal
+  rejectedQuantity: runtime.Decimal
+  scrapQuantity: runtime.Decimal
   assignedToId: string | null
   createdById: string | null
   notes: string | null
@@ -319,6 +352,9 @@ export type ProductionOrderWhereInput = {
   actualStartDate?: Prisma.DateTimeNullableFilter<"ProductionOrder"> | Date | string | null
   actualEndDate?: Prisma.DateTimeNullableFilter<"ProductionOrder"> | Date | string | null
   progressPercent?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.StringNullableFilter<"ProductionOrder"> | string | null
   createdById?: Prisma.StringNullableFilter<"ProductionOrder"> | string | null
   notes?: Prisma.StringNullableFilter<"ProductionOrder"> | string | null
@@ -328,8 +364,16 @@ export type ProductionOrderWhereInput = {
   assignedTo?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   operations?: Prisma.ProductionOperationListRelationFilter
+  jobCards?: Prisma.ProductionJobCardListRelationFilter
+  materialMovements?: Prisma.ProductionMaterialConsumptionListRelationFilter
   inspections?: Prisma.QualityInspectionListRelationFilter
   dispatch?: Prisma.XOR<Prisma.DispatchNullableScalarRelationFilter, Prisma.DispatchWhereInput> | null
+  inspectionTestPlans?: Prisma.InspectionTestPlanListRelationFilter
+  ibrDocuments?: Prisma.IbrDocumentListRelationFilter
+  weldJoints?: Prisma.WeldJointListRelationFilter
+  ncrs?: Prisma.NonConformanceReportListRelationFilter
+  traceabilityRecords?: Prisma.ProductionTraceabilityListRelationFilter
+  downtimeRecords?: Prisma.ProductionDowntimeListRelationFilter
 }
 
 export type ProductionOrderOrderByWithRelationInput = {
@@ -346,6 +390,9 @@ export type ProductionOrderOrderByWithRelationInput = {
   actualStartDate?: Prisma.SortOrderInput | Prisma.SortOrder
   actualEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
   progressPercent?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
   assignedToId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -355,8 +402,16 @@ export type ProductionOrderOrderByWithRelationInput = {
   assignedTo?: Prisma.UserOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   operations?: Prisma.ProductionOperationOrderByRelationAggregateInput
+  jobCards?: Prisma.ProductionJobCardOrderByRelationAggregateInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionOrderByRelationAggregateInput
   inspections?: Prisma.QualityInspectionOrderByRelationAggregateInput
   dispatch?: Prisma.DispatchOrderByWithRelationInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanOrderByRelationAggregateInput
+  ibrDocuments?: Prisma.IbrDocumentOrderByRelationAggregateInput
+  weldJoints?: Prisma.WeldJointOrderByRelationAggregateInput
+  ncrs?: Prisma.NonConformanceReportOrderByRelationAggregateInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityOrderByRelationAggregateInput
+  downtimeRecords?: Prisma.ProductionDowntimeOrderByRelationAggregateInput
 }
 
 export type ProductionOrderWhereUniqueInput = Prisma.AtLeast<{
@@ -376,6 +431,9 @@ export type ProductionOrderWhereUniqueInput = Prisma.AtLeast<{
   actualStartDate?: Prisma.DateTimeNullableFilter<"ProductionOrder"> | Date | string | null
   actualEndDate?: Prisma.DateTimeNullableFilter<"ProductionOrder"> | Date | string | null
   progressPercent?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.StringNullableFilter<"ProductionOrder"> | string | null
   createdById?: Prisma.StringNullableFilter<"ProductionOrder"> | string | null
   notes?: Prisma.StringNullableFilter<"ProductionOrder"> | string | null
@@ -385,8 +443,16 @@ export type ProductionOrderWhereUniqueInput = Prisma.AtLeast<{
   assignedTo?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   operations?: Prisma.ProductionOperationListRelationFilter
+  jobCards?: Prisma.ProductionJobCardListRelationFilter
+  materialMovements?: Prisma.ProductionMaterialConsumptionListRelationFilter
   inspections?: Prisma.QualityInspectionListRelationFilter
   dispatch?: Prisma.XOR<Prisma.DispatchNullableScalarRelationFilter, Prisma.DispatchWhereInput> | null
+  inspectionTestPlans?: Prisma.InspectionTestPlanListRelationFilter
+  ibrDocuments?: Prisma.IbrDocumentListRelationFilter
+  weldJoints?: Prisma.WeldJointListRelationFilter
+  ncrs?: Prisma.NonConformanceReportListRelationFilter
+  traceabilityRecords?: Prisma.ProductionTraceabilityListRelationFilter
+  downtimeRecords?: Prisma.ProductionDowntimeListRelationFilter
 }, "id" | "productionNumber">
 
 export type ProductionOrderOrderByWithAggregationInput = {
@@ -403,6 +469,9 @@ export type ProductionOrderOrderByWithAggregationInput = {
   actualStartDate?: Prisma.SortOrderInput | Prisma.SortOrder
   actualEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
   progressPercent?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
   assignedToId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -432,6 +501,9 @@ export type ProductionOrderScalarWhereWithAggregatesInput = {
   actualStartDate?: Prisma.DateTimeNullableWithAggregatesFilter<"ProductionOrder"> | Date | string | null
   actualEndDate?: Prisma.DateTimeNullableWithAggregatesFilter<"ProductionOrder"> | Date | string | null
   progressPercent?: Prisma.DecimalWithAggregatesFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalWithAggregatesFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalWithAggregatesFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalWithAggregatesFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.StringNullableWithAggregatesFilter<"ProductionOrder"> | string | null
   createdById?: Prisma.StringNullableWithAggregatesFilter<"ProductionOrder"> | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"ProductionOrder"> | string | null
@@ -452,6 +524,9 @@ export type ProductionOrderCreateInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -459,8 +534,16 @@ export type ProductionOrderCreateInput = {
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
   operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderUncheckedCreateInput = {
@@ -477,14 +560,25 @@ export type ProductionOrderUncheckedCreateInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: string | null
   createdById?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderUpdateInput = {
@@ -500,6 +594,9 @@ export type ProductionOrderUpdateInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -507,8 +604,16 @@ export type ProductionOrderUpdateInput = {
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
   operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderUncheckedUpdateInput = {
@@ -525,14 +630,25 @@ export type ProductionOrderUncheckedUpdateInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderCreateManyInput = {
@@ -549,6 +665,9 @@ export type ProductionOrderCreateManyInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: string | null
   createdById?: string | null
   notes?: string | null
@@ -569,6 +688,9 @@ export type ProductionOrderUpdateManyMutationInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -588,6 +710,9 @@ export type ProductionOrderUncheckedUpdateManyInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -619,6 +744,9 @@ export type ProductionOrderCountOrderByAggregateInput = {
   actualStartDate?: Prisma.SortOrder
   actualEndDate?: Prisma.SortOrder
   progressPercent?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
   assignedToId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   notes?: Prisma.SortOrder
@@ -629,6 +757,9 @@ export type ProductionOrderCountOrderByAggregateInput = {
 export type ProductionOrderAvgOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   progressPercent?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
 }
 
 export type ProductionOrderMaxOrderByAggregateInput = {
@@ -645,6 +776,9 @@ export type ProductionOrderMaxOrderByAggregateInput = {
   actualStartDate?: Prisma.SortOrder
   actualEndDate?: Prisma.SortOrder
   progressPercent?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
   assignedToId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   notes?: Prisma.SortOrder
@@ -666,6 +800,9 @@ export type ProductionOrderMinOrderByAggregateInput = {
   actualStartDate?: Prisma.SortOrder
   actualEndDate?: Prisma.SortOrder
   progressPercent?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
   assignedToId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   notes?: Prisma.SortOrder
@@ -676,11 +813,19 @@ export type ProductionOrderMinOrderByAggregateInput = {
 export type ProductionOrderSumOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   progressPercent?: Prisma.SortOrder
+  producedQuantity?: Prisma.SortOrder
+  rejectedQuantity?: Prisma.SortOrder
+  scrapQuantity?: Prisma.SortOrder
 }
 
 export type ProductionOrderScalarRelationFilter = {
   is?: Prisma.ProductionOrderWhereInput
   isNot?: Prisma.ProductionOrderWhereInput
+}
+
+export type ProductionOrderNullableScalarRelationFilter = {
+  is?: Prisma.ProductionOrderWhereInput | null
+  isNot?: Prisma.ProductionOrderWhereInput | null
 }
 
 export type ProductionOrderCreateNestedManyWithoutAssignedToInput = {
@@ -827,6 +972,62 @@ export type ProductionOrderUpdateOneRequiredWithoutOperationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOrderUpdateToOneWithWhereWithoutOperationsInput, Prisma.ProductionOrderUpdateWithoutOperationsInput>, Prisma.ProductionOrderUncheckedUpdateWithoutOperationsInput>
 }
 
+export type ProductionOrderCreateNestedOneWithoutJobCardsInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutJobCardsInput, Prisma.ProductionOrderUncheckedCreateWithoutJobCardsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutJobCardsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+}
+
+export type ProductionOrderUpdateOneRequiredWithoutJobCardsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutJobCardsInput, Prisma.ProductionOrderUncheckedCreateWithoutJobCardsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutJobCardsInput
+  upsert?: Prisma.ProductionOrderUpsertWithoutJobCardsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOrderUpdateToOneWithWhereWithoutJobCardsInput, Prisma.ProductionOrderUpdateWithoutJobCardsInput>, Prisma.ProductionOrderUncheckedUpdateWithoutJobCardsInput>
+}
+
+export type ProductionOrderCreateNestedOneWithoutMaterialMovementsInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutMaterialMovementsInput, Prisma.ProductionOrderUncheckedCreateWithoutMaterialMovementsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutMaterialMovementsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+}
+
+export type ProductionOrderUpdateOneRequiredWithoutMaterialMovementsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutMaterialMovementsInput, Prisma.ProductionOrderUncheckedCreateWithoutMaterialMovementsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutMaterialMovementsInput
+  upsert?: Prisma.ProductionOrderUpsertWithoutMaterialMovementsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOrderUpdateToOneWithWhereWithoutMaterialMovementsInput, Prisma.ProductionOrderUpdateWithoutMaterialMovementsInput>, Prisma.ProductionOrderUncheckedUpdateWithoutMaterialMovementsInput>
+}
+
+export type ProductionOrderCreateNestedOneWithoutTraceabilityRecordsInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutTraceabilityRecordsInput, Prisma.ProductionOrderUncheckedCreateWithoutTraceabilityRecordsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutTraceabilityRecordsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+}
+
+export type ProductionOrderUpdateOneRequiredWithoutTraceabilityRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutTraceabilityRecordsInput, Prisma.ProductionOrderUncheckedCreateWithoutTraceabilityRecordsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutTraceabilityRecordsInput
+  upsert?: Prisma.ProductionOrderUpsertWithoutTraceabilityRecordsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOrderUpdateToOneWithWhereWithoutTraceabilityRecordsInput, Prisma.ProductionOrderUpdateWithoutTraceabilityRecordsInput>, Prisma.ProductionOrderUncheckedUpdateWithoutTraceabilityRecordsInput>
+}
+
+export type ProductionOrderCreateNestedOneWithoutDowntimeRecordsInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutDowntimeRecordsInput, Prisma.ProductionOrderUncheckedCreateWithoutDowntimeRecordsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutDowntimeRecordsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+}
+
+export type ProductionOrderUpdateOneRequiredWithoutDowntimeRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutDowntimeRecordsInput, Prisma.ProductionOrderUncheckedCreateWithoutDowntimeRecordsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutDowntimeRecordsInput
+  upsert?: Prisma.ProductionOrderUpsertWithoutDowntimeRecordsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOrderUpdateToOneWithWhereWithoutDowntimeRecordsInput, Prisma.ProductionOrderUpdateWithoutDowntimeRecordsInput>, Prisma.ProductionOrderUncheckedUpdateWithoutDowntimeRecordsInput>
+}
+
 export type ProductionOrderCreateNestedOneWithoutInspectionsInput = {
   create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutInspectionsInput, Prisma.ProductionOrderUncheckedCreateWithoutInspectionsInput>
   connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutInspectionsInput
@@ -855,6 +1056,68 @@ export type ProductionOrderUpdateOneRequiredWithoutDispatchNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOrderUpdateToOneWithWhereWithoutDispatchInput, Prisma.ProductionOrderUpdateWithoutDispatchInput>, Prisma.ProductionOrderUncheckedUpdateWithoutDispatchInput>
 }
 
+export type ProductionOrderCreateNestedOneWithoutInspectionTestPlansInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutInspectionTestPlansInput, Prisma.ProductionOrderUncheckedCreateWithoutInspectionTestPlansInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutInspectionTestPlansInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+}
+
+export type ProductionOrderUpdateOneWithoutInspectionTestPlansNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutInspectionTestPlansInput, Prisma.ProductionOrderUncheckedCreateWithoutInspectionTestPlansInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutInspectionTestPlansInput
+  upsert?: Prisma.ProductionOrderUpsertWithoutInspectionTestPlansInput
+  disconnect?: Prisma.ProductionOrderWhereInput | boolean
+  delete?: Prisma.ProductionOrderWhereInput | boolean
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOrderUpdateToOneWithWhereWithoutInspectionTestPlansInput, Prisma.ProductionOrderUpdateWithoutInspectionTestPlansInput>, Prisma.ProductionOrderUncheckedUpdateWithoutInspectionTestPlansInput>
+}
+
+export type ProductionOrderCreateNestedOneWithoutIbrDocumentsInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutIbrDocumentsInput, Prisma.ProductionOrderUncheckedCreateWithoutIbrDocumentsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutIbrDocumentsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+}
+
+export type ProductionOrderUpdateOneWithoutIbrDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutIbrDocumentsInput, Prisma.ProductionOrderUncheckedCreateWithoutIbrDocumentsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutIbrDocumentsInput
+  upsert?: Prisma.ProductionOrderUpsertWithoutIbrDocumentsInput
+  disconnect?: Prisma.ProductionOrderWhereInput | boolean
+  delete?: Prisma.ProductionOrderWhereInput | boolean
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOrderUpdateToOneWithWhereWithoutIbrDocumentsInput, Prisma.ProductionOrderUpdateWithoutIbrDocumentsInput>, Prisma.ProductionOrderUncheckedUpdateWithoutIbrDocumentsInput>
+}
+
+export type ProductionOrderCreateNestedOneWithoutWeldJointsInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutWeldJointsInput, Prisma.ProductionOrderUncheckedCreateWithoutWeldJointsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutWeldJointsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+}
+
+export type ProductionOrderUpdateOneRequiredWithoutWeldJointsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutWeldJointsInput, Prisma.ProductionOrderUncheckedCreateWithoutWeldJointsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutWeldJointsInput
+  upsert?: Prisma.ProductionOrderUpsertWithoutWeldJointsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOrderUpdateToOneWithWhereWithoutWeldJointsInput, Prisma.ProductionOrderUpdateWithoutWeldJointsInput>, Prisma.ProductionOrderUncheckedUpdateWithoutWeldJointsInput>
+}
+
+export type ProductionOrderCreateNestedOneWithoutNcrsInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutNcrsInput, Prisma.ProductionOrderUncheckedCreateWithoutNcrsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutNcrsInput
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+}
+
+export type ProductionOrderUpdateOneWithoutNcrsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductionOrderCreateWithoutNcrsInput, Prisma.ProductionOrderUncheckedCreateWithoutNcrsInput>
+  connectOrCreate?: Prisma.ProductionOrderCreateOrConnectWithoutNcrsInput
+  upsert?: Prisma.ProductionOrderUpsertWithoutNcrsInput
+  disconnect?: Prisma.ProductionOrderWhereInput | boolean
+  delete?: Prisma.ProductionOrderWhereInput | boolean
+  connect?: Prisma.ProductionOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductionOrderUpdateToOneWithWhereWithoutNcrsInput, Prisma.ProductionOrderUpdateWithoutNcrsInput>, Prisma.ProductionOrderUncheckedUpdateWithoutNcrsInput>
+}
+
 export type ProductionOrderCreateWithoutAssignedToInput = {
   id?: string
   productionNumber: string
@@ -868,14 +1131,25 @@ export type ProductionOrderCreateWithoutAssignedToInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
   operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderUncheckedCreateWithoutAssignedToInput = {
@@ -892,13 +1166,24 @@ export type ProductionOrderUncheckedCreateWithoutAssignedToInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdById?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderCreateOrConnectWithoutAssignedToInput = {
@@ -924,14 +1209,25 @@ export type ProductionOrderCreateWithoutCreatedByInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
   operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderUncheckedCreateWithoutCreatedByInput = {
@@ -948,13 +1244,24 @@ export type ProductionOrderUncheckedCreateWithoutCreatedByInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderCreateOrConnectWithoutCreatedByInput = {
@@ -1000,6 +1307,9 @@ export type ProductionOrderScalarWhereInput = {
   actualStartDate?: Prisma.DateTimeNullableFilter<"ProductionOrder"> | Date | string | null
   actualEndDate?: Prisma.DateTimeNullableFilter<"ProductionOrder"> | Date | string | null
   progressPercent?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFilter<"ProductionOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.StringNullableFilter<"ProductionOrder"> | string | null
   createdById?: Prisma.StringNullableFilter<"ProductionOrder"> | string | null
   notes?: Prisma.StringNullableFilter<"ProductionOrder"> | string | null
@@ -1036,14 +1346,25 @@ export type ProductionOrderCreateWithoutQuotationInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
   operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderUncheckedCreateWithoutQuotationInput = {
@@ -1059,14 +1380,25 @@ export type ProductionOrderUncheckedCreateWithoutQuotationInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: string | null
   createdById?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderCreateOrConnectWithoutQuotationInput = {
@@ -1108,14 +1440,25 @@ export type ProductionOrderCreateWithoutOperationsInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderUncheckedCreateWithoutOperationsInput = {
@@ -1132,13 +1475,24 @@ export type ProductionOrderUncheckedCreateWithoutOperationsInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: string | null
   createdById?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderCreateOrConnectWithoutOperationsInput = {
@@ -1170,14 +1524,25 @@ export type ProductionOrderUpdateWithoutOperationsInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderUncheckedUpdateWithoutOperationsInput = {
@@ -1194,13 +1559,632 @@ export type ProductionOrderUncheckedUpdateWithoutOperationsInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderCreateWithoutJobCardsInput = {
+  id?: string
+  productionNumber: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
+  operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderUncheckedCreateWithoutJobCardsInput = {
+  id?: string
+  productionNumber: string
+  quotationId: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: string | null
+  createdById?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderCreateOrConnectWithoutJobCardsInput = {
+  where: Prisma.ProductionOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutJobCardsInput, Prisma.ProductionOrderUncheckedCreateWithoutJobCardsInput>
+}
+
+export type ProductionOrderUpsertWithoutJobCardsInput = {
+  update: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutJobCardsInput, Prisma.ProductionOrderUncheckedUpdateWithoutJobCardsInput>
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutJobCardsInput, Prisma.ProductionOrderUncheckedCreateWithoutJobCardsInput>
+  where?: Prisma.ProductionOrderWhereInput
+}
+
+export type ProductionOrderUpdateToOneWithWhereWithoutJobCardsInput = {
+  where?: Prisma.ProductionOrderWhereInput
+  data: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutJobCardsInput, Prisma.ProductionOrderUncheckedUpdateWithoutJobCardsInput>
+}
+
+export type ProductionOrderUpdateWithoutJobCardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
+  operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderUncheckedUpdateWithoutJobCardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderCreateWithoutMaterialMovementsInput = {
+  id?: string
+  productionNumber: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
+  operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderUncheckedCreateWithoutMaterialMovementsInput = {
+  id?: string
+  productionNumber: string
+  quotationId: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: string | null
+  createdById?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderCreateOrConnectWithoutMaterialMovementsInput = {
+  where: Prisma.ProductionOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutMaterialMovementsInput, Prisma.ProductionOrderUncheckedCreateWithoutMaterialMovementsInput>
+}
+
+export type ProductionOrderUpsertWithoutMaterialMovementsInput = {
+  update: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutMaterialMovementsInput, Prisma.ProductionOrderUncheckedUpdateWithoutMaterialMovementsInput>
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutMaterialMovementsInput, Prisma.ProductionOrderUncheckedCreateWithoutMaterialMovementsInput>
+  where?: Prisma.ProductionOrderWhereInput
+}
+
+export type ProductionOrderUpdateToOneWithWhereWithoutMaterialMovementsInput = {
+  where?: Prisma.ProductionOrderWhereInput
+  data: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutMaterialMovementsInput, Prisma.ProductionOrderUncheckedUpdateWithoutMaterialMovementsInput>
+}
+
+export type ProductionOrderUpdateWithoutMaterialMovementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
+  operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderUncheckedUpdateWithoutMaterialMovementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderCreateWithoutTraceabilityRecordsInput = {
+  id?: string
+  productionNumber: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
+  operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderUncheckedCreateWithoutTraceabilityRecordsInput = {
+  id?: string
+  productionNumber: string
+  quotationId: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: string | null
+  createdById?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderCreateOrConnectWithoutTraceabilityRecordsInput = {
+  where: Prisma.ProductionOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutTraceabilityRecordsInput, Prisma.ProductionOrderUncheckedCreateWithoutTraceabilityRecordsInput>
+}
+
+export type ProductionOrderUpsertWithoutTraceabilityRecordsInput = {
+  update: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutTraceabilityRecordsInput, Prisma.ProductionOrderUncheckedUpdateWithoutTraceabilityRecordsInput>
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutTraceabilityRecordsInput, Prisma.ProductionOrderUncheckedCreateWithoutTraceabilityRecordsInput>
+  where?: Prisma.ProductionOrderWhereInput
+}
+
+export type ProductionOrderUpdateToOneWithWhereWithoutTraceabilityRecordsInput = {
+  where?: Prisma.ProductionOrderWhereInput
+  data: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutTraceabilityRecordsInput, Prisma.ProductionOrderUncheckedUpdateWithoutTraceabilityRecordsInput>
+}
+
+export type ProductionOrderUpdateWithoutTraceabilityRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
+  operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderUncheckedUpdateWithoutTraceabilityRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderCreateWithoutDowntimeRecordsInput = {
+  id?: string
+  productionNumber: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
+  operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderUncheckedCreateWithoutDowntimeRecordsInput = {
+  id?: string
+  productionNumber: string
+  quotationId: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: string | null
+  createdById?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderCreateOrConnectWithoutDowntimeRecordsInput = {
+  where: Prisma.ProductionOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutDowntimeRecordsInput, Prisma.ProductionOrderUncheckedCreateWithoutDowntimeRecordsInput>
+}
+
+export type ProductionOrderUpsertWithoutDowntimeRecordsInput = {
+  update: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutDowntimeRecordsInput, Prisma.ProductionOrderUncheckedUpdateWithoutDowntimeRecordsInput>
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutDowntimeRecordsInput, Prisma.ProductionOrderUncheckedCreateWithoutDowntimeRecordsInput>
+  where?: Prisma.ProductionOrderWhereInput
+}
+
+export type ProductionOrderUpdateToOneWithWhereWithoutDowntimeRecordsInput = {
+  where?: Prisma.ProductionOrderWhereInput
+  data: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutDowntimeRecordsInput, Prisma.ProductionOrderUncheckedUpdateWithoutDowntimeRecordsInput>
+}
+
+export type ProductionOrderUpdateWithoutDowntimeRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
+  operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderUncheckedUpdateWithoutDowntimeRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderCreateWithoutInspectionsInput = {
@@ -1216,6 +2200,9 @@ export type ProductionOrderCreateWithoutInspectionsInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1223,7 +2210,15 @@ export type ProductionOrderCreateWithoutInspectionsInput = {
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
   operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderUncheckedCreateWithoutInspectionsInput = {
@@ -1240,13 +2235,24 @@ export type ProductionOrderUncheckedCreateWithoutInspectionsInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: string | null
   createdById?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
   dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderCreateOrConnectWithoutInspectionsInput = {
@@ -1278,6 +2284,9 @@ export type ProductionOrderUpdateWithoutInspectionsInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1285,7 +2294,15 @@ export type ProductionOrderUpdateWithoutInspectionsInput = {
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
   operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderUncheckedUpdateWithoutInspectionsInput = {
@@ -1302,13 +2319,24 @@ export type ProductionOrderUncheckedUpdateWithoutInspectionsInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderCreateWithoutDispatchInput = {
@@ -1324,6 +2352,9 @@ export type ProductionOrderCreateWithoutDispatchInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1331,7 +2362,15 @@ export type ProductionOrderCreateWithoutDispatchInput = {
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
   operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderUncheckedCreateWithoutDispatchInput = {
@@ -1348,13 +2387,24 @@ export type ProductionOrderUncheckedCreateWithoutDispatchInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: string | null
   createdById?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
   inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
 }
 
 export type ProductionOrderCreateOrConnectWithoutDispatchInput = {
@@ -1386,6 +2436,9 @@ export type ProductionOrderUpdateWithoutDispatchInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1393,7 +2446,15 @@ export type ProductionOrderUpdateWithoutDispatchInput = {
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
   operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderUncheckedUpdateWithoutDispatchInput = {
@@ -1410,13 +2471,632 @@ export type ProductionOrderUncheckedUpdateWithoutDispatchInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderCreateWithoutInspectionTestPlansInput = {
+  id?: string
+  productionNumber: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
+  operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderUncheckedCreateWithoutInspectionTestPlansInput = {
+  id?: string
+  productionNumber: string
+  quotationId: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: string | null
+  createdById?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderCreateOrConnectWithoutInspectionTestPlansInput = {
+  where: Prisma.ProductionOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutInspectionTestPlansInput, Prisma.ProductionOrderUncheckedCreateWithoutInspectionTestPlansInput>
+}
+
+export type ProductionOrderUpsertWithoutInspectionTestPlansInput = {
+  update: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutInspectionTestPlansInput, Prisma.ProductionOrderUncheckedUpdateWithoutInspectionTestPlansInput>
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutInspectionTestPlansInput, Prisma.ProductionOrderUncheckedCreateWithoutInspectionTestPlansInput>
+  where?: Prisma.ProductionOrderWhereInput
+}
+
+export type ProductionOrderUpdateToOneWithWhereWithoutInspectionTestPlansInput = {
+  where?: Prisma.ProductionOrderWhereInput
+  data: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutInspectionTestPlansInput, Prisma.ProductionOrderUncheckedUpdateWithoutInspectionTestPlansInput>
+}
+
+export type ProductionOrderUpdateWithoutInspectionTestPlansInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
+  operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderUncheckedUpdateWithoutInspectionTestPlansInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderCreateWithoutIbrDocumentsInput = {
+  id?: string
+  productionNumber: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
+  operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderUncheckedCreateWithoutIbrDocumentsInput = {
+  id?: string
+  productionNumber: string
+  quotationId: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: string | null
+  createdById?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderCreateOrConnectWithoutIbrDocumentsInput = {
+  where: Prisma.ProductionOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutIbrDocumentsInput, Prisma.ProductionOrderUncheckedCreateWithoutIbrDocumentsInput>
+}
+
+export type ProductionOrderUpsertWithoutIbrDocumentsInput = {
+  update: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutIbrDocumentsInput, Prisma.ProductionOrderUncheckedUpdateWithoutIbrDocumentsInput>
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutIbrDocumentsInput, Prisma.ProductionOrderUncheckedCreateWithoutIbrDocumentsInput>
+  where?: Prisma.ProductionOrderWhereInput
+}
+
+export type ProductionOrderUpdateToOneWithWhereWithoutIbrDocumentsInput = {
+  where?: Prisma.ProductionOrderWhereInput
+  data: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutIbrDocumentsInput, Prisma.ProductionOrderUncheckedUpdateWithoutIbrDocumentsInput>
+}
+
+export type ProductionOrderUpdateWithoutIbrDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
+  operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderUncheckedUpdateWithoutIbrDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderCreateWithoutWeldJointsInput = {
+  id?: string
+  productionNumber: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
+  operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderUncheckedCreateWithoutWeldJointsInput = {
+  id?: string
+  productionNumber: string
+  quotationId: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: string | null
+  createdById?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  ncrs?: Prisma.NonConformanceReportUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderCreateOrConnectWithoutWeldJointsInput = {
+  where: Prisma.ProductionOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutWeldJointsInput, Prisma.ProductionOrderUncheckedCreateWithoutWeldJointsInput>
+}
+
+export type ProductionOrderUpsertWithoutWeldJointsInput = {
+  update: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutWeldJointsInput, Prisma.ProductionOrderUncheckedUpdateWithoutWeldJointsInput>
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutWeldJointsInput, Prisma.ProductionOrderUncheckedCreateWithoutWeldJointsInput>
+  where?: Prisma.ProductionOrderWhereInput
+}
+
+export type ProductionOrderUpdateToOneWithWhereWithoutWeldJointsInput = {
+  where?: Prisma.ProductionOrderWhereInput
+  data: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutWeldJointsInput, Prisma.ProductionOrderUncheckedUpdateWithoutWeldJointsInput>
+}
+
+export type ProductionOrderUpdateWithoutWeldJointsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
+  operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderUncheckedUpdateWithoutWeldJointsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderCreateWithoutNcrsInput = {
+  id?: string
+  productionNumber: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutProductionOrdersInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedProductionOrdersInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedProductionOrdersInput
+  operations?: Prisma.ProductionOperationCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderUncheckedCreateWithoutNcrsInput = {
+  id?: string
+  productionNumber: string
+  quotationId: string
+  title: string
+  status?: $Enums.ProductionOrderStatus
+  priority?: $Enums.LeadPriority
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string
+  plannedStartDate?: Date | string | null
+  plannedEndDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: string | null
+  createdById?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  operations?: Prisma.ProductionOperationUncheckedCreateNestedManyWithoutProductionOrderInput
+  jobCards?: Prisma.ProductionJobCardUncheckedCreateNestedManyWithoutProductionOrderInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedCreateNestedManyWithoutProductionOrderInput
+  inspections?: Prisma.QualityInspectionUncheckedCreateNestedManyWithoutProductionOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutProductionOrderInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedCreateNestedManyWithoutProductionOrderInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedCreateNestedManyWithoutProductionOrderInput
+  weldJoints?: Prisma.WeldJointUncheckedCreateNestedManyWithoutProductionOrderInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedCreateNestedManyWithoutProductionOrderInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedCreateNestedManyWithoutProductionOrderInput
+}
+
+export type ProductionOrderCreateOrConnectWithoutNcrsInput = {
+  where: Prisma.ProductionOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutNcrsInput, Prisma.ProductionOrderUncheckedCreateWithoutNcrsInput>
+}
+
+export type ProductionOrderUpsertWithoutNcrsInput = {
+  update: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutNcrsInput, Prisma.ProductionOrderUncheckedUpdateWithoutNcrsInput>
+  create: Prisma.XOR<Prisma.ProductionOrderCreateWithoutNcrsInput, Prisma.ProductionOrderUncheckedCreateWithoutNcrsInput>
+  where?: Prisma.ProductionOrderWhereInput
+}
+
+export type ProductionOrderUpdateToOneWithWhereWithoutNcrsInput = {
+  where?: Prisma.ProductionOrderWhereInput
+  data: Prisma.XOR<Prisma.ProductionOrderUpdateWithoutNcrsInput, Prisma.ProductionOrderUncheckedUpdateWithoutNcrsInput>
+}
+
+export type ProductionOrderUpdateWithoutNcrsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
+  operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
+}
+
+export type ProductionOrderUncheckedUpdateWithoutNcrsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productionNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProductionOrderStatusFieldUpdateOperationsInput | $Enums.ProductionOrderStatus
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderCreateManyAssignedToInput = {
@@ -1433,6 +3113,9 @@ export type ProductionOrderCreateManyAssignedToInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdById?: string | null
   notes?: string | null
   createdAt?: Date | string
@@ -1453,6 +3136,9 @@ export type ProductionOrderCreateManyCreatedByInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: string | null
   notes?: string | null
   createdAt?: Date | string
@@ -1472,14 +3158,25 @@ export type ProductionOrderUpdateWithoutAssignedToInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
   operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderUncheckedUpdateWithoutAssignedToInput = {
@@ -1496,13 +3193,24 @@ export type ProductionOrderUncheckedUpdateWithoutAssignedToInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderUncheckedUpdateManyWithoutAssignedToInput = {
@@ -1519,6 +3227,9 @@ export type ProductionOrderUncheckedUpdateManyWithoutAssignedToInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1538,14 +3249,25 @@ export type ProductionOrderUpdateWithoutCreatedByInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutProductionOrdersNestedInput
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
   operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderUncheckedUpdateWithoutCreatedByInput = {
@@ -1562,13 +3284,24 @@ export type ProductionOrderUncheckedUpdateWithoutCreatedByInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1585,6 +3318,9 @@ export type ProductionOrderUncheckedUpdateManyWithoutCreatedByInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1604,6 +3340,9 @@ export type ProductionOrderCreateManyQuotationInput = {
   actualStartDate?: Date | string | null
   actualEndDate?: Date | string | null
   progressPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: string | null
   createdById?: string | null
   notes?: string | null
@@ -1624,14 +3363,25 @@ export type ProductionOrderUpdateWithoutQuotationInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedProductionOrdersNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedProductionOrdersNestedInput
   operations?: Prisma.ProductionOperationUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderUncheckedUpdateWithoutQuotationInput = {
@@ -1647,14 +3397,25 @@ export type ProductionOrderUncheckedUpdateWithoutQuotationInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   operations?: Prisma.ProductionOperationUncheckedUpdateManyWithoutProductionOrderNestedInput
+  jobCards?: Prisma.ProductionJobCardUncheckedUpdateManyWithoutProductionOrderNestedInput
+  materialMovements?: Prisma.ProductionMaterialConsumptionUncheckedUpdateManyWithoutProductionOrderNestedInput
   inspections?: Prisma.QualityInspectionUncheckedUpdateManyWithoutProductionOrderNestedInput
   dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutProductionOrderNestedInput
+  inspectionTestPlans?: Prisma.InspectionTestPlanUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ibrDocuments?: Prisma.IbrDocumentUncheckedUpdateManyWithoutProductionOrderNestedInput
+  weldJoints?: Prisma.WeldJointUncheckedUpdateManyWithoutProductionOrderNestedInput
+  ncrs?: Prisma.NonConformanceReportUncheckedUpdateManyWithoutProductionOrderNestedInput
+  traceabilityRecords?: Prisma.ProductionTraceabilityUncheckedUpdateManyWithoutProductionOrderNestedInput
+  downtimeRecords?: Prisma.ProductionDowntimeUncheckedUpdateManyWithoutProductionOrderNestedInput
 }
 
 export type ProductionOrderUncheckedUpdateManyWithoutQuotationInput = {
@@ -1670,6 +3431,9 @@ export type ProductionOrderUncheckedUpdateManyWithoutQuotationInput = {
   actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progressPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  rejectedQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  scrapQuantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1684,12 +3448,28 @@ export type ProductionOrderUncheckedUpdateManyWithoutQuotationInput = {
 
 export type ProductionOrderCountOutputType = {
   operations: number
+  jobCards: number
+  materialMovements: number
   inspections: number
+  inspectionTestPlans: number
+  ibrDocuments: number
+  weldJoints: number
+  ncrs: number
+  traceabilityRecords: number
+  downtimeRecords: number
 }
 
 export type ProductionOrderCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   operations?: boolean | ProductionOrderCountOutputTypeCountOperationsArgs
+  jobCards?: boolean | ProductionOrderCountOutputTypeCountJobCardsArgs
+  materialMovements?: boolean | ProductionOrderCountOutputTypeCountMaterialMovementsArgs
   inspections?: boolean | ProductionOrderCountOutputTypeCountInspectionsArgs
+  inspectionTestPlans?: boolean | ProductionOrderCountOutputTypeCountInspectionTestPlansArgs
+  ibrDocuments?: boolean | ProductionOrderCountOutputTypeCountIbrDocumentsArgs
+  weldJoints?: boolean | ProductionOrderCountOutputTypeCountWeldJointsArgs
+  ncrs?: boolean | ProductionOrderCountOutputTypeCountNcrsArgs
+  traceabilityRecords?: boolean | ProductionOrderCountOutputTypeCountTraceabilityRecordsArgs
+  downtimeRecords?: boolean | ProductionOrderCountOutputTypeCountDowntimeRecordsArgs
 }
 
 /**
@@ -1712,8 +3492,64 @@ export type ProductionOrderCountOutputTypeCountOperationsArgs<ExtArgs extends ru
 /**
  * ProductionOrderCountOutputType without action
  */
+export type ProductionOrderCountOutputTypeCountJobCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductionJobCardWhereInput
+}
+
+/**
+ * ProductionOrderCountOutputType without action
+ */
+export type ProductionOrderCountOutputTypeCountMaterialMovementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductionMaterialConsumptionWhereInput
+}
+
+/**
+ * ProductionOrderCountOutputType without action
+ */
 export type ProductionOrderCountOutputTypeCountInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.QualityInspectionWhereInput
+}
+
+/**
+ * ProductionOrderCountOutputType without action
+ */
+export type ProductionOrderCountOutputTypeCountInspectionTestPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InspectionTestPlanWhereInput
+}
+
+/**
+ * ProductionOrderCountOutputType without action
+ */
+export type ProductionOrderCountOutputTypeCountIbrDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IbrDocumentWhereInput
+}
+
+/**
+ * ProductionOrderCountOutputType without action
+ */
+export type ProductionOrderCountOutputTypeCountWeldJointsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WeldJointWhereInput
+}
+
+/**
+ * ProductionOrderCountOutputType without action
+ */
+export type ProductionOrderCountOutputTypeCountNcrsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NonConformanceReportWhereInput
+}
+
+/**
+ * ProductionOrderCountOutputType without action
+ */
+export type ProductionOrderCountOutputTypeCountTraceabilityRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductionTraceabilityWhereInput
+}
+
+/**
+ * ProductionOrderCountOutputType without action
+ */
+export type ProductionOrderCountOutputTypeCountDowntimeRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductionDowntimeWhereInput
 }
 
 
@@ -1731,6 +3567,9 @@ export type ProductionOrderSelect<ExtArgs extends runtime.Types.Extensions.Inter
   actualStartDate?: boolean
   actualEndDate?: boolean
   progressPercent?: boolean
+  producedQuantity?: boolean
+  rejectedQuantity?: boolean
+  scrapQuantity?: boolean
   assignedToId?: boolean
   createdById?: boolean
   notes?: boolean
@@ -1740,8 +3579,16 @@ export type ProductionOrderSelect<ExtArgs extends runtime.Types.Extensions.Inter
   assignedTo?: boolean | Prisma.ProductionOrder$assignedToArgs<ExtArgs>
   createdBy?: boolean | Prisma.ProductionOrder$createdByArgs<ExtArgs>
   operations?: boolean | Prisma.ProductionOrder$operationsArgs<ExtArgs>
+  jobCards?: boolean | Prisma.ProductionOrder$jobCardsArgs<ExtArgs>
+  materialMovements?: boolean | Prisma.ProductionOrder$materialMovementsArgs<ExtArgs>
   inspections?: boolean | Prisma.ProductionOrder$inspectionsArgs<ExtArgs>
   dispatch?: boolean | Prisma.ProductionOrder$dispatchArgs<ExtArgs>
+  inspectionTestPlans?: boolean | Prisma.ProductionOrder$inspectionTestPlansArgs<ExtArgs>
+  ibrDocuments?: boolean | Prisma.ProductionOrder$ibrDocumentsArgs<ExtArgs>
+  weldJoints?: boolean | Prisma.ProductionOrder$weldJointsArgs<ExtArgs>
+  ncrs?: boolean | Prisma.ProductionOrder$ncrsArgs<ExtArgs>
+  traceabilityRecords?: boolean | Prisma.ProductionOrder$traceabilityRecordsArgs<ExtArgs>
+  downtimeRecords?: boolean | Prisma.ProductionOrder$downtimeRecordsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductionOrderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["productionOrder"]>
 
@@ -1759,6 +3606,9 @@ export type ProductionOrderSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   actualStartDate?: boolean
   actualEndDate?: boolean
   progressPercent?: boolean
+  producedQuantity?: boolean
+  rejectedQuantity?: boolean
+  scrapQuantity?: boolean
   assignedToId?: boolean
   createdById?: boolean
   notes?: boolean
@@ -1783,6 +3633,9 @@ export type ProductionOrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   actualStartDate?: boolean
   actualEndDate?: boolean
   progressPercent?: boolean
+  producedQuantity?: boolean
+  rejectedQuantity?: boolean
+  scrapQuantity?: boolean
   assignedToId?: boolean
   createdById?: boolean
   notes?: boolean
@@ -1807,6 +3660,9 @@ export type ProductionOrderSelectScalar = {
   actualStartDate?: boolean
   actualEndDate?: boolean
   progressPercent?: boolean
+  producedQuantity?: boolean
+  rejectedQuantity?: boolean
+  scrapQuantity?: boolean
   assignedToId?: boolean
   createdById?: boolean
   notes?: boolean
@@ -1814,14 +3670,22 @@ export type ProductionOrderSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProductionOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productionNumber" | "quotationId" | "title" | "status" | "priority" | "quantity" | "unit" | "plannedStartDate" | "plannedEndDate" | "actualStartDate" | "actualEndDate" | "progressPercent" | "assignedToId" | "createdById" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["productionOrder"]>
+export type ProductionOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productionNumber" | "quotationId" | "title" | "status" | "priority" | "quantity" | "unit" | "plannedStartDate" | "plannedEndDate" | "actualStartDate" | "actualEndDate" | "progressPercent" | "producedQuantity" | "rejectedQuantity" | "scrapQuantity" | "assignedToId" | "createdById" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["productionOrder"]>
 export type ProductionOrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
   assignedTo?: boolean | Prisma.ProductionOrder$assignedToArgs<ExtArgs>
   createdBy?: boolean | Prisma.ProductionOrder$createdByArgs<ExtArgs>
   operations?: boolean | Prisma.ProductionOrder$operationsArgs<ExtArgs>
+  jobCards?: boolean | Prisma.ProductionOrder$jobCardsArgs<ExtArgs>
+  materialMovements?: boolean | Prisma.ProductionOrder$materialMovementsArgs<ExtArgs>
   inspections?: boolean | Prisma.ProductionOrder$inspectionsArgs<ExtArgs>
   dispatch?: boolean | Prisma.ProductionOrder$dispatchArgs<ExtArgs>
+  inspectionTestPlans?: boolean | Prisma.ProductionOrder$inspectionTestPlansArgs<ExtArgs>
+  ibrDocuments?: boolean | Prisma.ProductionOrder$ibrDocumentsArgs<ExtArgs>
+  weldJoints?: boolean | Prisma.ProductionOrder$weldJointsArgs<ExtArgs>
+  ncrs?: boolean | Prisma.ProductionOrder$ncrsArgs<ExtArgs>
+  traceabilityRecords?: boolean | Prisma.ProductionOrder$traceabilityRecordsArgs<ExtArgs>
+  downtimeRecords?: boolean | Prisma.ProductionOrder$downtimeRecordsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductionOrderCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProductionOrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1842,8 +3706,16 @@ export type $ProductionOrderPayload<ExtArgs extends runtime.Types.Extensions.Int
     assignedTo: Prisma.$UserPayload<ExtArgs> | null
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     operations: Prisma.$ProductionOperationPayload<ExtArgs>[]
+    jobCards: Prisma.$ProductionJobCardPayload<ExtArgs>[]
+    materialMovements: Prisma.$ProductionMaterialConsumptionPayload<ExtArgs>[]
     inspections: Prisma.$QualityInspectionPayload<ExtArgs>[]
     dispatch: Prisma.$DispatchPayload<ExtArgs> | null
+    inspectionTestPlans: Prisma.$InspectionTestPlanPayload<ExtArgs>[]
+    ibrDocuments: Prisma.$IbrDocumentPayload<ExtArgs>[]
+    weldJoints: Prisma.$WeldJointPayload<ExtArgs>[]
+    ncrs: Prisma.$NonConformanceReportPayload<ExtArgs>[]
+    traceabilityRecords: Prisma.$ProductionTraceabilityPayload<ExtArgs>[]
+    downtimeRecords: Prisma.$ProductionDowntimePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1859,6 +3731,9 @@ export type $ProductionOrderPayload<ExtArgs extends runtime.Types.Extensions.Int
     actualStartDate: Date | null
     actualEndDate: Date | null
     progressPercent: runtime.Decimal
+    producedQuantity: runtime.Decimal
+    rejectedQuantity: runtime.Decimal
+    scrapQuantity: runtime.Decimal
     assignedToId: string | null
     createdById: string | null
     notes: string | null
@@ -2262,8 +4137,16 @@ export interface Prisma__ProductionOrderClient<T, Null = never, ExtArgs extends 
   assignedTo<T extends Prisma.ProductionOrder$assignedToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$assignedToArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.ProductionOrder$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   operations<T extends Prisma.ProductionOrder$operationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$operationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductionOperationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  jobCards<T extends Prisma.ProductionOrder$jobCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$jobCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductionJobCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  materialMovements<T extends Prisma.ProductionOrder$materialMovementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$materialMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductionMaterialConsumptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inspections<T extends Prisma.ProductionOrder$inspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$inspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QualityInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dispatch<T extends Prisma.ProductionOrder$dispatchArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$dispatchArgs<ExtArgs>>): Prisma.Prisma__DispatchClient<runtime.Types.Result.GetResult<Prisma.$DispatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  inspectionTestPlans<T extends Prisma.ProductionOrder$inspectionTestPlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$inspectionTestPlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InspectionTestPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ibrDocuments<T extends Prisma.ProductionOrder$ibrDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$ibrDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IbrDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  weldJoints<T extends Prisma.ProductionOrder$weldJointsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$weldJointsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeldJointPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ncrs<T extends Prisma.ProductionOrder$ncrsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$ncrsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NonConformanceReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  traceabilityRecords<T extends Prisma.ProductionOrder$traceabilityRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$traceabilityRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductionTraceabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  downtimeRecords<T extends Prisma.ProductionOrder$downtimeRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrder$downtimeRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductionDowntimePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2306,6 +4189,9 @@ export interface ProductionOrderFieldRefs {
   readonly actualStartDate: Prisma.FieldRef<"ProductionOrder", 'DateTime'>
   readonly actualEndDate: Prisma.FieldRef<"ProductionOrder", 'DateTime'>
   readonly progressPercent: Prisma.FieldRef<"ProductionOrder", 'Decimal'>
+  readonly producedQuantity: Prisma.FieldRef<"ProductionOrder", 'Decimal'>
+  readonly rejectedQuantity: Prisma.FieldRef<"ProductionOrder", 'Decimal'>
+  readonly scrapQuantity: Prisma.FieldRef<"ProductionOrder", 'Decimal'>
   readonly assignedToId: Prisma.FieldRef<"ProductionOrder", 'String'>
   readonly createdById: Prisma.FieldRef<"ProductionOrder", 'String'>
   readonly notes: Prisma.FieldRef<"ProductionOrder", 'String'>
@@ -2774,6 +4660,54 @@ export type ProductionOrder$operationsArgs<ExtArgs extends runtime.Types.Extensi
 }
 
 /**
+ * ProductionOrder.jobCards
+ */
+export type ProductionOrder$jobCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductionJobCard
+   */
+  select?: Prisma.ProductionJobCardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProductionJobCard
+   */
+  omit?: Prisma.ProductionJobCardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductionJobCardInclude<ExtArgs> | null
+  where?: Prisma.ProductionJobCardWhereInput
+  orderBy?: Prisma.ProductionJobCardOrderByWithRelationInput | Prisma.ProductionJobCardOrderByWithRelationInput[]
+  cursor?: Prisma.ProductionJobCardWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductionJobCardScalarFieldEnum | Prisma.ProductionJobCardScalarFieldEnum[]
+}
+
+/**
+ * ProductionOrder.materialMovements
+ */
+export type ProductionOrder$materialMovementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductionMaterialConsumption
+   */
+  select?: Prisma.ProductionMaterialConsumptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProductionMaterialConsumption
+   */
+  omit?: Prisma.ProductionMaterialConsumptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductionMaterialConsumptionInclude<ExtArgs> | null
+  where?: Prisma.ProductionMaterialConsumptionWhereInput
+  orderBy?: Prisma.ProductionMaterialConsumptionOrderByWithRelationInput | Prisma.ProductionMaterialConsumptionOrderByWithRelationInput[]
+  cursor?: Prisma.ProductionMaterialConsumptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductionMaterialConsumptionScalarFieldEnum | Prisma.ProductionMaterialConsumptionScalarFieldEnum[]
+}
+
+/**
  * ProductionOrder.inspections
  */
 export type ProductionOrder$inspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2814,6 +4748,150 @@ export type ProductionOrder$dispatchArgs<ExtArgs extends runtime.Types.Extension
    */
   include?: Prisma.DispatchInclude<ExtArgs> | null
   where?: Prisma.DispatchWhereInput
+}
+
+/**
+ * ProductionOrder.inspectionTestPlans
+ */
+export type ProductionOrder$inspectionTestPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InspectionTestPlan
+   */
+  select?: Prisma.InspectionTestPlanSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InspectionTestPlan
+   */
+  omit?: Prisma.InspectionTestPlanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InspectionTestPlanInclude<ExtArgs> | null
+  where?: Prisma.InspectionTestPlanWhereInput
+  orderBy?: Prisma.InspectionTestPlanOrderByWithRelationInput | Prisma.InspectionTestPlanOrderByWithRelationInput[]
+  cursor?: Prisma.InspectionTestPlanWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InspectionTestPlanScalarFieldEnum | Prisma.InspectionTestPlanScalarFieldEnum[]
+}
+
+/**
+ * ProductionOrder.ibrDocuments
+ */
+export type ProductionOrder$ibrDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the IbrDocument
+   */
+  select?: Prisma.IbrDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the IbrDocument
+   */
+  omit?: Prisma.IbrDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IbrDocumentInclude<ExtArgs> | null
+  where?: Prisma.IbrDocumentWhereInput
+  orderBy?: Prisma.IbrDocumentOrderByWithRelationInput | Prisma.IbrDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.IbrDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IbrDocumentScalarFieldEnum | Prisma.IbrDocumentScalarFieldEnum[]
+}
+
+/**
+ * ProductionOrder.weldJoints
+ */
+export type ProductionOrder$weldJointsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WeldJoint
+   */
+  select?: Prisma.WeldJointSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WeldJoint
+   */
+  omit?: Prisma.WeldJointOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WeldJointInclude<ExtArgs> | null
+  where?: Prisma.WeldJointWhereInput
+  orderBy?: Prisma.WeldJointOrderByWithRelationInput | Prisma.WeldJointOrderByWithRelationInput[]
+  cursor?: Prisma.WeldJointWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WeldJointScalarFieldEnum | Prisma.WeldJointScalarFieldEnum[]
+}
+
+/**
+ * ProductionOrder.ncrs
+ */
+export type ProductionOrder$ncrsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NonConformanceReport
+   */
+  select?: Prisma.NonConformanceReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NonConformanceReport
+   */
+  omit?: Prisma.NonConformanceReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NonConformanceReportInclude<ExtArgs> | null
+  where?: Prisma.NonConformanceReportWhereInput
+  orderBy?: Prisma.NonConformanceReportOrderByWithRelationInput | Prisma.NonConformanceReportOrderByWithRelationInput[]
+  cursor?: Prisma.NonConformanceReportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NonConformanceReportScalarFieldEnum | Prisma.NonConformanceReportScalarFieldEnum[]
+}
+
+/**
+ * ProductionOrder.traceabilityRecords
+ */
+export type ProductionOrder$traceabilityRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductionTraceability
+   */
+  select?: Prisma.ProductionTraceabilitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProductionTraceability
+   */
+  omit?: Prisma.ProductionTraceabilityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductionTraceabilityInclude<ExtArgs> | null
+  where?: Prisma.ProductionTraceabilityWhereInput
+  orderBy?: Prisma.ProductionTraceabilityOrderByWithRelationInput | Prisma.ProductionTraceabilityOrderByWithRelationInput[]
+  cursor?: Prisma.ProductionTraceabilityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductionTraceabilityScalarFieldEnum | Prisma.ProductionTraceabilityScalarFieldEnum[]
+}
+
+/**
+ * ProductionOrder.downtimeRecords
+ */
+export type ProductionOrder$downtimeRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductionDowntime
+   */
+  select?: Prisma.ProductionDowntimeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProductionDowntime
+   */
+  omit?: Prisma.ProductionDowntimeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductionDowntimeInclude<ExtArgs> | null
+  where?: Prisma.ProductionDowntimeWhereInput
+  orderBy?: Prisma.ProductionDowntimeOrderByWithRelationInput | Prisma.ProductionDowntimeOrderByWithRelationInput[]
+  cursor?: Prisma.ProductionDowntimeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductionDowntimeScalarFieldEnum | Prisma.ProductionDowntimeScalarFieldEnum[]
 }
 
 /**

@@ -26,6 +26,7 @@ import type {
   LeadPriority,
   LeadStatus,
 } from "../types/lead";
+import "./LeadsPage.css";
 
 interface LeadFormState {
   title: string;

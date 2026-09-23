@@ -1,0 +1,14 @@
+import { Router } from "express";
+import { authenticate } from "../middleware/auth.middleware.js";
+import { createInvoiceController, createPaymentController, createSalesOrderController, getSalesOrderController, listEligibleQuotationsController, listInvoicesController, listSalesOrdersController, updateInvoiceController, updateSalesOrderController } from "../controllers/sales.controller.js";
+export const salesRouter=Router();
+salesRouter.use(authenticate);
+salesRouter.get("/eligible-quotations",listEligibleQuotationsController);
+salesRouter.get("/orders",listSalesOrdersController);
+salesRouter.get("/orders/:id",getSalesOrderController);
+salesRouter.post("/orders",createSalesOrderController);
+salesRouter.patch("/orders/:id",updateSalesOrderController);
+salesRouter.get("/invoices",listInvoicesController);
+salesRouter.post("/invoices",createInvoiceController);
+salesRouter.patch("/invoices/:id",updateInvoiceController);
+salesRouter.post("/payments",createPaymentController);

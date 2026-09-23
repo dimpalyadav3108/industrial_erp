@@ -1,10 +1,5 @@
 import type { ReactNode } from "react";
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { AppLayout } from "./components/AppLayout";
 
@@ -13,12 +8,19 @@ import { DashboardPage } from "./pages/DashboardPage";
 import DispatchPage from "./pages/DispatchPage";
 import EngineeringPage from "./pages/EngineeringPage";
 import EstimationPage from "./pages/EstimationPage";
+import FinancePage from "./pages/FinancePage";
+import HrPage from "./pages/HrPage";
+import InstallationPage from "./pages/InstallationPage";
 import InventoryPage from "./pages/InventoryPage";
+import IotDashboardPage from "./pages/IotDashboardPage";
 import LeadsPage from "./pages/LeadsPage";
 import { LoginPage } from "./pages/LoginPage";
+import ProcurementPage from "./pages/ProcurementPage";
+import ProjectPage from "./pages/ProjectPage";
 import ProductionPage from "./pages/ProductionPage";
 import QualityPage from "./pages/QualityPage";
 import QuotationsPage from "./pages/QuotationsPage";
+import SalesPage from "./pages/SalesPage";
 import ServicePage from "./pages/ServicePage";
 import SettingsPage from "./pages/SettingsPage";
 
@@ -26,16 +28,8 @@ import { getStoredUser } from "./services/auth.service";
 
 import "./App.css";
 
-function ProtectedRoute({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  return getStoredUser() ? (
-    children
-  ) : (
-    <Navigate to="/" replace />
-  );
+function ProtectedRoute({ children }: { children: ReactNode }) {
+  return getStoredUser() ? children : <Navigate to="/" replace />;
 }
 
 function LoginRoute() {
@@ -50,10 +44,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Login */}
         <Route path="/" element={<LoginRoute />} />
 
-        {/* Protected ERP */}
         <Route
           element={
             <ProtectedRoute>
@@ -61,78 +53,34 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route
-            path="/dashboard"
-            element={<DashboardPage />}
-          />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/customers" element={<CustomersPage />} />
+          <Route path="/leads" element={<LeadsPage />} />
+          <Route path="/estimation" element={<EstimationPage />} />
+          <Route path="/quotations" element={<QuotationsPage />} />
+          <Route path="/engineering" element={<EngineeringPage />} />
+          <Route path="/procurement" element={<ProcurementPage />} />
+          <Route path="/sales" element={<SalesPage />} />
+          <Route path="/projects" element={<ProjectPage />} />
+          <Route path="/inventory" element={<InventoryPage />} />
+          <Route path="/production" element={<ProductionPage />} />
+          <Route path="/quality" element={<QualityPage />} />
+          <Route path="/dispatch" element={<DispatchPage />} />
+          <Route path="/installations" element={<InstallationPage />} />
+          <Route path="/service" element={<ServicePage />} />
+          <Route path="/service-amc" element={<ServicePage />} />
+          <Route path="/finance" element={<FinancePage />} />
 
-          <Route
-            path="/customers"
-            element={<CustomersPage />}
-          />
+          {/* HR & Payroll */}
+          <Route path="/hr" element={<HrPage />} />
 
-          <Route
-            path="/leads"
-            element={<LeadsPage />}
-          />
+          {/* IoT & Management Dashboard */}
+          <Route path="/iot" element={<IotDashboardPage />} />
 
-          <Route
-            path="/estimation"
-            element={<EstimationPage />}
-          />
-
-          <Route
-            path="/quotations"
-            element={<QuotationsPage />}
-          />
-
-          {/* Engineering */}
-          <Route
-            path="/engineering"
-            element={<EngineeringPage />}
-          />
-
-          <Route
-            path="/inventory"
-            element={<InventoryPage />}
-          />
-
-          <Route
-            path="/production"
-            element={<ProductionPage />}
-          />
-
-          <Route
-            path="/quality"
-            element={<QualityPage />}
-          />
-
-          <Route
-            path="/dispatch"
-            element={<DispatchPage />}
-          />
-
-          <Route
-            path="/service"
-            element={<ServicePage />}
-          />
-
-          <Route
-            path="/service-amc"
-            element={<ServicePage />}
-          />
-
-          <Route
-            path="/settings"
-            element={<SettingsPage />}
-          />
+          <Route path="/settings" element={<SettingsPage />} />
         </Route>
 
-        {/* Unknown URL */}
-        <Route
-          path="*"
-          element={<Navigate to="/" replace />}
-        />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
