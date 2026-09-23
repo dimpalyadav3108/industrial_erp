@@ -28,10 +28,20 @@ export type AggregateLead = {
 
 export type LeadAvgAggregateOutputType = {
   estimatedValue: runtime.Decimal | null
+  steamCapacityTph: runtime.Decimal | null
+  workingPressureBar: runtime.Decimal | null
+  steamConsumption: runtime.Decimal | null
+  operatingHoursPerDay: runtime.Decimal | null
+  existingFuelCost: runtime.Decimal | null
 }
 
 export type LeadSumAggregateOutputType = {
   estimatedValue: runtime.Decimal | null
+  steamCapacityTph: runtime.Decimal | null
+  workingPressureBar: runtime.Decimal | null
+  steamConsumption: runtime.Decimal | null
+  operatingHoursPerDay: runtime.Decimal | null
+  existingFuelCost: runtime.Decimal | null
 }
 
 export type LeadMinAggregateOutputType = {
@@ -48,6 +58,15 @@ export type LeadMinAggregateOutputType = {
   assignedToId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  steamCapacityTph: runtime.Decimal | null
+  workingPressureBar: runtime.Decimal | null
+  fuelType: string | null
+  feedWaterSource: string | null
+  steamConsumption: runtime.Decimal | null
+  operatingHoursPerDay: runtime.Decimal | null
+  existingFuelCost: runtime.Decimal | null
+  industryType: string | null
+  crmStage: string | null
 }
 
 export type LeadMaxAggregateOutputType = {
@@ -64,6 +83,15 @@ export type LeadMaxAggregateOutputType = {
   assignedToId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  steamCapacityTph: runtime.Decimal | null
+  workingPressureBar: runtime.Decimal | null
+  fuelType: string | null
+  feedWaterSource: string | null
+  steamConsumption: runtime.Decimal | null
+  operatingHoursPerDay: runtime.Decimal | null
+  existingFuelCost: runtime.Decimal | null
+  industryType: string | null
+  crmStage: string | null
 }
 
 export type LeadCountAggregateOutputType = {
@@ -80,16 +108,35 @@ export type LeadCountAggregateOutputType = {
   assignedToId: number
   createdAt: number
   updatedAt: number
+  steamCapacityTph: number
+  workingPressureBar: number
+  fuelType: number
+  feedWaterSource: number
+  steamConsumption: number
+  operatingHoursPerDay: number
+  existingFuelCost: number
+  industryType: number
+  crmStage: number
   _all: number
 }
 
 
 export type LeadAvgAggregateInputType = {
   estimatedValue?: true
+  steamCapacityTph?: true
+  workingPressureBar?: true
+  steamConsumption?: true
+  operatingHoursPerDay?: true
+  existingFuelCost?: true
 }
 
 export type LeadSumAggregateInputType = {
   estimatedValue?: true
+  steamCapacityTph?: true
+  workingPressureBar?: true
+  steamConsumption?: true
+  operatingHoursPerDay?: true
+  existingFuelCost?: true
 }
 
 export type LeadMinAggregateInputType = {
@@ -106,6 +153,15 @@ export type LeadMinAggregateInputType = {
   assignedToId?: true
   createdAt?: true
   updatedAt?: true
+  steamCapacityTph?: true
+  workingPressureBar?: true
+  fuelType?: true
+  feedWaterSource?: true
+  steamConsumption?: true
+  operatingHoursPerDay?: true
+  existingFuelCost?: true
+  industryType?: true
+  crmStage?: true
 }
 
 export type LeadMaxAggregateInputType = {
@@ -122,6 +178,15 @@ export type LeadMaxAggregateInputType = {
   assignedToId?: true
   createdAt?: true
   updatedAt?: true
+  steamCapacityTph?: true
+  workingPressureBar?: true
+  fuelType?: true
+  feedWaterSource?: true
+  steamConsumption?: true
+  operatingHoursPerDay?: true
+  existingFuelCost?: true
+  industryType?: true
+  crmStage?: true
 }
 
 export type LeadCountAggregateInputType = {
@@ -138,6 +203,15 @@ export type LeadCountAggregateInputType = {
   assignedToId?: true
   createdAt?: true
   updatedAt?: true
+  steamCapacityTph?: true
+  workingPressureBar?: true
+  fuelType?: true
+  feedWaterSource?: true
+  steamConsumption?: true
+  operatingHoursPerDay?: true
+  existingFuelCost?: true
+  industryType?: true
+  crmStage?: true
   _all?: true
 }
 
@@ -241,6 +315,15 @@ export type LeadGroupByOutputType = {
   assignedToId: string | null
   createdAt: Date
   updatedAt: Date
+  steamCapacityTph: runtime.Decimal | null
+  workingPressureBar: runtime.Decimal | null
+  fuelType: string | null
+  feedWaterSource: string | null
+  steamConsumption: runtime.Decimal | null
+  operatingHoursPerDay: runtime.Decimal | null
+  existingFuelCost: runtime.Decimal | null
+  industryType: string | null
+  crmStage: string
   _count: LeadCountAggregateOutputType | null
   _avg: LeadAvgAggregateOutputType | null
   _sum: LeadSumAggregateOutputType | null
@@ -280,9 +363,23 @@ export type LeadWhereInput = {
   assignedToId?: Prisma.StringNullableFilter<"Lead"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
+  steamCapacityTph?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.StringNullableFilter<"Lead"> | string | null
+  feedWaterSource?: Prisma.StringNullableFilter<"Lead"> | string | null
+  steamConsumption?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.StringNullableFilter<"Lead"> | string | null
+  crmStage?: Prisma.StringFilter<"Lead"> | string
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   assignedTo?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   estimates?: Prisma.EstimateListRelationFilter
+  activities?: Prisma.LeadActivityListRelationFilter
+  competitors?: Prisma.LeadCompetitorListRelationFilter
+  outcomeRecords?: Prisma.LeadOutcomeRecordListRelationFilter
+  surveys?: Prisma.LeadTechnicalSurveyListRelationFilter
+  tenders?: Prisma.LeadTenderListRelationFilter
 }
 
 export type LeadOrderByWithRelationInput = {
@@ -299,9 +396,23 @@ export type LeadOrderByWithRelationInput = {
   assignedToId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  steamCapacityTph?: Prisma.SortOrderInput | Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrderInput | Prisma.SortOrder
+  fuelType?: Prisma.SortOrderInput | Prisma.SortOrder
+  feedWaterSource?: Prisma.SortOrderInput | Prisma.SortOrder
+  steamConsumption?: Prisma.SortOrderInput | Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrderInput | Prisma.SortOrder
+  existingFuelCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  industryType?: Prisma.SortOrderInput | Prisma.SortOrder
+  crmStage?: Prisma.SortOrder
   customer?: Prisma.CustomerOrderByWithRelationInput
   assignedTo?: Prisma.UserOrderByWithRelationInput
   estimates?: Prisma.EstimateOrderByRelationAggregateInput
+  activities?: Prisma.LeadActivityOrderByRelationAggregateInput
+  competitors?: Prisma.LeadCompetitorOrderByRelationAggregateInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordOrderByRelationAggregateInput
+  surveys?: Prisma.LeadTechnicalSurveyOrderByRelationAggregateInput
+  tenders?: Prisma.LeadTenderOrderByRelationAggregateInput
 }
 
 export type LeadWhereUniqueInput = Prisma.AtLeast<{
@@ -321,9 +432,23 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
   assignedToId?: Prisma.StringNullableFilter<"Lead"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
+  steamCapacityTph?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.StringNullableFilter<"Lead"> | string | null
+  feedWaterSource?: Prisma.StringNullableFilter<"Lead"> | string | null
+  steamConsumption?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.StringNullableFilter<"Lead"> | string | null
+  crmStage?: Prisma.StringFilter<"Lead"> | string
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   assignedTo?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   estimates?: Prisma.EstimateListRelationFilter
+  activities?: Prisma.LeadActivityListRelationFilter
+  competitors?: Prisma.LeadCompetitorListRelationFilter
+  outcomeRecords?: Prisma.LeadOutcomeRecordListRelationFilter
+  surveys?: Prisma.LeadTechnicalSurveyListRelationFilter
+  tenders?: Prisma.LeadTenderListRelationFilter
 }, "id" | "leadNumber">
 
 export type LeadOrderByWithAggregationInput = {
@@ -340,6 +465,15 @@ export type LeadOrderByWithAggregationInput = {
   assignedToId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  steamCapacityTph?: Prisma.SortOrderInput | Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrderInput | Prisma.SortOrder
+  fuelType?: Prisma.SortOrderInput | Prisma.SortOrder
+  feedWaterSource?: Prisma.SortOrderInput | Prisma.SortOrder
+  steamConsumption?: Prisma.SortOrderInput | Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrderInput | Prisma.SortOrder
+  existingFuelCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  industryType?: Prisma.SortOrderInput | Prisma.SortOrder
+  crmStage?: Prisma.SortOrder
   _count?: Prisma.LeadCountOrderByAggregateInput
   _avg?: Prisma.LeadAvgOrderByAggregateInput
   _max?: Prisma.LeadMaxOrderByAggregateInput
@@ -364,6 +498,15 @@ export type LeadScalarWhereWithAggregatesInput = {
   assignedToId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Lead"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Lead"> | Date | string
+  steamCapacityTph?: Prisma.DecimalNullableWithAggregatesFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.DecimalNullableWithAggregatesFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  feedWaterSource?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  steamConsumption?: Prisma.DecimalNullableWithAggregatesFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.DecimalNullableWithAggregatesFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.DecimalNullableWithAggregatesFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  crmStage?: Prisma.StringWithAggregatesFilter<"Lead"> | string
 }
 
 export type LeadCreateInput = {
@@ -378,9 +521,23 @@ export type LeadCreateInput = {
   expectedCloseDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
   customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderCreateNestedManyWithoutLeadInput
 }
 
 export type LeadUncheckedCreateInput = {
@@ -397,7 +554,21 @@ export type LeadUncheckedCreateInput = {
   assignedToId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorUncheckedCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderUncheckedCreateNestedManyWithoutLeadInput
 }
 
 export type LeadUpdateInput = {
@@ -412,9 +583,23 @@ export type LeadUpdateInput = {
   expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
   customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateInput = {
@@ -431,7 +616,21 @@ export type LeadUncheckedUpdateInput = {
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUncheckedUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUncheckedUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUncheckedUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadCreateManyInput = {
@@ -448,6 +647,15 @@ export type LeadCreateManyInput = {
   assignedToId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
 }
 
 export type LeadUpdateManyMutationInput = {
@@ -462,6 +670,15 @@ export type LeadUpdateManyMutationInput = {
   expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LeadUncheckedUpdateManyInput = {
@@ -478,6 +695,15 @@ export type LeadUncheckedUpdateManyInput = {
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LeadListRelationFilter = {
@@ -504,10 +730,24 @@ export type LeadCountOrderByAggregateInput = {
   assignedToId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  steamCapacityTph?: Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrder
+  fuelType?: Prisma.SortOrder
+  feedWaterSource?: Prisma.SortOrder
+  steamConsumption?: Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrder
+  existingFuelCost?: Prisma.SortOrder
+  industryType?: Prisma.SortOrder
+  crmStage?: Prisma.SortOrder
 }
 
 export type LeadAvgOrderByAggregateInput = {
   estimatedValue?: Prisma.SortOrder
+  steamCapacityTph?: Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrder
+  steamConsumption?: Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrder
+  existingFuelCost?: Prisma.SortOrder
 }
 
 export type LeadMaxOrderByAggregateInput = {
@@ -524,6 +764,15 @@ export type LeadMaxOrderByAggregateInput = {
   assignedToId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  steamCapacityTph?: Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrder
+  fuelType?: Prisma.SortOrder
+  feedWaterSource?: Prisma.SortOrder
+  steamConsumption?: Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrder
+  existingFuelCost?: Prisma.SortOrder
+  industryType?: Prisma.SortOrder
+  crmStage?: Prisma.SortOrder
 }
 
 export type LeadMinOrderByAggregateInput = {
@@ -540,10 +789,24 @@ export type LeadMinOrderByAggregateInput = {
   assignedToId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  steamCapacityTph?: Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrder
+  fuelType?: Prisma.SortOrder
+  feedWaterSource?: Prisma.SortOrder
+  steamConsumption?: Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrder
+  existingFuelCost?: Prisma.SortOrder
+  industryType?: Prisma.SortOrder
+  crmStage?: Prisma.SortOrder
 }
 
 export type LeadSumOrderByAggregateInput = {
   estimatedValue?: Prisma.SortOrder
+  steamCapacityTph?: Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrder
+  steamConsumption?: Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrder
+  existingFuelCost?: Prisma.SortOrder
 }
 
 export type LeadScalarRelationFilter = {
@@ -651,6 +914,76 @@ export type NullableDecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type LeadCreateNestedOneWithoutActivitiesInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutActivitiesInput, Prisma.LeadUncheckedCreateWithoutActivitiesInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutActivitiesInput
+  connect?: Prisma.LeadWhereUniqueInput
+}
+
+export type LeadUpdateOneRequiredWithoutActivitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutActivitiesInput, Prisma.LeadUncheckedCreateWithoutActivitiesInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutActivitiesInput
+  upsert?: Prisma.LeadUpsertWithoutActivitiesInput
+  connect?: Prisma.LeadWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeadUpdateToOneWithWhereWithoutActivitiesInput, Prisma.LeadUpdateWithoutActivitiesInput>, Prisma.LeadUncheckedUpdateWithoutActivitiesInput>
+}
+
+export type LeadCreateNestedOneWithoutCompetitorsInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutCompetitorsInput, Prisma.LeadUncheckedCreateWithoutCompetitorsInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutCompetitorsInput
+  connect?: Prisma.LeadWhereUniqueInput
+}
+
+export type LeadUpdateOneRequiredWithoutCompetitorsNestedInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutCompetitorsInput, Prisma.LeadUncheckedCreateWithoutCompetitorsInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutCompetitorsInput
+  upsert?: Prisma.LeadUpsertWithoutCompetitorsInput
+  connect?: Prisma.LeadWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeadUpdateToOneWithWhereWithoutCompetitorsInput, Prisma.LeadUpdateWithoutCompetitorsInput>, Prisma.LeadUncheckedUpdateWithoutCompetitorsInput>
+}
+
+export type LeadCreateNestedOneWithoutOutcomeRecordsInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutOutcomeRecordsInput, Prisma.LeadUncheckedCreateWithoutOutcomeRecordsInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutOutcomeRecordsInput
+  connect?: Prisma.LeadWhereUniqueInput
+}
+
+export type LeadUpdateOneRequiredWithoutOutcomeRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutOutcomeRecordsInput, Prisma.LeadUncheckedCreateWithoutOutcomeRecordsInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutOutcomeRecordsInput
+  upsert?: Prisma.LeadUpsertWithoutOutcomeRecordsInput
+  connect?: Prisma.LeadWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeadUpdateToOneWithWhereWithoutOutcomeRecordsInput, Prisma.LeadUpdateWithoutOutcomeRecordsInput>, Prisma.LeadUncheckedUpdateWithoutOutcomeRecordsInput>
+}
+
+export type LeadCreateNestedOneWithoutSurveysInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutSurveysInput, Prisma.LeadUncheckedCreateWithoutSurveysInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutSurveysInput
+  connect?: Prisma.LeadWhereUniqueInput
+}
+
+export type LeadUpdateOneRequiredWithoutSurveysNestedInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutSurveysInput, Prisma.LeadUncheckedCreateWithoutSurveysInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutSurveysInput
+  upsert?: Prisma.LeadUpsertWithoutSurveysInput
+  connect?: Prisma.LeadWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeadUpdateToOneWithWhereWithoutSurveysInput, Prisma.LeadUpdateWithoutSurveysInput>, Prisma.LeadUncheckedUpdateWithoutSurveysInput>
+}
+
+export type LeadCreateNestedOneWithoutTendersInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutTendersInput, Prisma.LeadUncheckedCreateWithoutTendersInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutTendersInput
+  connect?: Prisma.LeadWhereUniqueInput
+}
+
+export type LeadUpdateOneRequiredWithoutTendersNestedInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutTendersInput, Prisma.LeadUncheckedCreateWithoutTendersInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutTendersInput
+  upsert?: Prisma.LeadUpsertWithoutTendersInput
+  connect?: Prisma.LeadWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeadUpdateToOneWithWhereWithoutTendersInput, Prisma.LeadUpdateWithoutTendersInput>, Prisma.LeadUncheckedUpdateWithoutTendersInput>
+}
+
 export type LeadCreateNestedOneWithoutEstimatesInput = {
   create?: Prisma.XOR<Prisma.LeadCreateWithoutEstimatesInput, Prisma.LeadUncheckedCreateWithoutEstimatesInput>
   connectOrCreate?: Prisma.LeadCreateOrConnectWithoutEstimatesInput
@@ -677,8 +1010,22 @@ export type LeadCreateWithoutAssignedToInput = {
   expectedCloseDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
   customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderCreateNestedManyWithoutLeadInput
 }
 
 export type LeadUncheckedCreateWithoutAssignedToInput = {
@@ -694,7 +1041,21 @@ export type LeadUncheckedCreateWithoutAssignedToInput = {
   customerId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorUncheckedCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderUncheckedCreateNestedManyWithoutLeadInput
 }
 
 export type LeadCreateOrConnectWithoutAssignedToInput = {
@@ -740,6 +1101,15 @@ export type LeadScalarWhereInput = {
   assignedToId?: Prisma.StringNullableFilter<"Lead"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
+  steamCapacityTph?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.StringNullableFilter<"Lead"> | string | null
+  feedWaterSource?: Prisma.StringNullableFilter<"Lead"> | string | null
+  steamConsumption?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.DecimalNullableFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.StringNullableFilter<"Lead"> | string | null
+  crmStage?: Prisma.StringFilter<"Lead"> | string
 }
 
 export type LeadCreateWithoutCustomerInput = {
@@ -754,8 +1124,22 @@ export type LeadCreateWithoutCustomerInput = {
   expectedCloseDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderCreateNestedManyWithoutLeadInput
 }
 
 export type LeadUncheckedCreateWithoutCustomerInput = {
@@ -771,7 +1155,21 @@ export type LeadUncheckedCreateWithoutCustomerInput = {
   assignedToId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorUncheckedCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderUncheckedCreateNestedManyWithoutLeadInput
 }
 
 export type LeadCreateOrConnectWithoutCustomerInput = {
@@ -800,6 +1198,686 @@ export type LeadUpdateManyWithWhereWithoutCustomerInput = {
   data: Prisma.XOR<Prisma.LeadUpdateManyMutationInput, Prisma.LeadUncheckedUpdateManyWithoutCustomerInput>
 }
 
+export type LeadCreateWithoutActivitiesInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderCreateNestedManyWithoutLeadInput
+}
+
+export type LeadUncheckedCreateWithoutActivitiesInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  customerId?: string | null
+  assignedToId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorUncheckedCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderUncheckedCreateNestedManyWithoutLeadInput
+}
+
+export type LeadCreateOrConnectWithoutActivitiesInput = {
+  where: Prisma.LeadWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeadCreateWithoutActivitiesInput, Prisma.LeadUncheckedCreateWithoutActivitiesInput>
+}
+
+export type LeadUpsertWithoutActivitiesInput = {
+  update: Prisma.XOR<Prisma.LeadUpdateWithoutActivitiesInput, Prisma.LeadUncheckedUpdateWithoutActivitiesInput>
+  create: Prisma.XOR<Prisma.LeadCreateWithoutActivitiesInput, Prisma.LeadUncheckedCreateWithoutActivitiesInput>
+  where?: Prisma.LeadWhereInput
+}
+
+export type LeadUpdateToOneWithWhereWithoutActivitiesInput = {
+  where?: Prisma.LeadWhereInput
+  data: Prisma.XOR<Prisma.LeadUpdateWithoutActivitiesInput, Prisma.LeadUncheckedUpdateWithoutActivitiesInput>
+}
+
+export type LeadUpdateWithoutActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUpdateManyWithoutLeadNestedInput
+}
+
+export type LeadUncheckedUpdateWithoutActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUncheckedUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUncheckedUpdateManyWithoutLeadNestedInput
+}
+
+export type LeadCreateWithoutCompetitorsInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderCreateNestedManyWithoutLeadInput
+}
+
+export type LeadUncheckedCreateWithoutCompetitorsInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  customerId?: string | null
+  assignedToId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderUncheckedCreateNestedManyWithoutLeadInput
+}
+
+export type LeadCreateOrConnectWithoutCompetitorsInput = {
+  where: Prisma.LeadWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeadCreateWithoutCompetitorsInput, Prisma.LeadUncheckedCreateWithoutCompetitorsInput>
+}
+
+export type LeadUpsertWithoutCompetitorsInput = {
+  update: Prisma.XOR<Prisma.LeadUpdateWithoutCompetitorsInput, Prisma.LeadUncheckedUpdateWithoutCompetitorsInput>
+  create: Prisma.XOR<Prisma.LeadCreateWithoutCompetitorsInput, Prisma.LeadUncheckedCreateWithoutCompetitorsInput>
+  where?: Prisma.LeadWhereInput
+}
+
+export type LeadUpdateToOneWithWhereWithoutCompetitorsInput = {
+  where?: Prisma.LeadWhereInput
+  data: Prisma.XOR<Prisma.LeadUpdateWithoutCompetitorsInput, Prisma.LeadUncheckedUpdateWithoutCompetitorsInput>
+}
+
+export type LeadUpdateWithoutCompetitorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUpdateManyWithoutLeadNestedInput
+}
+
+export type LeadUncheckedUpdateWithoutCompetitorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUncheckedUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUncheckedUpdateManyWithoutLeadNestedInput
+}
+
+export type LeadCreateWithoutOutcomeRecordsInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderCreateNestedManyWithoutLeadInput
+}
+
+export type LeadUncheckedCreateWithoutOutcomeRecordsInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  customerId?: string | null
+  assignedToId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorUncheckedCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderUncheckedCreateNestedManyWithoutLeadInput
+}
+
+export type LeadCreateOrConnectWithoutOutcomeRecordsInput = {
+  where: Prisma.LeadWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeadCreateWithoutOutcomeRecordsInput, Prisma.LeadUncheckedCreateWithoutOutcomeRecordsInput>
+}
+
+export type LeadUpsertWithoutOutcomeRecordsInput = {
+  update: Prisma.XOR<Prisma.LeadUpdateWithoutOutcomeRecordsInput, Prisma.LeadUncheckedUpdateWithoutOutcomeRecordsInput>
+  create: Prisma.XOR<Prisma.LeadCreateWithoutOutcomeRecordsInput, Prisma.LeadUncheckedCreateWithoutOutcomeRecordsInput>
+  where?: Prisma.LeadWhereInput
+}
+
+export type LeadUpdateToOneWithWhereWithoutOutcomeRecordsInput = {
+  where?: Prisma.LeadWhereInput
+  data: Prisma.XOR<Prisma.LeadUpdateWithoutOutcomeRecordsInput, Prisma.LeadUncheckedUpdateWithoutOutcomeRecordsInput>
+}
+
+export type LeadUpdateWithoutOutcomeRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUpdateManyWithoutLeadNestedInput
+}
+
+export type LeadUncheckedUpdateWithoutOutcomeRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUncheckedUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUncheckedUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUncheckedUpdateManyWithoutLeadNestedInput
+}
+
+export type LeadCreateWithoutSurveysInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderCreateNestedManyWithoutLeadInput
+}
+
+export type LeadUncheckedCreateWithoutSurveysInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  customerId?: string | null
+  assignedToId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorUncheckedCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderUncheckedCreateNestedManyWithoutLeadInput
+}
+
+export type LeadCreateOrConnectWithoutSurveysInput = {
+  where: Prisma.LeadWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeadCreateWithoutSurveysInput, Prisma.LeadUncheckedCreateWithoutSurveysInput>
+}
+
+export type LeadUpsertWithoutSurveysInput = {
+  update: Prisma.XOR<Prisma.LeadUpdateWithoutSurveysInput, Prisma.LeadUncheckedUpdateWithoutSurveysInput>
+  create: Prisma.XOR<Prisma.LeadCreateWithoutSurveysInput, Prisma.LeadUncheckedCreateWithoutSurveysInput>
+  where?: Prisma.LeadWhereInput
+}
+
+export type LeadUpdateToOneWithWhereWithoutSurveysInput = {
+  where?: Prisma.LeadWhereInput
+  data: Prisma.XOR<Prisma.LeadUpdateWithoutSurveysInput, Prisma.LeadUncheckedUpdateWithoutSurveysInput>
+}
+
+export type LeadUpdateWithoutSurveysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUpdateManyWithoutLeadNestedInput
+}
+
+export type LeadUncheckedUpdateWithoutSurveysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUncheckedUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUncheckedUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUncheckedUpdateManyWithoutLeadNestedInput
+}
+
+export type LeadCreateWithoutTendersInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
+  assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyCreateNestedManyWithoutLeadInput
+}
+
+export type LeadUncheckedCreateWithoutTendersInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  description?: string | null
+  source?: string | null
+  priority?: $Enums.LeadPriority
+  status?: $Enums.LeadStatus
+  estimatedValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Date | string | null
+  customerId?: string | null
+  assignedToId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutLeadInput
+  activities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorUncheckedCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedCreateNestedManyWithoutLeadInput
+}
+
+export type LeadCreateOrConnectWithoutTendersInput = {
+  where: Prisma.LeadWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeadCreateWithoutTendersInput, Prisma.LeadUncheckedCreateWithoutTendersInput>
+}
+
+export type LeadUpsertWithoutTendersInput = {
+  update: Prisma.XOR<Prisma.LeadUpdateWithoutTendersInput, Prisma.LeadUncheckedUpdateWithoutTendersInput>
+  create: Prisma.XOR<Prisma.LeadCreateWithoutTendersInput, Prisma.LeadUncheckedCreateWithoutTendersInput>
+  where?: Prisma.LeadWhereInput
+}
+
+export type LeadUpdateToOneWithWhereWithoutTendersInput = {
+  where?: Prisma.LeadWhereInput
+  data: Prisma.XOR<Prisma.LeadUpdateWithoutTendersInput, Prisma.LeadUncheckedUpdateWithoutTendersInput>
+}
+
+export type LeadUpdateWithoutTendersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
+  assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUpdateManyWithoutLeadNestedInput
+}
+
+export type LeadUncheckedUpdateWithoutTendersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priority?: Prisma.EnumLeadPriorityFieldUpdateOperationsInput | $Enums.LeadPriority
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  estimatedValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUncheckedUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUncheckedUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedUpdateManyWithoutLeadNestedInput
+}
+
 export type LeadCreateWithoutEstimatesInput = {
   id?: string
   leadNumber: string
@@ -812,8 +1890,22 @@ export type LeadCreateWithoutEstimatesInput = {
   expectedCloseDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
   customer?: Prisma.CustomerCreateNestedOneWithoutLeadsInput
   assignedTo?: Prisma.UserCreateNestedOneWithoutAssignedLeadsInput
+  activities?: Prisma.LeadActivityCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderCreateNestedManyWithoutLeadInput
 }
 
 export type LeadUncheckedCreateWithoutEstimatesInput = {
@@ -830,6 +1922,20 @@ export type LeadUncheckedCreateWithoutEstimatesInput = {
   assignedToId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
+  activities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutLeadInput
+  competitors?: Prisma.LeadCompetitorUncheckedCreateNestedManyWithoutLeadInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedCreateNestedManyWithoutLeadInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedCreateNestedManyWithoutLeadInput
+  tenders?: Prisma.LeadTenderUncheckedCreateNestedManyWithoutLeadInput
 }
 
 export type LeadCreateOrConnectWithoutEstimatesInput = {
@@ -860,8 +1966,22 @@ export type LeadUpdateWithoutEstimatesInput = {
   expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
   customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
+  activities?: Prisma.LeadActivityUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateWithoutEstimatesInput = {
@@ -878,6 +1998,20 @@ export type LeadUncheckedUpdateWithoutEstimatesInput = {
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
+  activities?: Prisma.LeadActivityUncheckedUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUncheckedUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUncheckedUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadCreateManyAssignedToInput = {
@@ -893,6 +2027,15 @@ export type LeadCreateManyAssignedToInput = {
   customerId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
 }
 
 export type LeadUpdateWithoutAssignedToInput = {
@@ -907,8 +2050,22 @@ export type LeadUpdateWithoutAssignedToInput = {
   expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
   customer?: Prisma.CustomerUpdateOneWithoutLeadsNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateWithoutAssignedToInput = {
@@ -924,7 +2081,21 @@ export type LeadUncheckedUpdateWithoutAssignedToInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUncheckedUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUncheckedUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUncheckedUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateManyWithoutAssignedToInput = {
@@ -940,6 +2111,15 @@ export type LeadUncheckedUpdateManyWithoutAssignedToInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LeadCreateManyCustomerInput = {
@@ -955,6 +2135,15 @@ export type LeadCreateManyCustomerInput = {
   assignedToId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  steamCapacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  feedWaterSource?: string | null
+  steamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: string | null
+  crmStage?: string
 }
 
 export type LeadUpdateWithoutCustomerInput = {
@@ -969,8 +2158,22 @@ export type LeadUpdateWithoutCustomerInput = {
   expectedCloseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
   assignedTo?: Prisma.UserUpdateOneWithoutAssignedLeadsNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateWithoutCustomerInput = {
@@ -986,7 +2189,21 @@ export type LeadUncheckedUpdateWithoutCustomerInput = {
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutLeadNestedInput
+  activities?: Prisma.LeadActivityUncheckedUpdateManyWithoutLeadNestedInput
+  competitors?: Prisma.LeadCompetitorUncheckedUpdateManyWithoutLeadNestedInput
+  outcomeRecords?: Prisma.LeadOutcomeRecordUncheckedUpdateManyWithoutLeadNestedInput
+  surveys?: Prisma.LeadTechnicalSurveyUncheckedUpdateManyWithoutLeadNestedInput
+  tenders?: Prisma.LeadTenderUncheckedUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateManyWithoutCustomerInput = {
@@ -1002,6 +2219,15 @@ export type LeadUncheckedUpdateManyWithoutCustomerInput = {
   assignedToId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steamCapacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  feedWaterSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingFuelCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  industryType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crmStage?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -1011,10 +2237,20 @@ export type LeadUncheckedUpdateManyWithoutCustomerInput = {
 
 export type LeadCountOutputType = {
   estimates: number
+  activities: number
+  competitors: number
+  outcomeRecords: number
+  surveys: number
+  tenders: number
 }
 
 export type LeadCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   estimates?: boolean | LeadCountOutputTypeCountEstimatesArgs
+  activities?: boolean | LeadCountOutputTypeCountActivitiesArgs
+  competitors?: boolean | LeadCountOutputTypeCountCompetitorsArgs
+  outcomeRecords?: boolean | LeadCountOutputTypeCountOutcomeRecordsArgs
+  surveys?: boolean | LeadCountOutputTypeCountSurveysArgs
+  tenders?: boolean | LeadCountOutputTypeCountTendersArgs
 }
 
 /**
@@ -1034,6 +2270,41 @@ export type LeadCountOutputTypeCountEstimatesArgs<ExtArgs extends runtime.Types.
   where?: Prisma.EstimateWhereInput
 }
 
+/**
+ * LeadCountOutputType without action
+ */
+export type LeadCountOutputTypeCountActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadActivityWhereInput
+}
+
+/**
+ * LeadCountOutputType without action
+ */
+export type LeadCountOutputTypeCountCompetitorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadCompetitorWhereInput
+}
+
+/**
+ * LeadCountOutputType without action
+ */
+export type LeadCountOutputTypeCountOutcomeRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadOutcomeRecordWhereInput
+}
+
+/**
+ * LeadCountOutputType without action
+ */
+export type LeadCountOutputTypeCountSurveysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadTechnicalSurveyWhereInput
+}
+
+/**
+ * LeadCountOutputType without action
+ */
+export type LeadCountOutputTypeCountTendersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadTenderWhereInput
+}
+
 
 export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1049,9 +2320,23 @@ export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   assignedToId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  steamCapacityTph?: boolean
+  workingPressureBar?: boolean
+  fuelType?: boolean
+  feedWaterSource?: boolean
+  steamConsumption?: boolean
+  operatingHoursPerDay?: boolean
+  existingFuelCost?: boolean
+  industryType?: boolean
+  crmStage?: boolean
   customer?: boolean | Prisma.Lead$customerArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Lead$assignedToArgs<ExtArgs>
   estimates?: boolean | Prisma.Lead$estimatesArgs<ExtArgs>
+  activities?: boolean | Prisma.Lead$activitiesArgs<ExtArgs>
+  competitors?: boolean | Prisma.Lead$competitorsArgs<ExtArgs>
+  outcomeRecords?: boolean | Prisma.Lead$outcomeRecordsArgs<ExtArgs>
+  surveys?: boolean | Prisma.Lead$surveysArgs<ExtArgs>
+  tenders?: boolean | Prisma.Lead$tendersArgs<ExtArgs>
   _count?: boolean | Prisma.LeadCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lead"]>
 
@@ -1069,6 +2354,15 @@ export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   assignedToId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  steamCapacityTph?: boolean
+  workingPressureBar?: boolean
+  fuelType?: boolean
+  feedWaterSource?: boolean
+  steamConsumption?: boolean
+  operatingHoursPerDay?: boolean
+  existingFuelCost?: boolean
+  industryType?: boolean
+  crmStage?: boolean
   customer?: boolean | Prisma.Lead$customerArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Lead$assignedToArgs<ExtArgs>
 }, ExtArgs["result"]["lead"]>
@@ -1087,6 +2381,15 @@ export type LeadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   assignedToId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  steamCapacityTph?: boolean
+  workingPressureBar?: boolean
+  fuelType?: boolean
+  feedWaterSource?: boolean
+  steamConsumption?: boolean
+  operatingHoursPerDay?: boolean
+  existingFuelCost?: boolean
+  industryType?: boolean
+  crmStage?: boolean
   customer?: boolean | Prisma.Lead$customerArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Lead$assignedToArgs<ExtArgs>
 }, ExtArgs["result"]["lead"]>
@@ -1105,13 +2408,27 @@ export type LeadSelectScalar = {
   assignedToId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  steamCapacityTph?: boolean
+  workingPressureBar?: boolean
+  fuelType?: boolean
+  feedWaterSource?: boolean
+  steamConsumption?: boolean
+  operatingHoursPerDay?: boolean
+  existingFuelCost?: boolean
+  industryType?: boolean
+  crmStage?: boolean
 }
 
-export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "leadNumber" | "title" | "description" | "source" | "priority" | "status" | "estimatedValue" | "expectedCloseDate" | "customerId" | "assignedToId" | "createdAt" | "updatedAt", ExtArgs["result"]["lead"]>
+export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "leadNumber" | "title" | "description" | "source" | "priority" | "status" | "estimatedValue" | "expectedCloseDate" | "customerId" | "assignedToId" | "createdAt" | "updatedAt" | "steamCapacityTph" | "workingPressureBar" | "fuelType" | "feedWaterSource" | "steamConsumption" | "operatingHoursPerDay" | "existingFuelCost" | "industryType" | "crmStage", ExtArgs["result"]["lead"]>
 export type LeadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.Lead$customerArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Lead$assignedToArgs<ExtArgs>
   estimates?: boolean | Prisma.Lead$estimatesArgs<ExtArgs>
+  activities?: boolean | Prisma.Lead$activitiesArgs<ExtArgs>
+  competitors?: boolean | Prisma.Lead$competitorsArgs<ExtArgs>
+  outcomeRecords?: boolean | Prisma.Lead$outcomeRecordsArgs<ExtArgs>
+  surveys?: boolean | Prisma.Lead$surveysArgs<ExtArgs>
+  tenders?: boolean | Prisma.Lead$tendersArgs<ExtArgs>
   _count?: boolean | Prisma.LeadCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LeadIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1129,6 +2446,11 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     customer: Prisma.$CustomerPayload<ExtArgs> | null
     assignedTo: Prisma.$UserPayload<ExtArgs> | null
     estimates: Prisma.$EstimatePayload<ExtArgs>[]
+    activities: Prisma.$LeadActivityPayload<ExtArgs>[]
+    competitors: Prisma.$LeadCompetitorPayload<ExtArgs>[]
+    outcomeRecords: Prisma.$LeadOutcomeRecordPayload<ExtArgs>[]
+    surveys: Prisma.$LeadTechnicalSurveyPayload<ExtArgs>[]
+    tenders: Prisma.$LeadTenderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1144,6 +2466,15 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     assignedToId: string | null
     createdAt: Date
     updatedAt: Date
+    steamCapacityTph: runtime.Decimal | null
+    workingPressureBar: runtime.Decimal | null
+    fuelType: string | null
+    feedWaterSource: string | null
+    steamConsumption: runtime.Decimal | null
+    operatingHoursPerDay: runtime.Decimal | null
+    existingFuelCost: runtime.Decimal | null
+    industryType: string | null
+    crmStage: string
   }, ExtArgs["result"]["lead"]>
   composites: {}
 }
@@ -1541,6 +2872,11 @@ export interface Prisma__LeadClient<T, Null = never, ExtArgs extends runtime.Typ
   customer<T extends Prisma.Lead$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   assignedTo<T extends Prisma.Lead$assignedToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$assignedToArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   estimates<T extends Prisma.Lead$estimatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$estimatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activities<T extends Prisma.Lead$activitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  competitors<T extends Prisma.Lead$competitorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$competitorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadCompetitorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  outcomeRecords<T extends Prisma.Lead$outcomeRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$outcomeRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadOutcomeRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  surveys<T extends Prisma.Lead$surveysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$surveysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadTechnicalSurveyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tenders<T extends Prisma.Lead$tendersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$tendersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadTenderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1583,6 +2919,15 @@ export interface LeadFieldRefs {
   readonly assignedToId: Prisma.FieldRef<"Lead", 'String'>
   readonly createdAt: Prisma.FieldRef<"Lead", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Lead", 'DateTime'>
+  readonly steamCapacityTph: Prisma.FieldRef<"Lead", 'Decimal'>
+  readonly workingPressureBar: Prisma.FieldRef<"Lead", 'Decimal'>
+  readonly fuelType: Prisma.FieldRef<"Lead", 'String'>
+  readonly feedWaterSource: Prisma.FieldRef<"Lead", 'String'>
+  readonly steamConsumption: Prisma.FieldRef<"Lead", 'Decimal'>
+  readonly operatingHoursPerDay: Prisma.FieldRef<"Lead", 'Decimal'>
+  readonly existingFuelCost: Prisma.FieldRef<"Lead", 'Decimal'>
+  readonly industryType: Prisma.FieldRef<"Lead", 'String'>
+  readonly crmStage: Prisma.FieldRef<"Lead", 'String'>
 }
     
 
@@ -2043,6 +3388,126 @@ export type Lead$estimatesArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.EstimateScalarFieldEnum | Prisma.EstimateScalarFieldEnum[]
+}
+
+/**
+ * Lead.activities
+ */
+export type Lead$activitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeadActivity
+   */
+  select?: Prisma.LeadActivitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeadActivity
+   */
+  omit?: Prisma.LeadActivityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadActivityInclude<ExtArgs> | null
+  where?: Prisma.LeadActivityWhereInput
+  orderBy?: Prisma.LeadActivityOrderByWithRelationInput | Prisma.LeadActivityOrderByWithRelationInput[]
+  cursor?: Prisma.LeadActivityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadActivityScalarFieldEnum | Prisma.LeadActivityScalarFieldEnum[]
+}
+
+/**
+ * Lead.competitors
+ */
+export type Lead$competitorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeadCompetitor
+   */
+  select?: Prisma.LeadCompetitorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeadCompetitor
+   */
+  omit?: Prisma.LeadCompetitorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadCompetitorInclude<ExtArgs> | null
+  where?: Prisma.LeadCompetitorWhereInput
+  orderBy?: Prisma.LeadCompetitorOrderByWithRelationInput | Prisma.LeadCompetitorOrderByWithRelationInput[]
+  cursor?: Prisma.LeadCompetitorWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadCompetitorScalarFieldEnum | Prisma.LeadCompetitorScalarFieldEnum[]
+}
+
+/**
+ * Lead.outcomeRecords
+ */
+export type Lead$outcomeRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeadOutcomeRecord
+   */
+  select?: Prisma.LeadOutcomeRecordSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeadOutcomeRecord
+   */
+  omit?: Prisma.LeadOutcomeRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadOutcomeRecordInclude<ExtArgs> | null
+  where?: Prisma.LeadOutcomeRecordWhereInput
+  orderBy?: Prisma.LeadOutcomeRecordOrderByWithRelationInput | Prisma.LeadOutcomeRecordOrderByWithRelationInput[]
+  cursor?: Prisma.LeadOutcomeRecordWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadOutcomeRecordScalarFieldEnum | Prisma.LeadOutcomeRecordScalarFieldEnum[]
+}
+
+/**
+ * Lead.surveys
+ */
+export type Lead$surveysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeadTechnicalSurvey
+   */
+  select?: Prisma.LeadTechnicalSurveySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeadTechnicalSurvey
+   */
+  omit?: Prisma.LeadTechnicalSurveyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadTechnicalSurveyInclude<ExtArgs> | null
+  where?: Prisma.LeadTechnicalSurveyWhereInput
+  orderBy?: Prisma.LeadTechnicalSurveyOrderByWithRelationInput | Prisma.LeadTechnicalSurveyOrderByWithRelationInput[]
+  cursor?: Prisma.LeadTechnicalSurveyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadTechnicalSurveyScalarFieldEnum | Prisma.LeadTechnicalSurveyScalarFieldEnum[]
+}
+
+/**
+ * Lead.tenders
+ */
+export type Lead$tendersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeadTender
+   */
+  select?: Prisma.LeadTenderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeadTender
+   */
+  omit?: Prisma.LeadTenderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadTenderInclude<ExtArgs> | null
+  where?: Prisma.LeadTenderWhereInput
+  orderBy?: Prisma.LeadTenderOrderByWithRelationInput | Prisma.LeadTenderOrderByWithRelationInput[]
+  cursor?: Prisma.LeadTenderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadTenderScalarFieldEnum | Prisma.LeadTenderScalarFieldEnum[]
 }
 
 /**

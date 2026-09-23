@@ -8,6 +8,10 @@ import {
   createSalesOrderSchema,
   updateInvoiceSchema,
   updateSalesOrderSchema,
+  customerApprovalSchema,
+  createDispatchNoteSchema,
+  createEWayBillSchema,
+  linkSalesOrderSchema,
 } from "../utils/sales-validation.js";
 
 type AuthenticatedRequest = Request & { auth?: { userId: string } };
@@ -16,6 +20,7 @@ const code = (prefix: string) =>
   `${prefix}-${new Date().getFullYear()}-${randomUUID().slice(0, 8).toUpperCase()}`;
 
 const n = (v: unknown) => Number(v ?? 0);
+const salesDb = prisma as any;
 
 const audit = async (
   r: AuthenticatedRequest,
@@ -212,7 +217,7 @@ export const createSalesOrderController = async (
       ...(d.notes !== undefined ? { notes: d.notes } : {}),
       createdById: r.auth?.userId ?? null,
       items: { create: calc },
-    },
+    } as any,
     include: orderInclude,
   });
 
@@ -253,12 +258,21 @@ export const updateSalesOrderController = async (
   }
 
   const allowed: Record<string, string[]> = {
-    DRAFT: ["CONFIRMED", "CANCELLED"],
-    CONFIRMED: ["IN_PROGRESS", "READY_TO_INVOICE", "CANCELLED"],
-    IN_PROGRESS: ["READY_TO_INVOICE", "CANCELLED"],
-    READY_TO_INVOICE: ["COMPLETED"],
-    COMPLETED: [],
+    DRAFT: ["CONFIRMED", "ADVANCE_PENDING", "CANCELLED"],
+    CONFIRMED: ["ADVANCE_PENDING", "ADVANCE_RECEIVED", "IN_PRODUCTION", "CANCELLED"],
+    ADVANCE_PENDING: ["ADVANCE_RECEIVED", "IN_PRODUCTION", "CANCELLED"],
+    ADVANCE_RECEIVED: ["IN_PRODUCTION", "CANCELLED"],
+    IN_PRODUCTION: ["READY_FOR_DISPATCH", "CANCELLED"],
+    READY_FOR_DISPATCH: ["DISPATCHED", "CANCELLED"],
+    DISPATCHED: ["INSTALLED"],
+    INSTALLED: ["COMMISSIONED"],
+    COMMISSIONED: ["CLOSED"],
+    CLOSED: [],
     CANCELLED: [],
+    // legacy statuses kept for existing records
+    IN_PROGRESS: ["READY_TO_INVOICE", "READY_FOR_DISPATCH", "CANCELLED"],
+    READY_TO_INVOICE: ["COMPLETED", "READY_FOR_DISPATCH"],
+    COMPLETED: ["CLOSED"],
   };
 
   const nextAllowed = allowed[old.status] ?? [];
@@ -275,7 +289,7 @@ export const updateSalesOrderController = async (
     data.confirmedAt = new Date();
     data.confirmedById = r.auth?.userId ?? null;
   }
-  if (v.data.status === "COMPLETED") data.completedAt = new Date();
+  if (v.data.status === "CLOSED") data.completedAt = new Date();
 
   const row = await prisma.salesOrder.update({
     where: { id },
@@ -316,7 +330,7 @@ export const createInvoiceController = async (
     return;
   }
 
-  if (!["CONFIRMED", "IN_PROGRESS", "READY_TO_INVOICE"].includes(so.status)) {
+  if (!["CONFIRMED", "ADVANCE_PENDING", "ADVANCE_RECEIVED", "IN_PROGRESS", "IN_PRODUCTION", "READY_TO_INVOICE", "READY_FOR_DISPATCH"].includes(so.status)) {
     res.status(400).json({
       success: false,
       message: "Sales order must be confirmed before invoicing",
@@ -340,7 +354,8 @@ export const createInvoiceController = async (
 
   const row = await prisma.salesInvoice.create({
     data: {
-      invoiceNumber: code(settings?.invoicePrefix ?? "INV"),
+      invoiceNumber: code(`${d.type === "PROFORMA" ? "PI" : (settings?.invoicePrefix ?? "INV")}`),
+      type: d.type,
       salesOrderId: so.id,
       customerId: so.customerId,
       ...(d.invoiceDate !== undefined ? { invoiceDate: d.invoiceDate } : {}),
@@ -369,7 +384,7 @@ export const createInvoiceController = async (
           lineTotal: i.lineTotal,
         })),
       },
-    },
+    } as any,
     include: invoiceInclude,
   });
 
@@ -434,35 +449,75 @@ export const createPaymentController = async (
   }
 
   const d = v.data;
-  const inv = await prisma.salesInvoice.findUnique({ where: { id: d.invoiceId } });
-
-  if (!inv) {
-    res.status(404).json({ success: false, message: "Invoice not found" });
-    return;
-  }
-
-  if (!["ISSUED", "PARTIALLY_PAID", "OVERDUE"].includes(inv.status)) {
-    res.status(400).json({
-      success: false,
-      message: "Invoice must be issued before recording payment",
-    });
-    return;
-  }
-
-  if (d.amount > n(inv.balanceAmount)) {
-    res.status(400).json({
-      success: false,
-      message: "Payment cannot exceed invoice balance",
-    });
-    return;
-  }
-
   const settings = await prisma.companySettings.findUnique({ where: { id: "company" } });
+
+  if (d.invoiceId) {
+    const inv = await prisma.salesInvoice.findUnique({ where: { id: d.invoiceId } });
+    if (!inv) {
+      res.status(404).json({ success: false, message: "Invoice not found" });
+      return;
+    }
+    if (!["ISSUED", "PARTIALLY_PAID", "OVERDUE"].includes(inv.status)) {
+      res.status(400).json({ success: false, message: "Invoice must be issued before recording payment" });
+      return;
+    }
+    if (d.amount > n(inv.balanceAmount)) {
+      res.status(400).json({ success: false, message: "Payment cannot exceed invoice balance" });
+      return;
+    }
+
+    const result = await prisma.$transaction(async (tx) => {
+      const payment = await tx.salesPayment.create({
+        data: {
+          invoiceId: inv.id,
+          type: d.type,
+          paymentNumber: code(settings?.paymentPrefix ?? "PAY"),
+          ...(d.paymentDate !== undefined ? { paymentDate: d.paymentDate } : {}),
+          amount: d.amount,
+          method: d.method,
+          ...(d.referenceNumber !== undefined ? { referenceNumber: d.referenceNumber } : {}),
+          ...(d.notes !== undefined ? { notes: d.notes } : {}),
+          recordedById: r.auth?.userId ?? null,
+        } as any,
+      });
+      const paid = n(inv.paidAmount) + d.amount;
+      const balance = Math.max(0, n(inv.totalAmount) - paid);
+      const status = balance === 0 ? "PAID" : "PARTIALLY_PAID";
+      const invoice = await tx.salesInvoice.update({
+        where: { id: inv.id },
+        data: { paidAmount: paid, balanceAmount: balance, status, paidAt: balance === 0 ? new Date() : null },
+        include: invoiceInclude,
+      });
+      if (balance === 0) {
+        await tx.salesOrder.update({ where: { id: inv.salesOrderId }, data: { status: "CLOSED" } as any });
+      }
+      return { payment, invoice };
+    });
+    await audit(r, "CREATE", "SalesPayment", result.payment.id, { paymentNumber: result.payment.paymentNumber, amount: d.amount, type: d.type });
+    res.status(201).json({ success: true, message: "Payment recorded successfully", data: result });
+    return;
+  }
+
+  const so = await prisma.salesOrder.findUnique({ where: { id: d.salesOrderId! } });
+  if (!so) {
+    res.status(404).json({ success: false, message: "Sales order not found" });
+    return;
+  }
+  if (d.type !== "ADVANCE" && d.type !== "MILESTONE") {
+    res.status(400).json({ success: false, message: "Order-level payment must be an advance or milestone payment" });
+    return;
+  }
+  const remaining = Math.max(0, n(so.totalAmount) - n((so as any).advanceAmount));
+  if (d.amount > remaining) {
+    res.status(400).json({ success: false, message: "Payment cannot exceed the remaining order amount" });
+    return;
+  }
 
   const result = await prisma.$transaction(async (tx) => {
     const payment = await tx.salesPayment.create({
       data: {
-        invoiceId: inv.id,
+        salesOrderId: so.id,
+        type: d.type,
         paymentNumber: code(settings?.paymentPrefix ?? "PAY"),
         ...(d.paymentDate !== undefined ? { paymentDate: d.paymentDate } : {}),
         amount: d.amount,
@@ -470,42 +525,95 @@ export const createPaymentController = async (
         ...(d.referenceNumber !== undefined ? { referenceNumber: d.referenceNumber } : {}),
         ...(d.notes !== undefined ? { notes: d.notes } : {}),
         recordedById: r.auth?.userId ?? null,
-      },
+      } as any,
     });
-
-    const paid = n(inv.paidAmount) + d.amount;
-    const balance = Math.max(0, n(inv.totalAmount) - paid);
-    const status = balance === 0 ? "PAID" : "PARTIALLY_PAID";
-
-    const invoice = await tx.salesInvoice.update({
-      where: { id: inv.id },
-      data: {
-        paidAmount: paid,
-        balanceAmount: balance,
-        status,
-        paidAt: balance === 0 ? new Date() : null,
-      },
-      include: invoiceInclude,
-    });
-
-    if (balance === 0) {
-      await tx.salesOrder.update({
-        where: { id: inv.salesOrderId },
-        data: { status: "COMPLETED", completedAt: new Date() },
-      });
-    }
-
-    return { payment, invoice };
+    const advance = n((so as any).advanceAmount) + d.amount;
+    const status = advance >= n((so as any).advanceDueAmount) ? "ADVANCE_RECEIVED" : "ADVANCE_PENDING";
+    const order = await tx.salesOrder.update({ where: { id: so.id }, data: { advanceAmount: advance, status } as any, include: orderInclude });
+    return { payment, order };
   });
+  await audit(r, "CREATE", "SalesPayment", result.payment.id, { paymentNumber: result.payment.paymentNumber, amount: d.amount, type: d.type, salesOrderId: so.id });
+  res.status(201).json({ success: true, message: "Advance payment recorded successfully", data: result });
+};
 
-  await audit(r, "CREATE", "SalesPayment", result.payment.id, {
-    paymentNumber: result.payment.paymentNumber,
-    amount: d.amount,
+export const updateQuotationCustomerApprovalController = async (r: AuthenticatedRequest, res: Response) => {
+  const v = customerApprovalSchema.safeParse(r.body);
+  if (!v.success) { bad(res, v); return; }
+  const id = String(r.params.id);
+  const quotation = await prisma.quotation.findUnique({ where: { id } });
+  if (!quotation) { res.status(404).json({ success: false, message: "Quotation not found" }); return; }
+  const row = await prisma.quotation.update({
+    where: { id },
+    data: {
+      customerApprovalStatus: v.data.status,
+      customerApprovedAt: v.data.status === "APPROVED" ? new Date() : null,
+      customerApprovalReference: v.data.reference ?? null,
+      customerApprovalNotes: v.data.notes ?? null,
+      status: v.data.status === "APPROVED" ? "ACCEPTED" : "REJECTED",
+    } as any,
   });
+  await audit(r, "UPDATE", "Quotation", id, { customerApprovalStatus: v.data.status });
+  res.json({ success: true, message: `Customer approval ${v.data.status.toLowerCase()}`, data: row });
+};
 
-  res.status(201).json({
-    success: true,
-    message: "Payment recorded successfully",
-    data: result,
-  });
+export const createDispatchNoteController = async (r: AuthenticatedRequest, res: Response) => {
+  const v = createDispatchNoteSchema.safeParse(r.body);
+  if (!v.success) { bad(res, v); return; }
+  const d = v.data;
+  const so = await prisma.salesOrder.findUnique({ where: { id: d.salesOrderId } });
+  if (!so) { res.status(404).json({ success: false, message: "Sales order not found" }); return; }
+  if (!["READY_FOR_DISPATCH", "DISPATCHED", "COMMISSIONED", "CLOSED"].includes(so.status)) {
+    res.status(400).json({ success: false, message: "Sales order is not ready for dispatch" }); return;
+  }
+  const row = await salesDb.salesDispatchNote.create({
+    data: {
+      dispatchNoteNumber: code("DN"), salesOrderId: so.id, status: d.status,
+      ...(d.dispatchDate ? { dispatchDate: d.dispatchDate } : {}), ...(d.destination ? { destination: d.destination } : {}),
+      ...(d.transporterName ? { transporterName: d.transporterName } : {}), ...(d.vehicleNumber ? { vehicleNumber: d.vehicleNumber } : {}),
+      ...(d.lrNumber ? { lrNumber: d.lrNumber } : {}), packageCount: d.packageCount, ...(d.notes ? { notes: d.notes } : {}),
+      createdById: r.auth?.userId ?? null,
+      items: { create: d.items },
+    }, include: { items: true, salesOrder: true, eWayBills: true },
+  } as any);
+  if (d.status === "DISPATCHED" || d.status === "DELIVERED") await prisma.salesOrder.update({ where: { id: so.id }, data: { status: "DISPATCHED" } as any });
+  await audit(r, "CREATE", "SalesDispatchNote", row.id, { dispatchNoteNumber: row.dispatchNoteNumber });
+  res.status(201).json({ success: true, message: "Dispatch note created successfully", data: row });
+};
+
+export const listDispatchNotesController = async (_r: Request, res: Response) => {
+  const rows = await salesDb.salesDispatchNote.findMany({ include: { items: true, salesOrder: { include: { customer: true } }, eWayBills: true }, orderBy: { createdAt: "desc" } } as any);
+  res.json({ success: true, data: rows });
+};
+
+export const createEWayBillController = async (r: AuthenticatedRequest, res: Response) => {
+  const v = createEWayBillSchema.safeParse(r.body);
+  if (!v.success) { bad(res, v); return; }
+  const d = v.data;
+  const so = await prisma.salesOrder.findUnique({ where: { id: d.salesOrderId } });
+  if (!so) { res.status(404).json({ success: false, message: "Sales order not found" }); return; }
+  const row = await salesDb.salesEWayBill.create({ data: { ...d, createdById: r.auth?.userId ?? null } as any });
+  await audit(r, "CREATE", "SalesEWayBill", row.id, { eWayBillNumber: row.eWayBillNumber });
+  res.status(201).json({ success: true, message: "E-Way Bill recorded successfully", data: row });
+};
+
+export const listEWayBillsController = async (_r: Request, res: Response) => {
+  const rows = await salesDb.salesEWayBill.findMany({ include: { salesOrder: { include: { customer: true } }, dispatchNote: true }, orderBy: { createdAt: "desc" } } as any);
+  res.json({ success: true, data: rows });
+};
+
+export const linkSalesOrderController = async (r: AuthenticatedRequest, res: Response) => {
+  const v = linkSalesOrderSchema.safeParse(r.body);
+  if (!v.success) { bad(res, v); return; }
+  const id = String(r.params.id);
+  const so = await prisma.salesOrder.findUnique({ where: { id } });
+  if (!so) { res.status(404).json({ success: false, message: "Sales order not found" }); return; }
+  if (v.data.productionOrderId) {
+    await prisma.productionOrder.update({ where: { id: v.data.productionOrderId }, data: { salesOrderId: id } as any });
+    await prisma.salesOrder.update({ where: { id }, data: { status: "IN_PRODUCTION" } as any });
+  }
+  if (v.data.dispatchId) await prisma.dispatch.update({ where: { id: v.data.dispatchId }, data: { salesOrderId: id } as any });
+  if (v.data.installationId) await prisma.installationJob.update({ where: { id: v.data.installationId }, data: { salesOrderId: id } as any });
+  const row = await prisma.salesOrder.findUnique({ where: { id }, include: orderInclude });
+  await audit(r, "UPDATE", "SalesOrder", id, { linked: v.data });
+  res.json({ success: true, message: "Sales order links updated successfully", data: row });
 };

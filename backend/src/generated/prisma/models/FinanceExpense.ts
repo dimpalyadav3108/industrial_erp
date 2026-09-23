@@ -28,12 +28,20 @@ export type AggregateFinanceExpense = {
 
 export type FinanceExpenseAvgAggregateOutputType = {
   amount: runtime.Decimal | null
+  gstRate: runtime.Decimal | null
+  cgstAmount: runtime.Decimal | null
+  sgstAmount: runtime.Decimal | null
+  igstAmount: runtime.Decimal | null
   taxAmount: runtime.Decimal | null
   totalAmount: runtime.Decimal | null
 }
 
 export type FinanceExpenseSumAggregateOutputType = {
   amount: runtime.Decimal | null
+  gstRate: runtime.Decimal | null
+  cgstAmount: runtime.Decimal | null
+  sgstAmount: runtime.Decimal | null
+  igstAmount: runtime.Decimal | null
   taxAmount: runtime.Decimal | null
   totalAmount: runtime.Decimal | null
 }
@@ -46,6 +54,11 @@ export type FinanceExpenseMinAggregateOutputType = {
   description: string | null
   vendorId: string | null
   amount: runtime.Decimal | null
+  gstType: string | null
+  gstRate: runtime.Decimal | null
+  cgstAmount: runtime.Decimal | null
+  sgstAmount: runtime.Decimal | null
+  igstAmount: runtime.Decimal | null
   taxAmount: runtime.Decimal | null
   totalAmount: runtime.Decimal | null
   paymentMethod: $Enums.PaymentMethod | null
@@ -68,6 +81,11 @@ export type FinanceExpenseMaxAggregateOutputType = {
   description: string | null
   vendorId: string | null
   amount: runtime.Decimal | null
+  gstType: string | null
+  gstRate: runtime.Decimal | null
+  cgstAmount: runtime.Decimal | null
+  sgstAmount: runtime.Decimal | null
+  igstAmount: runtime.Decimal | null
   taxAmount: runtime.Decimal | null
   totalAmount: runtime.Decimal | null
   paymentMethod: $Enums.PaymentMethod | null
@@ -90,6 +108,11 @@ export type FinanceExpenseCountAggregateOutputType = {
   description: number
   vendorId: number
   amount: number
+  gstType: number
+  gstRate: number
+  cgstAmount: number
+  sgstAmount: number
+  igstAmount: number
   taxAmount: number
   totalAmount: number
   paymentMethod: number
@@ -108,12 +131,20 @@ export type FinanceExpenseCountAggregateOutputType = {
 
 export type FinanceExpenseAvgAggregateInputType = {
   amount?: true
+  gstRate?: true
+  cgstAmount?: true
+  sgstAmount?: true
+  igstAmount?: true
   taxAmount?: true
   totalAmount?: true
 }
 
 export type FinanceExpenseSumAggregateInputType = {
   amount?: true
+  gstRate?: true
+  cgstAmount?: true
+  sgstAmount?: true
+  igstAmount?: true
   taxAmount?: true
   totalAmount?: true
 }
@@ -126,6 +157,11 @@ export type FinanceExpenseMinAggregateInputType = {
   description?: true
   vendorId?: true
   amount?: true
+  gstType?: true
+  gstRate?: true
+  cgstAmount?: true
+  sgstAmount?: true
+  igstAmount?: true
   taxAmount?: true
   totalAmount?: true
   paymentMethod?: true
@@ -148,6 +184,11 @@ export type FinanceExpenseMaxAggregateInputType = {
   description?: true
   vendorId?: true
   amount?: true
+  gstType?: true
+  gstRate?: true
+  cgstAmount?: true
+  sgstAmount?: true
+  igstAmount?: true
   taxAmount?: true
   totalAmount?: true
   paymentMethod?: true
@@ -170,6 +211,11 @@ export type FinanceExpenseCountAggregateInputType = {
   description?: true
   vendorId?: true
   amount?: true
+  gstType?: true
+  gstRate?: true
+  cgstAmount?: true
+  sgstAmount?: true
+  igstAmount?: true
   taxAmount?: true
   totalAmount?: true
   paymentMethod?: true
@@ -279,6 +325,11 @@ export type FinanceExpenseGroupByOutputType = {
   description: string
   vendorId: string | null
   amount: runtime.Decimal
+  gstType: string | null
+  gstRate: runtime.Decimal
+  cgstAmount: runtime.Decimal
+  sgstAmount: runtime.Decimal
+  igstAmount: runtime.Decimal
   taxAmount: runtime.Decimal
   totalAmount: runtime.Decimal
   paymentMethod: $Enums.PaymentMethod | null
@@ -324,6 +375,11 @@ export type FinanceExpenseWhereInput = {
   description?: Prisma.StringFilter<"FinanceExpense"> | string
   vendorId?: Prisma.StringNullableFilter<"FinanceExpense"> | string | null
   amount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.StringNullableFilter<"FinanceExpense"> | string | null
+  gstRate?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumPaymentMethodNullableFilter<"FinanceExpense"> | $Enums.PaymentMethod | null
@@ -349,6 +405,11 @@ export type FinanceExpenseOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   vendorId?: Prisma.SortOrderInput | Prisma.SortOrder
   amount?: Prisma.SortOrder
+  gstType?: Prisma.SortOrderInput | Prisma.SortOrder
+  gstRate?: Prisma.SortOrder
+  cgstAmount?: Prisma.SortOrder
+  sgstAmount?: Prisma.SortOrder
+  igstAmount?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -377,6 +438,11 @@ export type FinanceExpenseWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"FinanceExpense"> | string
   vendorId?: Prisma.StringNullableFilter<"FinanceExpense"> | string | null
   amount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.StringNullableFilter<"FinanceExpense"> | string | null
+  gstRate?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumPaymentMethodNullableFilter<"FinanceExpense"> | $Enums.PaymentMethod | null
@@ -402,6 +468,11 @@ export type FinanceExpenseOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   vendorId?: Prisma.SortOrderInput | Prisma.SortOrder
   amount?: Prisma.SortOrder
+  gstType?: Prisma.SortOrderInput | Prisma.SortOrder
+  gstRate?: Prisma.SortOrder
+  cgstAmount?: Prisma.SortOrder
+  sgstAmount?: Prisma.SortOrder
+  igstAmount?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -432,6 +503,11 @@ export type FinanceExpenseScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"FinanceExpense"> | string
   vendorId?: Prisma.StringNullableWithAggregatesFilter<"FinanceExpense"> | string | null
   amount?: Prisma.DecimalWithAggregatesFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.StringNullableWithAggregatesFilter<"FinanceExpense"> | string | null
+  gstRate?: Prisma.DecimalWithAggregatesFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalWithAggregatesFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalWithAggregatesFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalWithAggregatesFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalWithAggregatesFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalWithAggregatesFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumPaymentMethodNullableWithAggregatesFilter<"FinanceExpense"> | $Enums.PaymentMethod | null
@@ -453,6 +529,11 @@ export type FinanceExpenseCreateInput = {
   category: string
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -476,6 +557,11 @@ export type FinanceExpenseUncheckedCreateInput = {
   description: string
   vendorId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -497,6 +583,11 @@ export type FinanceExpenseUpdateInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -520,6 +611,11 @@ export type FinanceExpenseUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -542,6 +638,11 @@ export type FinanceExpenseCreateManyInput = {
   description: string
   vendorId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -563,6 +664,11 @@ export type FinanceExpenseUpdateManyMutationInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -583,6 +689,11 @@ export type FinanceExpenseUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -615,6 +726,11 @@ export type FinanceExpenseCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   vendorId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
+  gstType?: Prisma.SortOrder
+  gstRate?: Prisma.SortOrder
+  cgstAmount?: Prisma.SortOrder
+  sgstAmount?: Prisma.SortOrder
+  igstAmount?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
@@ -631,6 +747,10 @@ export type FinanceExpenseCountOrderByAggregateInput = {
 
 export type FinanceExpenseAvgOrderByAggregateInput = {
   amount?: Prisma.SortOrder
+  gstRate?: Prisma.SortOrder
+  cgstAmount?: Prisma.SortOrder
+  sgstAmount?: Prisma.SortOrder
+  igstAmount?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
 }
@@ -643,6 +763,11 @@ export type FinanceExpenseMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   vendorId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
+  gstType?: Prisma.SortOrder
+  gstRate?: Prisma.SortOrder
+  cgstAmount?: Prisma.SortOrder
+  sgstAmount?: Prisma.SortOrder
+  igstAmount?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
@@ -665,6 +790,11 @@ export type FinanceExpenseMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   vendorId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
+  gstType?: Prisma.SortOrder
+  gstRate?: Prisma.SortOrder
+  cgstAmount?: Prisma.SortOrder
+  sgstAmount?: Prisma.SortOrder
+  igstAmount?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
@@ -681,6 +811,10 @@ export type FinanceExpenseMinOrderByAggregateInput = {
 
 export type FinanceExpenseSumOrderByAggregateInput = {
   amount?: Prisma.SortOrder
+  gstRate?: Prisma.SortOrder
+  cgstAmount?: Prisma.SortOrder
+  sgstAmount?: Prisma.SortOrder
+  igstAmount?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
 }
@@ -826,6 +960,11 @@ export type FinanceExpenseCreateWithoutCreatedByInput = {
   category: string
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -848,6 +987,11 @@ export type FinanceExpenseUncheckedCreateWithoutCreatedByInput = {
   description: string
   vendorId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -878,6 +1022,11 @@ export type FinanceExpenseCreateWithoutApprovedByInput = {
   category: string
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -900,6 +1049,11 @@ export type FinanceExpenseUncheckedCreateWithoutApprovedByInput = {
   description: string
   vendorId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -950,6 +1104,11 @@ export type FinanceExpenseScalarWhereInput = {
   description?: Prisma.StringFilter<"FinanceExpense"> | string
   vendorId?: Prisma.StringNullableFilter<"FinanceExpense"> | string | null
   amount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.StringNullableFilter<"FinanceExpense"> | string | null
+  gstRate?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFilter<"FinanceExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumPaymentMethodNullableFilter<"FinanceExpense"> | $Enums.PaymentMethod | null
@@ -987,6 +1146,11 @@ export type FinanceExpenseCreateWithoutVendorInput = {
   category: string
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -1008,6 +1172,11 @@ export type FinanceExpenseUncheckedCreateWithoutVendorInput = {
   category: string
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -1056,6 +1225,11 @@ export type FinanceExpenseCreateManyCreatedByInput = {
   description: string
   vendorId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -1077,6 +1251,11 @@ export type FinanceExpenseCreateManyApprovedByInput = {
   description: string
   vendorId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -1097,6 +1276,11 @@ export type FinanceExpenseUpdateWithoutCreatedByInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -1119,6 +1303,11 @@ export type FinanceExpenseUncheckedUpdateWithoutCreatedByInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -1140,6 +1329,11 @@ export type FinanceExpenseUncheckedUpdateManyWithoutCreatedByInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -1160,6 +1354,11 @@ export type FinanceExpenseUpdateWithoutApprovedByInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -1182,6 +1381,11 @@ export type FinanceExpenseUncheckedUpdateWithoutApprovedByInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -1203,6 +1407,11 @@ export type FinanceExpenseUncheckedUpdateManyWithoutApprovedByInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -1223,6 +1432,11 @@ export type FinanceExpenseCreateManyVendorInput = {
   category: string
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: string | null
+  gstRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: $Enums.PaymentMethod | null
@@ -1244,6 +1458,11 @@ export type FinanceExpenseUpdateWithoutVendorInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -1265,6 +1484,11 @@ export type FinanceExpenseUncheckedUpdateWithoutVendorInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -1286,6 +1510,11 @@ export type FinanceExpenseUncheckedUpdateManyWithoutVendorInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sgstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igstAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
@@ -1310,6 +1539,11 @@ export type FinanceExpenseSelect<ExtArgs extends runtime.Types.Extensions.Intern
   description?: boolean
   vendorId?: boolean
   amount?: boolean
+  gstType?: boolean
+  gstRate?: boolean
+  cgstAmount?: boolean
+  sgstAmount?: boolean
+  igstAmount?: boolean
   taxAmount?: boolean
   totalAmount?: boolean
   paymentMethod?: boolean
@@ -1335,6 +1569,11 @@ export type FinanceExpenseSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   description?: boolean
   vendorId?: boolean
   amount?: boolean
+  gstType?: boolean
+  gstRate?: boolean
+  cgstAmount?: boolean
+  sgstAmount?: boolean
+  igstAmount?: boolean
   taxAmount?: boolean
   totalAmount?: boolean
   paymentMethod?: boolean
@@ -1360,6 +1599,11 @@ export type FinanceExpenseSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   description?: boolean
   vendorId?: boolean
   amount?: boolean
+  gstType?: boolean
+  gstRate?: boolean
+  cgstAmount?: boolean
+  sgstAmount?: boolean
+  igstAmount?: boolean
   taxAmount?: boolean
   totalAmount?: boolean
   paymentMethod?: boolean
@@ -1385,6 +1629,11 @@ export type FinanceExpenseSelectScalar = {
   description?: boolean
   vendorId?: boolean
   amount?: boolean
+  gstType?: boolean
+  gstRate?: boolean
+  cgstAmount?: boolean
+  sgstAmount?: boolean
+  igstAmount?: boolean
   taxAmount?: boolean
   totalAmount?: boolean
   paymentMethod?: boolean
@@ -1399,7 +1648,7 @@ export type FinanceExpenseSelectScalar = {
   updatedAt?: boolean
 }
 
-export type FinanceExpenseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "expenseNumber" | "expenseDate" | "category" | "description" | "vendorId" | "amount" | "taxAmount" | "totalAmount" | "paymentMethod" | "referenceNumber" | "status" | "notes" | "createdById" | "approvedById" | "approvedAt" | "paidAt" | "createdAt" | "updatedAt", ExtArgs["result"]["financeExpense"]>
+export type FinanceExpenseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "expenseNumber" | "expenseDate" | "category" | "description" | "vendorId" | "amount" | "gstType" | "gstRate" | "cgstAmount" | "sgstAmount" | "igstAmount" | "taxAmount" | "totalAmount" | "paymentMethod" | "referenceNumber" | "status" | "notes" | "createdById" | "approvedById" | "approvedAt" | "paidAt" | "createdAt" | "updatedAt", ExtArgs["result"]["financeExpense"]>
 export type FinanceExpenseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   vendor?: boolean | Prisma.FinanceExpense$vendorArgs<ExtArgs>
   createdBy?: boolean | Prisma.FinanceExpense$createdByArgs<ExtArgs>
@@ -1431,6 +1680,11 @@ export type $FinanceExpensePayload<ExtArgs extends runtime.Types.Extensions.Inte
     description: string
     vendorId: string | null
     amount: runtime.Decimal
+    gstType: string | null
+    gstRate: runtime.Decimal
+    cgstAmount: runtime.Decimal
+    sgstAmount: runtime.Decimal
+    igstAmount: runtime.Decimal
     taxAmount: runtime.Decimal
     totalAmount: runtime.Decimal
     paymentMethod: $Enums.PaymentMethod | null
@@ -1876,6 +2130,11 @@ export interface FinanceExpenseFieldRefs {
   readonly description: Prisma.FieldRef<"FinanceExpense", 'String'>
   readonly vendorId: Prisma.FieldRef<"FinanceExpense", 'String'>
   readonly amount: Prisma.FieldRef<"FinanceExpense", 'Decimal'>
+  readonly gstType: Prisma.FieldRef<"FinanceExpense", 'String'>
+  readonly gstRate: Prisma.FieldRef<"FinanceExpense", 'Decimal'>
+  readonly cgstAmount: Prisma.FieldRef<"FinanceExpense", 'Decimal'>
+  readonly sgstAmount: Prisma.FieldRef<"FinanceExpense", 'Decimal'>
+  readonly igstAmount: Prisma.FieldRef<"FinanceExpense", 'Decimal'>
   readonly taxAmount: Prisma.FieldRef<"FinanceExpense", 'Decimal'>
   readonly totalAmount: Prisma.FieldRef<"FinanceExpense", 'Decimal'>
   readonly paymentMethod: Prisma.FieldRef<"FinanceExpense", 'PaymentMethod'>

@@ -38,10 +38,15 @@ export type EngineeringDrawingRevisionMinAggregateOutputType = {
   id: string | null
   drawingId: string | null
   revisionNumber: number | null
+  versionLabel: string | null
   status: $Enums.DrawingRevisionStatus | null
   documentName: string | null
   documentUrl: string | null
   changeReason: string | null
+  modifiedById: string | null
+  modifiedAt: Date | null
+  approvalComment: string | null
+  customerApprovalReference: string | null
   submittedAt: Date | null
   approvedAt: Date | null
   customerApproved: boolean | null
@@ -56,10 +61,15 @@ export type EngineeringDrawingRevisionMaxAggregateOutputType = {
   id: string | null
   drawingId: string | null
   revisionNumber: number | null
+  versionLabel: string | null
   status: $Enums.DrawingRevisionStatus | null
   documentName: string | null
   documentUrl: string | null
   changeReason: string | null
+  modifiedById: string | null
+  modifiedAt: Date | null
+  approvalComment: string | null
+  customerApprovalReference: string | null
   submittedAt: Date | null
   approvedAt: Date | null
   customerApproved: boolean | null
@@ -74,10 +84,15 @@ export type EngineeringDrawingRevisionCountAggregateOutputType = {
   id: number
   drawingId: number
   revisionNumber: number
+  versionLabel: number
   status: number
   documentName: number
   documentUrl: number
   changeReason: number
+  modifiedById: number
+  modifiedAt: number
+  approvalComment: number
+  customerApprovalReference: number
   submittedAt: number
   approvedAt: number
   customerApproved: number
@@ -102,10 +117,15 @@ export type EngineeringDrawingRevisionMinAggregateInputType = {
   id?: true
   drawingId?: true
   revisionNumber?: true
+  versionLabel?: true
   status?: true
   documentName?: true
   documentUrl?: true
   changeReason?: true
+  modifiedById?: true
+  modifiedAt?: true
+  approvalComment?: true
+  customerApprovalReference?: true
   submittedAt?: true
   approvedAt?: true
   customerApproved?: true
@@ -120,10 +140,15 @@ export type EngineeringDrawingRevisionMaxAggregateInputType = {
   id?: true
   drawingId?: true
   revisionNumber?: true
+  versionLabel?: true
   status?: true
   documentName?: true
   documentUrl?: true
   changeReason?: true
+  modifiedById?: true
+  modifiedAt?: true
+  approvalComment?: true
+  customerApprovalReference?: true
   submittedAt?: true
   approvedAt?: true
   customerApproved?: true
@@ -138,10 +163,15 @@ export type EngineeringDrawingRevisionCountAggregateInputType = {
   id?: true
   drawingId?: true
   revisionNumber?: true
+  versionLabel?: true
   status?: true
   documentName?: true
   documentUrl?: true
   changeReason?: true
+  modifiedById?: true
+  modifiedAt?: true
+  approvalComment?: true
+  customerApprovalReference?: true
   submittedAt?: true
   approvedAt?: true
   customerApproved?: true
@@ -243,10 +273,15 @@ export type EngineeringDrawingRevisionGroupByOutputType = {
   id: string
   drawingId: string
   revisionNumber: number
+  versionLabel: string
   status: $Enums.DrawingRevisionStatus
   documentName: string | null
   documentUrl: string | null
   changeReason: string
+  modifiedById: string | null
+  modifiedAt: Date | null
+  approvalComment: string | null
+  customerApprovalReference: string | null
   submittedAt: Date | null
   approvedAt: Date | null
   customerApproved: boolean
@@ -284,10 +319,15 @@ export type EngineeringDrawingRevisionWhereInput = {
   id?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
   drawingId?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
   revisionNumber?: Prisma.IntFilter<"EngineeringDrawingRevision"> | number
+  versionLabel?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
   status?: Prisma.EnumDrawingRevisionStatusFilter<"EngineeringDrawingRevision"> | $Enums.DrawingRevisionStatus
   documentName?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
   documentUrl?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
   changeReason?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
+  modifiedById?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
+  modifiedAt?: Prisma.DateTimeNullableFilter<"EngineeringDrawingRevision"> | Date | string | null
+  approvalComment?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
+  customerApprovalReference?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
   submittedAt?: Prisma.DateTimeNullableFilter<"EngineeringDrawingRevision"> | Date | string | null
   approvedAt?: Prisma.DateTimeNullableFilter<"EngineeringDrawingRevision"> | Date | string | null
   customerApproved?: Prisma.BoolFilter<"EngineeringDrawingRevision"> | boolean
@@ -299,16 +339,22 @@ export type EngineeringDrawingRevisionWhereInput = {
   drawing?: Prisma.XOR<Prisma.EngineeringDrawingScalarRelationFilter, Prisma.EngineeringDrawingWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   approvedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  modifiedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type EngineeringDrawingRevisionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   drawingId?: Prisma.SortOrder
   revisionNumber?: Prisma.SortOrder
+  versionLabel?: Prisma.SortOrder
   status?: Prisma.SortOrder
   documentName?: Prisma.SortOrderInput | Prisma.SortOrder
   documentUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   changeReason?: Prisma.SortOrder
+  modifiedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  modifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvalComment?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrderInput | Prisma.SortOrder
   submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   approvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   customerApproved?: Prisma.SortOrder
@@ -320,6 +366,7 @@ export type EngineeringDrawingRevisionOrderByWithRelationInput = {
   drawing?: Prisma.EngineeringDrawingOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   approvedBy?: Prisma.UserOrderByWithRelationInput
+  modifiedBy?: Prisma.UserOrderByWithRelationInput
 }
 
 export type EngineeringDrawingRevisionWhereUniqueInput = Prisma.AtLeast<{
@@ -330,10 +377,15 @@ export type EngineeringDrawingRevisionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.EngineeringDrawingRevisionWhereInput | Prisma.EngineeringDrawingRevisionWhereInput[]
   drawingId?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
   revisionNumber?: Prisma.IntFilter<"EngineeringDrawingRevision"> | number
+  versionLabel?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
   status?: Prisma.EnumDrawingRevisionStatusFilter<"EngineeringDrawingRevision"> | $Enums.DrawingRevisionStatus
   documentName?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
   documentUrl?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
   changeReason?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
+  modifiedById?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
+  modifiedAt?: Prisma.DateTimeNullableFilter<"EngineeringDrawingRevision"> | Date | string | null
+  approvalComment?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
+  customerApprovalReference?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
   submittedAt?: Prisma.DateTimeNullableFilter<"EngineeringDrawingRevision"> | Date | string | null
   approvedAt?: Prisma.DateTimeNullableFilter<"EngineeringDrawingRevision"> | Date | string | null
   customerApproved?: Prisma.BoolFilter<"EngineeringDrawingRevision"> | boolean
@@ -345,16 +397,22 @@ export type EngineeringDrawingRevisionWhereUniqueInput = Prisma.AtLeast<{
   drawing?: Prisma.XOR<Prisma.EngineeringDrawingScalarRelationFilter, Prisma.EngineeringDrawingWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   approvedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  modifiedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id" | "drawingId_revisionNumber">
 
 export type EngineeringDrawingRevisionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   drawingId?: Prisma.SortOrder
   revisionNumber?: Prisma.SortOrder
+  versionLabel?: Prisma.SortOrder
   status?: Prisma.SortOrder
   documentName?: Prisma.SortOrderInput | Prisma.SortOrder
   documentUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   changeReason?: Prisma.SortOrder
+  modifiedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  modifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvalComment?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrderInput | Prisma.SortOrder
   submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   approvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   customerApproved?: Prisma.SortOrder
@@ -377,10 +435,15 @@ export type EngineeringDrawingRevisionScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"EngineeringDrawingRevision"> | string
   drawingId?: Prisma.StringWithAggregatesFilter<"EngineeringDrawingRevision"> | string
   revisionNumber?: Prisma.IntWithAggregatesFilter<"EngineeringDrawingRevision"> | number
+  versionLabel?: Prisma.StringWithAggregatesFilter<"EngineeringDrawingRevision"> | string
   status?: Prisma.EnumDrawingRevisionStatusWithAggregatesFilter<"EngineeringDrawingRevision"> | $Enums.DrawingRevisionStatus
   documentName?: Prisma.StringNullableWithAggregatesFilter<"EngineeringDrawingRevision"> | string | null
   documentUrl?: Prisma.StringNullableWithAggregatesFilter<"EngineeringDrawingRevision"> | string | null
   changeReason?: Prisma.StringWithAggregatesFilter<"EngineeringDrawingRevision"> | string
+  modifiedById?: Prisma.StringNullableWithAggregatesFilter<"EngineeringDrawingRevision"> | string | null
+  modifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringDrawingRevision"> | Date | string | null
+  approvalComment?: Prisma.StringNullableWithAggregatesFilter<"EngineeringDrawingRevision"> | string | null
+  customerApprovalReference?: Prisma.StringNullableWithAggregatesFilter<"EngineeringDrawingRevision"> | string | null
   submittedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringDrawingRevision"> | Date | string | null
   approvedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringDrawingRevision"> | Date | string | null
   customerApproved?: Prisma.BoolWithAggregatesFilter<"EngineeringDrawingRevision"> | boolean
@@ -394,10 +457,14 @@ export type EngineeringDrawingRevisionScalarWhereWithAggregatesInput = {
 export type EngineeringDrawingRevisionCreateInput = {
   id?: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -407,16 +474,22 @@ export type EngineeringDrawingRevisionCreateInput = {
   drawing: Prisma.EngineeringDrawingCreateNestedOneWithoutRevisionsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDrawingRevisionsInput
   approvedBy?: Prisma.UserCreateNestedOneWithoutApprovedDrawingRevisionsInput
+  modifiedBy?: Prisma.UserCreateNestedOneWithoutModifiedDrawingRevisionsInput
 }
 
 export type EngineeringDrawingRevisionUncheckedCreateInput = {
   id?: string
   drawingId: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedById?: string | null
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -430,10 +503,14 @@ export type EngineeringDrawingRevisionUncheckedCreateInput = {
 export type EngineeringDrawingRevisionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -443,16 +520,22 @@ export type EngineeringDrawingRevisionUpdateInput = {
   drawing?: Prisma.EngineeringDrawingUpdateOneRequiredWithoutRevisionsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedDrawingRevisionsNestedInput
   approvedBy?: Prisma.UserUpdateOneWithoutApprovedDrawingRevisionsNestedInput
+  modifiedBy?: Prisma.UserUpdateOneWithoutModifiedDrawingRevisionsNestedInput
 }
 
 export type EngineeringDrawingRevisionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   drawingId?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -467,10 +550,15 @@ export type EngineeringDrawingRevisionCreateManyInput = {
   id?: string
   drawingId: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedById?: string | null
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -484,10 +572,14 @@ export type EngineeringDrawingRevisionCreateManyInput = {
 export type EngineeringDrawingRevisionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -500,10 +592,15 @@ export type EngineeringDrawingRevisionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   drawingId?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -533,10 +630,15 @@ export type EngineeringDrawingRevisionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   drawingId?: Prisma.SortOrder
   revisionNumber?: Prisma.SortOrder
+  versionLabel?: Prisma.SortOrder
   status?: Prisma.SortOrder
   documentName?: Prisma.SortOrder
   documentUrl?: Prisma.SortOrder
   changeReason?: Prisma.SortOrder
+  modifiedById?: Prisma.SortOrder
+  modifiedAt?: Prisma.SortOrder
+  approvalComment?: Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
   approvedAt?: Prisma.SortOrder
   customerApproved?: Prisma.SortOrder
@@ -555,10 +657,15 @@ export type EngineeringDrawingRevisionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   drawingId?: Prisma.SortOrder
   revisionNumber?: Prisma.SortOrder
+  versionLabel?: Prisma.SortOrder
   status?: Prisma.SortOrder
   documentName?: Prisma.SortOrder
   documentUrl?: Prisma.SortOrder
   changeReason?: Prisma.SortOrder
+  modifiedById?: Prisma.SortOrder
+  modifiedAt?: Prisma.SortOrder
+  approvalComment?: Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
   approvedAt?: Prisma.SortOrder
   customerApproved?: Prisma.SortOrder
@@ -573,10 +680,15 @@ export type EngineeringDrawingRevisionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   drawingId?: Prisma.SortOrder
   revisionNumber?: Prisma.SortOrder
+  versionLabel?: Prisma.SortOrder
   status?: Prisma.SortOrder
   documentName?: Prisma.SortOrder
   documentUrl?: Prisma.SortOrder
   changeReason?: Prisma.SortOrder
+  modifiedById?: Prisma.SortOrder
+  modifiedAt?: Prisma.SortOrder
+  approvalComment?: Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
   approvedAt?: Prisma.SortOrder
   customerApproved?: Prisma.SortOrder
@@ -605,6 +717,13 @@ export type EngineeringDrawingRevisionCreateNestedManyWithoutApprovedByInput = {
   connect?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
 }
 
+export type EngineeringDrawingRevisionCreateNestedManyWithoutModifiedByInput = {
+  create?: Prisma.XOR<Prisma.EngineeringDrawingRevisionCreateWithoutModifiedByInput, Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput> | Prisma.EngineeringDrawingRevisionCreateWithoutModifiedByInput[] | Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput[]
+  connectOrCreate?: Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutModifiedByInput | Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutModifiedByInput[]
+  createMany?: Prisma.EngineeringDrawingRevisionCreateManyModifiedByInputEnvelope
+  connect?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
+}
+
 export type EngineeringDrawingRevisionUncheckedCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.EngineeringDrawingRevisionCreateWithoutCreatedByInput, Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutCreatedByInput> | Prisma.EngineeringDrawingRevisionCreateWithoutCreatedByInput[] | Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutCreatedByInput | Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutCreatedByInput[]
@@ -616,6 +735,13 @@ export type EngineeringDrawingRevisionUncheckedCreateNestedManyWithoutApprovedBy
   create?: Prisma.XOR<Prisma.EngineeringDrawingRevisionCreateWithoutApprovedByInput, Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutApprovedByInput> | Prisma.EngineeringDrawingRevisionCreateWithoutApprovedByInput[] | Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutApprovedByInput[]
   connectOrCreate?: Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutApprovedByInput | Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutApprovedByInput[]
   createMany?: Prisma.EngineeringDrawingRevisionCreateManyApprovedByInputEnvelope
+  connect?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
+}
+
+export type EngineeringDrawingRevisionUncheckedCreateNestedManyWithoutModifiedByInput = {
+  create?: Prisma.XOR<Prisma.EngineeringDrawingRevisionCreateWithoutModifiedByInput, Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput> | Prisma.EngineeringDrawingRevisionCreateWithoutModifiedByInput[] | Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput[]
+  connectOrCreate?: Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutModifiedByInput | Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutModifiedByInput[]
+  createMany?: Prisma.EngineeringDrawingRevisionCreateManyModifiedByInputEnvelope
   connect?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
 }
 
@@ -647,6 +773,20 @@ export type EngineeringDrawingRevisionUpdateManyWithoutApprovedByNestedInput = {
   deleteMany?: Prisma.EngineeringDrawingRevisionScalarWhereInput | Prisma.EngineeringDrawingRevisionScalarWhereInput[]
 }
 
+export type EngineeringDrawingRevisionUpdateManyWithoutModifiedByNestedInput = {
+  create?: Prisma.XOR<Prisma.EngineeringDrawingRevisionCreateWithoutModifiedByInput, Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput> | Prisma.EngineeringDrawingRevisionCreateWithoutModifiedByInput[] | Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput[]
+  connectOrCreate?: Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutModifiedByInput | Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutModifiedByInput[]
+  upsert?: Prisma.EngineeringDrawingRevisionUpsertWithWhereUniqueWithoutModifiedByInput | Prisma.EngineeringDrawingRevisionUpsertWithWhereUniqueWithoutModifiedByInput[]
+  createMany?: Prisma.EngineeringDrawingRevisionCreateManyModifiedByInputEnvelope
+  set?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
+  disconnect?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
+  delete?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
+  connect?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
+  update?: Prisma.EngineeringDrawingRevisionUpdateWithWhereUniqueWithoutModifiedByInput | Prisma.EngineeringDrawingRevisionUpdateWithWhereUniqueWithoutModifiedByInput[]
+  updateMany?: Prisma.EngineeringDrawingRevisionUpdateManyWithWhereWithoutModifiedByInput | Prisma.EngineeringDrawingRevisionUpdateManyWithWhereWithoutModifiedByInput[]
+  deleteMany?: Prisma.EngineeringDrawingRevisionScalarWhereInput | Prisma.EngineeringDrawingRevisionScalarWhereInput[]
+}
+
 export type EngineeringDrawingRevisionUncheckedUpdateManyWithoutCreatedByNestedInput = {
   create?: Prisma.XOR<Prisma.EngineeringDrawingRevisionCreateWithoutCreatedByInput, Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutCreatedByInput> | Prisma.EngineeringDrawingRevisionCreateWithoutCreatedByInput[] | Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutCreatedByInput | Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutCreatedByInput[]
@@ -672,6 +812,20 @@ export type EngineeringDrawingRevisionUncheckedUpdateManyWithoutApprovedByNested
   connect?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
   update?: Prisma.EngineeringDrawingRevisionUpdateWithWhereUniqueWithoutApprovedByInput | Prisma.EngineeringDrawingRevisionUpdateWithWhereUniqueWithoutApprovedByInput[]
   updateMany?: Prisma.EngineeringDrawingRevisionUpdateManyWithWhereWithoutApprovedByInput | Prisma.EngineeringDrawingRevisionUpdateManyWithWhereWithoutApprovedByInput[]
+  deleteMany?: Prisma.EngineeringDrawingRevisionScalarWhereInput | Prisma.EngineeringDrawingRevisionScalarWhereInput[]
+}
+
+export type EngineeringDrawingRevisionUncheckedUpdateManyWithoutModifiedByNestedInput = {
+  create?: Prisma.XOR<Prisma.EngineeringDrawingRevisionCreateWithoutModifiedByInput, Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput> | Prisma.EngineeringDrawingRevisionCreateWithoutModifiedByInput[] | Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput[]
+  connectOrCreate?: Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutModifiedByInput | Prisma.EngineeringDrawingRevisionCreateOrConnectWithoutModifiedByInput[]
+  upsert?: Prisma.EngineeringDrawingRevisionUpsertWithWhereUniqueWithoutModifiedByInput | Prisma.EngineeringDrawingRevisionUpsertWithWhereUniqueWithoutModifiedByInput[]
+  createMany?: Prisma.EngineeringDrawingRevisionCreateManyModifiedByInputEnvelope
+  set?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
+  disconnect?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
+  delete?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
+  connect?: Prisma.EngineeringDrawingRevisionWhereUniqueInput | Prisma.EngineeringDrawingRevisionWhereUniqueInput[]
+  update?: Prisma.EngineeringDrawingRevisionUpdateWithWhereUniqueWithoutModifiedByInput | Prisma.EngineeringDrawingRevisionUpdateWithWhereUniqueWithoutModifiedByInput[]
+  updateMany?: Prisma.EngineeringDrawingRevisionUpdateManyWithWhereWithoutModifiedByInput | Prisma.EngineeringDrawingRevisionUpdateManyWithWhereWithoutModifiedByInput[]
   deleteMany?: Prisma.EngineeringDrawingRevisionScalarWhereInput | Prisma.EngineeringDrawingRevisionScalarWhereInput[]
 }
 
@@ -720,10 +874,14 @@ export type EngineeringDrawingRevisionUncheckedUpdateManyWithoutDrawingNestedInp
 export type EngineeringDrawingRevisionCreateWithoutCreatedByInput = {
   id?: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -732,16 +890,22 @@ export type EngineeringDrawingRevisionCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   drawing: Prisma.EngineeringDrawingCreateNestedOneWithoutRevisionsInput
   approvedBy?: Prisma.UserCreateNestedOneWithoutApprovedDrawingRevisionsInput
+  modifiedBy?: Prisma.UserCreateNestedOneWithoutModifiedDrawingRevisionsInput
 }
 
 export type EngineeringDrawingRevisionUncheckedCreateWithoutCreatedByInput = {
   id?: string
   drawingId: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedById?: string | null
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -764,10 +928,14 @@ export type EngineeringDrawingRevisionCreateManyCreatedByInputEnvelope = {
 export type EngineeringDrawingRevisionCreateWithoutApprovedByInput = {
   id?: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -776,16 +944,22 @@ export type EngineeringDrawingRevisionCreateWithoutApprovedByInput = {
   updatedAt?: Date | string
   drawing: Prisma.EngineeringDrawingCreateNestedOneWithoutRevisionsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDrawingRevisionsInput
+  modifiedBy?: Prisma.UserCreateNestedOneWithoutModifiedDrawingRevisionsInput
 }
 
 export type EngineeringDrawingRevisionUncheckedCreateWithoutApprovedByInput = {
   id?: string
   drawingId: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedById?: string | null
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -802,6 +976,60 @@ export type EngineeringDrawingRevisionCreateOrConnectWithoutApprovedByInput = {
 
 export type EngineeringDrawingRevisionCreateManyApprovedByInputEnvelope = {
   data: Prisma.EngineeringDrawingRevisionCreateManyApprovedByInput | Prisma.EngineeringDrawingRevisionCreateManyApprovedByInput[]
+  skipDuplicates?: boolean
+}
+
+export type EngineeringDrawingRevisionCreateWithoutModifiedByInput = {
+  id?: string
+  revisionNumber: number
+  versionLabel?: string
+  status?: $Enums.DrawingRevisionStatus
+  documentName?: string | null
+  documentUrl?: string | null
+  changeReason: string
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
+  submittedAt?: Date | string | null
+  approvedAt?: Date | string | null
+  customerApproved?: boolean
+  customerApprovedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  drawing: Prisma.EngineeringDrawingCreateNestedOneWithoutRevisionsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDrawingRevisionsInput
+  approvedBy?: Prisma.UserCreateNestedOneWithoutApprovedDrawingRevisionsInput
+}
+
+export type EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput = {
+  id?: string
+  drawingId: string
+  revisionNumber: number
+  versionLabel?: string
+  status?: $Enums.DrawingRevisionStatus
+  documentName?: string | null
+  documentUrl?: string | null
+  changeReason: string
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
+  submittedAt?: Date | string | null
+  approvedAt?: Date | string | null
+  customerApproved?: boolean
+  customerApprovedAt?: Date | string | null
+  createdById?: string | null
+  approvedById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type EngineeringDrawingRevisionCreateOrConnectWithoutModifiedByInput = {
+  where: Prisma.EngineeringDrawingRevisionWhereUniqueInput
+  create: Prisma.XOR<Prisma.EngineeringDrawingRevisionCreateWithoutModifiedByInput, Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput>
+}
+
+export type EngineeringDrawingRevisionCreateManyModifiedByInputEnvelope = {
+  data: Prisma.EngineeringDrawingRevisionCreateManyModifiedByInput | Prisma.EngineeringDrawingRevisionCreateManyModifiedByInput[]
   skipDuplicates?: boolean
 }
 
@@ -828,10 +1056,15 @@ export type EngineeringDrawingRevisionScalarWhereInput = {
   id?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
   drawingId?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
   revisionNumber?: Prisma.IntFilter<"EngineeringDrawingRevision"> | number
+  versionLabel?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
   status?: Prisma.EnumDrawingRevisionStatusFilter<"EngineeringDrawingRevision"> | $Enums.DrawingRevisionStatus
   documentName?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
   documentUrl?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
   changeReason?: Prisma.StringFilter<"EngineeringDrawingRevision"> | string
+  modifiedById?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
+  modifiedAt?: Prisma.DateTimeNullableFilter<"EngineeringDrawingRevision"> | Date | string | null
+  approvalComment?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
+  customerApprovalReference?: Prisma.StringNullableFilter<"EngineeringDrawingRevision"> | string | null
   submittedAt?: Prisma.DateTimeNullableFilter<"EngineeringDrawingRevision"> | Date | string | null
   approvedAt?: Prisma.DateTimeNullableFilter<"EngineeringDrawingRevision"> | Date | string | null
   customerApproved?: Prisma.BoolFilter<"EngineeringDrawingRevision"> | boolean
@@ -858,13 +1091,33 @@ export type EngineeringDrawingRevisionUpdateManyWithWhereWithoutApprovedByInput 
   data: Prisma.XOR<Prisma.EngineeringDrawingRevisionUpdateManyMutationInput, Prisma.EngineeringDrawingRevisionUncheckedUpdateManyWithoutApprovedByInput>
 }
 
+export type EngineeringDrawingRevisionUpsertWithWhereUniqueWithoutModifiedByInput = {
+  where: Prisma.EngineeringDrawingRevisionWhereUniqueInput
+  update: Prisma.XOR<Prisma.EngineeringDrawingRevisionUpdateWithoutModifiedByInput, Prisma.EngineeringDrawingRevisionUncheckedUpdateWithoutModifiedByInput>
+  create: Prisma.XOR<Prisma.EngineeringDrawingRevisionCreateWithoutModifiedByInput, Prisma.EngineeringDrawingRevisionUncheckedCreateWithoutModifiedByInput>
+}
+
+export type EngineeringDrawingRevisionUpdateWithWhereUniqueWithoutModifiedByInput = {
+  where: Prisma.EngineeringDrawingRevisionWhereUniqueInput
+  data: Prisma.XOR<Prisma.EngineeringDrawingRevisionUpdateWithoutModifiedByInput, Prisma.EngineeringDrawingRevisionUncheckedUpdateWithoutModifiedByInput>
+}
+
+export type EngineeringDrawingRevisionUpdateManyWithWhereWithoutModifiedByInput = {
+  where: Prisma.EngineeringDrawingRevisionScalarWhereInput
+  data: Prisma.XOR<Prisma.EngineeringDrawingRevisionUpdateManyMutationInput, Prisma.EngineeringDrawingRevisionUncheckedUpdateManyWithoutModifiedByInput>
+}
+
 export type EngineeringDrawingRevisionCreateWithoutDrawingInput = {
   id?: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -873,15 +1126,21 @@ export type EngineeringDrawingRevisionCreateWithoutDrawingInput = {
   updatedAt?: Date | string
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDrawingRevisionsInput
   approvedBy?: Prisma.UserCreateNestedOneWithoutApprovedDrawingRevisionsInput
+  modifiedBy?: Prisma.UserCreateNestedOneWithoutModifiedDrawingRevisionsInput
 }
 
 export type EngineeringDrawingRevisionUncheckedCreateWithoutDrawingInput = {
   id?: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedById?: string | null
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -922,10 +1181,15 @@ export type EngineeringDrawingRevisionCreateManyCreatedByInput = {
   id?: string
   drawingId: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedById?: string | null
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -939,10 +1203,15 @@ export type EngineeringDrawingRevisionCreateManyApprovedByInput = {
   id?: string
   drawingId: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedById?: string | null
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -952,13 +1221,39 @@ export type EngineeringDrawingRevisionCreateManyApprovedByInput = {
   updatedAt?: Date | string
 }
 
+export type EngineeringDrawingRevisionCreateManyModifiedByInput = {
+  id?: string
+  drawingId: string
+  revisionNumber: number
+  versionLabel?: string
+  status?: $Enums.DrawingRevisionStatus
+  documentName?: string | null
+  documentUrl?: string | null
+  changeReason: string
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
+  submittedAt?: Date | string | null
+  approvedAt?: Date | string | null
+  customerApproved?: boolean
+  customerApprovedAt?: Date | string | null
+  createdById?: string | null
+  approvedById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
 export type EngineeringDrawingRevisionUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -967,16 +1262,22 @@ export type EngineeringDrawingRevisionUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   drawing?: Prisma.EngineeringDrawingUpdateOneRequiredWithoutRevisionsNestedInput
   approvedBy?: Prisma.UserUpdateOneWithoutApprovedDrawingRevisionsNestedInput
+  modifiedBy?: Prisma.UserUpdateOneWithoutModifiedDrawingRevisionsNestedInput
 }
 
 export type EngineeringDrawingRevisionUncheckedUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   drawingId?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -990,10 +1291,15 @@ export type EngineeringDrawingRevisionUncheckedUpdateManyWithoutCreatedByInput =
   id?: Prisma.StringFieldUpdateOperationsInput | string
   drawingId?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1006,10 +1312,14 @@ export type EngineeringDrawingRevisionUncheckedUpdateManyWithoutCreatedByInput =
 export type EngineeringDrawingRevisionUpdateWithoutApprovedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1018,16 +1328,22 @@ export type EngineeringDrawingRevisionUpdateWithoutApprovedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   drawing?: Prisma.EngineeringDrawingUpdateOneRequiredWithoutRevisionsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedDrawingRevisionsNestedInput
+  modifiedBy?: Prisma.UserUpdateOneWithoutModifiedDrawingRevisionsNestedInput
 }
 
 export type EngineeringDrawingRevisionUncheckedUpdateWithoutApprovedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   drawingId?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1041,10 +1357,15 @@ export type EngineeringDrawingRevisionUncheckedUpdateManyWithoutApprovedByInput 
   id?: Prisma.StringFieldUpdateOperationsInput | string
   drawingId?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1054,13 +1375,84 @@ export type EngineeringDrawingRevisionUncheckedUpdateManyWithoutApprovedByInput 
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type EngineeringDrawingRevisionUpdateWithoutModifiedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
+  documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  drawing?: Prisma.EngineeringDrawingUpdateOneRequiredWithoutRevisionsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedDrawingRevisionsNestedInput
+  approvedBy?: Prisma.UserUpdateOneWithoutApprovedDrawingRevisionsNestedInput
+}
+
+export type EngineeringDrawingRevisionUncheckedUpdateWithoutModifiedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  drawingId?: Prisma.StringFieldUpdateOperationsInput | string
+  revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
+  documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type EngineeringDrawingRevisionUncheckedUpdateManyWithoutModifiedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  drawingId?: Prisma.StringFieldUpdateOperationsInput | string
+  revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
+  documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type EngineeringDrawingRevisionCreateManyDrawingInput = {
   id?: string
   revisionNumber: number
+  versionLabel?: string
   status?: $Enums.DrawingRevisionStatus
   documentName?: string | null
   documentUrl?: string | null
   changeReason: string
+  modifiedById?: string | null
+  modifiedAt?: Date | string | null
+  approvalComment?: string | null
+  customerApprovalReference?: string | null
   submittedAt?: Date | string | null
   approvedAt?: Date | string | null
   customerApproved?: boolean
@@ -1074,10 +1466,14 @@ export type EngineeringDrawingRevisionCreateManyDrawingInput = {
 export type EngineeringDrawingRevisionUpdateWithoutDrawingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1086,15 +1482,21 @@ export type EngineeringDrawingRevisionUpdateWithoutDrawingInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneWithoutCreatedDrawingRevisionsNestedInput
   approvedBy?: Prisma.UserUpdateOneWithoutApprovedDrawingRevisionsNestedInput
+  modifiedBy?: Prisma.UserUpdateOneWithoutModifiedDrawingRevisionsNestedInput
 }
 
 export type EngineeringDrawingRevisionUncheckedUpdateWithoutDrawingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1108,10 +1510,15 @@ export type EngineeringDrawingRevisionUncheckedUpdateWithoutDrawingInput = {
 export type EngineeringDrawingRevisionUncheckedUpdateManyWithoutDrawingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   revisionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  versionLabel?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
   documentName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  modifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customerApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1128,10 +1535,15 @@ export type EngineeringDrawingRevisionSelect<ExtArgs extends runtime.Types.Exten
   id?: boolean
   drawingId?: boolean
   revisionNumber?: boolean
+  versionLabel?: boolean
   status?: boolean
   documentName?: boolean
   documentUrl?: boolean
   changeReason?: boolean
+  modifiedById?: boolean
+  modifiedAt?: boolean
+  approvalComment?: boolean
+  customerApprovalReference?: boolean
   submittedAt?: boolean
   approvedAt?: boolean
   customerApproved?: boolean
@@ -1143,16 +1555,22 @@ export type EngineeringDrawingRevisionSelect<ExtArgs extends runtime.Types.Exten
   drawing?: boolean | Prisma.EngineeringDrawingDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringDrawingRevision$createdByArgs<ExtArgs>
   approvedBy?: boolean | Prisma.EngineeringDrawingRevision$approvedByArgs<ExtArgs>
+  modifiedBy?: boolean | Prisma.EngineeringDrawingRevision$modifiedByArgs<ExtArgs>
 }, ExtArgs["result"]["engineeringDrawingRevision"]>
 
 export type EngineeringDrawingRevisionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   drawingId?: boolean
   revisionNumber?: boolean
+  versionLabel?: boolean
   status?: boolean
   documentName?: boolean
   documentUrl?: boolean
   changeReason?: boolean
+  modifiedById?: boolean
+  modifiedAt?: boolean
+  approvalComment?: boolean
+  customerApprovalReference?: boolean
   submittedAt?: boolean
   approvedAt?: boolean
   customerApproved?: boolean
@@ -1164,16 +1582,22 @@ export type EngineeringDrawingRevisionSelectCreateManyAndReturn<ExtArgs extends 
   drawing?: boolean | Prisma.EngineeringDrawingDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringDrawingRevision$createdByArgs<ExtArgs>
   approvedBy?: boolean | Prisma.EngineeringDrawingRevision$approvedByArgs<ExtArgs>
+  modifiedBy?: boolean | Prisma.EngineeringDrawingRevision$modifiedByArgs<ExtArgs>
 }, ExtArgs["result"]["engineeringDrawingRevision"]>
 
 export type EngineeringDrawingRevisionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   drawingId?: boolean
   revisionNumber?: boolean
+  versionLabel?: boolean
   status?: boolean
   documentName?: boolean
   documentUrl?: boolean
   changeReason?: boolean
+  modifiedById?: boolean
+  modifiedAt?: boolean
+  approvalComment?: boolean
+  customerApprovalReference?: boolean
   submittedAt?: boolean
   approvedAt?: boolean
   customerApproved?: boolean
@@ -1185,16 +1609,22 @@ export type EngineeringDrawingRevisionSelectUpdateManyAndReturn<ExtArgs extends 
   drawing?: boolean | Prisma.EngineeringDrawingDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringDrawingRevision$createdByArgs<ExtArgs>
   approvedBy?: boolean | Prisma.EngineeringDrawingRevision$approvedByArgs<ExtArgs>
+  modifiedBy?: boolean | Prisma.EngineeringDrawingRevision$modifiedByArgs<ExtArgs>
 }, ExtArgs["result"]["engineeringDrawingRevision"]>
 
 export type EngineeringDrawingRevisionSelectScalar = {
   id?: boolean
   drawingId?: boolean
   revisionNumber?: boolean
+  versionLabel?: boolean
   status?: boolean
   documentName?: boolean
   documentUrl?: boolean
   changeReason?: boolean
+  modifiedById?: boolean
+  modifiedAt?: boolean
+  approvalComment?: boolean
+  customerApprovalReference?: boolean
   submittedAt?: boolean
   approvedAt?: boolean
   customerApproved?: boolean
@@ -1205,21 +1635,24 @@ export type EngineeringDrawingRevisionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EngineeringDrawingRevisionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "drawingId" | "revisionNumber" | "status" | "documentName" | "documentUrl" | "changeReason" | "submittedAt" | "approvedAt" | "customerApproved" | "customerApprovedAt" | "createdById" | "approvedById" | "createdAt" | "updatedAt", ExtArgs["result"]["engineeringDrawingRevision"]>
+export type EngineeringDrawingRevisionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "drawingId" | "revisionNumber" | "versionLabel" | "status" | "documentName" | "documentUrl" | "changeReason" | "modifiedById" | "modifiedAt" | "approvalComment" | "customerApprovalReference" | "submittedAt" | "approvedAt" | "customerApproved" | "customerApprovedAt" | "createdById" | "approvedById" | "createdAt" | "updatedAt", ExtArgs["result"]["engineeringDrawingRevision"]>
 export type EngineeringDrawingRevisionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   drawing?: boolean | Prisma.EngineeringDrawingDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringDrawingRevision$createdByArgs<ExtArgs>
   approvedBy?: boolean | Prisma.EngineeringDrawingRevision$approvedByArgs<ExtArgs>
+  modifiedBy?: boolean | Prisma.EngineeringDrawingRevision$modifiedByArgs<ExtArgs>
 }
 export type EngineeringDrawingRevisionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   drawing?: boolean | Prisma.EngineeringDrawingDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringDrawingRevision$createdByArgs<ExtArgs>
   approvedBy?: boolean | Prisma.EngineeringDrawingRevision$approvedByArgs<ExtArgs>
+  modifiedBy?: boolean | Prisma.EngineeringDrawingRevision$modifiedByArgs<ExtArgs>
 }
 export type EngineeringDrawingRevisionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   drawing?: boolean | Prisma.EngineeringDrawingDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringDrawingRevision$createdByArgs<ExtArgs>
   approvedBy?: boolean | Prisma.EngineeringDrawingRevision$approvedByArgs<ExtArgs>
+  modifiedBy?: boolean | Prisma.EngineeringDrawingRevision$modifiedByArgs<ExtArgs>
 }
 
 export type $EngineeringDrawingRevisionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1228,15 +1661,21 @@ export type $EngineeringDrawingRevisionPayload<ExtArgs extends runtime.Types.Ext
     drawing: Prisma.$EngineeringDrawingPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     approvedBy: Prisma.$UserPayload<ExtArgs> | null
+    modifiedBy: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     drawingId: string
     revisionNumber: number
+    versionLabel: string
     status: $Enums.DrawingRevisionStatus
     documentName: string | null
     documentUrl: string | null
     changeReason: string
+    modifiedById: string | null
+    modifiedAt: Date | null
+    approvalComment: string | null
+    customerApprovalReference: string | null
     submittedAt: Date | null
     approvedAt: Date | null
     customerApproved: boolean
@@ -1642,6 +2081,7 @@ export interface Prisma__EngineeringDrawingRevisionClient<T, Null = never, ExtAr
   drawing<T extends Prisma.EngineeringDrawingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringDrawingDefaultArgs<ExtArgs>>): Prisma.Prisma__EngineeringDrawingClient<runtime.Types.Result.GetResult<Prisma.$EngineeringDrawingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.EngineeringDrawingRevision$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringDrawingRevision$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   approvedBy<T extends Prisma.EngineeringDrawingRevision$approvedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringDrawingRevision$approvedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  modifiedBy<T extends Prisma.EngineeringDrawingRevision$modifiedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringDrawingRevision$modifiedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1674,10 +2114,15 @@ export interface EngineeringDrawingRevisionFieldRefs {
   readonly id: Prisma.FieldRef<"EngineeringDrawingRevision", 'String'>
   readonly drawingId: Prisma.FieldRef<"EngineeringDrawingRevision", 'String'>
   readonly revisionNumber: Prisma.FieldRef<"EngineeringDrawingRevision", 'Int'>
+  readonly versionLabel: Prisma.FieldRef<"EngineeringDrawingRevision", 'String'>
   readonly status: Prisma.FieldRef<"EngineeringDrawingRevision", 'DrawingRevisionStatus'>
   readonly documentName: Prisma.FieldRef<"EngineeringDrawingRevision", 'String'>
   readonly documentUrl: Prisma.FieldRef<"EngineeringDrawingRevision", 'String'>
   readonly changeReason: Prisma.FieldRef<"EngineeringDrawingRevision", 'String'>
+  readonly modifiedById: Prisma.FieldRef<"EngineeringDrawingRevision", 'String'>
+  readonly modifiedAt: Prisma.FieldRef<"EngineeringDrawingRevision", 'DateTime'>
+  readonly approvalComment: Prisma.FieldRef<"EngineeringDrawingRevision", 'String'>
+  readonly customerApprovalReference: Prisma.FieldRef<"EngineeringDrawingRevision", 'String'>
   readonly submittedAt: Prisma.FieldRef<"EngineeringDrawingRevision", 'DateTime'>
   readonly approvedAt: Prisma.FieldRef<"EngineeringDrawingRevision", 'DateTime'>
   readonly customerApproved: Prisma.FieldRef<"EngineeringDrawingRevision", 'Boolean'>
@@ -2109,6 +2554,25 @@ export type EngineeringDrawingRevision$createdByArgs<ExtArgs extends runtime.Typ
  * EngineeringDrawingRevision.approvedBy
  */
 export type EngineeringDrawingRevision$approvedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * EngineeringDrawingRevision.modifiedBy
+ */
+export type EngineeringDrawingRevision$modifiedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */

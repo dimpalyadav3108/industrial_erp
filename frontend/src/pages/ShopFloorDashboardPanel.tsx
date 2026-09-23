@@ -1,0 +1,32 @@
+import {useCallback,useEffect,useState} from "react";
+import type {FormEvent, ElementType} from "react";
+import {Activity,CheckCircle2,Clock3,Factory,Gauge,RefreshCw,Timer,UserRound,XCircle} from "lucide-react";
+import {assignJobCardToMe,getShopFloorDashboard,type ShopFloorDashboard} from "../services/shopFloor.service";
+import {updateJobCard} from "../services/production.service";
+import "./ShopFloorDashboardPanel.css";
+export default function ShopFloorDashboardPanel(){
+ const[data,setData]=useState<ShopFloorDashboard|null>(null);const[loading,setLoading]=useState(true);const[error,setError]=useState("");const[busy,setBusy]=useState("");
+ const load=useCallback(async()=>{try{setError("");setLoading(true);setData(await getShopFloorDashboard())}catch(e){setError(e instanceof Error?e.message:"Unable to load shop floor dashboard")}finally{setLoading(false)}},[]);
+ useEffect(()=>{void load();const t=window.setInterval(()=>void load(),10000);return()=>window.clearInterval(t)},[load]);
+ const action=async(id:string,status:"IN_PROGRESS"|"PAUSED"|"COMPLETED")=>{try{setBusy(id);await updateJobCard(id,{status});await load()}catch(e){setError(e instanceof Error?e.message:"Unable to update job card")}finally{setBusy("")}};
+ const assign=async(id:string)=>{try{setBusy(id);await assignJobCardToMe(id);await load()}catch(e){setError(e instanceof Error?e.message:"Unable to assign operator")}finally{setBusy("")}};
+ const saveEntry=async(id:string,e:FormEvent<HTMLFormElement>)=>{e.preventDefault();const f=new FormData(e.currentTarget);try{setBusy(id);await updateJobCard(id,{producedQuantity:Number(f.get("producedQuantity")||0),reworkQuantity:Number(f.get("reworkQuantity")||0),scrapQuantity:Number(f.get("scrapQuantity")||0),rejectedQuantity:Number(f.get("rejectedQuantity")||0),actualHours:Number(f.get("actualHours")||0)});await load()}catch(e){setError(e instanceof Error?e.message:"Unable to save production entry")}finally{setBusy("")}};
+ if(loading&&!data)return <div className="directory-card shop-floor-panel"><div className="empty-state">Loading live shop floor...</div></div>;
+ if(!data)return <div className="directory-card shop-floor-panel"><div className="page-error">{error||"Shop floor dashboard unavailable"}</div></div>;
+ const m=data.metrics;
+ const kpis:[ElementType,string,string|number][]=[
+  [Factory,"WIP",m.wip],
+  [Timer,"Delays",m.delays],
+  [Activity,"Efficiency",`${m.efficiency.toFixed(1)}%`],
+  [Gauge,"OEE",`${m.oee.toFixed(1)}%`],
+  [XCircle,"Rejection",`${m.rejectionPercent.toFixed(1)}%`],
+  [Factory,"Machine Util.",`${m.machineUtilization.toFixed(1)}%`]
+ ];
+ return <div className="directory-card shop-floor-panel"><div className="directory-header"><div><span className="page-eyebrow">MODULE 9 · LIVE SHOP FLOOR</span><h2>Shop Floor Execution Dashboard</h2><p>Operator execution, production output, quality, downtime and OEE. Auto-refreshes every 10 seconds.</p></div><button className="secondary-action" onClick={()=>void load()} disabled={loading}><RefreshCw size={16}/> Refresh</button></div>
+ {error&&<div className="page-error">{error}</div>}
+ <div className="shop-kpis">{kpis.map(([Icon,label,value])=><article key={String(label)}><Icon size={20}/><div><strong>{value}</strong><span>{label}</span></div></article>)}</div>
+ <div className="shop-metric-bars"><div><span>Availability</span><b>{m.availability.toFixed(1)}%</b><progress max="100" value={m.availability}/></div><div><span>Performance</span><b>{m.performance.toFixed(1)}%</b><progress max="100" value={m.performance}/></div><div><span>Quality</span><b>{m.quality.toFixed(1)}%</b><progress max="100" value={m.quality}/></div></div>
+ <div className="shop-floor-grid"><div><h3>Operator work queue</h3><div className="shop-queue">{data.cards.length?data.cards.map(c=><div className="shop-queue-row" key={c.id}><div><b>{c.jobCardNumber}</b><small>{c.assignedTo?`${c.assignedTo.firstName} ${c.assignedTo.lastName}`:"Unassigned"} · {c.status}</small></div><div className="shop-output"><span>Qty {c.producedQuantity}</span><span>Rework {c.reworkQuantity}</span><span>Scrap {c.scrapQuantity}</span><span>Down {c.downtimeMinutes}m</span></div><form className="shop-entry" onSubmit={(e)=>void saveEntry(c.id,e)}><input name="producedQuantity" type="number" min="0" step=".001" defaultValue={c.producedQuantity} placeholder="Produced"/><input name="reworkQuantity" type="number" min="0" step=".001" defaultValue={c.reworkQuantity} placeholder="Rework"/><input name="scrapQuantity" type="number" min="0" step=".001" defaultValue={c.scrapQuantity} placeholder="Scrap"/><input name="rejectedQuantity" type="number" min="0" step=".001" defaultValue={c.rejectedQuantity} placeholder="Rejected"/><input name="actualHours" type="number" min="0" step=".25" defaultValue={c.actualHours} placeholder="Actual hrs"/><button className="secondary-action compact" disabled={busy===c.id}>Save Entry</button></form><div className="shop-actions">{!c.assignedTo&&<button className="secondary-action compact" disabled={busy===c.id} onClick={()=>void assign(c.id)}><UserRound size={14}/> Assign me</button>}{c.status!=="COMPLETED"&&c.status!=="IN_PROGRESS"&&<button className="secondary-action compact" disabled={busy===c.id} onClick={()=>void action(c.id,"IN_PROGRESS")}><Activity size={14}/> Start</button>}{c.status==="IN_PROGRESS"&&<button className="secondary-action compact" disabled={busy===c.id} onClick={()=>void action(c.id,"PAUSED")}><Clock3 size={14}/> Stop / Pause</button>}{c.status!=="COMPLETED"&&<button className="primary-action compact" disabled={busy===c.id} onClick={()=>void action(c.id,"COMPLETED")}><CheckCircle2 size={14}/> Complete</button>}</div></div>):<div className="empty-state">No job cards yet. Open a production order and create a job card.</div>}</div></div>
+ <div><h3>Quality & output</h3><div className="quality-box"><span>Produced<strong>{m.produced}</strong></span><span>Rejected + Scrap<strong>{m.rejects}</strong></span><span>Quality checks<strong>{data.quality.total}</strong></span><span>Passed<strong>{data.quality.passed}</strong></span><span>Failed<strong>{data.quality.failed}</strong></span><span>Pending<strong>{data.quality.pending}</strong></span></div><a className="secondary-action compact shop-quality-link" href="/quality"><CheckCircle2 size={14}/> Open Quality module</a><h3 className="shop-subtitle">Downtime</h3><p>{m.downtimeMinutes} minutes recorded across current job cards.</p></div></div>
+ </div>
+}

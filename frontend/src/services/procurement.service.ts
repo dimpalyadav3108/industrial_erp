@@ -86,3 +86,11 @@ export const getGoodsReceiptNotes = () => list<GoodsReceiptNote>("/grns", "Unabl
 export const createGoodsReceiptNote = (payload: CreateGoodsReceiptNotePayload) => create<GoodsReceiptNote, CreateGoodsReceiptNotePayload>("/grns", payload, "Unable to create goods receipt note");
 export const updateGoodsReceiptNote = (id: string, payload: UpdateGoodsReceiptNotePayload) => patch<GoodsReceiptNote, UpdateGoodsReceiptNotePayload>(`/grns/${encodeURIComponent(id)}`, payload, "Unable to update goods receipt note");
 export const postGoodsReceiptNote = (id: string) => create<GoodsReceiptNote, Record<string, never>>(`/grns/${encodeURIComponent(id)}/post`, {}, "Unable to post goods receipt note");
+
+
+export const getMaterialPlans = () => list<any>("/mrp/plans", "Unable to load MRP plans");
+export const createMaterialPlan = (payload: any) => create<any, any>("/mrp/plans", payload, "Unable to create MRP plan");
+export const getVendorPortalDocuments = (vendorId: string) => list<any>(`/vendors/${encodeURIComponent(vendorId)}/portal-documents`, "Unable to load vendor portal documents");
+export const createVendorPortalDocument = (vendorId: string, payload: any) => create<any, any>(`/vendors/${encodeURIComponent(vendorId)}/portal-documents`, payload, "Unable to upload vendor document");
+export const getVendorRatings = (vendorId: string) => list<any>(`/vendors/${encodeURIComponent(vendorId)}/ratings`, "Unable to load vendor ratings");
+export const createVendorRating = (vendorId: string, payload: any) => create<any, any>(`/vendors/${encodeURIComponent(vendorId)}/ratings`, payload, "Unable to save vendor rating");

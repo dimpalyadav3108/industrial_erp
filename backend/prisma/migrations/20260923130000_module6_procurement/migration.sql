@@ -1,0 +1,18 @@
+CREATE TYPE "VendorCategory" AS ENUM ('PLATE_SUPPLIER','TUBE_SUPPLIER','VALVE_SUPPLIER','BURNER_SUPPLIER','FABRICATOR','TRANSPORT_VENDOR','OTHER');
+CREATE TYPE "MaterialPlanStatus" AS ENUM ('DRAFT','SHORTAGE_IDENTIFIED','PR_CREATED','CLOSED');
+ALTER TABLE "Vendor" ADD COLUMN "category" "VendorCategory" NOT NULL DEFAULT 'OTHER', ADD COLUMN "portalEnabled" BOOLEAN NOT NULL DEFAULT false, ADD COLUMN "portalLastLogin" TIMESTAMP(3);
+CREATE TABLE "ProcurementMaterialPlan" ("id" TEXT NOT NULL,"planNumber" TEXT NOT NULL,"title" TEXT NOT NULL,"status" "MaterialPlanStatus" NOT NULL DEFAULT 'DRAFT',"salesOrderId" TEXT,"shortageValue" DECIMAL(15,2) NOT NULL DEFAULT 0,"notes" TEXT,"createdById" TEXT,"createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,"updatedAt" TIMESTAMP(3) NOT NULL,CONSTRAINT "ProcurementMaterialPlan_pkey" PRIMARY KEY ("id"));
+CREATE TABLE "VendorPortalDocument" ("id" TEXT NOT NULL,"vendorId" TEXT NOT NULL,"documentType" TEXT NOT NULL,"fileName" TEXT NOT NULL,"fileUrl" TEXT,"invoiceNumber" TEXT,"dispatchNumber" TEXT,"uploadedBy" TEXT,"uploadedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,"notes" TEXT,CONSTRAINT "VendorPortalDocument_pkey" PRIMARY KEY ("id"));
+CREATE TABLE "VendorRatingEntry" ("id" TEXT NOT NULL,"vendorId" TEXT NOT NULL,"purchaseOrderId" TEXT,"qualityScore" DECIMAL(5,2) NOT NULL,"deliveryScore" DECIMAL(5,2) NOT NULL,"priceScore" DECIMAL(5,2) NOT NULL,"serviceScore" DECIMAL(5,2) NOT NULL,"overallScore" DECIMAL(5,2) NOT NULL,"remarks" TEXT,"ratedById" TEXT,"createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,CONSTRAINT "VendorRatingEntry_pkey" PRIMARY KEY ("id"));
+CREATE UNIQUE INDEX "ProcurementMaterialPlan_planNumber_key" ON "ProcurementMaterialPlan"("planNumber");
+CREATE INDEX "ProcurementMaterialPlan_status_idx" ON "ProcurementMaterialPlan"("status");
+CREATE INDEX "ProcurementMaterialPlan_salesOrderId_idx" ON "ProcurementMaterialPlan"("salesOrderId");
+CREATE INDEX "ProcurementMaterialPlan_createdAt_idx" ON "ProcurementMaterialPlan"("createdAt");
+CREATE INDEX "VendorPortalDocument_vendorId_idx" ON "VendorPortalDocument"("vendorId");
+CREATE INDEX "VendorPortalDocument_documentType_idx" ON "VendorPortalDocument"("documentType");
+CREATE INDEX "VendorPortalDocument_uploadedAt_idx" ON "VendorPortalDocument"("uploadedAt");
+CREATE INDEX "VendorRatingEntry_vendorId_idx" ON "VendorRatingEntry"("vendorId");
+CREATE INDEX "VendorRatingEntry_purchaseOrderId_idx" ON "VendorRatingEntry"("purchaseOrderId");
+CREATE INDEX "VendorRatingEntry_createdAt_idx" ON "VendorRatingEntry"("createdAt");
+ALTER TABLE "VendorPortalDocument" ADD CONSTRAINT "VendorPortalDocument_vendorId_fkey" FOREIGN KEY ("vendorId") REFERENCES "Vendor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "VendorRatingEntry" ADD CONSTRAINT "VendorRatingEntry_vendorId_fkey" FOREIGN KEY ("vendorId") REFERENCES "Vendor"("id") ON DELETE CASCADE ON UPDATE CASCADE;

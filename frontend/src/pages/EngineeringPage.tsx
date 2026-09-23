@@ -26,8 +26,10 @@ import {
   createEngineeringProject,
   deleteEngineeringBomItem,
   getEngineeringProjects,
+  getEngineeringBomCostRollup,
   updateDrawingRevision,
   updateEngineeringBom,
+  advanceEngineeringWorkflow, createEngineeringDocument, updateEngineeringDocument, createEngineeringEcr, updateEngineeringEcr,
 } from "../services/engineering.service";
 
 import { getQuotations } from "../services/quotation.service";
@@ -41,7 +43,7 @@ import type {
   DrawingRevisionStatus,
   EngineeringBom,
   EngineeringDrawing,
-  EngineeringProject,
+  EngineeringProject, EngineeringWorkflowStage,
 } from "../types/engineering";
 
 import type { Quotation } from "../types/quotation";
@@ -163,6 +165,8 @@ interface BomItemFormState {
   unit: string;
   source: "MAKE" | "BUY";
   materialSpec: string;
+  alternateMaterial: string;
+  unitCost: string;
   drawingNumber: string;
   remarks: string;
 }
@@ -175,6 +179,8 @@ const initialBomItemForm: BomItemFormState = {
   unit: "Nos",
   source: "BUY",
   materialSpec: "",
+  alternateMaterial: "",
+  unitCost: "0",
   drawingNumber: "",
   remarks: "",
 };
@@ -225,12 +231,14 @@ export default function EngineeringPage() {
   const [showBomItemModal, setShowBomItemModal] = useState(false);
   const [bomItemForm, setBomItemForm] = useState<BomItemFormState>(initialBomItemForm);
   const [savingBomItem, setSavingBomItem] = useState(false);
+  const [bomCostRollup, setBomCostRollup] = useState<{ totalCost: number; pricedItems: number; unpricedItems: number } | null>(null);
 
   const [revisionDrawing, setRevisionDrawing] = useState<EngineeringDrawing | null>(null);
   const [revisionReason, setRevisionReason] = useState("");
   const [revisionDocumentName, setRevisionDocumentName] = useState("");
   const [revisionDocumentUrl, setRevisionDocumentUrl] = useState("");
   const [savingRevision, setSavingRevision] = useState(false);
+  const [workflowSaving, setWorkflowSaving] = useState(false);
 
   // ==========================================================
   // LOAD DATA
@@ -587,6 +595,15 @@ export default function EngineeringPage() {
     finally { setSavingBomItem(false); }
   }
 
+  async function loadBomCostRollup(bomId: string) {
+    try {
+      const result = await getEngineeringBomCostRollup(bomId);
+      setBomCostRollup(result);
+    } catch {
+      setBomCostRollup(null);
+    }
+  }
+
   async function handleDeleteBomItem(itemId: string) {
     if (!selectedProject || !window.confirm("Delete this BOM item?")) return;
     try {
@@ -631,6 +648,59 @@ export default function EngineeringPage() {
       await refreshSelectedProject(selectedProject.id);
     } catch (e) { setError(e instanceof Error ? e.message : "Unable to create revision."); }
     finally { setSavingRevision(false); }
+  }
+
+  async function handleWorkflow(stage: EngineeringWorkflowStage) {
+    if (!selectedProject) return;
+    try {
+      setWorkflowSaving(true); setError("");
+      await advanceEngineeringWorkflow(selectedProject.id, stage);
+      setSuccess(`Engineering workflow moved to ${formatStatus(stage)}.`);
+      await refreshSelectedProject(selectedProject.id);
+    } catch (e) { setError(e instanceof Error ? e.message : "Unable to update workflow."); }
+    finally { setWorkflowSaving(false); }
+  }
+
+  async function handleCreateDocument() {
+    if (!selectedProject) return;
+    const documentNumber = window.prompt("Document number (example: GA-001)");
+    if (!documentNumber) return;
+    const title = window.prompt("Document title") || documentNumber;
+    const category = window.prompt("Category: GENERAL_ARRANGEMENT / PID / FABRICATION / TUBE_LAYOUT / ELECTRICAL / INSTRUMENTATION / FOUNDATION", "GENERAL_ARRANGEMENT");
+    const versionLabel = window.prompt("Version", "V1.0") || "V1.0";
+    const reason = window.prompt("Modification reason", "Initial issue") || "Initial issue";
+    try {
+      await createEngineeringDocument({ projectId: selectedProject.id, documentNumber, title, category, versionLabel, modificationReason: reason });
+      setSuccess("Engineering document added to DMS.");
+      await refreshSelectedProject(selectedProject.id);
+    } catch (e) { setError(e instanceof Error ? e.message : "Unable to create document."); }
+  }
+
+  async function handleDocumentApproval(documentId: string) {
+    if (!selectedProject) return;
+    try { await updateEngineeringDocument(documentId, { customerApproved: true }); setSuccess("Customer-approved version recorded."); await refreshSelectedProject(selectedProject.id); }
+    catch (e) { setError(e instanceof Error ? e.message : "Unable to approve document."); }
+  }
+
+  async function handleCreateEcr() {
+    if (!selectedProject) return;
+    const title = window.prompt("ECR title"); if (!title) return;
+    const description = window.prompt("Change description"); if (!description) return;
+    const reason = window.prompt("Why is this change required?"); if (!reason) return;
+    const impactAnalysis = window.prompt("Impact analysis (BOM / drawing / production impact)", "");
+    const bomUpdateRequired = window.confirm("Does this ECR require a BOM update?");
+    const productionUpdateRequired = window.confirm("Does this ECR require a production update?");
+    try {
+      await createEngineeringEcr({ projectId: selectedProject.id, title, description, reason, impactAnalysis: impactAnalysis || undefined, bomUpdateRequired, productionUpdateRequired });
+      setSuccess("ECR created and sent to engineering change control.");
+      await refreshSelectedProject(selectedProject.id);
+    } catch (e) { setError(e instanceof Error ? e.message : "Unable to create ECR."); }
+  }
+
+  async function handleEcrStatus(ecrId: string, status: "IMPACT_ANALYSIS" | "PENDING_APPROVAL" | "APPROVED" | "IMPLEMENTED" | "REJECTED") {
+    if (!selectedProject) return;
+    try { await updateEngineeringEcr(ecrId, { status }); setSuccess(`ECR moved to ${formatStatus(status)}.`); await refreshSelectedProject(selectedProject.id); }
+    catch (e) { setError(e instanceof Error ? e.message : "Unable to update ECR."); }
   }
 
   // ==========================================================
@@ -1047,6 +1117,42 @@ export default function EngineeringPage() {
                 </div>
               </div>
 
+              <div style={{ padding: "20px", borderBottom: "1px solid #e5e7eb" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "14px" }}>
+                  {(["SALES_ORDER","ENGINEERING_RELEASE","DESIGN_CREATION","GA_DRAWING","CUSTOMER_APPROVAL","FABRICATION_DRAWING","BOM_RELEASE","PRODUCTION_RELEASE"] as EngineeringWorkflowStage[]).map(stage => (
+                    <button key={stage} type="button" className="secondary-button" disabled={workflowSaving} onClick={() => void handleWorkflow(stage)}>
+                      {formatStatus(stage)}
+                    </button>
+                  ))}
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "10px" }}>
+                  <Detail label="Workflow Stage" value={formatStatus(selectedProject.workflowStage)} />
+                  <Detail label="Engineering Release" value={formatDate(selectedProject.engineeringReleasedAt)} />
+                  <Detail label="Customer Approval" value={formatDate(selectedProject.customerApprovalAt)} />
+                  <Detail label="BOM Release" value={formatDate(selectedProject.bomReleasedAt)} />
+                  <Detail label="Production Release" value={formatDate(selectedProject.productionReleasedAt)} />
+                  <Detail label="Customer Approved Version" value={selectedProject.customerApprovedVersion || "—"} />
+                </div>
+              </div>
+
+              <div style={{ padding: "20px", borderBottom: "1px solid #e5e7eb" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+                  <div><strong>Document Management System</strong><div style={{ fontSize: "13px", color: "#64748b", marginTop: 4 }}>GA, P&amp;ID, fabrication, tube layout, electrical, instrumentation and foundation documents.</div></div>
+                  <button type="button" className="primary-button" onClick={() => void handleCreateDocument()}><Plus size={16}/> Add Document</button>
+                </div>
+                {(selectedProject.documents || []).length === 0 ? <div style={{ color: "#64748b", fontSize: 13 }}>No DMS documents yet.</div> : (selectedProject.documents || []).map(doc => (
+                  <div key={doc.id} style={{ padding: "12px 0", borderTop: "1px solid #eef2f7", display: "flex", justifyContent: "space-between", gap: 12, alignItems: "center" }}>
+                    <div><strong>{doc.documentNumber} — {doc.title}</strong><div style={{ fontSize: 12, color: "#64748b" }}>{formatStatus(doc.category)} · {doc.versionLabel} · {formatStatus(doc.status)} · Modified by {doc.modifiedBy ? `${doc.modifiedBy.firstName} ${doc.modifiedBy.lastName}` : "—"}</div><div style={{ fontSize: 12, color: "#64748b" }}>Reason: {doc.modificationReason || "—"}</div></div>
+                    {!doc.customerApproved && <button type="button" className="secondary-button" onClick={() => void handleDocumentApproval(doc.id)}>Customer Approve</button>}
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ padding: "20px", borderBottom: "1px solid #e5e7eb" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}><div><strong>Engineering Change Requests (ECR)</strong><div style={{ fontSize: 13, color: "#64748b", marginTop: 4 }}>Impact analysis → approval → BOM update → production update.</div></div><button type="button" className="primary-button" onClick={() => void handleCreateEcr()}><Plus size={16}/> New ECR</button></div>
+                {(selectedProject.ecrs || []).length === 0 ? <div style={{ color: "#64748b", fontSize: 13 }}>No ECRs for this project.</div> : (selectedProject.ecrs || []).map(ecr => <div key={ecr.id} style={{ padding: "12px 0", borderTop: "1px solid #eef2f7" }}><div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}><strong>{ecr.ecrNumber} — {ecr.title}</strong><StatusBadge status={ecr.status}/></div><div style={{ fontSize: 13, color: "#64748b", marginTop: 4 }}>{ecr.description}</div><div style={{ fontSize: 12, color: "#64748b", marginTop: 4 }}>Reason: {ecr.reason} · BOM update: {ecr.bomUpdateRequired ? "Yes" : "No"} · Production update: {ecr.productionUpdateRequired ? "Yes" : "No"}</div><div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>{ecr.status === "DRAFT" && <button className="secondary-button" type="button" onClick={() => void handleEcrStatus(ecr.id, "IMPACT_ANALYSIS")}>Impact Analysis</button>}{ecr.status === "IMPACT_ANALYSIS" && <button className="secondary-button" type="button" onClick={() => void handleEcrStatus(ecr.id, "PENDING_APPROVAL")}>Submit Approval</button>}{ecr.status === "PENDING_APPROVAL" && <button className="secondary-button" type="button" onClick={() => void handleEcrStatus(ecr.id, "APPROVED")}>Approve ECR</button>}{ecr.status === "APPROVED" && <button className="secondary-button" type="button" onClick={() => void handleEcrStatus(ecr.id, "IMPLEMENTED")}>Implement / Update BOM &amp; Production</button>}</div></div>)}
+              </div>
+
               <div
                 style={{
                   padding: "20px",
@@ -1057,6 +1163,7 @@ export default function EngineeringPage() {
                     display: "grid",
                     gridTemplateColumns:
                       "repeat(auto-fit, minmax(180px, 1fr))",
+
                     gap: "16px",
                   }}
                 >
@@ -1173,7 +1280,7 @@ export default function EngineeringPage() {
                   {(selectedProject.boms?.length || 0)===0 ? <div style={{padding:"22px",color:"#64748b"}}>No BOMs yet.</div> :
                     selectedProject.boms.map(b=><div key={b.id} style={{padding:"14px 16px",borderBottom:"1px solid #eef2f7"}}>
                       <div style={{display:"flex",justifyContent:"space-between",gap:"12px",alignItems:"center"}}>
-                        <button type="button" onClick={()=>setSelectedBomId(b.id)} style={{border:0,background:"transparent",padding:0,textAlign:"left",cursor:"pointer"}}>
+                        <button type="button" onClick={()=>{setSelectedBomId(b.id); void loadBomCostRollup(b.id);}} style={{border:0,background:"transparent",padding:0,textAlign:"left",cursor:"pointer"}}>
                           <strong>{b.bomNumber} — {b.name}</strong><div style={{fontSize:"12px",color:"#64748b",marginTop:"4px"}}>Rev {b.revision} · {formatStatus(b.status)} · {b.items?.length || 0} items</div>
                         </button>
                         <div style={{display:"flex",gap:"7px",flexWrap:"wrap"}}>
@@ -1183,6 +1290,7 @@ export default function EngineeringPage() {
                           {b.status==="APPROVED" && <button className="primary-button" type="button" onClick={()=>void handleBomStatus(b,"RELEASED")}>Release</button>}
                         </div>
                       </div>
+                      {selectedBomId === b.id && bomCostRollup && <div style={{padding:"10px 14px",background:"#f8fafc",fontSize:13,color:"#334155"}}>BOM Cost Roll-up: <strong>₹{bomCostRollup.totalCost.toLocaleString("en-IN")}</strong> · Priced items: {bomCostRollup.pricedItems} · Unpriced items: {bomCostRollup.unpricedItems}</div>}
                       {(b.items?.length||0)>0 && (
                         <div className="bom-tree-wrap">
                           <div className="bom-tree-head">
@@ -1273,7 +1381,7 @@ export default function EngineeringPage() {
             <label><span>Item Name *</span><input required value={bomItemForm.name} onChange={e=>setBomItemForm(c=>({...c,name:e.target.value}))} placeholder="Boiler shell plate"/></label>
             <div className="engineering-form-grid"><label><span>Quantity *</span><input required type="number" min="0.0001" step="any" value={bomItemForm.quantity} onChange={e=>setBomItemForm(c=>({...c,quantity:e.target.value}))}/></label><label><span>Unit *</span><input required value={bomItemForm.unit} onChange={e=>setBomItemForm(c=>({...c,unit:e.target.value}))}/></label></div>
             <label><span>Parent Item</span><select value={bomItemForm.parentItemId} onChange={e=>setBomItemForm(c=>({...c,parentItemId:e.target.value}))}><option value="">Top level</option>{selectedProject.boms.find(b=>b.id===selectedBomId)?.items.map(i=><option key={i.id} value={i.id}>#{i.itemNumber} {i.name}</option>)}</select></label>
-            <div className="engineering-form-grid"><label><span>Material Spec</span><input value={bomItemForm.materialSpec} onChange={e=>setBomItemForm(c=>({...c,materialSpec:e.target.value}))} placeholder="IS 2062 E250"/></label><label><span>Drawing Number</span><input value={bomItemForm.drawingNumber} onChange={e=>setBomItemForm(c=>({...c,drawingNumber:e.target.value}))}/></label></div>
+            <div className="engineering-form-grid"><label><span>Material Spec</span><input value={bomItemForm.materialSpec} onChange={e=>setBomItemForm(c=>({...c,materialSpec:e.target.value}))} placeholder="IS 2062 E250"/></label><label><span>Alternate Material</span><input value={bomItemForm.alternateMaterial} onChange={e=>setBomItemForm(c=>({...c,alternateMaterial:e.target.value}))} placeholder="IS 2062 E350 / approved equivalent"/></label></div><div className="engineering-form-grid"><label><span>Unit Cost (₹)</span><input type="number" min="0" step="0.01" value={bomItemForm.unitCost} onChange={e=>setBomItemForm(c=>({...c,unitCost:e.target.value}))}/></label><label><span>Drawing Number</span><input value={bomItemForm.drawingNumber} onChange={e=>setBomItemForm(c=>({...c,drawingNumber:e.target.value}))}/></label></div>
             <label><span>Remarks</span><textarea rows={3} value={bomItemForm.remarks} onChange={e=>setBomItemForm(c=>({...c,remarks:e.target.value}))}/></label>
             <ModalActions busy={savingBomItem} busyText="Adding..." submitText="Add Item" onCancel={()=>setShowBomItemModal(false)}/>
           </form>

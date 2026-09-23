@@ -29,12 +29,14 @@ export type AggregateEngineeringBomItem = {
 export type EngineeringBomItemAvgAggregateOutputType = {
   itemNumber: number | null
   quantity: runtime.Decimal | null
+  unitCost: runtime.Decimal | null
   sortOrder: number | null
 }
 
 export type EngineeringBomItemSumAggregateOutputType = {
   itemNumber: number | null
   quantity: runtime.Decimal | null
+  unitCost: runtime.Decimal | null
   sortOrder: number | null
 }
 
@@ -50,6 +52,8 @@ export type EngineeringBomItemMinAggregateOutputType = {
   unit: string | null
   source: $Enums.BomItemSource | null
   materialSpec: string | null
+  alternateMaterial: string | null
+  unitCost: runtime.Decimal | null
   drawingNumber: string | null
   remarks: string | null
   sortOrder: number | null
@@ -69,6 +73,8 @@ export type EngineeringBomItemMaxAggregateOutputType = {
   unit: string | null
   source: $Enums.BomItemSource | null
   materialSpec: string | null
+  alternateMaterial: string | null
+  unitCost: runtime.Decimal | null
   drawingNumber: string | null
   remarks: string | null
   sortOrder: number | null
@@ -88,6 +94,8 @@ export type EngineeringBomItemCountAggregateOutputType = {
   unit: number
   source: number
   materialSpec: number
+  alternateMaterial: number
+  unitCost: number
   drawingNumber: number
   remarks: number
   sortOrder: number
@@ -100,12 +108,14 @@ export type EngineeringBomItemCountAggregateOutputType = {
 export type EngineeringBomItemAvgAggregateInputType = {
   itemNumber?: true
   quantity?: true
+  unitCost?: true
   sortOrder?: true
 }
 
 export type EngineeringBomItemSumAggregateInputType = {
   itemNumber?: true
   quantity?: true
+  unitCost?: true
   sortOrder?: true
 }
 
@@ -121,6 +131,8 @@ export type EngineeringBomItemMinAggregateInputType = {
   unit?: true
   source?: true
   materialSpec?: true
+  alternateMaterial?: true
+  unitCost?: true
   drawingNumber?: true
   remarks?: true
   sortOrder?: true
@@ -140,6 +152,8 @@ export type EngineeringBomItemMaxAggregateInputType = {
   unit?: true
   source?: true
   materialSpec?: true
+  alternateMaterial?: true
+  unitCost?: true
   drawingNumber?: true
   remarks?: true
   sortOrder?: true
@@ -159,6 +173,8 @@ export type EngineeringBomItemCountAggregateInputType = {
   unit?: true
   source?: true
   materialSpec?: true
+  alternateMaterial?: true
+  unitCost?: true
   drawingNumber?: true
   remarks?: true
   sortOrder?: true
@@ -265,6 +281,8 @@ export type EngineeringBomItemGroupByOutputType = {
   unit: string
   source: $Enums.BomItemSource
   materialSpec: string | null
+  alternateMaterial: string | null
+  unitCost: runtime.Decimal | null
   drawingNumber: string | null
   remarks: string | null
   sortOrder: number
@@ -307,6 +325,8 @@ export type EngineeringBomItemWhereInput = {
   unit?: Prisma.StringFilter<"EngineeringBomItem"> | string
   source?: Prisma.EnumBomItemSourceFilter<"EngineeringBomItem"> | $Enums.BomItemSource
   materialSpec?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
+  alternateMaterial?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
+  unitCost?: Prisma.DecimalNullableFilter<"EngineeringBomItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
   remarks?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
   sortOrder?: Prisma.IntFilter<"EngineeringBomItem"> | number
@@ -330,6 +350,8 @@ export type EngineeringBomItemOrderByWithRelationInput = {
   unit?: Prisma.SortOrder
   source?: Prisma.SortOrder
   materialSpec?: Prisma.SortOrderInput | Prisma.SortOrder
+  alternateMaterial?: Prisma.SortOrderInput | Prisma.SortOrder
+  unitCost?: Prisma.SortOrderInput | Prisma.SortOrder
   drawingNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   remarks?: Prisma.SortOrderInput | Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
@@ -357,6 +379,8 @@ export type EngineeringBomItemWhereUniqueInput = Prisma.AtLeast<{
   unit?: Prisma.StringFilter<"EngineeringBomItem"> | string
   source?: Prisma.EnumBomItemSourceFilter<"EngineeringBomItem"> | $Enums.BomItemSource
   materialSpec?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
+  alternateMaterial?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
+  unitCost?: Prisma.DecimalNullableFilter<"EngineeringBomItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
   remarks?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
   sortOrder?: Prisma.IntFilter<"EngineeringBomItem"> | number
@@ -380,6 +404,8 @@ export type EngineeringBomItemOrderByWithAggregationInput = {
   unit?: Prisma.SortOrder
   source?: Prisma.SortOrder
   materialSpec?: Prisma.SortOrderInput | Prisma.SortOrder
+  alternateMaterial?: Prisma.SortOrderInput | Prisma.SortOrder
+  unitCost?: Prisma.SortOrderInput | Prisma.SortOrder
   drawingNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   remarks?: Prisma.SortOrderInput | Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
@@ -407,6 +433,8 @@ export type EngineeringBomItemScalarWhereWithAggregatesInput = {
   unit?: Prisma.StringWithAggregatesFilter<"EngineeringBomItem"> | string
   source?: Prisma.EnumBomItemSourceWithAggregatesFilter<"EngineeringBomItem"> | $Enums.BomItemSource
   materialSpec?: Prisma.StringNullableWithAggregatesFilter<"EngineeringBomItem"> | string | null
+  alternateMaterial?: Prisma.StringNullableWithAggregatesFilter<"EngineeringBomItem"> | string | null
+  unitCost?: Prisma.DecimalNullableWithAggregatesFilter<"EngineeringBomItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.StringNullableWithAggregatesFilter<"EngineeringBomItem"> | string | null
   remarks?: Prisma.StringNullableWithAggregatesFilter<"EngineeringBomItem"> | string | null
   sortOrder?: Prisma.IntWithAggregatesFilter<"EngineeringBomItem"> | number
@@ -423,6 +451,8 @@ export type EngineeringBomItemCreateInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -446,6 +476,8 @@ export type EngineeringBomItemUncheckedCreateInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -463,6 +495,8 @@ export type EngineeringBomItemUpdateInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -486,6 +520,8 @@ export type EngineeringBomItemUncheckedUpdateInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -506,6 +542,8 @@ export type EngineeringBomItemCreateManyInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -522,6 +560,8 @@ export type EngineeringBomItemUpdateManyMutationInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -541,6 +581,8 @@ export type EngineeringBomItemUncheckedUpdateManyInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -580,6 +622,8 @@ export type EngineeringBomItemCountOrderByAggregateInput = {
   unit?: Prisma.SortOrder
   source?: Prisma.SortOrder
   materialSpec?: Prisma.SortOrder
+  alternateMaterial?: Prisma.SortOrder
+  unitCost?: Prisma.SortOrder
   drawingNumber?: Prisma.SortOrder
   remarks?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
@@ -590,6 +634,7 @@ export type EngineeringBomItemCountOrderByAggregateInput = {
 export type EngineeringBomItemAvgOrderByAggregateInput = {
   itemNumber?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
+  unitCost?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
 }
 
@@ -605,6 +650,8 @@ export type EngineeringBomItemMaxOrderByAggregateInput = {
   unit?: Prisma.SortOrder
   source?: Prisma.SortOrder
   materialSpec?: Prisma.SortOrder
+  alternateMaterial?: Prisma.SortOrder
+  unitCost?: Prisma.SortOrder
   drawingNumber?: Prisma.SortOrder
   remarks?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
@@ -624,6 +671,8 @@ export type EngineeringBomItemMinOrderByAggregateInput = {
   unit?: Prisma.SortOrder
   source?: Prisma.SortOrder
   materialSpec?: Prisma.SortOrder
+  alternateMaterial?: Prisma.SortOrder
+  unitCost?: Prisma.SortOrder
   drawingNumber?: Prisma.SortOrder
   remarks?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
@@ -634,6 +683,7 @@ export type EngineeringBomItemMinOrderByAggregateInput = {
 export type EngineeringBomItemSumOrderByAggregateInput = {
   itemNumber?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
+  unitCost?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
 }
 
@@ -792,6 +842,8 @@ export type EngineeringBomItemCreateWithoutInventoryItemInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -813,6 +865,8 @@ export type EngineeringBomItemUncheckedCreateWithoutInventoryItemInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -862,6 +916,8 @@ export type EngineeringBomItemScalarWhereInput = {
   unit?: Prisma.StringFilter<"EngineeringBomItem"> | string
   source?: Prisma.EnumBomItemSourceFilter<"EngineeringBomItem"> | $Enums.BomItemSource
   materialSpec?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
+  alternateMaterial?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
+  unitCost?: Prisma.DecimalNullableFilter<"EngineeringBomItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
   remarks?: Prisma.StringNullableFilter<"EngineeringBomItem"> | string | null
   sortOrder?: Prisma.IntFilter<"EngineeringBomItem"> | number
@@ -878,6 +934,8 @@ export type EngineeringBomItemCreateWithoutBomInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -899,6 +957,8 @@ export type EngineeringBomItemUncheckedCreateWithoutBomInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -942,6 +1002,8 @@ export type EngineeringBomItemCreateWithoutChildrenInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -964,6 +1026,8 @@ export type EngineeringBomItemUncheckedCreateWithoutChildrenInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -985,6 +1049,8 @@ export type EngineeringBomItemCreateWithoutParentItemInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -1006,6 +1072,8 @@ export type EngineeringBomItemUncheckedCreateWithoutParentItemInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -1044,6 +1112,8 @@ export type EngineeringBomItemUpdateWithoutChildrenInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1066,6 +1136,8 @@ export type EngineeringBomItemUncheckedUpdateWithoutChildrenInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1100,6 +1172,8 @@ export type EngineeringBomItemCreateManyInventoryItemInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -1116,6 +1190,8 @@ export type EngineeringBomItemUpdateWithoutInventoryItemInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1137,6 +1213,8 @@ export type EngineeringBomItemUncheckedUpdateWithoutInventoryItemInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1156,6 +1234,8 @@ export type EngineeringBomItemUncheckedUpdateManyWithoutInventoryItemInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1174,6 +1254,8 @@ export type EngineeringBomItemCreateManyBomInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -1190,6 +1272,8 @@ export type EngineeringBomItemUpdateWithoutBomInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1211,6 +1295,8 @@ export type EngineeringBomItemUncheckedUpdateWithoutBomInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1230,6 +1316,8 @@ export type EngineeringBomItemUncheckedUpdateManyWithoutBomInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1248,6 +1336,8 @@ export type EngineeringBomItemCreateManyParentItemInput = {
   unit: string
   source?: $Enums.BomItemSource
   materialSpec?: string | null
+  alternateMaterial?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: string | null
   remarks?: string | null
   sortOrder?: number
@@ -1264,6 +1354,8 @@ export type EngineeringBomItemUpdateWithoutParentItemInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1285,6 +1377,8 @@ export type EngineeringBomItemUncheckedUpdateWithoutParentItemInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1304,6 +1398,8 @@ export type EngineeringBomItemUncheckedUpdateManyWithoutParentItemInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumBomItemSourceFieldUpdateOperationsInput | $Enums.BomItemSource
   materialSpec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternateMaterial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   drawingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1354,6 +1450,8 @@ export type EngineeringBomItemSelect<ExtArgs extends runtime.Types.Extensions.In
   unit?: boolean
   source?: boolean
   materialSpec?: boolean
+  alternateMaterial?: boolean
+  unitCost?: boolean
   drawingNumber?: boolean
   remarks?: boolean
   sortOrder?: boolean
@@ -1378,6 +1476,8 @@ export type EngineeringBomItemSelectCreateManyAndReturn<ExtArgs extends runtime.
   unit?: boolean
   source?: boolean
   materialSpec?: boolean
+  alternateMaterial?: boolean
+  unitCost?: boolean
   drawingNumber?: boolean
   remarks?: boolean
   sortOrder?: boolean
@@ -1400,6 +1500,8 @@ export type EngineeringBomItemSelectUpdateManyAndReturn<ExtArgs extends runtime.
   unit?: boolean
   source?: boolean
   materialSpec?: boolean
+  alternateMaterial?: boolean
+  unitCost?: boolean
   drawingNumber?: boolean
   remarks?: boolean
   sortOrder?: boolean
@@ -1422,6 +1524,8 @@ export type EngineeringBomItemSelectScalar = {
   unit?: boolean
   source?: boolean
   materialSpec?: boolean
+  alternateMaterial?: boolean
+  unitCost?: boolean
   drawingNumber?: boolean
   remarks?: boolean
   sortOrder?: boolean
@@ -1429,7 +1533,7 @@ export type EngineeringBomItemSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EngineeringBomItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "bomId" | "parentItemId" | "inventoryItemId" | "itemNumber" | "name" | "description" | "quantity" | "unit" | "source" | "materialSpec" | "drawingNumber" | "remarks" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["engineeringBomItem"]>
+export type EngineeringBomItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "bomId" | "parentItemId" | "inventoryItemId" | "itemNumber" | "name" | "description" | "quantity" | "unit" | "source" | "materialSpec" | "alternateMaterial" | "unitCost" | "drawingNumber" | "remarks" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["engineeringBomItem"]>
 export type EngineeringBomItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bom?: boolean | Prisma.EngineeringBomDefaultArgs<ExtArgs>
   inventoryItem?: boolean | Prisma.EngineeringBomItem$inventoryItemArgs<ExtArgs>
@@ -1468,6 +1572,8 @@ export type $EngineeringBomItemPayload<ExtArgs extends runtime.Types.Extensions.
     unit: string
     source: $Enums.BomItemSource
     materialSpec: string | null
+    alternateMaterial: string | null
+    unitCost: runtime.Decimal | null
     drawingNumber: string | null
     remarks: string | null
     sortOrder: number
@@ -1911,6 +2017,8 @@ export interface EngineeringBomItemFieldRefs {
   readonly unit: Prisma.FieldRef<"EngineeringBomItem", 'String'>
   readonly source: Prisma.FieldRef<"EngineeringBomItem", 'BomItemSource'>
   readonly materialSpec: Prisma.FieldRef<"EngineeringBomItem", 'String'>
+  readonly alternateMaterial: Prisma.FieldRef<"EngineeringBomItem", 'String'>
+  readonly unitCost: Prisma.FieldRef<"EngineeringBomItem", 'Decimal'>
   readonly drawingNumber: Prisma.FieldRef<"EngineeringBomItem", 'String'>
   readonly remarks: Prisma.FieldRef<"EngineeringBomItem", 'String'>
   readonly sortOrder: Prisma.FieldRef<"EngineeringBomItem", 'Int'>

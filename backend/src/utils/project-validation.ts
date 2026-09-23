@@ -9,6 +9,8 @@ export const createProjectSchema = z.object({
 export const updateProjectSchema = z.object({
   title:z.string().min(2).optional(), description:z.string().nullable().optional(),
   status:z.enum(["PLANNED","ACTIVE","ON_HOLD","COMPLETED","CANCELLED"]).optional(),
+  stage:z.enum(["ORDER","ENGINEERING","PROCUREMENT","FABRICATION","TESTING","DISPATCH","INSTALLATION","COMMISSIONING","HANDOVER"]).optional(),
+  actualCost:z.number().min(0).optional(), revenueAmount:z.number().min(0).optional(),
   priority:z.enum(["LOW","MEDIUM","HIGH","URGENT"]).optional(),
   plannedStartDate:z.coerce.date().nullable().optional(), plannedEndDate:z.coerce.date().nullable().optional(),
   managerId:z.string().uuid().nullable().optional(), notes:z.string().nullable().optional()
@@ -36,4 +38,9 @@ export const updateTaskSchema=z.object({
   priority:z.enum(["LOW","MEDIUM","HIGH","URGENT"]).optional(),
   plannedDate:z.coerce.date().nullable().optional(), dueDate:z.coerce.date().nullable().optional(),
   assignedToId:z.string().uuid().nullable().optional(), notes:z.string().nullable().optional()
+});
+
+export const createCostLineSchema=z.object({
+  projectId:z.string().uuid(), category:z.string().min(2), description:z.string().min(2),
+  plannedCost:z.number().min(0).default(0), actualCost:z.number().min(0).default(0), incurredOn:z.coerce.date().optional()
 });

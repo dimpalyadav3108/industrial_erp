@@ -1,4 +1,4 @@
-import type { CreateEstimatePayload, Estimate, EstimateListResponse, EstimateResponse, EstimateStatus } from "../types/estimate";
+import type { CreateEstimatePayload, Estimate, EstimateListResponse, EstimateResponse, EstimateStatus, EstimateStage, EngineeringValidationStatus } from "../types/estimate";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 interface ApiErrorResponse { success: false; message: string; errors?: Record<string, string[]> }
@@ -30,5 +30,30 @@ export const updateEstimateStatus = async (estimateId: string, status: EstimateS
   });
   const result = await response.json() as EstimateResponse | ApiErrorResponse;
   if (!response.ok) throw new Error(result.message || "Unable to update estimate status");
+  return (result as EstimateResponse).data;
+};
+
+// Boiler Costing Engine: advance the estimate along the RFQ -> Engineering
+// Validation -> BOM Estimation -> ... -> Quotation Release pipeline.
+export const updateEstimateStage = async (estimateId: string, stage: EstimateStage): Promise<Estimate> => {
+  const response = await fetch(`${API_URL}/estimates/${estimateId}/stage`, {
+    method: "PATCH", headers: headers(true), body: JSON.stringify({ stage }),
+  });
+  const result = await response.json() as EstimateResponse | ApiErrorResponse;
+  if (!response.ok) throw new Error(result.message || "Unable to update estimate stage");
+  return (result as EstimateResponse).data;
+};
+
+export const updateEngineeringValidation = async (
+  estimateId: string,
+  engineeringValidationStatus: EngineeringValidationStatus,
+  engineeringValidationNotes?: string
+): Promise<Estimate> => {
+  const response = await fetch(`${API_URL}/estimates/${estimateId}/engineering-validation`, {
+    method: "PATCH", headers: headers(true),
+    body: JSON.stringify({ engineeringValidationStatus, ...(engineeringValidationNotes ? { engineeringValidationNotes } : {}) }),
+  });
+  const result = await response.json() as EstimateResponse | ApiErrorResponse;
+  if (!response.ok) throw new Error(result.message || "Unable to update engineering validation");
   return (result as EstimateResponse).data;
 };

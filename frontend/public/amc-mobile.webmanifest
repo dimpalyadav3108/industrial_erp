@@ -1,0 +1,9 @@
+{
+  "name": "Industrial ERP AMC Mobile App",
+  "short_name": "AMC Mobile",
+  "start_url": "/service-amc",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "icons": []
+}

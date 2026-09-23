@@ -36,25 +36,32 @@ export type EstimateAvgAggregateOutputType = {
   taxPercent: runtime.Decimal | null
   taxAmount: runtime.Decimal | null
   totalAmount: runtime.Decimal | null
+  annualCostSaving: runtime.Decimal | null
+  annualFuelSaving: runtime.Decimal | null
+  calculatedBoilerOutput: runtime.Decimal | null
+  calculatedThermalEfficiency: runtime.Decimal | null
   capacityTph: runtime.Decimal | null
-  requiredSteamConsumption: runtime.Decimal | null
-  workingPressureBar: runtime.Decimal | null
   designPressureBar: runtime.Decimal | null
-  steamTemperatureC: runtime.Decimal | null
+  estimatedFuelSavingPerHour: runtime.Decimal | null
+  existingBoilerEfficiency: runtime.Decimal | null
   feedWaterTemperatureC: runtime.Decimal | null
   flueGasTemperatureC: runtime.Decimal | null
-  operatingHoursPerDay: runtime.Decimal | null
-  operatingDaysPerYear: number | null
-  fuelConsumptionPerHour: runtime.Decimal | null
   fuelCalorificValueKcalKg: runtime.Decimal | null
+  fuelConsumptionPerHour: runtime.Decimal | null
   fuelPricePerUnit: runtime.Decimal | null
-  existingBoilerEfficiency: runtime.Decimal | null
+  operatingDaysPerYear: number | null
+  operatingHoursPerDay: runtime.Decimal | null
   proposedBoilerEfficiency: runtime.Decimal | null
-  calculatedThermalEfficiency: runtime.Decimal | null
-  calculatedBoilerOutput: runtime.Decimal | null
-  estimatedFuelSavingPerHour: runtime.Decimal | null
-  annualFuelSaving: runtime.Decimal | null
-  annualCostSaving: runtime.Decimal | null
+  requiredSteamConsumption: runtime.Decimal | null
+  steamTemperatureC: runtime.Decimal | null
+  workingPressureBar: runtime.Decimal | null
+  fabricationCost: runtime.Decimal | null
+  paintingCost: runtime.Decimal | null
+  testingCost: runtime.Decimal | null
+  packingCost: runtime.Decimal | null
+  freightCost: runtime.Decimal | null
+  insuranceCost: runtime.Decimal | null
+  transportationCost: runtime.Decimal | null
 }
 
 export type EstimateSumAggregateOutputType = {
@@ -67,25 +74,32 @@ export type EstimateSumAggregateOutputType = {
   taxPercent: runtime.Decimal | null
   taxAmount: runtime.Decimal | null
   totalAmount: runtime.Decimal | null
+  annualCostSaving: runtime.Decimal | null
+  annualFuelSaving: runtime.Decimal | null
+  calculatedBoilerOutput: runtime.Decimal | null
+  calculatedThermalEfficiency: runtime.Decimal | null
   capacityTph: runtime.Decimal | null
-  requiredSteamConsumption: runtime.Decimal | null
-  workingPressureBar: runtime.Decimal | null
   designPressureBar: runtime.Decimal | null
-  steamTemperatureC: runtime.Decimal | null
+  estimatedFuelSavingPerHour: runtime.Decimal | null
+  existingBoilerEfficiency: runtime.Decimal | null
   feedWaterTemperatureC: runtime.Decimal | null
   flueGasTemperatureC: runtime.Decimal | null
-  operatingHoursPerDay: runtime.Decimal | null
-  operatingDaysPerYear: number | null
-  fuelConsumptionPerHour: runtime.Decimal | null
   fuelCalorificValueKcalKg: runtime.Decimal | null
+  fuelConsumptionPerHour: runtime.Decimal | null
   fuelPricePerUnit: runtime.Decimal | null
-  existingBoilerEfficiency: runtime.Decimal | null
+  operatingDaysPerYear: number | null
+  operatingHoursPerDay: runtime.Decimal | null
   proposedBoilerEfficiency: runtime.Decimal | null
-  calculatedThermalEfficiency: runtime.Decimal | null
-  calculatedBoilerOutput: runtime.Decimal | null
-  estimatedFuelSavingPerHour: runtime.Decimal | null
-  annualFuelSaving: runtime.Decimal | null
-  annualCostSaving: runtime.Decimal | null
+  requiredSteamConsumption: runtime.Decimal | null
+  steamTemperatureC: runtime.Decimal | null
+  workingPressureBar: runtime.Decimal | null
+  fabricationCost: runtime.Decimal | null
+  paintingCost: runtime.Decimal | null
+  testingCost: runtime.Decimal | null
+  packingCost: runtime.Decimal | null
+  freightCost: runtime.Decimal | null
+  insuranceCost: runtime.Decimal | null
+  transportationCost: runtime.Decimal | null
 }
 
 export type EstimateMinAggregateOutputType = {
@@ -102,35 +116,54 @@ export type EstimateMinAggregateOutputType = {
   taxPercent: runtime.Decimal | null
   taxAmount: runtime.Decimal | null
   totalAmount: runtime.Decimal | null
-  productFamily: string | null
-  productModel: string | null
-  processIndustry: string | null
-  fuelType: string | null
-  capacityTph: runtime.Decimal | null
-  requiredSteamConsumption: runtime.Decimal | null
-  workingPressureBar: runtime.Decimal | null
-  designPressureBar: runtime.Decimal | null
-  steamTemperatureC: runtime.Decimal | null
-  feedWaterTemperatureC: runtime.Decimal | null
-  flueGasTemperatureC: runtime.Decimal | null
-  operatingHoursPerDay: runtime.Decimal | null
-  operatingDaysPerYear: number | null
-  fuelConsumptionPerHour: runtime.Decimal | null
-  fuelCalorificValueKcalKg: runtime.Decimal | null
-  fuelPricePerUnit: runtime.Decimal | null
-  existingBoilerEfficiency: runtime.Decimal | null
-  proposedBoilerEfficiency: runtime.Decimal | null
-  calculatedThermalEfficiency: runtime.Decimal | null
-  calculatedBoilerOutput: runtime.Decimal | null
-  estimatedFuelSavingPerHour: runtime.Decimal | null
-  annualFuelSaving: runtime.Decimal | null
-  annualCostSaving: runtime.Decimal | null
-  technicalNotes: string | null
   notes: string | null
   validUntil: Date | null
   createdById: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  annualCostSaving: runtime.Decimal | null
+  annualFuelSaving: runtime.Decimal | null
+  calculatedBoilerOutput: runtime.Decimal | null
+  calculatedThermalEfficiency: runtime.Decimal | null
+  capacityTph: runtime.Decimal | null
+  designPressureBar: runtime.Decimal | null
+  estimatedFuelSavingPerHour: runtime.Decimal | null
+  existingBoilerEfficiency: runtime.Decimal | null
+  feedWaterTemperatureC: runtime.Decimal | null
+  flueGasTemperatureC: runtime.Decimal | null
+  fuelCalorificValueKcalKg: runtime.Decimal | null
+  fuelConsumptionPerHour: runtime.Decimal | null
+  fuelPricePerUnit: runtime.Decimal | null
+  fuelType: string | null
+  operatingDaysPerYear: number | null
+  operatingHoursPerDay: runtime.Decimal | null
+  processIndustry: string | null
+  productFamily: string | null
+  productModel: string | null
+  proposedBoilerEfficiency: runtime.Decimal | null
+  requiredSteamConsumption: runtime.Decimal | null
+  steamTemperatureC: runtime.Decimal | null
+  technicalNotes: string | null
+  workingPressureBar: runtime.Decimal | null
+  stage: $Enums.EstimateStage | null
+  rfqNumber: string | null
+  rfqSource: string | null
+  rfqReceivedDate: Date | null
+  rfqDueDate: Date | null
+  engineeringValidationStatus: $Enums.EngineeringValidationStatus | null
+  engineeringValidationNotes: string | null
+  engineeringValidatedById: string | null
+  engineeringValidatedAt: Date | null
+  bomEstimationCompletedAt: Date | null
+  fabricationCost: runtime.Decimal | null
+  paintingCost: runtime.Decimal | null
+  testingCost: runtime.Decimal | null
+  packingCost: runtime.Decimal | null
+  freightCost: runtime.Decimal | null
+  insuranceCost: runtime.Decimal | null
+  transportationCost: runtime.Decimal | null
+  quotationReleasedById: string | null
+  quotationReleasedAt: Date | null
 }
 
 export type EstimateMaxAggregateOutputType = {
@@ -147,35 +180,54 @@ export type EstimateMaxAggregateOutputType = {
   taxPercent: runtime.Decimal | null
   taxAmount: runtime.Decimal | null
   totalAmount: runtime.Decimal | null
-  productFamily: string | null
-  productModel: string | null
-  processIndustry: string | null
-  fuelType: string | null
-  capacityTph: runtime.Decimal | null
-  requiredSteamConsumption: runtime.Decimal | null
-  workingPressureBar: runtime.Decimal | null
-  designPressureBar: runtime.Decimal | null
-  steamTemperatureC: runtime.Decimal | null
-  feedWaterTemperatureC: runtime.Decimal | null
-  flueGasTemperatureC: runtime.Decimal | null
-  operatingHoursPerDay: runtime.Decimal | null
-  operatingDaysPerYear: number | null
-  fuelConsumptionPerHour: runtime.Decimal | null
-  fuelCalorificValueKcalKg: runtime.Decimal | null
-  fuelPricePerUnit: runtime.Decimal | null
-  existingBoilerEfficiency: runtime.Decimal | null
-  proposedBoilerEfficiency: runtime.Decimal | null
-  calculatedThermalEfficiency: runtime.Decimal | null
-  calculatedBoilerOutput: runtime.Decimal | null
-  estimatedFuelSavingPerHour: runtime.Decimal | null
-  annualFuelSaving: runtime.Decimal | null
-  annualCostSaving: runtime.Decimal | null
-  technicalNotes: string | null
   notes: string | null
   validUntil: Date | null
   createdById: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  annualCostSaving: runtime.Decimal | null
+  annualFuelSaving: runtime.Decimal | null
+  calculatedBoilerOutput: runtime.Decimal | null
+  calculatedThermalEfficiency: runtime.Decimal | null
+  capacityTph: runtime.Decimal | null
+  designPressureBar: runtime.Decimal | null
+  estimatedFuelSavingPerHour: runtime.Decimal | null
+  existingBoilerEfficiency: runtime.Decimal | null
+  feedWaterTemperatureC: runtime.Decimal | null
+  flueGasTemperatureC: runtime.Decimal | null
+  fuelCalorificValueKcalKg: runtime.Decimal | null
+  fuelConsumptionPerHour: runtime.Decimal | null
+  fuelPricePerUnit: runtime.Decimal | null
+  fuelType: string | null
+  operatingDaysPerYear: number | null
+  operatingHoursPerDay: runtime.Decimal | null
+  processIndustry: string | null
+  productFamily: string | null
+  productModel: string | null
+  proposedBoilerEfficiency: runtime.Decimal | null
+  requiredSteamConsumption: runtime.Decimal | null
+  steamTemperatureC: runtime.Decimal | null
+  technicalNotes: string | null
+  workingPressureBar: runtime.Decimal | null
+  stage: $Enums.EstimateStage | null
+  rfqNumber: string | null
+  rfqSource: string | null
+  rfqReceivedDate: Date | null
+  rfqDueDate: Date | null
+  engineeringValidationStatus: $Enums.EngineeringValidationStatus | null
+  engineeringValidationNotes: string | null
+  engineeringValidatedById: string | null
+  engineeringValidatedAt: Date | null
+  bomEstimationCompletedAt: Date | null
+  fabricationCost: runtime.Decimal | null
+  paintingCost: runtime.Decimal | null
+  testingCost: runtime.Decimal | null
+  packingCost: runtime.Decimal | null
+  freightCost: runtime.Decimal | null
+  insuranceCost: runtime.Decimal | null
+  transportationCost: runtime.Decimal | null
+  quotationReleasedById: string | null
+  quotationReleasedAt: Date | null
 }
 
 export type EstimateCountAggregateOutputType = {
@@ -192,35 +244,54 @@ export type EstimateCountAggregateOutputType = {
   taxPercent: number
   taxAmount: number
   totalAmount: number
-  productFamily: number
-  productModel: number
-  processIndustry: number
-  fuelType: number
-  capacityTph: number
-  requiredSteamConsumption: number
-  workingPressureBar: number
-  designPressureBar: number
-  steamTemperatureC: number
-  feedWaterTemperatureC: number
-  flueGasTemperatureC: number
-  operatingHoursPerDay: number
-  operatingDaysPerYear: number
-  fuelConsumptionPerHour: number
-  fuelCalorificValueKcalKg: number
-  fuelPricePerUnit: number
-  existingBoilerEfficiency: number
-  proposedBoilerEfficiency: number
-  calculatedThermalEfficiency: number
-  calculatedBoilerOutput: number
-  estimatedFuelSavingPerHour: number
-  annualFuelSaving: number
-  annualCostSaving: number
-  technicalNotes: number
   notes: number
   validUntil: number
   createdById: number
   createdAt: number
   updatedAt: number
+  annualCostSaving: number
+  annualFuelSaving: number
+  calculatedBoilerOutput: number
+  calculatedThermalEfficiency: number
+  capacityTph: number
+  designPressureBar: number
+  estimatedFuelSavingPerHour: number
+  existingBoilerEfficiency: number
+  feedWaterTemperatureC: number
+  flueGasTemperatureC: number
+  fuelCalorificValueKcalKg: number
+  fuelConsumptionPerHour: number
+  fuelPricePerUnit: number
+  fuelType: number
+  operatingDaysPerYear: number
+  operatingHoursPerDay: number
+  processIndustry: number
+  productFamily: number
+  productModel: number
+  proposedBoilerEfficiency: number
+  requiredSteamConsumption: number
+  steamTemperatureC: number
+  technicalNotes: number
+  workingPressureBar: number
+  stage: number
+  rfqNumber: number
+  rfqSource: number
+  rfqReceivedDate: number
+  rfqDueDate: number
+  engineeringValidationStatus: number
+  engineeringValidationNotes: number
+  engineeringValidatedById: number
+  engineeringValidatedAt: number
+  bomEstimationCompletedAt: number
+  fabricationCost: number
+  paintingCost: number
+  testingCost: number
+  packingCost: number
+  freightCost: number
+  insuranceCost: number
+  transportationCost: number
+  quotationReleasedById: number
+  quotationReleasedAt: number
   _all: number
 }
 
@@ -235,25 +306,32 @@ export type EstimateAvgAggregateInputType = {
   taxPercent?: true
   taxAmount?: true
   totalAmount?: true
+  annualCostSaving?: true
+  annualFuelSaving?: true
+  calculatedBoilerOutput?: true
+  calculatedThermalEfficiency?: true
   capacityTph?: true
-  requiredSteamConsumption?: true
-  workingPressureBar?: true
   designPressureBar?: true
-  steamTemperatureC?: true
+  estimatedFuelSavingPerHour?: true
+  existingBoilerEfficiency?: true
   feedWaterTemperatureC?: true
   flueGasTemperatureC?: true
-  operatingHoursPerDay?: true
-  operatingDaysPerYear?: true
-  fuelConsumptionPerHour?: true
   fuelCalorificValueKcalKg?: true
+  fuelConsumptionPerHour?: true
   fuelPricePerUnit?: true
-  existingBoilerEfficiency?: true
+  operatingDaysPerYear?: true
+  operatingHoursPerDay?: true
   proposedBoilerEfficiency?: true
-  calculatedThermalEfficiency?: true
-  calculatedBoilerOutput?: true
-  estimatedFuelSavingPerHour?: true
-  annualFuelSaving?: true
-  annualCostSaving?: true
+  requiredSteamConsumption?: true
+  steamTemperatureC?: true
+  workingPressureBar?: true
+  fabricationCost?: true
+  paintingCost?: true
+  testingCost?: true
+  packingCost?: true
+  freightCost?: true
+  insuranceCost?: true
+  transportationCost?: true
 }
 
 export type EstimateSumAggregateInputType = {
@@ -266,25 +344,32 @@ export type EstimateSumAggregateInputType = {
   taxPercent?: true
   taxAmount?: true
   totalAmount?: true
+  annualCostSaving?: true
+  annualFuelSaving?: true
+  calculatedBoilerOutput?: true
+  calculatedThermalEfficiency?: true
   capacityTph?: true
-  requiredSteamConsumption?: true
-  workingPressureBar?: true
   designPressureBar?: true
-  steamTemperatureC?: true
+  estimatedFuelSavingPerHour?: true
+  existingBoilerEfficiency?: true
   feedWaterTemperatureC?: true
   flueGasTemperatureC?: true
-  operatingHoursPerDay?: true
-  operatingDaysPerYear?: true
-  fuelConsumptionPerHour?: true
   fuelCalorificValueKcalKg?: true
+  fuelConsumptionPerHour?: true
   fuelPricePerUnit?: true
-  existingBoilerEfficiency?: true
+  operatingDaysPerYear?: true
+  operatingHoursPerDay?: true
   proposedBoilerEfficiency?: true
-  calculatedThermalEfficiency?: true
-  calculatedBoilerOutput?: true
-  estimatedFuelSavingPerHour?: true
-  annualFuelSaving?: true
-  annualCostSaving?: true
+  requiredSteamConsumption?: true
+  steamTemperatureC?: true
+  workingPressureBar?: true
+  fabricationCost?: true
+  paintingCost?: true
+  testingCost?: true
+  packingCost?: true
+  freightCost?: true
+  insuranceCost?: true
+  transportationCost?: true
 }
 
 export type EstimateMinAggregateInputType = {
@@ -301,35 +386,54 @@ export type EstimateMinAggregateInputType = {
   taxPercent?: true
   taxAmount?: true
   totalAmount?: true
-  productFamily?: true
-  productModel?: true
-  processIndustry?: true
-  fuelType?: true
-  capacityTph?: true
-  requiredSteamConsumption?: true
-  workingPressureBar?: true
-  designPressureBar?: true
-  steamTemperatureC?: true
-  feedWaterTemperatureC?: true
-  flueGasTemperatureC?: true
-  operatingHoursPerDay?: true
-  operatingDaysPerYear?: true
-  fuelConsumptionPerHour?: true
-  fuelCalorificValueKcalKg?: true
-  fuelPricePerUnit?: true
-  existingBoilerEfficiency?: true
-  proposedBoilerEfficiency?: true
-  calculatedThermalEfficiency?: true
-  calculatedBoilerOutput?: true
-  estimatedFuelSavingPerHour?: true
-  annualFuelSaving?: true
-  annualCostSaving?: true
-  technicalNotes?: true
   notes?: true
   validUntil?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
+  annualCostSaving?: true
+  annualFuelSaving?: true
+  calculatedBoilerOutput?: true
+  calculatedThermalEfficiency?: true
+  capacityTph?: true
+  designPressureBar?: true
+  estimatedFuelSavingPerHour?: true
+  existingBoilerEfficiency?: true
+  feedWaterTemperatureC?: true
+  flueGasTemperatureC?: true
+  fuelCalorificValueKcalKg?: true
+  fuelConsumptionPerHour?: true
+  fuelPricePerUnit?: true
+  fuelType?: true
+  operatingDaysPerYear?: true
+  operatingHoursPerDay?: true
+  processIndustry?: true
+  productFamily?: true
+  productModel?: true
+  proposedBoilerEfficiency?: true
+  requiredSteamConsumption?: true
+  steamTemperatureC?: true
+  technicalNotes?: true
+  workingPressureBar?: true
+  stage?: true
+  rfqNumber?: true
+  rfqSource?: true
+  rfqReceivedDate?: true
+  rfqDueDate?: true
+  engineeringValidationStatus?: true
+  engineeringValidationNotes?: true
+  engineeringValidatedById?: true
+  engineeringValidatedAt?: true
+  bomEstimationCompletedAt?: true
+  fabricationCost?: true
+  paintingCost?: true
+  testingCost?: true
+  packingCost?: true
+  freightCost?: true
+  insuranceCost?: true
+  transportationCost?: true
+  quotationReleasedById?: true
+  quotationReleasedAt?: true
 }
 
 export type EstimateMaxAggregateInputType = {
@@ -346,35 +450,54 @@ export type EstimateMaxAggregateInputType = {
   taxPercent?: true
   taxAmount?: true
   totalAmount?: true
-  productFamily?: true
-  productModel?: true
-  processIndustry?: true
-  fuelType?: true
-  capacityTph?: true
-  requiredSteamConsumption?: true
-  workingPressureBar?: true
-  designPressureBar?: true
-  steamTemperatureC?: true
-  feedWaterTemperatureC?: true
-  flueGasTemperatureC?: true
-  operatingHoursPerDay?: true
-  operatingDaysPerYear?: true
-  fuelConsumptionPerHour?: true
-  fuelCalorificValueKcalKg?: true
-  fuelPricePerUnit?: true
-  existingBoilerEfficiency?: true
-  proposedBoilerEfficiency?: true
-  calculatedThermalEfficiency?: true
-  calculatedBoilerOutput?: true
-  estimatedFuelSavingPerHour?: true
-  annualFuelSaving?: true
-  annualCostSaving?: true
-  technicalNotes?: true
   notes?: true
   validUntil?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
+  annualCostSaving?: true
+  annualFuelSaving?: true
+  calculatedBoilerOutput?: true
+  calculatedThermalEfficiency?: true
+  capacityTph?: true
+  designPressureBar?: true
+  estimatedFuelSavingPerHour?: true
+  existingBoilerEfficiency?: true
+  feedWaterTemperatureC?: true
+  flueGasTemperatureC?: true
+  fuelCalorificValueKcalKg?: true
+  fuelConsumptionPerHour?: true
+  fuelPricePerUnit?: true
+  fuelType?: true
+  operatingDaysPerYear?: true
+  operatingHoursPerDay?: true
+  processIndustry?: true
+  productFamily?: true
+  productModel?: true
+  proposedBoilerEfficiency?: true
+  requiredSteamConsumption?: true
+  steamTemperatureC?: true
+  technicalNotes?: true
+  workingPressureBar?: true
+  stage?: true
+  rfqNumber?: true
+  rfqSource?: true
+  rfqReceivedDate?: true
+  rfqDueDate?: true
+  engineeringValidationStatus?: true
+  engineeringValidationNotes?: true
+  engineeringValidatedById?: true
+  engineeringValidatedAt?: true
+  bomEstimationCompletedAt?: true
+  fabricationCost?: true
+  paintingCost?: true
+  testingCost?: true
+  packingCost?: true
+  freightCost?: true
+  insuranceCost?: true
+  transportationCost?: true
+  quotationReleasedById?: true
+  quotationReleasedAt?: true
 }
 
 export type EstimateCountAggregateInputType = {
@@ -391,35 +514,54 @@ export type EstimateCountAggregateInputType = {
   taxPercent?: true
   taxAmount?: true
   totalAmount?: true
-  productFamily?: true
-  productModel?: true
-  processIndustry?: true
-  fuelType?: true
-  capacityTph?: true
-  requiredSteamConsumption?: true
-  workingPressureBar?: true
-  designPressureBar?: true
-  steamTemperatureC?: true
-  feedWaterTemperatureC?: true
-  flueGasTemperatureC?: true
-  operatingHoursPerDay?: true
-  operatingDaysPerYear?: true
-  fuelConsumptionPerHour?: true
-  fuelCalorificValueKcalKg?: true
-  fuelPricePerUnit?: true
-  existingBoilerEfficiency?: true
-  proposedBoilerEfficiency?: true
-  calculatedThermalEfficiency?: true
-  calculatedBoilerOutput?: true
-  estimatedFuelSavingPerHour?: true
-  annualFuelSaving?: true
-  annualCostSaving?: true
-  technicalNotes?: true
   notes?: true
   validUntil?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
+  annualCostSaving?: true
+  annualFuelSaving?: true
+  calculatedBoilerOutput?: true
+  calculatedThermalEfficiency?: true
+  capacityTph?: true
+  designPressureBar?: true
+  estimatedFuelSavingPerHour?: true
+  existingBoilerEfficiency?: true
+  feedWaterTemperatureC?: true
+  flueGasTemperatureC?: true
+  fuelCalorificValueKcalKg?: true
+  fuelConsumptionPerHour?: true
+  fuelPricePerUnit?: true
+  fuelType?: true
+  operatingDaysPerYear?: true
+  operatingHoursPerDay?: true
+  processIndustry?: true
+  productFamily?: true
+  productModel?: true
+  proposedBoilerEfficiency?: true
+  requiredSteamConsumption?: true
+  steamTemperatureC?: true
+  technicalNotes?: true
+  workingPressureBar?: true
+  stage?: true
+  rfqNumber?: true
+  rfqSource?: true
+  rfqReceivedDate?: true
+  rfqDueDate?: true
+  engineeringValidationStatus?: true
+  engineeringValidationNotes?: true
+  engineeringValidatedById?: true
+  engineeringValidatedAt?: true
+  bomEstimationCompletedAt?: true
+  fabricationCost?: true
+  paintingCost?: true
+  testingCost?: true
+  packingCost?: true
+  freightCost?: true
+  insuranceCost?: true
+  transportationCost?: true
+  quotationReleasedById?: true
+  quotationReleasedAt?: true
   _all?: true
 }
 
@@ -523,35 +665,54 @@ export type EstimateGroupByOutputType = {
   taxPercent: runtime.Decimal
   taxAmount: runtime.Decimal
   totalAmount: runtime.Decimal
-  productFamily: string | null
-  productModel: string | null
-  processIndustry: string | null
-  fuelType: string | null
-  capacityTph: runtime.Decimal | null
-  requiredSteamConsumption: runtime.Decimal | null
-  workingPressureBar: runtime.Decimal | null
-  designPressureBar: runtime.Decimal | null
-  steamTemperatureC: runtime.Decimal | null
-  feedWaterTemperatureC: runtime.Decimal | null
-  flueGasTemperatureC: runtime.Decimal | null
-  operatingHoursPerDay: runtime.Decimal | null
-  operatingDaysPerYear: number | null
-  fuelConsumptionPerHour: runtime.Decimal | null
-  fuelCalorificValueKcalKg: runtime.Decimal | null
-  fuelPricePerUnit: runtime.Decimal | null
-  existingBoilerEfficiency: runtime.Decimal | null
-  proposedBoilerEfficiency: runtime.Decimal | null
-  calculatedThermalEfficiency: runtime.Decimal | null
-  calculatedBoilerOutput: runtime.Decimal | null
-  estimatedFuelSavingPerHour: runtime.Decimal | null
-  annualFuelSaving: runtime.Decimal | null
-  annualCostSaving: runtime.Decimal | null
-  technicalNotes: string | null
   notes: string | null
   validUntil: Date | null
   createdById: string | null
   createdAt: Date
   updatedAt: Date
+  annualCostSaving: runtime.Decimal | null
+  annualFuelSaving: runtime.Decimal | null
+  calculatedBoilerOutput: runtime.Decimal | null
+  calculatedThermalEfficiency: runtime.Decimal | null
+  capacityTph: runtime.Decimal | null
+  designPressureBar: runtime.Decimal | null
+  estimatedFuelSavingPerHour: runtime.Decimal | null
+  existingBoilerEfficiency: runtime.Decimal | null
+  feedWaterTemperatureC: runtime.Decimal | null
+  flueGasTemperatureC: runtime.Decimal | null
+  fuelCalorificValueKcalKg: runtime.Decimal | null
+  fuelConsumptionPerHour: runtime.Decimal | null
+  fuelPricePerUnit: runtime.Decimal | null
+  fuelType: string | null
+  operatingDaysPerYear: number | null
+  operatingHoursPerDay: runtime.Decimal | null
+  processIndustry: string | null
+  productFamily: string | null
+  productModel: string | null
+  proposedBoilerEfficiency: runtime.Decimal | null
+  requiredSteamConsumption: runtime.Decimal | null
+  steamTemperatureC: runtime.Decimal | null
+  technicalNotes: string | null
+  workingPressureBar: runtime.Decimal | null
+  stage: $Enums.EstimateStage
+  rfqNumber: string | null
+  rfqSource: string | null
+  rfqReceivedDate: Date | null
+  rfqDueDate: Date | null
+  engineeringValidationStatus: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes: string | null
+  engineeringValidatedById: string | null
+  engineeringValidatedAt: Date | null
+  bomEstimationCompletedAt: Date | null
+  fabricationCost: runtime.Decimal
+  paintingCost: runtime.Decimal
+  testingCost: runtime.Decimal
+  packingCost: runtime.Decimal
+  freightCost: runtime.Decimal
+  insuranceCost: runtime.Decimal
+  transportationCost: runtime.Decimal
+  quotationReleasedById: string | null
+  quotationReleasedAt: Date | null
   _count: EstimateCountAggregateOutputType | null
   _avg: EstimateAvgAggregateOutputType | null
   _sum: EstimateSumAggregateOutputType | null
@@ -591,37 +752,58 @@ export type EstimateWhereInput = {
   taxPercent?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  productModel?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  processIndustry?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  fuelType?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  capacityTph?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.IntNullableFilter<"Estimate"> | number | null
-  fuelConsumptionPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.StringNullableFilter<"Estimate"> | string | null
   notes?: Prisma.StringNullableFilter<"Estimate"> | string | null
   validUntil?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
   createdById?: Prisma.StringNullableFilter<"Estimate"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Estimate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Estimate"> | Date | string
-  lead?: Prisma.XOR<Prisma.LeadScalarRelationFilter, Prisma.LeadWhereInput>
+  annualCostSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  operatingDaysPerYear?: Prisma.IntNullableFilter<"Estimate"> | number | null
+  operatingHoursPerDay?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  productFamily?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  productModel?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  proposedBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  workingPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFilter<"Estimate"> | $Enums.EstimateStage
+  rfqNumber?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  rfqSource?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  rfqReceivedDate?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  rfqDueDate?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFilter<"Estimate"> | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  engineeringValidatedById?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  engineeringValidatedAt?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  bomEstimationCompletedAt?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  fabricationCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  quotationReleasedAt?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  engineeringValidatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  lead?: Prisma.XOR<Prisma.LeadScalarRelationFilter, Prisma.LeadWhereInput>
+  quotationReleasedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.EstimateItemListRelationFilter
   quotations?: Prisma.QuotationListRelationFilter
 }
@@ -640,37 +822,58 @@ export type EstimateOrderByWithRelationInput = {
   taxPercent?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
-  productFamily?: Prisma.SortOrderInput | Prisma.SortOrder
-  productModel?: Prisma.SortOrderInput | Prisma.SortOrder
-  processIndustry?: Prisma.SortOrderInput | Prisma.SortOrder
-  fuelType?: Prisma.SortOrderInput | Prisma.SortOrder
-  capacityTph?: Prisma.SortOrderInput | Prisma.SortOrder
-  requiredSteamConsumption?: Prisma.SortOrderInput | Prisma.SortOrder
-  workingPressureBar?: Prisma.SortOrderInput | Prisma.SortOrder
-  designPressureBar?: Prisma.SortOrderInput | Prisma.SortOrder
-  steamTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
-  feedWaterTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
-  flueGasTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
-  operatingHoursPerDay?: Prisma.SortOrderInput | Prisma.SortOrder
-  operatingDaysPerYear?: Prisma.SortOrderInput | Prisma.SortOrder
-  fuelConsumptionPerHour?: Prisma.SortOrderInput | Prisma.SortOrder
-  fuelCalorificValueKcalKg?: Prisma.SortOrderInput | Prisma.SortOrder
-  fuelPricePerUnit?: Prisma.SortOrderInput | Prisma.SortOrder
-  existingBoilerEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
-  proposedBoilerEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
-  calculatedThermalEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
-  calculatedBoilerOutput?: Prisma.SortOrderInput | Prisma.SortOrder
-  estimatedFuelSavingPerHour?: Prisma.SortOrderInput | Prisma.SortOrder
-  annualFuelSaving?: Prisma.SortOrderInput | Prisma.SortOrder
-  annualCostSaving?: Prisma.SortOrderInput | Prisma.SortOrder
-  technicalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   validUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  lead?: Prisma.LeadOrderByWithRelationInput
+  annualCostSaving?: Prisma.SortOrderInput | Prisma.SortOrder
+  annualFuelSaving?: Prisma.SortOrderInput | Prisma.SortOrder
+  calculatedBoilerOutput?: Prisma.SortOrderInput | Prisma.SortOrder
+  calculatedThermalEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
+  capacityTph?: Prisma.SortOrderInput | Prisma.SortOrder
+  designPressureBar?: Prisma.SortOrderInput | Prisma.SortOrder
+  estimatedFuelSavingPerHour?: Prisma.SortOrderInput | Prisma.SortOrder
+  existingBoilerEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
+  feedWaterTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
+  flueGasTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
+  fuelCalorificValueKcalKg?: Prisma.SortOrderInput | Prisma.SortOrder
+  fuelConsumptionPerHour?: Prisma.SortOrderInput | Prisma.SortOrder
+  fuelPricePerUnit?: Prisma.SortOrderInput | Prisma.SortOrder
+  fuelType?: Prisma.SortOrderInput | Prisma.SortOrder
+  operatingDaysPerYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrderInput | Prisma.SortOrder
+  processIndustry?: Prisma.SortOrderInput | Prisma.SortOrder
+  productFamily?: Prisma.SortOrderInput | Prisma.SortOrder
+  productModel?: Prisma.SortOrderInput | Prisma.SortOrder
+  proposedBoilerEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
+  requiredSteamConsumption?: Prisma.SortOrderInput | Prisma.SortOrder
+  steamTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
+  technicalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrderInput | Prisma.SortOrder
+  stage?: Prisma.SortOrder
+  rfqNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  rfqSource?: Prisma.SortOrderInput | Prisma.SortOrder
+  rfqReceivedDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  rfqDueDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  engineeringValidationStatus?: Prisma.SortOrder
+  engineeringValidationNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  engineeringValidatedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  engineeringValidatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  bomEstimationCompletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  fabricationCost?: Prisma.SortOrder
+  paintingCost?: Prisma.SortOrder
+  testingCost?: Prisma.SortOrder
+  packingCost?: Prisma.SortOrder
+  freightCost?: Prisma.SortOrder
+  insuranceCost?: Prisma.SortOrder
+  transportationCost?: Prisma.SortOrder
+  quotationReleasedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  quotationReleasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdBy?: Prisma.UserOrderByWithRelationInput
+  engineeringValidatedBy?: Prisma.UserOrderByWithRelationInput
+  lead?: Prisma.LeadOrderByWithRelationInput
+  quotationReleasedBy?: Prisma.UserOrderByWithRelationInput
   items?: Prisma.EstimateItemOrderByRelationAggregateInput
   quotations?: Prisma.QuotationOrderByRelationAggregateInput
 }
@@ -693,37 +896,58 @@ export type EstimateWhereUniqueInput = Prisma.AtLeast<{
   taxPercent?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  productModel?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  processIndustry?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  fuelType?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  capacityTph?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.IntNullableFilter<"Estimate"> | number | null
-  fuelConsumptionPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.StringNullableFilter<"Estimate"> | string | null
   notes?: Prisma.StringNullableFilter<"Estimate"> | string | null
   validUntil?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
   createdById?: Prisma.StringNullableFilter<"Estimate"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Estimate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Estimate"> | Date | string
-  lead?: Prisma.XOR<Prisma.LeadScalarRelationFilter, Prisma.LeadWhereInput>
+  annualCostSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  operatingDaysPerYear?: Prisma.IntNullableFilter<"Estimate"> | number | null
+  operatingHoursPerDay?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  productFamily?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  productModel?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  proposedBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  workingPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFilter<"Estimate"> | $Enums.EstimateStage
+  rfqNumber?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  rfqSource?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  rfqReceivedDate?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  rfqDueDate?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFilter<"Estimate"> | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  engineeringValidatedById?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  engineeringValidatedAt?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  bomEstimationCompletedAt?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  fabricationCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  quotationReleasedAt?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  engineeringValidatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  lead?: Prisma.XOR<Prisma.LeadScalarRelationFilter, Prisma.LeadWhereInput>
+  quotationReleasedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.EstimateItemListRelationFilter
   quotations?: Prisma.QuotationListRelationFilter
 }, "id" | "estimateNumber" | "leadId_version">
@@ -742,35 +966,54 @@ export type EstimateOrderByWithAggregationInput = {
   taxPercent?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
-  productFamily?: Prisma.SortOrderInput | Prisma.SortOrder
-  productModel?: Prisma.SortOrderInput | Prisma.SortOrder
-  processIndustry?: Prisma.SortOrderInput | Prisma.SortOrder
-  fuelType?: Prisma.SortOrderInput | Prisma.SortOrder
-  capacityTph?: Prisma.SortOrderInput | Prisma.SortOrder
-  requiredSteamConsumption?: Prisma.SortOrderInput | Prisma.SortOrder
-  workingPressureBar?: Prisma.SortOrderInput | Prisma.SortOrder
-  designPressureBar?: Prisma.SortOrderInput | Prisma.SortOrder
-  steamTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
-  feedWaterTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
-  flueGasTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
-  operatingHoursPerDay?: Prisma.SortOrderInput | Prisma.SortOrder
-  operatingDaysPerYear?: Prisma.SortOrderInput | Prisma.SortOrder
-  fuelConsumptionPerHour?: Prisma.SortOrderInput | Prisma.SortOrder
-  fuelCalorificValueKcalKg?: Prisma.SortOrderInput | Prisma.SortOrder
-  fuelPricePerUnit?: Prisma.SortOrderInput | Prisma.SortOrder
-  existingBoilerEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
-  proposedBoilerEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
-  calculatedThermalEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
-  calculatedBoilerOutput?: Prisma.SortOrderInput | Prisma.SortOrder
-  estimatedFuelSavingPerHour?: Prisma.SortOrderInput | Prisma.SortOrder
-  annualFuelSaving?: Prisma.SortOrderInput | Prisma.SortOrder
-  annualCostSaving?: Prisma.SortOrderInput | Prisma.SortOrder
-  technicalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   validUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  annualCostSaving?: Prisma.SortOrderInput | Prisma.SortOrder
+  annualFuelSaving?: Prisma.SortOrderInput | Prisma.SortOrder
+  calculatedBoilerOutput?: Prisma.SortOrderInput | Prisma.SortOrder
+  calculatedThermalEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
+  capacityTph?: Prisma.SortOrderInput | Prisma.SortOrder
+  designPressureBar?: Prisma.SortOrderInput | Prisma.SortOrder
+  estimatedFuelSavingPerHour?: Prisma.SortOrderInput | Prisma.SortOrder
+  existingBoilerEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
+  feedWaterTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
+  flueGasTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
+  fuelCalorificValueKcalKg?: Prisma.SortOrderInput | Prisma.SortOrder
+  fuelConsumptionPerHour?: Prisma.SortOrderInput | Prisma.SortOrder
+  fuelPricePerUnit?: Prisma.SortOrderInput | Prisma.SortOrder
+  fuelType?: Prisma.SortOrderInput | Prisma.SortOrder
+  operatingDaysPerYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrderInput | Prisma.SortOrder
+  processIndustry?: Prisma.SortOrderInput | Prisma.SortOrder
+  productFamily?: Prisma.SortOrderInput | Prisma.SortOrder
+  productModel?: Prisma.SortOrderInput | Prisma.SortOrder
+  proposedBoilerEfficiency?: Prisma.SortOrderInput | Prisma.SortOrder
+  requiredSteamConsumption?: Prisma.SortOrderInput | Prisma.SortOrder
+  steamTemperatureC?: Prisma.SortOrderInput | Prisma.SortOrder
+  technicalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrderInput | Prisma.SortOrder
+  stage?: Prisma.SortOrder
+  rfqNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  rfqSource?: Prisma.SortOrderInput | Prisma.SortOrder
+  rfqReceivedDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  rfqDueDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  engineeringValidationStatus?: Prisma.SortOrder
+  engineeringValidationNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  engineeringValidatedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  engineeringValidatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  bomEstimationCompletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  fabricationCost?: Prisma.SortOrder
+  paintingCost?: Prisma.SortOrder
+  testingCost?: Prisma.SortOrder
+  packingCost?: Prisma.SortOrder
+  freightCost?: Prisma.SortOrder
+  insuranceCost?: Prisma.SortOrder
+  transportationCost?: Prisma.SortOrder
+  quotationReleasedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  quotationReleasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EstimateCountOrderByAggregateInput
   _avg?: Prisma.EstimateAvgOrderByAggregateInput
   _max?: Prisma.EstimateMaxOrderByAggregateInput
@@ -795,35 +1038,54 @@ export type EstimateScalarWhereWithAggregatesInput = {
   taxPercent?: Prisma.DecimalWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
-  productModel?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
-  processIndustry?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
-  fuelType?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
-  capacityTph?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.IntNullableWithAggregatesFilter<"Estimate"> | number | null
-  fuelConsumptionPerHour?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
   validUntil?: Prisma.DateTimeNullableWithAggregatesFilter<"Estimate"> | Date | string | null
   createdById?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Estimate"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Estimate"> | Date | string
+  annualCostSaving?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
+  operatingDaysPerYear?: Prisma.IntNullableWithAggregatesFilter<"Estimate"> | number | null
+  operatingHoursPerDay?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
+  productFamily?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
+  productModel?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
+  proposedBoilerEfficiency?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
+  workingPressureBar?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageWithAggregatesFilter<"Estimate"> | $Enums.EstimateStage
+  rfqNumber?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
+  rfqSource?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
+  rfqReceivedDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Estimate"> | Date | string | null
+  rfqDueDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Estimate"> | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusWithAggregatesFilter<"Estimate"> | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
+  engineeringValidatedById?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
+  engineeringValidatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Estimate"> | Date | string | null
+  bomEstimationCompletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Estimate"> | Date | string | null
+  fabricationCost?: Prisma.DecimalWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
+  quotationReleasedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Estimate"> | Date | string | null
 }
 
 export type EstimateCreateInput = {
@@ -839,36 +1101,55 @@ export type EstimateCreateInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Date | string | null
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  engineeringValidatedBy?: Prisma.UserCreateNestedOneWithoutEngineeringValidatedEstimatesInput
+  lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
+  quotationReleasedBy?: Prisma.UserCreateNestedOneWithoutQuotationReleasedEstimatesInput
   items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
   quotations?: Prisma.QuotationCreateNestedManyWithoutEstimateInput
 }
@@ -887,35 +1168,54 @@ export type EstimateUncheckedCreateInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedById?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: string | null
+  quotationReleasedAt?: Date | string | null
   items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEstimateInput
 }
@@ -933,36 +1233,55 @@ export type EstimateUpdateInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEstimatesNestedInput
+  engineeringValidatedBy?: Prisma.UserUpdateOneWithoutEngineeringValidatedEstimatesNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
+  quotationReleasedBy?: Prisma.UserUpdateOneWithoutQuotationReleasedEstimatesNestedInput
   items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
   quotations?: Prisma.QuotationUpdateManyWithoutEstimateNestedInput
 }
@@ -981,35 +1300,54 @@ export type EstimateUncheckedUpdateInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEstimateNestedInput
 }
@@ -1028,35 +1366,54 @@ export type EstimateCreateManyInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedById?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: string | null
+  quotationReleasedAt?: Date | string | null
 }
 
 export type EstimateUpdateManyMutationInput = {
@@ -1072,34 +1429,51 @@ export type EstimateUpdateManyMutationInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EstimateUncheckedUpdateManyInput = {
@@ -1116,35 +1490,54 @@ export type EstimateUncheckedUpdateManyInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EstimateListRelationFilter = {
@@ -1176,35 +1569,54 @@ export type EstimateCountOrderByAggregateInput = {
   taxPercent?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
-  productFamily?: Prisma.SortOrder
-  productModel?: Prisma.SortOrder
-  processIndustry?: Prisma.SortOrder
-  fuelType?: Prisma.SortOrder
-  capacityTph?: Prisma.SortOrder
-  requiredSteamConsumption?: Prisma.SortOrder
-  workingPressureBar?: Prisma.SortOrder
-  designPressureBar?: Prisma.SortOrder
-  steamTemperatureC?: Prisma.SortOrder
-  feedWaterTemperatureC?: Prisma.SortOrder
-  flueGasTemperatureC?: Prisma.SortOrder
-  operatingHoursPerDay?: Prisma.SortOrder
-  operatingDaysPerYear?: Prisma.SortOrder
-  fuelConsumptionPerHour?: Prisma.SortOrder
-  fuelCalorificValueKcalKg?: Prisma.SortOrder
-  fuelPricePerUnit?: Prisma.SortOrder
-  existingBoilerEfficiency?: Prisma.SortOrder
-  proposedBoilerEfficiency?: Prisma.SortOrder
-  calculatedThermalEfficiency?: Prisma.SortOrder
-  calculatedBoilerOutput?: Prisma.SortOrder
-  estimatedFuelSavingPerHour?: Prisma.SortOrder
-  annualFuelSaving?: Prisma.SortOrder
-  annualCostSaving?: Prisma.SortOrder
-  technicalNotes?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   validUntil?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  annualCostSaving?: Prisma.SortOrder
+  annualFuelSaving?: Prisma.SortOrder
+  calculatedBoilerOutput?: Prisma.SortOrder
+  calculatedThermalEfficiency?: Prisma.SortOrder
+  capacityTph?: Prisma.SortOrder
+  designPressureBar?: Prisma.SortOrder
+  estimatedFuelSavingPerHour?: Prisma.SortOrder
+  existingBoilerEfficiency?: Prisma.SortOrder
+  feedWaterTemperatureC?: Prisma.SortOrder
+  flueGasTemperatureC?: Prisma.SortOrder
+  fuelCalorificValueKcalKg?: Prisma.SortOrder
+  fuelConsumptionPerHour?: Prisma.SortOrder
+  fuelPricePerUnit?: Prisma.SortOrder
+  fuelType?: Prisma.SortOrder
+  operatingDaysPerYear?: Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrder
+  processIndustry?: Prisma.SortOrder
+  productFamily?: Prisma.SortOrder
+  productModel?: Prisma.SortOrder
+  proposedBoilerEfficiency?: Prisma.SortOrder
+  requiredSteamConsumption?: Prisma.SortOrder
+  steamTemperatureC?: Prisma.SortOrder
+  technicalNotes?: Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrder
+  stage?: Prisma.SortOrder
+  rfqNumber?: Prisma.SortOrder
+  rfqSource?: Prisma.SortOrder
+  rfqReceivedDate?: Prisma.SortOrder
+  rfqDueDate?: Prisma.SortOrder
+  engineeringValidationStatus?: Prisma.SortOrder
+  engineeringValidationNotes?: Prisma.SortOrder
+  engineeringValidatedById?: Prisma.SortOrder
+  engineeringValidatedAt?: Prisma.SortOrder
+  bomEstimationCompletedAt?: Prisma.SortOrder
+  fabricationCost?: Prisma.SortOrder
+  paintingCost?: Prisma.SortOrder
+  testingCost?: Prisma.SortOrder
+  packingCost?: Prisma.SortOrder
+  freightCost?: Prisma.SortOrder
+  insuranceCost?: Prisma.SortOrder
+  transportationCost?: Prisma.SortOrder
+  quotationReleasedById?: Prisma.SortOrder
+  quotationReleasedAt?: Prisma.SortOrder
 }
 
 export type EstimateAvgOrderByAggregateInput = {
@@ -1217,25 +1629,32 @@ export type EstimateAvgOrderByAggregateInput = {
   taxPercent?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
+  annualCostSaving?: Prisma.SortOrder
+  annualFuelSaving?: Prisma.SortOrder
+  calculatedBoilerOutput?: Prisma.SortOrder
+  calculatedThermalEfficiency?: Prisma.SortOrder
   capacityTph?: Prisma.SortOrder
-  requiredSteamConsumption?: Prisma.SortOrder
-  workingPressureBar?: Prisma.SortOrder
   designPressureBar?: Prisma.SortOrder
-  steamTemperatureC?: Prisma.SortOrder
+  estimatedFuelSavingPerHour?: Prisma.SortOrder
+  existingBoilerEfficiency?: Prisma.SortOrder
   feedWaterTemperatureC?: Prisma.SortOrder
   flueGasTemperatureC?: Prisma.SortOrder
-  operatingHoursPerDay?: Prisma.SortOrder
-  operatingDaysPerYear?: Prisma.SortOrder
-  fuelConsumptionPerHour?: Prisma.SortOrder
   fuelCalorificValueKcalKg?: Prisma.SortOrder
+  fuelConsumptionPerHour?: Prisma.SortOrder
   fuelPricePerUnit?: Prisma.SortOrder
-  existingBoilerEfficiency?: Prisma.SortOrder
+  operatingDaysPerYear?: Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrder
   proposedBoilerEfficiency?: Prisma.SortOrder
-  calculatedThermalEfficiency?: Prisma.SortOrder
-  calculatedBoilerOutput?: Prisma.SortOrder
-  estimatedFuelSavingPerHour?: Prisma.SortOrder
-  annualFuelSaving?: Prisma.SortOrder
-  annualCostSaving?: Prisma.SortOrder
+  requiredSteamConsumption?: Prisma.SortOrder
+  steamTemperatureC?: Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrder
+  fabricationCost?: Prisma.SortOrder
+  paintingCost?: Prisma.SortOrder
+  testingCost?: Prisma.SortOrder
+  packingCost?: Prisma.SortOrder
+  freightCost?: Prisma.SortOrder
+  insuranceCost?: Prisma.SortOrder
+  transportationCost?: Prisma.SortOrder
 }
 
 export type EstimateMaxOrderByAggregateInput = {
@@ -1252,35 +1671,54 @@ export type EstimateMaxOrderByAggregateInput = {
   taxPercent?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
-  productFamily?: Prisma.SortOrder
-  productModel?: Prisma.SortOrder
-  processIndustry?: Prisma.SortOrder
-  fuelType?: Prisma.SortOrder
-  capacityTph?: Prisma.SortOrder
-  requiredSteamConsumption?: Prisma.SortOrder
-  workingPressureBar?: Prisma.SortOrder
-  designPressureBar?: Prisma.SortOrder
-  steamTemperatureC?: Prisma.SortOrder
-  feedWaterTemperatureC?: Prisma.SortOrder
-  flueGasTemperatureC?: Prisma.SortOrder
-  operatingHoursPerDay?: Prisma.SortOrder
-  operatingDaysPerYear?: Prisma.SortOrder
-  fuelConsumptionPerHour?: Prisma.SortOrder
-  fuelCalorificValueKcalKg?: Prisma.SortOrder
-  fuelPricePerUnit?: Prisma.SortOrder
-  existingBoilerEfficiency?: Prisma.SortOrder
-  proposedBoilerEfficiency?: Prisma.SortOrder
-  calculatedThermalEfficiency?: Prisma.SortOrder
-  calculatedBoilerOutput?: Prisma.SortOrder
-  estimatedFuelSavingPerHour?: Prisma.SortOrder
-  annualFuelSaving?: Prisma.SortOrder
-  annualCostSaving?: Prisma.SortOrder
-  technicalNotes?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   validUntil?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  annualCostSaving?: Prisma.SortOrder
+  annualFuelSaving?: Prisma.SortOrder
+  calculatedBoilerOutput?: Prisma.SortOrder
+  calculatedThermalEfficiency?: Prisma.SortOrder
+  capacityTph?: Prisma.SortOrder
+  designPressureBar?: Prisma.SortOrder
+  estimatedFuelSavingPerHour?: Prisma.SortOrder
+  existingBoilerEfficiency?: Prisma.SortOrder
+  feedWaterTemperatureC?: Prisma.SortOrder
+  flueGasTemperatureC?: Prisma.SortOrder
+  fuelCalorificValueKcalKg?: Prisma.SortOrder
+  fuelConsumptionPerHour?: Prisma.SortOrder
+  fuelPricePerUnit?: Prisma.SortOrder
+  fuelType?: Prisma.SortOrder
+  operatingDaysPerYear?: Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrder
+  processIndustry?: Prisma.SortOrder
+  productFamily?: Prisma.SortOrder
+  productModel?: Prisma.SortOrder
+  proposedBoilerEfficiency?: Prisma.SortOrder
+  requiredSteamConsumption?: Prisma.SortOrder
+  steamTemperatureC?: Prisma.SortOrder
+  technicalNotes?: Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrder
+  stage?: Prisma.SortOrder
+  rfqNumber?: Prisma.SortOrder
+  rfqSource?: Prisma.SortOrder
+  rfqReceivedDate?: Prisma.SortOrder
+  rfqDueDate?: Prisma.SortOrder
+  engineeringValidationStatus?: Prisma.SortOrder
+  engineeringValidationNotes?: Prisma.SortOrder
+  engineeringValidatedById?: Prisma.SortOrder
+  engineeringValidatedAt?: Prisma.SortOrder
+  bomEstimationCompletedAt?: Prisma.SortOrder
+  fabricationCost?: Prisma.SortOrder
+  paintingCost?: Prisma.SortOrder
+  testingCost?: Prisma.SortOrder
+  packingCost?: Prisma.SortOrder
+  freightCost?: Prisma.SortOrder
+  insuranceCost?: Prisma.SortOrder
+  transportationCost?: Prisma.SortOrder
+  quotationReleasedById?: Prisma.SortOrder
+  quotationReleasedAt?: Prisma.SortOrder
 }
 
 export type EstimateMinOrderByAggregateInput = {
@@ -1297,35 +1735,54 @@ export type EstimateMinOrderByAggregateInput = {
   taxPercent?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
-  productFamily?: Prisma.SortOrder
-  productModel?: Prisma.SortOrder
-  processIndustry?: Prisma.SortOrder
-  fuelType?: Prisma.SortOrder
-  capacityTph?: Prisma.SortOrder
-  requiredSteamConsumption?: Prisma.SortOrder
-  workingPressureBar?: Prisma.SortOrder
-  designPressureBar?: Prisma.SortOrder
-  steamTemperatureC?: Prisma.SortOrder
-  feedWaterTemperatureC?: Prisma.SortOrder
-  flueGasTemperatureC?: Prisma.SortOrder
-  operatingHoursPerDay?: Prisma.SortOrder
-  operatingDaysPerYear?: Prisma.SortOrder
-  fuelConsumptionPerHour?: Prisma.SortOrder
-  fuelCalorificValueKcalKg?: Prisma.SortOrder
-  fuelPricePerUnit?: Prisma.SortOrder
-  existingBoilerEfficiency?: Prisma.SortOrder
-  proposedBoilerEfficiency?: Prisma.SortOrder
-  calculatedThermalEfficiency?: Prisma.SortOrder
-  calculatedBoilerOutput?: Prisma.SortOrder
-  estimatedFuelSavingPerHour?: Prisma.SortOrder
-  annualFuelSaving?: Prisma.SortOrder
-  annualCostSaving?: Prisma.SortOrder
-  technicalNotes?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   validUntil?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  annualCostSaving?: Prisma.SortOrder
+  annualFuelSaving?: Prisma.SortOrder
+  calculatedBoilerOutput?: Prisma.SortOrder
+  calculatedThermalEfficiency?: Prisma.SortOrder
+  capacityTph?: Prisma.SortOrder
+  designPressureBar?: Prisma.SortOrder
+  estimatedFuelSavingPerHour?: Prisma.SortOrder
+  existingBoilerEfficiency?: Prisma.SortOrder
+  feedWaterTemperatureC?: Prisma.SortOrder
+  flueGasTemperatureC?: Prisma.SortOrder
+  fuelCalorificValueKcalKg?: Prisma.SortOrder
+  fuelConsumptionPerHour?: Prisma.SortOrder
+  fuelPricePerUnit?: Prisma.SortOrder
+  fuelType?: Prisma.SortOrder
+  operatingDaysPerYear?: Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrder
+  processIndustry?: Prisma.SortOrder
+  productFamily?: Prisma.SortOrder
+  productModel?: Prisma.SortOrder
+  proposedBoilerEfficiency?: Prisma.SortOrder
+  requiredSteamConsumption?: Prisma.SortOrder
+  steamTemperatureC?: Prisma.SortOrder
+  technicalNotes?: Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrder
+  stage?: Prisma.SortOrder
+  rfqNumber?: Prisma.SortOrder
+  rfqSource?: Prisma.SortOrder
+  rfqReceivedDate?: Prisma.SortOrder
+  rfqDueDate?: Prisma.SortOrder
+  engineeringValidationStatus?: Prisma.SortOrder
+  engineeringValidationNotes?: Prisma.SortOrder
+  engineeringValidatedById?: Prisma.SortOrder
+  engineeringValidatedAt?: Prisma.SortOrder
+  bomEstimationCompletedAt?: Prisma.SortOrder
+  fabricationCost?: Prisma.SortOrder
+  paintingCost?: Prisma.SortOrder
+  testingCost?: Prisma.SortOrder
+  packingCost?: Prisma.SortOrder
+  freightCost?: Prisma.SortOrder
+  insuranceCost?: Prisma.SortOrder
+  transportationCost?: Prisma.SortOrder
+  quotationReleasedById?: Prisma.SortOrder
+  quotationReleasedAt?: Prisma.SortOrder
 }
 
 export type EstimateSumOrderByAggregateInput = {
@@ -1338,25 +1795,32 @@ export type EstimateSumOrderByAggregateInput = {
   taxPercent?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
+  annualCostSaving?: Prisma.SortOrder
+  annualFuelSaving?: Prisma.SortOrder
+  calculatedBoilerOutput?: Prisma.SortOrder
+  calculatedThermalEfficiency?: Prisma.SortOrder
   capacityTph?: Prisma.SortOrder
-  requiredSteamConsumption?: Prisma.SortOrder
-  workingPressureBar?: Prisma.SortOrder
   designPressureBar?: Prisma.SortOrder
-  steamTemperatureC?: Prisma.SortOrder
+  estimatedFuelSavingPerHour?: Prisma.SortOrder
+  existingBoilerEfficiency?: Prisma.SortOrder
   feedWaterTemperatureC?: Prisma.SortOrder
   flueGasTemperatureC?: Prisma.SortOrder
-  operatingHoursPerDay?: Prisma.SortOrder
-  operatingDaysPerYear?: Prisma.SortOrder
-  fuelConsumptionPerHour?: Prisma.SortOrder
   fuelCalorificValueKcalKg?: Prisma.SortOrder
+  fuelConsumptionPerHour?: Prisma.SortOrder
   fuelPricePerUnit?: Prisma.SortOrder
-  existingBoilerEfficiency?: Prisma.SortOrder
+  operatingDaysPerYear?: Prisma.SortOrder
+  operatingHoursPerDay?: Prisma.SortOrder
   proposedBoilerEfficiency?: Prisma.SortOrder
-  calculatedThermalEfficiency?: Prisma.SortOrder
-  calculatedBoilerOutput?: Prisma.SortOrder
-  estimatedFuelSavingPerHour?: Prisma.SortOrder
-  annualFuelSaving?: Prisma.SortOrder
-  annualCostSaving?: Prisma.SortOrder
+  requiredSteamConsumption?: Prisma.SortOrder
+  steamTemperatureC?: Prisma.SortOrder
+  workingPressureBar?: Prisma.SortOrder
+  fabricationCost?: Prisma.SortOrder
+  paintingCost?: Prisma.SortOrder
+  testingCost?: Prisma.SortOrder
+  packingCost?: Prisma.SortOrder
+  freightCost?: Prisma.SortOrder
+  insuranceCost?: Prisma.SortOrder
+  transportationCost?: Prisma.SortOrder
 }
 
 export type EstimateScalarRelationFilter = {
@@ -1371,10 +1835,38 @@ export type EstimateCreateNestedManyWithoutCreatedByInput = {
   connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
 }
 
+export type EstimateCreateNestedManyWithoutEngineeringValidatedByInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutEngineeringValidatedByInput, Prisma.EstimateUncheckedCreateWithoutEngineeringValidatedByInput> | Prisma.EstimateCreateWithoutEngineeringValidatedByInput[] | Prisma.EstimateUncheckedCreateWithoutEngineeringValidatedByInput[]
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutEngineeringValidatedByInput | Prisma.EstimateCreateOrConnectWithoutEngineeringValidatedByInput[]
+  createMany?: Prisma.EstimateCreateManyEngineeringValidatedByInputEnvelope
+  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+}
+
+export type EstimateCreateNestedManyWithoutQuotationReleasedByInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutQuotationReleasedByInput, Prisma.EstimateUncheckedCreateWithoutQuotationReleasedByInput> | Prisma.EstimateCreateWithoutQuotationReleasedByInput[] | Prisma.EstimateUncheckedCreateWithoutQuotationReleasedByInput[]
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutQuotationReleasedByInput | Prisma.EstimateCreateOrConnectWithoutQuotationReleasedByInput[]
+  createMany?: Prisma.EstimateCreateManyQuotationReleasedByInputEnvelope
+  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+}
+
 export type EstimateUncheckedCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.EstimateCreateWithoutCreatedByInput, Prisma.EstimateUncheckedCreateWithoutCreatedByInput> | Prisma.EstimateCreateWithoutCreatedByInput[] | Prisma.EstimateUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutCreatedByInput | Prisma.EstimateCreateOrConnectWithoutCreatedByInput[]
   createMany?: Prisma.EstimateCreateManyCreatedByInputEnvelope
+  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+}
+
+export type EstimateUncheckedCreateNestedManyWithoutEngineeringValidatedByInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutEngineeringValidatedByInput, Prisma.EstimateUncheckedCreateWithoutEngineeringValidatedByInput> | Prisma.EstimateCreateWithoutEngineeringValidatedByInput[] | Prisma.EstimateUncheckedCreateWithoutEngineeringValidatedByInput[]
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutEngineeringValidatedByInput | Prisma.EstimateCreateOrConnectWithoutEngineeringValidatedByInput[]
+  createMany?: Prisma.EstimateCreateManyEngineeringValidatedByInputEnvelope
+  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+}
+
+export type EstimateUncheckedCreateNestedManyWithoutQuotationReleasedByInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutQuotationReleasedByInput, Prisma.EstimateUncheckedCreateWithoutQuotationReleasedByInput> | Prisma.EstimateCreateWithoutQuotationReleasedByInput[] | Prisma.EstimateUncheckedCreateWithoutQuotationReleasedByInput[]
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutQuotationReleasedByInput | Prisma.EstimateCreateOrConnectWithoutQuotationReleasedByInput[]
+  createMany?: Prisma.EstimateCreateManyQuotationReleasedByInputEnvelope
   connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
 }
 
@@ -1392,6 +1884,34 @@ export type EstimateUpdateManyWithoutCreatedByNestedInput = {
   deleteMany?: Prisma.EstimateScalarWhereInput | Prisma.EstimateScalarWhereInput[]
 }
 
+export type EstimateUpdateManyWithoutEngineeringValidatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutEngineeringValidatedByInput, Prisma.EstimateUncheckedCreateWithoutEngineeringValidatedByInput> | Prisma.EstimateCreateWithoutEngineeringValidatedByInput[] | Prisma.EstimateUncheckedCreateWithoutEngineeringValidatedByInput[]
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutEngineeringValidatedByInput | Prisma.EstimateCreateOrConnectWithoutEngineeringValidatedByInput[]
+  upsert?: Prisma.EstimateUpsertWithWhereUniqueWithoutEngineeringValidatedByInput | Prisma.EstimateUpsertWithWhereUniqueWithoutEngineeringValidatedByInput[]
+  createMany?: Prisma.EstimateCreateManyEngineeringValidatedByInputEnvelope
+  set?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  disconnect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  delete?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  update?: Prisma.EstimateUpdateWithWhereUniqueWithoutEngineeringValidatedByInput | Prisma.EstimateUpdateWithWhereUniqueWithoutEngineeringValidatedByInput[]
+  updateMany?: Prisma.EstimateUpdateManyWithWhereWithoutEngineeringValidatedByInput | Prisma.EstimateUpdateManyWithWhereWithoutEngineeringValidatedByInput[]
+  deleteMany?: Prisma.EstimateScalarWhereInput | Prisma.EstimateScalarWhereInput[]
+}
+
+export type EstimateUpdateManyWithoutQuotationReleasedByNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutQuotationReleasedByInput, Prisma.EstimateUncheckedCreateWithoutQuotationReleasedByInput> | Prisma.EstimateCreateWithoutQuotationReleasedByInput[] | Prisma.EstimateUncheckedCreateWithoutQuotationReleasedByInput[]
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutQuotationReleasedByInput | Prisma.EstimateCreateOrConnectWithoutQuotationReleasedByInput[]
+  upsert?: Prisma.EstimateUpsertWithWhereUniqueWithoutQuotationReleasedByInput | Prisma.EstimateUpsertWithWhereUniqueWithoutQuotationReleasedByInput[]
+  createMany?: Prisma.EstimateCreateManyQuotationReleasedByInputEnvelope
+  set?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  disconnect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  delete?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  update?: Prisma.EstimateUpdateWithWhereUniqueWithoutQuotationReleasedByInput | Prisma.EstimateUpdateWithWhereUniqueWithoutQuotationReleasedByInput[]
+  updateMany?: Prisma.EstimateUpdateManyWithWhereWithoutQuotationReleasedByInput | Prisma.EstimateUpdateManyWithWhereWithoutQuotationReleasedByInput[]
+  deleteMany?: Prisma.EstimateScalarWhereInput | Prisma.EstimateScalarWhereInput[]
+}
+
 export type EstimateUncheckedUpdateManyWithoutCreatedByNestedInput = {
   create?: Prisma.XOR<Prisma.EstimateCreateWithoutCreatedByInput, Prisma.EstimateUncheckedCreateWithoutCreatedByInput> | Prisma.EstimateCreateWithoutCreatedByInput[] | Prisma.EstimateUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutCreatedByInput | Prisma.EstimateCreateOrConnectWithoutCreatedByInput[]
@@ -1403,6 +1923,34 @@ export type EstimateUncheckedUpdateManyWithoutCreatedByNestedInput = {
   connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
   update?: Prisma.EstimateUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.EstimateUpdateWithWhereUniqueWithoutCreatedByInput[]
   updateMany?: Prisma.EstimateUpdateManyWithWhereWithoutCreatedByInput | Prisma.EstimateUpdateManyWithWhereWithoutCreatedByInput[]
+  deleteMany?: Prisma.EstimateScalarWhereInput | Prisma.EstimateScalarWhereInput[]
+}
+
+export type EstimateUncheckedUpdateManyWithoutEngineeringValidatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutEngineeringValidatedByInput, Prisma.EstimateUncheckedCreateWithoutEngineeringValidatedByInput> | Prisma.EstimateCreateWithoutEngineeringValidatedByInput[] | Prisma.EstimateUncheckedCreateWithoutEngineeringValidatedByInput[]
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutEngineeringValidatedByInput | Prisma.EstimateCreateOrConnectWithoutEngineeringValidatedByInput[]
+  upsert?: Prisma.EstimateUpsertWithWhereUniqueWithoutEngineeringValidatedByInput | Prisma.EstimateUpsertWithWhereUniqueWithoutEngineeringValidatedByInput[]
+  createMany?: Prisma.EstimateCreateManyEngineeringValidatedByInputEnvelope
+  set?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  disconnect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  delete?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  update?: Prisma.EstimateUpdateWithWhereUniqueWithoutEngineeringValidatedByInput | Prisma.EstimateUpdateWithWhereUniqueWithoutEngineeringValidatedByInput[]
+  updateMany?: Prisma.EstimateUpdateManyWithWhereWithoutEngineeringValidatedByInput | Prisma.EstimateUpdateManyWithWhereWithoutEngineeringValidatedByInput[]
+  deleteMany?: Prisma.EstimateScalarWhereInput | Prisma.EstimateScalarWhereInput[]
+}
+
+export type EstimateUncheckedUpdateManyWithoutQuotationReleasedByNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutQuotationReleasedByInput, Prisma.EstimateUncheckedCreateWithoutQuotationReleasedByInput> | Prisma.EstimateCreateWithoutQuotationReleasedByInput[] | Prisma.EstimateUncheckedCreateWithoutQuotationReleasedByInput[]
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutQuotationReleasedByInput | Prisma.EstimateCreateOrConnectWithoutQuotationReleasedByInput[]
+  upsert?: Prisma.EstimateUpsertWithWhereUniqueWithoutQuotationReleasedByInput | Prisma.EstimateUpsertWithWhereUniqueWithoutQuotationReleasedByInput[]
+  createMany?: Prisma.EstimateCreateManyQuotationReleasedByInputEnvelope
+  set?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  disconnect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  delete?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
+  update?: Prisma.EstimateUpdateWithWhereUniqueWithoutQuotationReleasedByInput | Prisma.EstimateUpdateWithWhereUniqueWithoutQuotationReleasedByInput[]
+  updateMany?: Prisma.EstimateUpdateManyWithWhereWithoutQuotationReleasedByInput | Prisma.EstimateUpdateManyWithWhereWithoutQuotationReleasedByInput[]
   deleteMany?: Prisma.EstimateScalarWhereInput | Prisma.EstimateScalarWhereInput[]
 }
 
@@ -1476,6 +2024,14 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type EnumEstimateStageFieldUpdateOperationsInput = {
+  set?: $Enums.EstimateStage
+}
+
+export type EnumEngineeringValidationStatusFieldUpdateOperationsInput = {
+  set?: $Enums.EngineeringValidationStatus
+}
+
 export type EstimateCreateNestedOneWithoutItemsInput = {
   create?: Prisma.XOR<Prisma.EstimateCreateWithoutItemsInput, Prisma.EstimateUncheckedCreateWithoutItemsInput>
   connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutItemsInput
@@ -1517,35 +2073,54 @@ export type EstimateCreateWithoutCreatedByInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Date | string | null
+  engineeringValidatedBy?: Prisma.UserCreateNestedOneWithoutEngineeringValidatedEstimatesInput
   lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
+  quotationReleasedBy?: Prisma.UserCreateNestedOneWithoutQuotationReleasedEstimatesInput
   items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
   quotations?: Prisma.QuotationCreateNestedManyWithoutEstimateInput
 }
@@ -1564,34 +2139,53 @@ export type EstimateUncheckedCreateWithoutCreatedByInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedById?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: string | null
+  quotationReleasedAt?: Date | string | null
   items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEstimateInput
 }
@@ -1603,6 +2197,286 @@ export type EstimateCreateOrConnectWithoutCreatedByInput = {
 
 export type EstimateCreateManyCreatedByInputEnvelope = {
   data: Prisma.EstimateCreateManyCreatedByInput | Prisma.EstimateCreateManyCreatedByInput[]
+  skipDuplicates?: boolean
+}
+
+export type EstimateCreateWithoutEngineeringValidatedByInput = {
+  id?: string
+  estimateNumber: string
+  version?: number
+  status?: $Enums.EstimateStatus
+  materialCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  validUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Date | string | null
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
+  quotationReleasedBy?: Prisma.UserCreateNestedOneWithoutQuotationReleasedEstimatesInput
+  items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateUncheckedCreateWithoutEngineeringValidatedByInput = {
+  id?: string
+  estimateNumber: string
+  leadId: string
+  version?: number
+  status?: $Enums.EstimateStatus
+  materialCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  validUntil?: Date | string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: string | null
+  quotationReleasedAt?: Date | string | null
+  items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateCreateOrConnectWithoutEngineeringValidatedByInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutEngineeringValidatedByInput, Prisma.EstimateUncheckedCreateWithoutEngineeringValidatedByInput>
+}
+
+export type EstimateCreateManyEngineeringValidatedByInputEnvelope = {
+  data: Prisma.EstimateCreateManyEngineeringValidatedByInput | Prisma.EstimateCreateManyEngineeringValidatedByInput[]
+  skipDuplicates?: boolean
+}
+
+export type EstimateCreateWithoutQuotationReleasedByInput = {
+  id?: string
+  estimateNumber: string
+  version?: number
+  status?: $Enums.EstimateStatus
+  materialCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  validUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Date | string | null
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  engineeringValidatedBy?: Prisma.UserCreateNestedOneWithoutEngineeringValidatedEstimatesInput
+  lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
+  items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateUncheckedCreateWithoutQuotationReleasedByInput = {
+  id?: string
+  estimateNumber: string
+  leadId: string
+  version?: number
+  status?: $Enums.EstimateStatus
+  materialCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  validUntil?: Date | string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedById?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Date | string | null
+  items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateCreateOrConnectWithoutQuotationReleasedByInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutQuotationReleasedByInput, Prisma.EstimateUncheckedCreateWithoutQuotationReleasedByInput>
+}
+
+export type EstimateCreateManyQuotationReleasedByInputEnvelope = {
+  data: Prisma.EstimateCreateManyQuotationReleasedByInput | Prisma.EstimateCreateManyQuotationReleasedByInput[]
   skipDuplicates?: boolean
 }
 
@@ -1639,35 +2513,86 @@ export type EstimateScalarWhereInput = {
   taxPercent?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  productModel?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  processIndustry?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  fuelType?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  capacityTph?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.IntNullableFilter<"Estimate"> | number | null
-  fuelConsumptionPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.StringNullableFilter<"Estimate"> | string | null
   notes?: Prisma.StringNullableFilter<"Estimate"> | string | null
   validUntil?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
   createdById?: Prisma.StringNullableFilter<"Estimate"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Estimate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Estimate"> | Date | string
+  annualCostSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  operatingDaysPerYear?: Prisma.IntNullableFilter<"Estimate"> | number | null
+  operatingHoursPerDay?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  productFamily?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  productModel?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  proposedBoilerEfficiency?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  workingPressureBar?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFilter<"Estimate"> | $Enums.EstimateStage
+  rfqNumber?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  rfqSource?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  rfqReceivedDate?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  rfqDueDate?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFilter<"Estimate"> | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  engineeringValidatedById?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  engineeringValidatedAt?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  bomEstimationCompletedAt?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+  fabricationCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.StringNullableFilter<"Estimate"> | string | null
+  quotationReleasedAt?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
+}
+
+export type EstimateUpsertWithWhereUniqueWithoutEngineeringValidatedByInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  update: Prisma.XOR<Prisma.EstimateUpdateWithoutEngineeringValidatedByInput, Prisma.EstimateUncheckedUpdateWithoutEngineeringValidatedByInput>
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutEngineeringValidatedByInput, Prisma.EstimateUncheckedCreateWithoutEngineeringValidatedByInput>
+}
+
+export type EstimateUpdateWithWhereUniqueWithoutEngineeringValidatedByInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  data: Prisma.XOR<Prisma.EstimateUpdateWithoutEngineeringValidatedByInput, Prisma.EstimateUncheckedUpdateWithoutEngineeringValidatedByInput>
+}
+
+export type EstimateUpdateManyWithWhereWithoutEngineeringValidatedByInput = {
+  where: Prisma.EstimateScalarWhereInput
+  data: Prisma.XOR<Prisma.EstimateUpdateManyMutationInput, Prisma.EstimateUncheckedUpdateManyWithoutEngineeringValidatedByInput>
+}
+
+export type EstimateUpsertWithWhereUniqueWithoutQuotationReleasedByInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  update: Prisma.XOR<Prisma.EstimateUpdateWithoutQuotationReleasedByInput, Prisma.EstimateUncheckedUpdateWithoutQuotationReleasedByInput>
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutQuotationReleasedByInput, Prisma.EstimateUncheckedCreateWithoutQuotationReleasedByInput>
+}
+
+export type EstimateUpdateWithWhereUniqueWithoutQuotationReleasedByInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  data: Prisma.XOR<Prisma.EstimateUpdateWithoutQuotationReleasedByInput, Prisma.EstimateUncheckedUpdateWithoutQuotationReleasedByInput>
+}
+
+export type EstimateUpdateManyWithWhereWithoutQuotationReleasedByInput = {
+  where: Prisma.EstimateScalarWhereInput
+  data: Prisma.XOR<Prisma.EstimateUpdateManyMutationInput, Prisma.EstimateUncheckedUpdateManyWithoutQuotationReleasedByInput>
 }
 
 export type EstimateCreateWithoutLeadInput = {
@@ -1683,35 +2608,54 @@ export type EstimateCreateWithoutLeadInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Date | string | null
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  engineeringValidatedBy?: Prisma.UserCreateNestedOneWithoutEngineeringValidatedEstimatesInput
+  quotationReleasedBy?: Prisma.UserCreateNestedOneWithoutQuotationReleasedEstimatesInput
   items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
   quotations?: Prisma.QuotationCreateNestedManyWithoutEstimateInput
 }
@@ -1729,35 +2673,54 @@ export type EstimateUncheckedCreateWithoutLeadInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedById?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: string | null
+  quotationReleasedAt?: Date | string | null
   items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEstimateInput
 }
@@ -1801,36 +2764,55 @@ export type EstimateCreateWithoutItemsInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Date | string | null
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  engineeringValidatedBy?: Prisma.UserCreateNestedOneWithoutEngineeringValidatedEstimatesInput
+  lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
+  quotationReleasedBy?: Prisma.UserCreateNestedOneWithoutQuotationReleasedEstimatesInput
   quotations?: Prisma.QuotationCreateNestedManyWithoutEstimateInput
 }
 
@@ -1848,35 +2830,54 @@ export type EstimateUncheckedCreateWithoutItemsInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedById?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: string | null
+  quotationReleasedAt?: Date | string | null
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
@@ -1909,36 +2910,55 @@ export type EstimateUpdateWithoutItemsInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEstimatesNestedInput
+  engineeringValidatedBy?: Prisma.UserUpdateOneWithoutEngineeringValidatedEstimatesNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
+  quotationReleasedBy?: Prisma.UserUpdateOneWithoutQuotationReleasedEstimatesNestedInput
   quotations?: Prisma.QuotationUpdateManyWithoutEstimateNestedInput
 }
 
@@ -1956,35 +2976,54 @@ export type EstimateUncheckedUpdateWithoutItemsInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
@@ -2001,36 +3040,55 @@ export type EstimateCreateWithoutQuotationsInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Date | string | null
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  engineeringValidatedBy?: Prisma.UserCreateNestedOneWithoutEngineeringValidatedEstimatesInput
+  lead: Prisma.LeadCreateNestedOneWithoutEstimatesInput
+  quotationReleasedBy?: Prisma.UserCreateNestedOneWithoutQuotationReleasedEstimatesInput
   items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
 }
 
@@ -2048,35 +3106,54 @@ export type EstimateUncheckedCreateWithoutQuotationsInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedById?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: string | null
+  quotationReleasedAt?: Date | string | null
   items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
 }
 
@@ -2109,36 +3186,55 @@ export type EstimateUpdateWithoutQuotationsInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEstimatesNestedInput
+  engineeringValidatedBy?: Prisma.UserUpdateOneWithoutEngineeringValidatedEstimatesNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
+  quotationReleasedBy?: Prisma.UserUpdateOneWithoutQuotationReleasedEstimatesNestedInput
   items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
 }
 
@@ -2156,35 +3252,54 @@ export type EstimateUncheckedUpdateWithoutQuotationsInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
@@ -2202,34 +3317,179 @@ export type EstimateCreateManyCreatedByInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedById?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: string | null
+  quotationReleasedAt?: Date | string | null
+}
+
+export type EstimateCreateManyEngineeringValidatedByInput = {
+  id?: string
+  estimateNumber: string
+  leadId: string
+  version?: number
+  status?: $Enums.EstimateStatus
+  materialCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  validUntil?: Date | string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: string | null
+  quotationReleasedAt?: Date | string | null
+}
+
+export type EstimateCreateManyQuotationReleasedByInput = {
+  id?: string
+  estimateNumber: string
+  leadId: string
+  version?: number
+  status?: $Enums.EstimateStatus
+  materialCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  validUntil?: Date | string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedById?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Date | string | null
 }
 
 export type EstimateUpdateWithoutCreatedByInput = {
@@ -2245,35 +3505,54 @@ export type EstimateUpdateWithoutCreatedByInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidatedBy?: Prisma.UserUpdateOneWithoutEngineeringValidatedEstimatesNestedInput
   lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
+  quotationReleasedBy?: Prisma.UserUpdateOneWithoutQuotationReleasedEstimatesNestedInput
   items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
   quotations?: Prisma.QuotationUpdateManyWithoutEstimateNestedInput
 }
@@ -2292,34 +3571,53 @@ export type EstimateUncheckedUpdateWithoutCreatedByInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEstimateNestedInput
 }
@@ -2338,34 +3636,439 @@ export type EstimateUncheckedUpdateManyWithoutCreatedByInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type EstimateUpdateWithoutEngineeringValidatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  materialCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedEstimatesNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
+  quotationReleasedBy?: Prisma.UserUpdateOneWithoutQuotationReleasedEstimatesNestedInput
+  items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateWithoutEngineeringValidatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  leadId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  materialCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateManyWithoutEngineeringValidatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  leadId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  materialCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type EstimateUpdateWithoutQuotationReleasedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  materialCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedEstimatesNestedInput
+  engineeringValidatedBy?: Prisma.UserUpdateOneWithoutEngineeringValidatedEstimatesNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutEstimatesNestedInput
+  items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateWithoutQuotationReleasedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  leadId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  materialCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateManyWithoutQuotationReleasedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  leadId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  materialCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labourCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  overheadCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  marginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EstimateCreateManyLeadInput = {
@@ -2381,35 +4084,54 @@ export type EstimateCreateManyLeadInput = {
   taxPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: string | null
-  productModel?: string | null
-  processIndustry?: string | null
-  fuelType?: string | null
-  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: number | null
-  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: string | null
   notes?: string | null
   validUntil?: Date | string | null
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  annualCostSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: string | null
+  operatingDaysPerYear?: number | null
+  operatingHoursPerDay?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: string | null
+  productFamily?: string | null
+  productModel?: string | null
+  proposedBoilerEfficiency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: string | null
+  workingPressureBar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: $Enums.EstimateStage
+  rfqNumber?: string | null
+  rfqSource?: string | null
+  rfqReceivedDate?: Date | string | null
+  rfqDueDate?: Date | string | null
+  engineeringValidationStatus?: $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: string | null
+  engineeringValidatedById?: string | null
+  engineeringValidatedAt?: Date | string | null
+  bomEstimationCompletedAt?: Date | string | null
+  fabricationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: string | null
+  quotationReleasedAt?: Date | string | null
 }
 
 export type EstimateUpdateWithoutLeadInput = {
@@ -2425,35 +4147,54 @@ export type EstimateUpdateWithoutLeadInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEstimatesNestedInput
+  engineeringValidatedBy?: Prisma.UserUpdateOneWithoutEngineeringValidatedEstimatesNestedInput
+  quotationReleasedBy?: Prisma.UserUpdateOneWithoutQuotationReleasedEstimatesNestedInput
   items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
   quotations?: Prisma.QuotationUpdateManyWithoutEstimateNestedInput
 }
@@ -2471,35 +4212,54 @@ export type EstimateUncheckedUpdateWithoutLeadInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutEstimateNestedInput
 }
@@ -2517,35 +4277,54 @@ export type EstimateUncheckedUpdateManyWithoutLeadInput = {
   taxPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  annualCostSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  annualFuelSaving?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedBoilerOutput?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calculatedThermalEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  capacityTph?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  designPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatedFuelSavingPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  feedWaterTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  flueGasTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelCalorificValueKcalKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelConsumptionPerHour?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelPricePerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatingDaysPerYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  operatingHoursPerDay?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  processIndustry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBoilerEfficiency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  requiredSteamConsumption?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  steamTemperatureC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  technicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workingPressureBar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stage?: Prisma.EnumEstimateStageFieldUpdateOperationsInput | $Enums.EstimateStage
+  rfqNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rfqReceivedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rfqDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  engineeringValidationStatus?: Prisma.EnumEngineeringValidationStatusFieldUpdateOperationsInput | $Enums.EngineeringValidationStatus
+  engineeringValidationNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineeringValidatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomEstimationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paintingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  testingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  packingCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  transportationCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quotationReleasedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quotationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -2602,37 +4381,58 @@ export type EstimateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   taxPercent?: boolean
   taxAmount?: boolean
   totalAmount?: boolean
-  productFamily?: boolean
-  productModel?: boolean
-  processIndustry?: boolean
-  fuelType?: boolean
-  capacityTph?: boolean
-  requiredSteamConsumption?: boolean
-  workingPressureBar?: boolean
-  designPressureBar?: boolean
-  steamTemperatureC?: boolean
-  feedWaterTemperatureC?: boolean
-  flueGasTemperatureC?: boolean
-  operatingHoursPerDay?: boolean
-  operatingDaysPerYear?: boolean
-  fuelConsumptionPerHour?: boolean
-  fuelCalorificValueKcalKg?: boolean
-  fuelPricePerUnit?: boolean
-  existingBoilerEfficiency?: boolean
-  proposedBoilerEfficiency?: boolean
-  calculatedThermalEfficiency?: boolean
-  calculatedBoilerOutput?: boolean
-  estimatedFuelSavingPerHour?: boolean
-  annualFuelSaving?: boolean
-  annualCostSaving?: boolean
-  technicalNotes?: boolean
   notes?: boolean
   validUntil?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  annualCostSaving?: boolean
+  annualFuelSaving?: boolean
+  calculatedBoilerOutput?: boolean
+  calculatedThermalEfficiency?: boolean
+  capacityTph?: boolean
+  designPressureBar?: boolean
+  estimatedFuelSavingPerHour?: boolean
+  existingBoilerEfficiency?: boolean
+  feedWaterTemperatureC?: boolean
+  flueGasTemperatureC?: boolean
+  fuelCalorificValueKcalKg?: boolean
+  fuelConsumptionPerHour?: boolean
+  fuelPricePerUnit?: boolean
+  fuelType?: boolean
+  operatingDaysPerYear?: boolean
+  operatingHoursPerDay?: boolean
+  processIndustry?: boolean
+  productFamily?: boolean
+  productModel?: boolean
+  proposedBoilerEfficiency?: boolean
+  requiredSteamConsumption?: boolean
+  steamTemperatureC?: boolean
+  technicalNotes?: boolean
+  workingPressureBar?: boolean
+  stage?: boolean
+  rfqNumber?: boolean
+  rfqSource?: boolean
+  rfqReceivedDate?: boolean
+  rfqDueDate?: boolean
+  engineeringValidationStatus?: boolean
+  engineeringValidationNotes?: boolean
+  engineeringValidatedById?: boolean
+  engineeringValidatedAt?: boolean
+  bomEstimationCompletedAt?: boolean
+  fabricationCost?: boolean
+  paintingCost?: boolean
+  testingCost?: boolean
+  packingCost?: boolean
+  freightCost?: boolean
+  insuranceCost?: boolean
+  transportationCost?: boolean
+  quotationReleasedById?: boolean
+  quotationReleasedAt?: boolean
   createdBy?: boolean | Prisma.Estimate$createdByArgs<ExtArgs>
+  engineeringValidatedBy?: boolean | Prisma.Estimate$engineeringValidatedByArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  quotationReleasedBy?: boolean | Prisma.Estimate$quotationReleasedByArgs<ExtArgs>
   items?: boolean | Prisma.Estimate$itemsArgs<ExtArgs>
   quotations?: boolean | Prisma.Estimate$quotationsArgs<ExtArgs>
   _count?: boolean | Prisma.EstimateCountOutputTypeDefaultArgs<ExtArgs>
@@ -2652,37 +4452,58 @@ export type EstimateSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   taxPercent?: boolean
   taxAmount?: boolean
   totalAmount?: boolean
-  productFamily?: boolean
-  productModel?: boolean
-  processIndustry?: boolean
-  fuelType?: boolean
-  capacityTph?: boolean
-  requiredSteamConsumption?: boolean
-  workingPressureBar?: boolean
-  designPressureBar?: boolean
-  steamTemperatureC?: boolean
-  feedWaterTemperatureC?: boolean
-  flueGasTemperatureC?: boolean
-  operatingHoursPerDay?: boolean
-  operatingDaysPerYear?: boolean
-  fuelConsumptionPerHour?: boolean
-  fuelCalorificValueKcalKg?: boolean
-  fuelPricePerUnit?: boolean
-  existingBoilerEfficiency?: boolean
-  proposedBoilerEfficiency?: boolean
-  calculatedThermalEfficiency?: boolean
-  calculatedBoilerOutput?: boolean
-  estimatedFuelSavingPerHour?: boolean
-  annualFuelSaving?: boolean
-  annualCostSaving?: boolean
-  technicalNotes?: boolean
   notes?: boolean
   validUntil?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  annualCostSaving?: boolean
+  annualFuelSaving?: boolean
+  calculatedBoilerOutput?: boolean
+  calculatedThermalEfficiency?: boolean
+  capacityTph?: boolean
+  designPressureBar?: boolean
+  estimatedFuelSavingPerHour?: boolean
+  existingBoilerEfficiency?: boolean
+  feedWaterTemperatureC?: boolean
+  flueGasTemperatureC?: boolean
+  fuelCalorificValueKcalKg?: boolean
+  fuelConsumptionPerHour?: boolean
+  fuelPricePerUnit?: boolean
+  fuelType?: boolean
+  operatingDaysPerYear?: boolean
+  operatingHoursPerDay?: boolean
+  processIndustry?: boolean
+  productFamily?: boolean
+  productModel?: boolean
+  proposedBoilerEfficiency?: boolean
+  requiredSteamConsumption?: boolean
+  steamTemperatureC?: boolean
+  technicalNotes?: boolean
+  workingPressureBar?: boolean
+  stage?: boolean
+  rfqNumber?: boolean
+  rfqSource?: boolean
+  rfqReceivedDate?: boolean
+  rfqDueDate?: boolean
+  engineeringValidationStatus?: boolean
+  engineeringValidationNotes?: boolean
+  engineeringValidatedById?: boolean
+  engineeringValidatedAt?: boolean
+  bomEstimationCompletedAt?: boolean
+  fabricationCost?: boolean
+  paintingCost?: boolean
+  testingCost?: boolean
+  packingCost?: boolean
+  freightCost?: boolean
+  insuranceCost?: boolean
+  transportationCost?: boolean
+  quotationReleasedById?: boolean
+  quotationReleasedAt?: boolean
   createdBy?: boolean | Prisma.Estimate$createdByArgs<ExtArgs>
+  engineeringValidatedBy?: boolean | Prisma.Estimate$engineeringValidatedByArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  quotationReleasedBy?: boolean | Prisma.Estimate$quotationReleasedByArgs<ExtArgs>
 }, ExtArgs["result"]["estimate"]>
 
 export type EstimateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2699,37 +4520,58 @@ export type EstimateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   taxPercent?: boolean
   taxAmount?: boolean
   totalAmount?: boolean
-  productFamily?: boolean
-  productModel?: boolean
-  processIndustry?: boolean
-  fuelType?: boolean
-  capacityTph?: boolean
-  requiredSteamConsumption?: boolean
-  workingPressureBar?: boolean
-  designPressureBar?: boolean
-  steamTemperatureC?: boolean
-  feedWaterTemperatureC?: boolean
-  flueGasTemperatureC?: boolean
-  operatingHoursPerDay?: boolean
-  operatingDaysPerYear?: boolean
-  fuelConsumptionPerHour?: boolean
-  fuelCalorificValueKcalKg?: boolean
-  fuelPricePerUnit?: boolean
-  existingBoilerEfficiency?: boolean
-  proposedBoilerEfficiency?: boolean
-  calculatedThermalEfficiency?: boolean
-  calculatedBoilerOutput?: boolean
-  estimatedFuelSavingPerHour?: boolean
-  annualFuelSaving?: boolean
-  annualCostSaving?: boolean
-  technicalNotes?: boolean
   notes?: boolean
   validUntil?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  annualCostSaving?: boolean
+  annualFuelSaving?: boolean
+  calculatedBoilerOutput?: boolean
+  calculatedThermalEfficiency?: boolean
+  capacityTph?: boolean
+  designPressureBar?: boolean
+  estimatedFuelSavingPerHour?: boolean
+  existingBoilerEfficiency?: boolean
+  feedWaterTemperatureC?: boolean
+  flueGasTemperatureC?: boolean
+  fuelCalorificValueKcalKg?: boolean
+  fuelConsumptionPerHour?: boolean
+  fuelPricePerUnit?: boolean
+  fuelType?: boolean
+  operatingDaysPerYear?: boolean
+  operatingHoursPerDay?: boolean
+  processIndustry?: boolean
+  productFamily?: boolean
+  productModel?: boolean
+  proposedBoilerEfficiency?: boolean
+  requiredSteamConsumption?: boolean
+  steamTemperatureC?: boolean
+  technicalNotes?: boolean
+  workingPressureBar?: boolean
+  stage?: boolean
+  rfqNumber?: boolean
+  rfqSource?: boolean
+  rfqReceivedDate?: boolean
+  rfqDueDate?: boolean
+  engineeringValidationStatus?: boolean
+  engineeringValidationNotes?: boolean
+  engineeringValidatedById?: boolean
+  engineeringValidatedAt?: boolean
+  bomEstimationCompletedAt?: boolean
+  fabricationCost?: boolean
+  paintingCost?: boolean
+  testingCost?: boolean
+  packingCost?: boolean
+  freightCost?: boolean
+  insuranceCost?: boolean
+  transportationCost?: boolean
+  quotationReleasedById?: boolean
+  quotationReleasedAt?: boolean
   createdBy?: boolean | Prisma.Estimate$createdByArgs<ExtArgs>
+  engineeringValidatedBy?: boolean | Prisma.Estimate$engineeringValidatedByArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  quotationReleasedBy?: boolean | Prisma.Estimate$quotationReleasedByArgs<ExtArgs>
 }, ExtArgs["result"]["estimate"]>
 
 export type EstimateSelectScalar = {
@@ -2746,59 +4588,86 @@ export type EstimateSelectScalar = {
   taxPercent?: boolean
   taxAmount?: boolean
   totalAmount?: boolean
-  productFamily?: boolean
-  productModel?: boolean
-  processIndustry?: boolean
-  fuelType?: boolean
-  capacityTph?: boolean
-  requiredSteamConsumption?: boolean
-  workingPressureBar?: boolean
-  designPressureBar?: boolean
-  steamTemperatureC?: boolean
-  feedWaterTemperatureC?: boolean
-  flueGasTemperatureC?: boolean
-  operatingHoursPerDay?: boolean
-  operatingDaysPerYear?: boolean
-  fuelConsumptionPerHour?: boolean
-  fuelCalorificValueKcalKg?: boolean
-  fuelPricePerUnit?: boolean
-  existingBoilerEfficiency?: boolean
-  proposedBoilerEfficiency?: boolean
-  calculatedThermalEfficiency?: boolean
-  calculatedBoilerOutput?: boolean
-  estimatedFuelSavingPerHour?: boolean
-  annualFuelSaving?: boolean
-  annualCostSaving?: boolean
-  technicalNotes?: boolean
   notes?: boolean
   validUntil?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  annualCostSaving?: boolean
+  annualFuelSaving?: boolean
+  calculatedBoilerOutput?: boolean
+  calculatedThermalEfficiency?: boolean
+  capacityTph?: boolean
+  designPressureBar?: boolean
+  estimatedFuelSavingPerHour?: boolean
+  existingBoilerEfficiency?: boolean
+  feedWaterTemperatureC?: boolean
+  flueGasTemperatureC?: boolean
+  fuelCalorificValueKcalKg?: boolean
+  fuelConsumptionPerHour?: boolean
+  fuelPricePerUnit?: boolean
+  fuelType?: boolean
+  operatingDaysPerYear?: boolean
+  operatingHoursPerDay?: boolean
+  processIndustry?: boolean
+  productFamily?: boolean
+  productModel?: boolean
+  proposedBoilerEfficiency?: boolean
+  requiredSteamConsumption?: boolean
+  steamTemperatureC?: boolean
+  technicalNotes?: boolean
+  workingPressureBar?: boolean
+  stage?: boolean
+  rfqNumber?: boolean
+  rfqSource?: boolean
+  rfqReceivedDate?: boolean
+  rfqDueDate?: boolean
+  engineeringValidationStatus?: boolean
+  engineeringValidationNotes?: boolean
+  engineeringValidatedById?: boolean
+  engineeringValidatedAt?: boolean
+  bomEstimationCompletedAt?: boolean
+  fabricationCost?: boolean
+  paintingCost?: boolean
+  testingCost?: boolean
+  packingCost?: boolean
+  freightCost?: boolean
+  insuranceCost?: boolean
+  transportationCost?: boolean
+  quotationReleasedById?: boolean
+  quotationReleasedAt?: boolean
 }
 
-export type EstimateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estimateNumber" | "leadId" | "version" | "status" | "materialCost" | "labourCost" | "overheadCost" | "marginPercent" | "subtotal" | "taxPercent" | "taxAmount" | "totalAmount" | "productFamily" | "productModel" | "processIndustry" | "fuelType" | "capacityTph" | "requiredSteamConsumption" | "workingPressureBar" | "designPressureBar" | "steamTemperatureC" | "feedWaterTemperatureC" | "flueGasTemperatureC" | "operatingHoursPerDay" | "operatingDaysPerYear" | "fuelConsumptionPerHour" | "fuelCalorificValueKcalKg" | "fuelPricePerUnit" | "existingBoilerEfficiency" | "proposedBoilerEfficiency" | "calculatedThermalEfficiency" | "calculatedBoilerOutput" | "estimatedFuelSavingPerHour" | "annualFuelSaving" | "annualCostSaving" | "technicalNotes" | "notes" | "validUntil" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["estimate"]>
+export type EstimateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estimateNumber" | "leadId" | "version" | "status" | "materialCost" | "labourCost" | "overheadCost" | "marginPercent" | "subtotal" | "taxPercent" | "taxAmount" | "totalAmount" | "notes" | "validUntil" | "createdById" | "createdAt" | "updatedAt" | "annualCostSaving" | "annualFuelSaving" | "calculatedBoilerOutput" | "calculatedThermalEfficiency" | "capacityTph" | "designPressureBar" | "estimatedFuelSavingPerHour" | "existingBoilerEfficiency" | "feedWaterTemperatureC" | "flueGasTemperatureC" | "fuelCalorificValueKcalKg" | "fuelConsumptionPerHour" | "fuelPricePerUnit" | "fuelType" | "operatingDaysPerYear" | "operatingHoursPerDay" | "processIndustry" | "productFamily" | "productModel" | "proposedBoilerEfficiency" | "requiredSteamConsumption" | "steamTemperatureC" | "technicalNotes" | "workingPressureBar" | "stage" | "rfqNumber" | "rfqSource" | "rfqReceivedDate" | "rfqDueDate" | "engineeringValidationStatus" | "engineeringValidationNotes" | "engineeringValidatedById" | "engineeringValidatedAt" | "bomEstimationCompletedAt" | "fabricationCost" | "paintingCost" | "testingCost" | "packingCost" | "freightCost" | "insuranceCost" | "transportationCost" | "quotationReleasedById" | "quotationReleasedAt", ExtArgs["result"]["estimate"]>
 export type EstimateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Estimate$createdByArgs<ExtArgs>
+  engineeringValidatedBy?: boolean | Prisma.Estimate$engineeringValidatedByArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  quotationReleasedBy?: boolean | Prisma.Estimate$quotationReleasedByArgs<ExtArgs>
   items?: boolean | Prisma.Estimate$itemsArgs<ExtArgs>
   quotations?: boolean | Prisma.Estimate$quotationsArgs<ExtArgs>
   _count?: boolean | Prisma.EstimateCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EstimateIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Estimate$createdByArgs<ExtArgs>
+  engineeringValidatedBy?: boolean | Prisma.Estimate$engineeringValidatedByArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  quotationReleasedBy?: boolean | Prisma.Estimate$quotationReleasedByArgs<ExtArgs>
 }
 export type EstimateIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Estimate$createdByArgs<ExtArgs>
+  engineeringValidatedBy?: boolean | Prisma.Estimate$engineeringValidatedByArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  quotationReleasedBy?: boolean | Prisma.Estimate$quotationReleasedByArgs<ExtArgs>
 }
 
 export type $EstimatePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Estimate"
   objects: {
-    lead: Prisma.$LeadPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs> | null
+    engineeringValidatedBy: Prisma.$UserPayload<ExtArgs> | null
+    lead: Prisma.$LeadPayload<ExtArgs>
+    quotationReleasedBy: Prisma.$UserPayload<ExtArgs> | null
     items: Prisma.$EstimateItemPayload<ExtArgs>[]
     quotations: Prisma.$QuotationPayload<ExtArgs>[]
   }
@@ -2816,35 +4685,54 @@ export type $EstimatePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     taxPercent: runtime.Decimal
     taxAmount: runtime.Decimal
     totalAmount: runtime.Decimal
-    productFamily: string | null
-    productModel: string | null
-    processIndustry: string | null
-    fuelType: string | null
-    capacityTph: runtime.Decimal | null
-    requiredSteamConsumption: runtime.Decimal | null
-    workingPressureBar: runtime.Decimal | null
-    designPressureBar: runtime.Decimal | null
-    steamTemperatureC: runtime.Decimal | null
-    feedWaterTemperatureC: runtime.Decimal | null
-    flueGasTemperatureC: runtime.Decimal | null
-    operatingHoursPerDay: runtime.Decimal | null
-    operatingDaysPerYear: number | null
-    fuelConsumptionPerHour: runtime.Decimal | null
-    fuelCalorificValueKcalKg: runtime.Decimal | null
-    fuelPricePerUnit: runtime.Decimal | null
-    existingBoilerEfficiency: runtime.Decimal | null
-    proposedBoilerEfficiency: runtime.Decimal | null
-    calculatedThermalEfficiency: runtime.Decimal | null
-    calculatedBoilerOutput: runtime.Decimal | null
-    estimatedFuelSavingPerHour: runtime.Decimal | null
-    annualFuelSaving: runtime.Decimal | null
-    annualCostSaving: runtime.Decimal | null
-    technicalNotes: string | null
     notes: string | null
     validUntil: Date | null
     createdById: string | null
     createdAt: Date
     updatedAt: Date
+    annualCostSaving: runtime.Decimal | null
+    annualFuelSaving: runtime.Decimal | null
+    calculatedBoilerOutput: runtime.Decimal | null
+    calculatedThermalEfficiency: runtime.Decimal | null
+    capacityTph: runtime.Decimal | null
+    designPressureBar: runtime.Decimal | null
+    estimatedFuelSavingPerHour: runtime.Decimal | null
+    existingBoilerEfficiency: runtime.Decimal | null
+    feedWaterTemperatureC: runtime.Decimal | null
+    flueGasTemperatureC: runtime.Decimal | null
+    fuelCalorificValueKcalKg: runtime.Decimal | null
+    fuelConsumptionPerHour: runtime.Decimal | null
+    fuelPricePerUnit: runtime.Decimal | null
+    fuelType: string | null
+    operatingDaysPerYear: number | null
+    operatingHoursPerDay: runtime.Decimal | null
+    processIndustry: string | null
+    productFamily: string | null
+    productModel: string | null
+    proposedBoilerEfficiency: runtime.Decimal | null
+    requiredSteamConsumption: runtime.Decimal | null
+    steamTemperatureC: runtime.Decimal | null
+    technicalNotes: string | null
+    workingPressureBar: runtime.Decimal | null
+    stage: $Enums.EstimateStage
+    rfqNumber: string | null
+    rfqSource: string | null
+    rfqReceivedDate: Date | null
+    rfqDueDate: Date | null
+    engineeringValidationStatus: $Enums.EngineeringValidationStatus
+    engineeringValidationNotes: string | null
+    engineeringValidatedById: string | null
+    engineeringValidatedAt: Date | null
+    bomEstimationCompletedAt: Date | null
+    fabricationCost: runtime.Decimal
+    paintingCost: runtime.Decimal
+    testingCost: runtime.Decimal
+    packingCost: runtime.Decimal
+    freightCost: runtime.Decimal
+    insuranceCost: runtime.Decimal
+    transportationCost: runtime.Decimal
+    quotationReleasedById: string | null
+    quotationReleasedAt: Date | null
   }, ExtArgs["result"]["estimate"]>
   composites: {}
 }
@@ -3239,8 +5127,10 @@ readonly fields: EstimateFieldRefs;
  */
 export interface Prisma__EstimateClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  lead<T extends Prisma.LeadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeadDefaultArgs<ExtArgs>>): Prisma.Prisma__LeadClient<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.Estimate$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  engineeringValidatedBy<T extends Prisma.Estimate$engineeringValidatedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$engineeringValidatedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  lead<T extends Prisma.LeadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeadDefaultArgs<ExtArgs>>): Prisma.Prisma__LeadClient<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  quotationReleasedBy<T extends Prisma.Estimate$quotationReleasedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$quotationReleasedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Estimate$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quotations<T extends Prisma.Estimate$quotationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -3285,35 +5175,54 @@ export interface EstimateFieldRefs {
   readonly taxPercent: Prisma.FieldRef<"Estimate", 'Decimal'>
   readonly taxAmount: Prisma.FieldRef<"Estimate", 'Decimal'>
   readonly totalAmount: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly productFamily: Prisma.FieldRef<"Estimate", 'String'>
-  readonly productModel: Prisma.FieldRef<"Estimate", 'String'>
-  readonly processIndustry: Prisma.FieldRef<"Estimate", 'String'>
-  readonly fuelType: Prisma.FieldRef<"Estimate", 'String'>
-  readonly capacityTph: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly requiredSteamConsumption: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly workingPressureBar: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly designPressureBar: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly steamTemperatureC: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly feedWaterTemperatureC: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly flueGasTemperatureC: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly operatingHoursPerDay: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly operatingDaysPerYear: Prisma.FieldRef<"Estimate", 'Int'>
-  readonly fuelConsumptionPerHour: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly fuelCalorificValueKcalKg: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly fuelPricePerUnit: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly existingBoilerEfficiency: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly proposedBoilerEfficiency: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly calculatedThermalEfficiency: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly calculatedBoilerOutput: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly estimatedFuelSavingPerHour: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly annualFuelSaving: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly annualCostSaving: Prisma.FieldRef<"Estimate", 'Decimal'>
-  readonly technicalNotes: Prisma.FieldRef<"Estimate", 'String'>
   readonly notes: Prisma.FieldRef<"Estimate", 'String'>
   readonly validUntil: Prisma.FieldRef<"Estimate", 'DateTime'>
   readonly createdById: Prisma.FieldRef<"Estimate", 'String'>
   readonly createdAt: Prisma.FieldRef<"Estimate", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Estimate", 'DateTime'>
+  readonly annualCostSaving: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly annualFuelSaving: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly calculatedBoilerOutput: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly calculatedThermalEfficiency: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly capacityTph: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly designPressureBar: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly estimatedFuelSavingPerHour: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly existingBoilerEfficiency: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly feedWaterTemperatureC: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly flueGasTemperatureC: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly fuelCalorificValueKcalKg: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly fuelConsumptionPerHour: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly fuelPricePerUnit: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly fuelType: Prisma.FieldRef<"Estimate", 'String'>
+  readonly operatingDaysPerYear: Prisma.FieldRef<"Estimate", 'Int'>
+  readonly operatingHoursPerDay: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly processIndustry: Prisma.FieldRef<"Estimate", 'String'>
+  readonly productFamily: Prisma.FieldRef<"Estimate", 'String'>
+  readonly productModel: Prisma.FieldRef<"Estimate", 'String'>
+  readonly proposedBoilerEfficiency: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly requiredSteamConsumption: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly steamTemperatureC: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly technicalNotes: Prisma.FieldRef<"Estimate", 'String'>
+  readonly workingPressureBar: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly stage: Prisma.FieldRef<"Estimate", 'EstimateStage'>
+  readonly rfqNumber: Prisma.FieldRef<"Estimate", 'String'>
+  readonly rfqSource: Prisma.FieldRef<"Estimate", 'String'>
+  readonly rfqReceivedDate: Prisma.FieldRef<"Estimate", 'DateTime'>
+  readonly rfqDueDate: Prisma.FieldRef<"Estimate", 'DateTime'>
+  readonly engineeringValidationStatus: Prisma.FieldRef<"Estimate", 'EngineeringValidationStatus'>
+  readonly engineeringValidationNotes: Prisma.FieldRef<"Estimate", 'String'>
+  readonly engineeringValidatedById: Prisma.FieldRef<"Estimate", 'String'>
+  readonly engineeringValidatedAt: Prisma.FieldRef<"Estimate", 'DateTime'>
+  readonly bomEstimationCompletedAt: Prisma.FieldRef<"Estimate", 'DateTime'>
+  readonly fabricationCost: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly paintingCost: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly testingCost: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly packingCost: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly freightCost: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly insuranceCost: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly transportationCost: Prisma.FieldRef<"Estimate", 'Decimal'>
+  readonly quotationReleasedById: Prisma.FieldRef<"Estimate", 'String'>
+  readonly quotationReleasedAt: Prisma.FieldRef<"Estimate", 'DateTime'>
 }
     
 
@@ -3718,6 +5627,44 @@ export type EstimateDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
  * Estimate.createdBy
  */
 export type Estimate$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * Estimate.engineeringValidatedBy
+ */
+export type Estimate$engineeringValidatedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * Estimate.quotationReleasedBy
+ */
+export type Estimate$quotationReleasedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */

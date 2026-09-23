@@ -4,6 +4,8 @@ import {
   getEstimateController,
   listEstimatesController,
   updateEstimateStatusController,
+  updateEstimateStageController,
+  updateEngineeringValidationController,
 } from "../controllers/estimate.controller.js";
 import { authenticate } from "../middleware/auth.middleware.js";
 
@@ -15,3 +17,5 @@ estimateRouter.get("/", listEstimatesController);
 estimateRouter.get("/:id", getEstimateController);
 estimateRouter.post("/", createEstimateController);
 estimateRouter.patch("/:id/status", updateEstimateStatusController);
+estimateRouter.patch("/:id/stage", updateEstimateStageController);
+estimateRouter.patch("/:id/engineering-validation", updateEngineeringValidationController);

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import type { FormEvent } from "react";
 import {
   BriefcaseBusiness,
@@ -95,6 +96,7 @@ const leadToForm = (lead: Lead): LeadFormState => ({
 });
 
 export default function LeadsPage() {
+  const navigate = useNavigate();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [search, setSearch] = useState("");
@@ -420,6 +422,15 @@ export default function LeadsPage() {
                         <button
                           type="button"
                           className="row-action-button"
+                          title="Open CRM workspace"
+                          aria-label={`Open CRM workspace for ${lead.title}`}
+                          onClick={() => navigate(`/leads/${lead.id}/crm`)}
+                        >
+                          <Target size={17} />
+                        </button>
+                        <button
+                          type="button"
+                          className="row-action-button"
                           title="Edit enquiry"
                           aria-label={`Edit ${lead.title}`}
                           onClick={() => openEditModal(lead)}
@@ -567,13 +578,21 @@ export default function LeadsPage() {
                 </label>
                 <label className="full-field">
                   Lead source
-                  <input
+                  <select
                     value={form.source}
-                    placeholder="Website, referral, exhibition..."
                     onChange={(event) =>
                       setForm((current) => ({ ...current, source: event.target.value }))
                     }
-                  />
+                  >
+                    <option value="">Select source</option>
+                    <option>Website Inquiry</option>
+                    <option>IndiaMART</option>
+                    <option>TradeIndia</option>
+                    <option>Export Inquiry</option>
+                    <option>Direct Sales Team</option>
+                    <option>Dealer Network</option>
+                    <option>Reference</option>
+                  </select>
                 </label>
                 <label className="full-field">
                   Description

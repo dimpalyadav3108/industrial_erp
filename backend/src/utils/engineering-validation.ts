@@ -238,6 +238,10 @@ export const createEngineeringBomItemSchema = z.object({
 
   materialSpec: optionalText(500),
 
+  alternateMaterial: optionalText(500),
+
+  unitCost: z.number().min(0).optional(),
+
   drawingNumber: optionalText(100),
 
   remarks: optionalText(1000),
@@ -293,6 +297,10 @@ export const updateEngineeringBomItemSchema = z
     source: bomItemSourceSchema.optional(),
 
     materialSpec: optionalText(500),
+
+    alternateMaterial: optionalText(500),
+
+    unitCost: z.number().min(0).optional(),
 
     drawingNumber: optionalText(100),
 

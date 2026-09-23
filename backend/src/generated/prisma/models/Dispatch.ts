@@ -40,6 +40,7 @@ export type DispatchMinAggregateOutputType = {
   id: string | null
   dispatchNumber: string | null
   productionOrderId: string | null
+  salesOrderId: string | null
   qualityInspectionId: string | null
   status: $Enums.DispatchStatus | null
   transportMode: $Enums.TransportMode | null
@@ -64,6 +65,7 @@ export type DispatchMaxAggregateOutputType = {
   id: string | null
   dispatchNumber: string | null
   productionOrderId: string | null
+  salesOrderId: string | null
   qualityInspectionId: string | null
   status: $Enums.DispatchStatus | null
   transportMode: $Enums.TransportMode | null
@@ -88,6 +90,7 @@ export type DispatchCountAggregateOutputType = {
   id: number
   dispatchNumber: number
   productionOrderId: number
+  salesOrderId: number
   qualityInspectionId: number
   status: number
   transportMode: number
@@ -124,6 +127,7 @@ export type DispatchMinAggregateInputType = {
   id?: true
   dispatchNumber?: true
   productionOrderId?: true
+  salesOrderId?: true
   qualityInspectionId?: true
   status?: true
   transportMode?: true
@@ -148,6 +152,7 @@ export type DispatchMaxAggregateInputType = {
   id?: true
   dispatchNumber?: true
   productionOrderId?: true
+  salesOrderId?: true
   qualityInspectionId?: true
   status?: true
   transportMode?: true
@@ -172,6 +177,7 @@ export type DispatchCountAggregateInputType = {
   id?: true
   dispatchNumber?: true
   productionOrderId?: true
+  salesOrderId?: true
   qualityInspectionId?: true
   status?: true
   transportMode?: true
@@ -283,6 +289,7 @@ export type DispatchGroupByOutputType = {
   id: string
   dispatchNumber: string
   productionOrderId: string
+  salesOrderId: string | null
   qualityInspectionId: string
   status: $Enums.DispatchStatus
   transportMode: $Enums.TransportMode
@@ -330,6 +337,7 @@ export type DispatchWhereInput = {
   id?: Prisma.StringFilter<"Dispatch"> | string
   dispatchNumber?: Prisma.StringFilter<"Dispatch"> | string
   productionOrderId?: Prisma.StringFilter<"Dispatch"> | string
+  salesOrderId?: Prisma.StringNullableFilter<"Dispatch"> | string | null
   qualityInspectionId?: Prisma.StringFilter<"Dispatch"> | string
   status?: Prisma.EnumDispatchStatusFilter<"Dispatch"> | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeFilter<"Dispatch"> | $Enums.TransportMode
@@ -349,16 +357,20 @@ export type DispatchWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Dispatch"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Dispatch"> | Date | string
   productionOrder?: Prisma.XOR<Prisma.ProductionOrderScalarRelationFilter, Prisma.ProductionOrderWhereInput>
+  salesOrder?: Prisma.XOR<Prisma.SalesOrderNullableScalarRelationFilter, Prisma.SalesOrderWhereInput> | null
   qualityInspection?: Prisma.XOR<Prisma.QualityInspectionScalarRelationFilter, Prisma.QualityInspectionWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   serviceContracts?: Prisma.ServiceContractListRelationFilter
   installationJob?: Prisma.XOR<Prisma.InstallationJobNullableScalarRelationFilter, Prisma.InstallationJobWhereInput> | null
+  logistics?: Prisma.XOR<Prisma.DispatchLogisticsNullableScalarRelationFilter, Prisma.DispatchLogisticsWhereInput> | null
+  trackingEvents?: Prisma.DispatchTrackingEventListRelationFilter
 }
 
 export type DispatchOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   dispatchNumber?: Prisma.SortOrder
   productionOrderId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
   qualityInspectionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   transportMode?: Prisma.SortOrder
@@ -378,16 +390,20 @@ export type DispatchOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   productionOrder?: Prisma.ProductionOrderOrderByWithRelationInput
+  salesOrder?: Prisma.SalesOrderOrderByWithRelationInput
   qualityInspection?: Prisma.QualityInspectionOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   serviceContracts?: Prisma.ServiceContractOrderByRelationAggregateInput
   installationJob?: Prisma.InstallationJobOrderByWithRelationInput
+  logistics?: Prisma.DispatchLogisticsOrderByWithRelationInput
+  trackingEvents?: Prisma.DispatchTrackingEventOrderByRelationAggregateInput
 }
 
 export type DispatchWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   dispatchNumber?: string
   productionOrderId?: string
+  salesOrderId?: string
   qualityInspectionId?: string
   AND?: Prisma.DispatchWhereInput | Prisma.DispatchWhereInput[]
   OR?: Prisma.DispatchWhereInput[]
@@ -410,16 +426,20 @@ export type DispatchWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Dispatch"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Dispatch"> | Date | string
   productionOrder?: Prisma.XOR<Prisma.ProductionOrderScalarRelationFilter, Prisma.ProductionOrderWhereInput>
+  salesOrder?: Prisma.XOR<Prisma.SalesOrderNullableScalarRelationFilter, Prisma.SalesOrderWhereInput> | null
   qualityInspection?: Prisma.XOR<Prisma.QualityInspectionScalarRelationFilter, Prisma.QualityInspectionWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   serviceContracts?: Prisma.ServiceContractListRelationFilter
   installationJob?: Prisma.XOR<Prisma.InstallationJobNullableScalarRelationFilter, Prisma.InstallationJobWhereInput> | null
-}, "id" | "dispatchNumber" | "productionOrderId" | "qualityInspectionId">
+  logistics?: Prisma.XOR<Prisma.DispatchLogisticsNullableScalarRelationFilter, Prisma.DispatchLogisticsWhereInput> | null
+  trackingEvents?: Prisma.DispatchTrackingEventListRelationFilter
+}, "id" | "dispatchNumber" | "productionOrderId" | "salesOrderId" | "qualityInspectionId">
 
 export type DispatchOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   dispatchNumber?: Prisma.SortOrder
   productionOrderId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
   qualityInspectionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   transportMode?: Prisma.SortOrder
@@ -452,6 +472,7 @@ export type DispatchScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Dispatch"> | string
   dispatchNumber?: Prisma.StringWithAggregatesFilter<"Dispatch"> | string
   productionOrderId?: Prisma.StringWithAggregatesFilter<"Dispatch"> | string
+  salesOrderId?: Prisma.StringNullableWithAggregatesFilter<"Dispatch"> | string | null
   qualityInspectionId?: Prisma.StringWithAggregatesFilter<"Dispatch"> | string
   status?: Prisma.EnumDispatchStatusWithAggregatesFilter<"Dispatch"> | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeWithAggregatesFilter<"Dispatch"> | $Enums.TransportMode
@@ -492,16 +513,20 @@ export type DispatchCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutDispatchInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutDispatchInput
   qualityInspection: Prisma.QualityInspectionCreateNestedOneWithoutDispatchInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDispatchesInput
   serviceContracts?: Prisma.ServiceContractCreateNestedManyWithoutDispatchInput
   installationJob?: Prisma.InstallationJobCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchUncheckedCreateInput = {
   id?: string
   dispatchNumber: string
   productionOrderId: string
+  salesOrderId?: string | null
   qualityInspectionId: string
   status?: $Enums.DispatchStatus
   transportMode?: $Enums.TransportMode
@@ -522,6 +547,8 @@ export type DispatchUncheckedCreateInput = {
   updatedAt?: Date | string
   serviceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutDispatchInput
   installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsUncheckedCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchUpdateInput = {
@@ -544,16 +571,20 @@ export type DispatchUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutDispatchNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutDispatchNestedInput
   qualityInspection?: Prisma.QualityInspectionUpdateOneRequiredWithoutDispatchNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedDispatchesNestedInput
   serviceContracts?: Prisma.ServiceContractUpdateManyWithoutDispatchNestedInput
   installationJob?: Prisma.InstallationJobUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUpdateManyWithoutDispatchNestedInput
 }
 
 export type DispatchUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
   productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualityInspectionId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
@@ -574,12 +605,15 @@ export type DispatchUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutDispatchNestedInput
   installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUncheckedUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedUpdateManyWithoutDispatchNestedInput
 }
 
 export type DispatchCreateManyInput = {
   id?: string
   dispatchNumber: string
   productionOrderId: string
+  salesOrderId?: string | null
   qualityInspectionId: string
   status?: $Enums.DispatchStatus
   transportMode?: $Enums.TransportMode
@@ -625,6 +659,7 @@ export type DispatchUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
   productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualityInspectionId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
@@ -664,6 +699,7 @@ export type DispatchCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   dispatchNumber?: Prisma.SortOrder
   productionOrderId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrder
   qualityInspectionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   transportMode?: Prisma.SortOrder
@@ -693,6 +729,7 @@ export type DispatchMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   dispatchNumber?: Prisma.SortOrder
   productionOrderId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrder
   qualityInspectionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   transportMode?: Prisma.SortOrder
@@ -717,6 +754,7 @@ export type DispatchMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   dispatchNumber?: Prisma.SortOrder
   productionOrderId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrder
   qualityInspectionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   transportMode?: Prisma.SortOrder
@@ -861,6 +899,34 @@ export type EnumTransportModeFieldUpdateOperationsInput = {
   set?: $Enums.TransportMode
 }
 
+export type DispatchCreateNestedOneWithoutLogisticsInput = {
+  create?: Prisma.XOR<Prisma.DispatchCreateWithoutLogisticsInput, Prisma.DispatchUncheckedCreateWithoutLogisticsInput>
+  connectOrCreate?: Prisma.DispatchCreateOrConnectWithoutLogisticsInput
+  connect?: Prisma.DispatchWhereUniqueInput
+}
+
+export type DispatchUpdateOneRequiredWithoutLogisticsNestedInput = {
+  create?: Prisma.XOR<Prisma.DispatchCreateWithoutLogisticsInput, Prisma.DispatchUncheckedCreateWithoutLogisticsInput>
+  connectOrCreate?: Prisma.DispatchCreateOrConnectWithoutLogisticsInput
+  upsert?: Prisma.DispatchUpsertWithoutLogisticsInput
+  connect?: Prisma.DispatchWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DispatchUpdateToOneWithWhereWithoutLogisticsInput, Prisma.DispatchUpdateWithoutLogisticsInput>, Prisma.DispatchUncheckedUpdateWithoutLogisticsInput>
+}
+
+export type DispatchCreateNestedOneWithoutTrackingEventsInput = {
+  create?: Prisma.XOR<Prisma.DispatchCreateWithoutTrackingEventsInput, Prisma.DispatchUncheckedCreateWithoutTrackingEventsInput>
+  connectOrCreate?: Prisma.DispatchCreateOrConnectWithoutTrackingEventsInput
+  connect?: Prisma.DispatchWhereUniqueInput
+}
+
+export type DispatchUpdateOneRequiredWithoutTrackingEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.DispatchCreateWithoutTrackingEventsInput, Prisma.DispatchUncheckedCreateWithoutTrackingEventsInput>
+  connectOrCreate?: Prisma.DispatchCreateOrConnectWithoutTrackingEventsInput
+  upsert?: Prisma.DispatchUpsertWithoutTrackingEventsInput
+  connect?: Prisma.DispatchWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DispatchUpdateToOneWithWhereWithoutTrackingEventsInput, Prisma.DispatchUpdateWithoutTrackingEventsInput>, Prisma.DispatchUncheckedUpdateWithoutTrackingEventsInput>
+}
+
 export type DispatchCreateNestedOneWithoutServiceContractsInput = {
   create?: Prisma.XOR<Prisma.DispatchCreateWithoutServiceContractsInput, Prisma.DispatchUncheckedCreateWithoutServiceContractsInput>
   connectOrCreate?: Prisma.DispatchCreateOrConnectWithoutServiceContractsInput
@@ -875,6 +941,38 @@ export type DispatchUpdateOneWithoutServiceContractsNestedInput = {
   delete?: Prisma.DispatchWhereInput | boolean
   connect?: Prisma.DispatchWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.DispatchUpdateToOneWithWhereWithoutServiceContractsInput, Prisma.DispatchUpdateWithoutServiceContractsInput>, Prisma.DispatchUncheckedUpdateWithoutServiceContractsInput>
+}
+
+export type DispatchCreateNestedOneWithoutSalesOrderInput = {
+  create?: Prisma.XOR<Prisma.DispatchCreateWithoutSalesOrderInput, Prisma.DispatchUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.DispatchCreateOrConnectWithoutSalesOrderInput
+  connect?: Prisma.DispatchWhereUniqueInput
+}
+
+export type DispatchUncheckedCreateNestedOneWithoutSalesOrderInput = {
+  create?: Prisma.XOR<Prisma.DispatchCreateWithoutSalesOrderInput, Prisma.DispatchUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.DispatchCreateOrConnectWithoutSalesOrderInput
+  connect?: Prisma.DispatchWhereUniqueInput
+}
+
+export type DispatchUpdateOneWithoutSalesOrderNestedInput = {
+  create?: Prisma.XOR<Prisma.DispatchCreateWithoutSalesOrderInput, Prisma.DispatchUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.DispatchCreateOrConnectWithoutSalesOrderInput
+  upsert?: Prisma.DispatchUpsertWithoutSalesOrderInput
+  disconnect?: Prisma.DispatchWhereInput | boolean
+  delete?: Prisma.DispatchWhereInput | boolean
+  connect?: Prisma.DispatchWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DispatchUpdateToOneWithWhereWithoutSalesOrderInput, Prisma.DispatchUpdateWithoutSalesOrderInput>, Prisma.DispatchUncheckedUpdateWithoutSalesOrderInput>
+}
+
+export type DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput = {
+  create?: Prisma.XOR<Prisma.DispatchCreateWithoutSalesOrderInput, Prisma.DispatchUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.DispatchCreateOrConnectWithoutSalesOrderInput
+  upsert?: Prisma.DispatchUpsertWithoutSalesOrderInput
+  disconnect?: Prisma.DispatchWhereInput | boolean
+  delete?: Prisma.DispatchWhereInput | boolean
+  connect?: Prisma.DispatchWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DispatchUpdateToOneWithWhereWithoutSalesOrderInput, Prisma.DispatchUpdateWithoutSalesOrderInput>, Prisma.DispatchUncheckedUpdateWithoutSalesOrderInput>
 }
 
 export type DispatchCreateNestedOneWithoutInstallationJobInput = {
@@ -911,15 +1009,19 @@ export type DispatchCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutDispatchInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutDispatchInput
   qualityInspection: Prisma.QualityInspectionCreateNestedOneWithoutDispatchInput
   serviceContracts?: Prisma.ServiceContractCreateNestedManyWithoutDispatchInput
   installationJob?: Prisma.InstallationJobCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchUncheckedCreateWithoutCreatedByInput = {
   id?: string
   dispatchNumber: string
   productionOrderId: string
+  salesOrderId?: string | null
   qualityInspectionId: string
   status?: $Enums.DispatchStatus
   transportMode?: $Enums.TransportMode
@@ -939,6 +1041,8 @@ export type DispatchUncheckedCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   serviceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutDispatchInput
   installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsUncheckedCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchCreateOrConnectWithoutCreatedByInput = {
@@ -974,6 +1078,7 @@ export type DispatchScalarWhereInput = {
   id?: Prisma.StringFilter<"Dispatch"> | string
   dispatchNumber?: Prisma.StringFilter<"Dispatch"> | string
   productionOrderId?: Prisma.StringFilter<"Dispatch"> | string
+  salesOrderId?: Prisma.StringNullableFilter<"Dispatch"> | string | null
   qualityInspectionId?: Prisma.StringFilter<"Dispatch"> | string
   status?: Prisma.EnumDispatchStatusFilter<"Dispatch"> | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeFilter<"Dispatch"> | $Enums.TransportMode
@@ -1013,15 +1118,19 @@ export type DispatchCreateWithoutProductionOrderInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutDispatchInput
   qualityInspection: Prisma.QualityInspectionCreateNestedOneWithoutDispatchInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDispatchesInput
   serviceContracts?: Prisma.ServiceContractCreateNestedManyWithoutDispatchInput
   installationJob?: Prisma.InstallationJobCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchUncheckedCreateWithoutProductionOrderInput = {
   id?: string
   dispatchNumber: string
+  salesOrderId?: string | null
   qualityInspectionId: string
   status?: $Enums.DispatchStatus
   transportMode?: $Enums.TransportMode
@@ -1042,6 +1151,8 @@ export type DispatchUncheckedCreateWithoutProductionOrderInput = {
   updatedAt?: Date | string
   serviceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutDispatchInput
   installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsUncheckedCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchCreateOrConnectWithoutProductionOrderInput = {
@@ -1079,15 +1190,19 @@ export type DispatchUpdateWithoutProductionOrderInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutDispatchNestedInput
   qualityInspection?: Prisma.QualityInspectionUpdateOneRequiredWithoutDispatchNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedDispatchesNestedInput
   serviceContracts?: Prisma.ServiceContractUpdateManyWithoutDispatchNestedInput
   installationJob?: Prisma.InstallationJobUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUpdateManyWithoutDispatchNestedInput
 }
 
 export type DispatchUncheckedUpdateWithoutProductionOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualityInspectionId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
@@ -1108,6 +1223,8 @@ export type DispatchUncheckedUpdateWithoutProductionOrderInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutDispatchNestedInput
   installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUncheckedUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedUpdateManyWithoutDispatchNestedInput
 }
 
 export type DispatchCreateWithoutQualityInspectionInput = {
@@ -1130,15 +1247,19 @@ export type DispatchCreateWithoutQualityInspectionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutDispatchInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutDispatchInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDispatchesInput
   serviceContracts?: Prisma.ServiceContractCreateNestedManyWithoutDispatchInput
   installationJob?: Prisma.InstallationJobCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchUncheckedCreateWithoutQualityInspectionInput = {
   id?: string
   dispatchNumber: string
   productionOrderId: string
+  salesOrderId?: string | null
   status?: $Enums.DispatchStatus
   transportMode?: $Enums.TransportMode
   dispatchDate?: Date | string | null
@@ -1158,6 +1279,8 @@ export type DispatchUncheckedCreateWithoutQualityInspectionInput = {
   updatedAt?: Date | string
   serviceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutDispatchInput
   installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsUncheckedCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchCreateOrConnectWithoutQualityInspectionInput = {
@@ -1196,15 +1319,19 @@ export type DispatchUpdateWithoutQualityInspectionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutDispatchNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutDispatchNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedDispatchesNestedInput
   serviceContracts?: Prisma.ServiceContractUpdateManyWithoutDispatchNestedInput
   installationJob?: Prisma.InstallationJobUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUpdateManyWithoutDispatchNestedInput
 }
 
 export type DispatchUncheckedUpdateWithoutQualityInspectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
   productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
   dispatchDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1224,6 +1351,264 @@ export type DispatchUncheckedUpdateWithoutQualityInspectionInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutDispatchNestedInput
   installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUncheckedUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedUpdateManyWithoutDispatchNestedInput
+}
+
+export type DispatchCreateWithoutLogisticsInput = {
+  id?: string
+  dispatchNumber: string
+  status?: $Enums.DispatchStatus
+  transportMode?: $Enums.TransportMode
+  dispatchDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  actualDeliveryDate?: Date | string | null
+  transporterName?: string | null
+  vehicleNumber?: string | null
+  trackingNumber?: string | null
+  destination: string
+  contactPerson?: string | null
+  contactPhone?: string | null
+  packageCount?: number
+  totalWeight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutDispatchInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutDispatchInput
+  qualityInspection: Prisma.QualityInspectionCreateNestedOneWithoutDispatchInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDispatchesInput
+  serviceContracts?: Prisma.ServiceContractCreateNestedManyWithoutDispatchInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventCreateNestedManyWithoutDispatchInput
+}
+
+export type DispatchUncheckedCreateWithoutLogisticsInput = {
+  id?: string
+  dispatchNumber: string
+  productionOrderId: string
+  salesOrderId?: string | null
+  qualityInspectionId: string
+  status?: $Enums.DispatchStatus
+  transportMode?: $Enums.TransportMode
+  dispatchDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  actualDeliveryDate?: Date | string | null
+  transporterName?: string | null
+  vehicleNumber?: string | null
+  trackingNumber?: string | null
+  destination: string
+  contactPerson?: string | null
+  contactPhone?: string | null
+  packageCount?: number
+  totalWeight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  serviceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutDispatchInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedCreateNestedManyWithoutDispatchInput
+}
+
+export type DispatchCreateOrConnectWithoutLogisticsInput = {
+  where: Prisma.DispatchWhereUniqueInput
+  create: Prisma.XOR<Prisma.DispatchCreateWithoutLogisticsInput, Prisma.DispatchUncheckedCreateWithoutLogisticsInput>
+}
+
+export type DispatchUpsertWithoutLogisticsInput = {
+  update: Prisma.XOR<Prisma.DispatchUpdateWithoutLogisticsInput, Prisma.DispatchUncheckedUpdateWithoutLogisticsInput>
+  create: Prisma.XOR<Prisma.DispatchCreateWithoutLogisticsInput, Prisma.DispatchUncheckedCreateWithoutLogisticsInput>
+  where?: Prisma.DispatchWhereInput
+}
+
+export type DispatchUpdateToOneWithWhereWithoutLogisticsInput = {
+  where?: Prisma.DispatchWhereInput
+  data: Prisma.XOR<Prisma.DispatchUpdateWithoutLogisticsInput, Prisma.DispatchUncheckedUpdateWithoutLogisticsInput>
+}
+
+export type DispatchUpdateWithoutLogisticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
+  transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
+  dispatchDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  transporterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destination?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  packageCount?: Prisma.IntFieldUpdateOperationsInput | number
+  totalWeight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutDispatchNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutDispatchNestedInput
+  qualityInspection?: Prisma.QualityInspectionUpdateOneRequiredWithoutDispatchNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedDispatchesNestedInput
+  serviceContracts?: Prisma.ServiceContractUpdateManyWithoutDispatchNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUpdateManyWithoutDispatchNestedInput
+}
+
+export type DispatchUncheckedUpdateWithoutLogisticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualityInspectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
+  transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
+  dispatchDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  transporterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destination?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  packageCount?: Prisma.IntFieldUpdateOperationsInput | number
+  totalWeight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutDispatchNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedUpdateManyWithoutDispatchNestedInput
+}
+
+export type DispatchCreateWithoutTrackingEventsInput = {
+  id?: string
+  dispatchNumber: string
+  status?: $Enums.DispatchStatus
+  transportMode?: $Enums.TransportMode
+  dispatchDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  actualDeliveryDate?: Date | string | null
+  transporterName?: string | null
+  vehicleNumber?: string | null
+  trackingNumber?: string | null
+  destination: string
+  contactPerson?: string | null
+  contactPhone?: string | null
+  packageCount?: number
+  totalWeight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutDispatchInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutDispatchInput
+  qualityInspection: Prisma.QualityInspectionCreateNestedOneWithoutDispatchInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDispatchesInput
+  serviceContracts?: Prisma.ServiceContractCreateNestedManyWithoutDispatchInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsCreateNestedOneWithoutDispatchInput
+}
+
+export type DispatchUncheckedCreateWithoutTrackingEventsInput = {
+  id?: string
+  dispatchNumber: string
+  productionOrderId: string
+  salesOrderId?: string | null
+  qualityInspectionId: string
+  status?: $Enums.DispatchStatus
+  transportMode?: $Enums.TransportMode
+  dispatchDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  actualDeliveryDate?: Date | string | null
+  transporterName?: string | null
+  vehicleNumber?: string | null
+  trackingNumber?: string | null
+  destination: string
+  contactPerson?: string | null
+  contactPhone?: string | null
+  packageCount?: number
+  totalWeight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  serviceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutDispatchInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsUncheckedCreateNestedOneWithoutDispatchInput
+}
+
+export type DispatchCreateOrConnectWithoutTrackingEventsInput = {
+  where: Prisma.DispatchWhereUniqueInput
+  create: Prisma.XOR<Prisma.DispatchCreateWithoutTrackingEventsInput, Prisma.DispatchUncheckedCreateWithoutTrackingEventsInput>
+}
+
+export type DispatchUpsertWithoutTrackingEventsInput = {
+  update: Prisma.XOR<Prisma.DispatchUpdateWithoutTrackingEventsInput, Prisma.DispatchUncheckedUpdateWithoutTrackingEventsInput>
+  create: Prisma.XOR<Prisma.DispatchCreateWithoutTrackingEventsInput, Prisma.DispatchUncheckedCreateWithoutTrackingEventsInput>
+  where?: Prisma.DispatchWhereInput
+}
+
+export type DispatchUpdateToOneWithWhereWithoutTrackingEventsInput = {
+  where?: Prisma.DispatchWhereInput
+  data: Prisma.XOR<Prisma.DispatchUpdateWithoutTrackingEventsInput, Prisma.DispatchUncheckedUpdateWithoutTrackingEventsInput>
+}
+
+export type DispatchUpdateWithoutTrackingEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
+  transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
+  dispatchDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  transporterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destination?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  packageCount?: Prisma.IntFieldUpdateOperationsInput | number
+  totalWeight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutDispatchNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutDispatchNestedInput
+  qualityInspection?: Prisma.QualityInspectionUpdateOneRequiredWithoutDispatchNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedDispatchesNestedInput
+  serviceContracts?: Prisma.ServiceContractUpdateManyWithoutDispatchNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUpdateOneWithoutDispatchNestedInput
+}
+
+export type DispatchUncheckedUpdateWithoutTrackingEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualityInspectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
+  transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
+  dispatchDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  transporterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destination?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  packageCount?: Prisma.IntFieldUpdateOperationsInput | number
+  totalWeight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutDispatchNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUncheckedUpdateOneWithoutDispatchNestedInput
 }
 
 export type DispatchCreateWithoutServiceContractsInput = {
@@ -1246,15 +1631,19 @@ export type DispatchCreateWithoutServiceContractsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutDispatchInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutDispatchInput
   qualityInspection: Prisma.QualityInspectionCreateNestedOneWithoutDispatchInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDispatchesInput
   installationJob?: Prisma.InstallationJobCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchUncheckedCreateWithoutServiceContractsInput = {
   id?: string
   dispatchNumber: string
   productionOrderId: string
+  salesOrderId?: string | null
   qualityInspectionId: string
   status?: $Enums.DispatchStatus
   transportMode?: $Enums.TransportMode
@@ -1274,6 +1663,8 @@ export type DispatchUncheckedCreateWithoutServiceContractsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsUncheckedCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchCreateOrConnectWithoutServiceContractsInput = {
@@ -1312,15 +1703,19 @@ export type DispatchUpdateWithoutServiceContractsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutDispatchNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutDispatchNestedInput
   qualityInspection?: Prisma.QualityInspectionUpdateOneRequiredWithoutDispatchNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedDispatchesNestedInput
   installationJob?: Prisma.InstallationJobUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUpdateManyWithoutDispatchNestedInput
 }
 
 export type DispatchUncheckedUpdateWithoutServiceContractsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
   productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualityInspectionId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
@@ -1340,9 +1735,11 @@ export type DispatchUncheckedUpdateWithoutServiceContractsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUncheckedUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedUpdateManyWithoutDispatchNestedInput
 }
 
-export type DispatchCreateWithoutInstallationJobInput = {
+export type DispatchCreateWithoutSalesOrderInput = {
   id?: string
   dispatchNumber: string
   status?: $Enums.DispatchStatus
@@ -1365,9 +1762,12 @@ export type DispatchCreateWithoutInstallationJobInput = {
   qualityInspection: Prisma.QualityInspectionCreateNestedOneWithoutDispatchInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDispatchesInput
   serviceContracts?: Prisma.ServiceContractCreateNestedManyWithoutDispatchInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventCreateNestedManyWithoutDispatchInput
 }
 
-export type DispatchUncheckedCreateWithoutInstallationJobInput = {
+export type DispatchUncheckedCreateWithoutSalesOrderInput = {
   id?: string
   dispatchNumber: string
   productionOrderId: string
@@ -1390,6 +1790,137 @@ export type DispatchUncheckedCreateWithoutInstallationJobInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   serviceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutDispatchInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsUncheckedCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedCreateNestedManyWithoutDispatchInput
+}
+
+export type DispatchCreateOrConnectWithoutSalesOrderInput = {
+  where: Prisma.DispatchWhereUniqueInput
+  create: Prisma.XOR<Prisma.DispatchCreateWithoutSalesOrderInput, Prisma.DispatchUncheckedCreateWithoutSalesOrderInput>
+}
+
+export type DispatchUpsertWithoutSalesOrderInput = {
+  update: Prisma.XOR<Prisma.DispatchUpdateWithoutSalesOrderInput, Prisma.DispatchUncheckedUpdateWithoutSalesOrderInput>
+  create: Prisma.XOR<Prisma.DispatchCreateWithoutSalesOrderInput, Prisma.DispatchUncheckedCreateWithoutSalesOrderInput>
+  where?: Prisma.DispatchWhereInput
+}
+
+export type DispatchUpdateToOneWithWhereWithoutSalesOrderInput = {
+  where?: Prisma.DispatchWhereInput
+  data: Prisma.XOR<Prisma.DispatchUpdateWithoutSalesOrderInput, Prisma.DispatchUncheckedUpdateWithoutSalesOrderInput>
+}
+
+export type DispatchUpdateWithoutSalesOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
+  transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
+  dispatchDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  transporterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destination?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  packageCount?: Prisma.IntFieldUpdateOperationsInput | number
+  totalWeight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutDispatchNestedInput
+  qualityInspection?: Prisma.QualityInspectionUpdateOneRequiredWithoutDispatchNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedDispatchesNestedInput
+  serviceContracts?: Prisma.ServiceContractUpdateManyWithoutDispatchNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUpdateManyWithoutDispatchNestedInput
+}
+
+export type DispatchUncheckedUpdateWithoutSalesOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  qualityInspectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
+  transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
+  dispatchDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  transporterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicleNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackingNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destination?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  packageCount?: Prisma.IntFieldUpdateOperationsInput | number
+  totalWeight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutDispatchNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUncheckedUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedUpdateManyWithoutDispatchNestedInput
+}
+
+export type DispatchCreateWithoutInstallationJobInput = {
+  id?: string
+  dispatchNumber: string
+  status?: $Enums.DispatchStatus
+  transportMode?: $Enums.TransportMode
+  dispatchDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  actualDeliveryDate?: Date | string | null
+  transporterName?: string | null
+  vehicleNumber?: string | null
+  trackingNumber?: string | null
+  destination: string
+  contactPerson?: string | null
+  contactPhone?: string | null
+  packageCount?: number
+  totalWeight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  productionOrder: Prisma.ProductionOrderCreateNestedOneWithoutDispatchInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutDispatchInput
+  qualityInspection: Prisma.QualityInspectionCreateNestedOneWithoutDispatchInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedDispatchesInput
+  serviceContracts?: Prisma.ServiceContractCreateNestedManyWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventCreateNestedManyWithoutDispatchInput
+}
+
+export type DispatchUncheckedCreateWithoutInstallationJobInput = {
+  id?: string
+  dispatchNumber: string
+  productionOrderId: string
+  salesOrderId?: string | null
+  qualityInspectionId: string
+  status?: $Enums.DispatchStatus
+  transportMode?: $Enums.TransportMode
+  dispatchDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  actualDeliveryDate?: Date | string | null
+  transporterName?: string | null
+  vehicleNumber?: string | null
+  trackingNumber?: string | null
+  destination: string
+  contactPerson?: string | null
+  contactPhone?: string | null
+  packageCount?: number
+  totalWeight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  serviceContracts?: Prisma.ServiceContractUncheckedCreateNestedManyWithoutDispatchInput
+  logistics?: Prisma.DispatchLogisticsUncheckedCreateNestedOneWithoutDispatchInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedCreateNestedManyWithoutDispatchInput
 }
 
 export type DispatchCreateOrConnectWithoutInstallationJobInput = {
@@ -1428,15 +1959,19 @@ export type DispatchUpdateWithoutInstallationJobInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutDispatchNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutDispatchNestedInput
   qualityInspection?: Prisma.QualityInspectionUpdateOneRequiredWithoutDispatchNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedDispatchesNestedInput
   serviceContracts?: Prisma.ServiceContractUpdateManyWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUpdateManyWithoutDispatchNestedInput
 }
 
 export type DispatchUncheckedUpdateWithoutInstallationJobInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
   productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualityInspectionId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
@@ -1456,12 +1991,15 @@ export type DispatchUncheckedUpdateWithoutInstallationJobInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUncheckedUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedUpdateManyWithoutDispatchNestedInput
 }
 
 export type DispatchCreateManyCreatedByInput = {
   id?: string
   dispatchNumber: string
   productionOrderId: string
+  salesOrderId?: string | null
   qualityInspectionId: string
   status?: $Enums.DispatchStatus
   transportMode?: $Enums.TransportMode
@@ -1501,15 +2039,19 @@ export type DispatchUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   productionOrder?: Prisma.ProductionOrderUpdateOneRequiredWithoutDispatchNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutDispatchNestedInput
   qualityInspection?: Prisma.QualityInspectionUpdateOneRequiredWithoutDispatchNestedInput
   serviceContracts?: Prisma.ServiceContractUpdateManyWithoutDispatchNestedInput
   installationJob?: Prisma.InstallationJobUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUpdateManyWithoutDispatchNestedInput
 }
 
 export type DispatchUncheckedUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
   productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualityInspectionId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
@@ -1529,12 +2071,15 @@ export type DispatchUncheckedUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceContracts?: Prisma.ServiceContractUncheckedUpdateManyWithoutDispatchNestedInput
   installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutDispatchNestedInput
+  logistics?: Prisma.DispatchLogisticsUncheckedUpdateOneWithoutDispatchNestedInput
+  trackingEvents?: Prisma.DispatchTrackingEventUncheckedUpdateManyWithoutDispatchNestedInput
 }
 
 export type DispatchUncheckedUpdateManyWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchNumber?: Prisma.StringFieldUpdateOperationsInput | string
   productionOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualityInspectionId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDispatchStatusFieldUpdateOperationsInput | $Enums.DispatchStatus
   transportMode?: Prisma.EnumTransportModeFieldUpdateOperationsInput | $Enums.TransportMode
@@ -1561,10 +2106,12 @@ export type DispatchUncheckedUpdateManyWithoutCreatedByInput = {
 
 export type DispatchCountOutputType = {
   serviceContracts: number
+  trackingEvents: number
 }
 
 export type DispatchCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   serviceContracts?: boolean | DispatchCountOutputTypeCountServiceContractsArgs
+  trackingEvents?: boolean | DispatchCountOutputTypeCountTrackingEventsArgs
 }
 
 /**
@@ -1584,11 +2131,19 @@ export type DispatchCountOutputTypeCountServiceContractsArgs<ExtArgs extends run
   where?: Prisma.ServiceContractWhereInput
 }
 
+/**
+ * DispatchCountOutputType without action
+ */
+export type DispatchCountOutputTypeCountTrackingEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DispatchTrackingEventWhereInput
+}
+
 
 export type DispatchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   dispatchNumber?: boolean
   productionOrderId?: boolean
+  salesOrderId?: boolean
   qualityInspectionId?: boolean
   status?: boolean
   transportMode?: boolean
@@ -1608,10 +2163,13 @@ export type DispatchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.Dispatch$salesOrderArgs<ExtArgs>
   qualityInspection?: boolean | Prisma.QualityInspectionDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Dispatch$createdByArgs<ExtArgs>
   serviceContracts?: boolean | Prisma.Dispatch$serviceContractsArgs<ExtArgs>
   installationJob?: boolean | Prisma.Dispatch$installationJobArgs<ExtArgs>
+  logistics?: boolean | Prisma.Dispatch$logisticsArgs<ExtArgs>
+  trackingEvents?: boolean | Prisma.Dispatch$trackingEventsArgs<ExtArgs>
   _count?: boolean | Prisma.DispatchCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["dispatch"]>
 
@@ -1619,6 +2177,7 @@ export type DispatchSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   dispatchNumber?: boolean
   productionOrderId?: boolean
+  salesOrderId?: boolean
   qualityInspectionId?: boolean
   status?: boolean
   transportMode?: boolean
@@ -1638,6 +2197,7 @@ export type DispatchSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   createdAt?: boolean
   updatedAt?: boolean
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.Dispatch$salesOrderArgs<ExtArgs>
   qualityInspection?: boolean | Prisma.QualityInspectionDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Dispatch$createdByArgs<ExtArgs>
 }, ExtArgs["result"]["dispatch"]>
@@ -1646,6 +2206,7 @@ export type DispatchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   dispatchNumber?: boolean
   productionOrderId?: boolean
+  salesOrderId?: boolean
   qualityInspectionId?: boolean
   status?: boolean
   transportMode?: boolean
@@ -1665,6 +2226,7 @@ export type DispatchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   createdAt?: boolean
   updatedAt?: boolean
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.Dispatch$salesOrderArgs<ExtArgs>
   qualityInspection?: boolean | Prisma.QualityInspectionDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Dispatch$createdByArgs<ExtArgs>
 }, ExtArgs["result"]["dispatch"]>
@@ -1673,6 +2235,7 @@ export type DispatchSelectScalar = {
   id?: boolean
   dispatchNumber?: boolean
   productionOrderId?: boolean
+  salesOrderId?: boolean
   qualityInspectionId?: boolean
   status?: boolean
   transportMode?: boolean
@@ -1693,22 +2256,27 @@ export type DispatchSelectScalar = {
   updatedAt?: boolean
 }
 
-export type DispatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dispatchNumber" | "productionOrderId" | "qualityInspectionId" | "status" | "transportMode" | "dispatchDate" | "expectedDeliveryDate" | "actualDeliveryDate" | "transporterName" | "vehicleNumber" | "trackingNumber" | "destination" | "contactPerson" | "contactPhone" | "packageCount" | "totalWeight" | "notes" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["dispatch"]>
+export type DispatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dispatchNumber" | "productionOrderId" | "salesOrderId" | "qualityInspectionId" | "status" | "transportMode" | "dispatchDate" | "expectedDeliveryDate" | "actualDeliveryDate" | "transporterName" | "vehicleNumber" | "trackingNumber" | "destination" | "contactPerson" | "contactPhone" | "packageCount" | "totalWeight" | "notes" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["dispatch"]>
 export type DispatchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.Dispatch$salesOrderArgs<ExtArgs>
   qualityInspection?: boolean | Prisma.QualityInspectionDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Dispatch$createdByArgs<ExtArgs>
   serviceContracts?: boolean | Prisma.Dispatch$serviceContractsArgs<ExtArgs>
   installationJob?: boolean | Prisma.Dispatch$installationJobArgs<ExtArgs>
+  logistics?: boolean | Prisma.Dispatch$logisticsArgs<ExtArgs>
+  trackingEvents?: boolean | Prisma.Dispatch$trackingEventsArgs<ExtArgs>
   _count?: boolean | Prisma.DispatchCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DispatchIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.Dispatch$salesOrderArgs<ExtArgs>
   qualityInspection?: boolean | Prisma.QualityInspectionDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Dispatch$createdByArgs<ExtArgs>
 }
 export type DispatchIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   productionOrder?: boolean | Prisma.ProductionOrderDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.Dispatch$salesOrderArgs<ExtArgs>
   qualityInspection?: boolean | Prisma.QualityInspectionDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Dispatch$createdByArgs<ExtArgs>
 }
@@ -1717,15 +2285,19 @@ export type $DispatchPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Dispatch"
   objects: {
     productionOrder: Prisma.$ProductionOrderPayload<ExtArgs>
+    salesOrder: Prisma.$SalesOrderPayload<ExtArgs> | null
     qualityInspection: Prisma.$QualityInspectionPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     serviceContracts: Prisma.$ServiceContractPayload<ExtArgs>[]
     installationJob: Prisma.$InstallationJobPayload<ExtArgs> | null
+    logistics: Prisma.$DispatchLogisticsPayload<ExtArgs> | null
+    trackingEvents: Prisma.$DispatchTrackingEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     dispatchNumber: string
     productionOrderId: string
+    salesOrderId: string | null
     qualityInspectionId: string
     status: $Enums.DispatchStatus
     transportMode: $Enums.TransportMode
@@ -2139,10 +2711,13 @@ readonly fields: DispatchFieldRefs;
 export interface Prisma__DispatchClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   productionOrder<T extends Prisma.ProductionOrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductionOrderDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductionOrderClient<runtime.Types.Result.GetResult<Prisma.$ProductionOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  salesOrder<T extends Prisma.Dispatch$salesOrderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dispatch$salesOrderArgs<ExtArgs>>): Prisma.Prisma__SalesOrderClient<runtime.Types.Result.GetResult<Prisma.$SalesOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   qualityInspection<T extends Prisma.QualityInspectionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QualityInspectionDefaultArgs<ExtArgs>>): Prisma.Prisma__QualityInspectionClient<runtime.Types.Result.GetResult<Prisma.$QualityInspectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.Dispatch$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dispatch$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   serviceContracts<T extends Prisma.Dispatch$serviceContractsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dispatch$serviceContractsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServiceContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   installationJob<T extends Prisma.Dispatch$installationJobArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dispatch$installationJobArgs<ExtArgs>>): Prisma.Prisma__InstallationJobClient<runtime.Types.Result.GetResult<Prisma.$InstallationJobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  logistics<T extends Prisma.Dispatch$logisticsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dispatch$logisticsArgs<ExtArgs>>): Prisma.Prisma__DispatchLogisticsClient<runtime.Types.Result.GetResult<Prisma.$DispatchLogisticsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  trackingEvents<T extends Prisma.Dispatch$trackingEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dispatch$trackingEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DispatchTrackingEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2175,6 +2750,7 @@ export interface DispatchFieldRefs {
   readonly id: Prisma.FieldRef<"Dispatch", 'String'>
   readonly dispatchNumber: Prisma.FieldRef<"Dispatch", 'String'>
   readonly productionOrderId: Prisma.FieldRef<"Dispatch", 'String'>
+  readonly salesOrderId: Prisma.FieldRef<"Dispatch", 'String'>
   readonly qualityInspectionId: Prisma.FieldRef<"Dispatch", 'String'>
   readonly status: Prisma.FieldRef<"Dispatch", 'DispatchStatus'>
   readonly transportMode: Prisma.FieldRef<"Dispatch", 'TransportMode'>
@@ -2594,6 +3170,25 @@ export type DispatchDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
+ * Dispatch.salesOrder
+ */
+export type Dispatch$salesOrderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SalesOrder
+   */
+  select?: Prisma.SalesOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SalesOrder
+   */
+  omit?: Prisma.SalesOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalesOrderInclude<ExtArgs> | null
+  where?: Prisma.SalesOrderWhereInput
+}
+
+/**
  * Dispatch.createdBy
  */
 export type Dispatch$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2653,6 +3248,49 @@ export type Dispatch$installationJobArgs<ExtArgs extends runtime.Types.Extension
    */
   include?: Prisma.InstallationJobInclude<ExtArgs> | null
   where?: Prisma.InstallationJobWhereInput
+}
+
+/**
+ * Dispatch.logistics
+ */
+export type Dispatch$logisticsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DispatchLogistics
+   */
+  select?: Prisma.DispatchLogisticsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DispatchLogistics
+   */
+  omit?: Prisma.DispatchLogisticsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DispatchLogisticsInclude<ExtArgs> | null
+  where?: Prisma.DispatchLogisticsWhereInput
+}
+
+/**
+ * Dispatch.trackingEvents
+ */
+export type Dispatch$trackingEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DispatchTrackingEvent
+   */
+  select?: Prisma.DispatchTrackingEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DispatchTrackingEvent
+   */
+  omit?: Prisma.DispatchTrackingEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DispatchTrackingEventInclude<ExtArgs> | null
+  where?: Prisma.DispatchTrackingEventWhereInput
+  orderBy?: Prisma.DispatchTrackingEventOrderByWithRelationInput | Prisma.DispatchTrackingEventOrderByWithRelationInput[]
+  cursor?: Prisma.DispatchTrackingEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DispatchTrackingEventScalarFieldEnum | Prisma.DispatchTrackingEventScalarFieldEnum[]
 }
 
 /**

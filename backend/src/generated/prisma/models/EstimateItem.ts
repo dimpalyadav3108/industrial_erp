@@ -52,6 +52,10 @@ export type EstimateItemMinAggregateOutputType = {
   sortOrder: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  category: $Enums.RawMaterialCategory | null
+  process: $Enums.FabricationProcess | null
+  testType: $Enums.TestingType | null
+  logisticsType: $Enums.LogisticsType | null
 }
 
 export type EstimateItemMaxAggregateOutputType = {
@@ -66,6 +70,10 @@ export type EstimateItemMaxAggregateOutputType = {
   sortOrder: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  category: $Enums.RawMaterialCategory | null
+  process: $Enums.FabricationProcess | null
+  testType: $Enums.TestingType | null
+  logisticsType: $Enums.LogisticsType | null
 }
 
 export type EstimateItemCountAggregateOutputType = {
@@ -80,6 +88,10 @@ export type EstimateItemCountAggregateOutputType = {
   sortOrder: number
   createdAt: number
   updatedAt: number
+  category: number
+  process: number
+  testType: number
+  logisticsType: number
   _all: number
 }
 
@@ -110,6 +122,10 @@ export type EstimateItemMinAggregateInputType = {
   sortOrder?: true
   createdAt?: true
   updatedAt?: true
+  category?: true
+  process?: true
+  testType?: true
+  logisticsType?: true
 }
 
 export type EstimateItemMaxAggregateInputType = {
@@ -124,6 +140,10 @@ export type EstimateItemMaxAggregateInputType = {
   sortOrder?: true
   createdAt?: true
   updatedAt?: true
+  category?: true
+  process?: true
+  testType?: true
+  logisticsType?: true
 }
 
 export type EstimateItemCountAggregateInputType = {
@@ -138,6 +158,10 @@ export type EstimateItemCountAggregateInputType = {
   sortOrder?: true
   createdAt?: true
   updatedAt?: true
+  category?: true
+  process?: true
+  testType?: true
+  logisticsType?: true
   _all?: true
 }
 
@@ -239,6 +263,10 @@ export type EstimateItemGroupByOutputType = {
   sortOrder: number
   createdAt: Date
   updatedAt: Date
+  category: $Enums.RawMaterialCategory | null
+  process: $Enums.FabricationProcess | null
+  testType: $Enums.TestingType | null
+  logisticsType: $Enums.LogisticsType | null
   _count: EstimateItemCountAggregateOutputType | null
   _avg: EstimateItemAvgAggregateOutputType | null
   _sum: EstimateItemSumAggregateOutputType | null
@@ -276,6 +304,10 @@ export type EstimateItemWhereInput = {
   sortOrder?: Prisma.IntFilter<"EstimateItem"> | number
   createdAt?: Prisma.DateTimeFilter<"EstimateItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EstimateItem"> | Date | string
+  category?: Prisma.EnumRawMaterialCategoryNullableFilter<"EstimateItem"> | $Enums.RawMaterialCategory | null
+  process?: Prisma.EnumFabricationProcessNullableFilter<"EstimateItem"> | $Enums.FabricationProcess | null
+  testType?: Prisma.EnumTestingTypeNullableFilter<"EstimateItem"> | $Enums.TestingType | null
+  logisticsType?: Prisma.EnumLogisticsTypeNullableFilter<"EstimateItem"> | $Enums.LogisticsType | null
   estimate?: Prisma.XOR<Prisma.EstimateScalarRelationFilter, Prisma.EstimateWhereInput>
 }
 
@@ -291,6 +323,10 @@ export type EstimateItemOrderByWithRelationInput = {
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  category?: Prisma.SortOrderInput | Prisma.SortOrder
+  process?: Prisma.SortOrderInput | Prisma.SortOrder
+  testType?: Prisma.SortOrderInput | Prisma.SortOrder
+  logisticsType?: Prisma.SortOrderInput | Prisma.SortOrder
   estimate?: Prisma.EstimateOrderByWithRelationInput
 }
 
@@ -309,6 +345,10 @@ export type EstimateItemWhereUniqueInput = Prisma.AtLeast<{
   sortOrder?: Prisma.IntFilter<"EstimateItem"> | number
   createdAt?: Prisma.DateTimeFilter<"EstimateItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EstimateItem"> | Date | string
+  category?: Prisma.EnumRawMaterialCategoryNullableFilter<"EstimateItem"> | $Enums.RawMaterialCategory | null
+  process?: Prisma.EnumFabricationProcessNullableFilter<"EstimateItem"> | $Enums.FabricationProcess | null
+  testType?: Prisma.EnumTestingTypeNullableFilter<"EstimateItem"> | $Enums.TestingType | null
+  logisticsType?: Prisma.EnumLogisticsTypeNullableFilter<"EstimateItem"> | $Enums.LogisticsType | null
   estimate?: Prisma.XOR<Prisma.EstimateScalarRelationFilter, Prisma.EstimateWhereInput>
 }, "id">
 
@@ -324,6 +364,10 @@ export type EstimateItemOrderByWithAggregationInput = {
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  category?: Prisma.SortOrderInput | Prisma.SortOrder
+  process?: Prisma.SortOrderInput | Prisma.SortOrder
+  testType?: Prisma.SortOrderInput | Prisma.SortOrder
+  logisticsType?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EstimateItemCountOrderByAggregateInput
   _avg?: Prisma.EstimateItemAvgOrderByAggregateInput
   _max?: Prisma.EstimateItemMaxOrderByAggregateInput
@@ -346,6 +390,10 @@ export type EstimateItemScalarWhereWithAggregatesInput = {
   sortOrder?: Prisma.IntWithAggregatesFilter<"EstimateItem"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"EstimateItem"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"EstimateItem"> | Date | string
+  category?: Prisma.EnumRawMaterialCategoryNullableWithAggregatesFilter<"EstimateItem"> | $Enums.RawMaterialCategory | null
+  process?: Prisma.EnumFabricationProcessNullableWithAggregatesFilter<"EstimateItem"> | $Enums.FabricationProcess | null
+  testType?: Prisma.EnumTestingTypeNullableWithAggregatesFilter<"EstimateItem"> | $Enums.TestingType | null
+  logisticsType?: Prisma.EnumLogisticsTypeNullableWithAggregatesFilter<"EstimateItem"> | $Enums.LogisticsType | null
 }
 
 export type EstimateItemCreateInput = {
@@ -359,6 +407,10 @@ export type EstimateItemCreateInput = {
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  category?: $Enums.RawMaterialCategory | null
+  process?: $Enums.FabricationProcess | null
+  testType?: $Enums.TestingType | null
+  logisticsType?: $Enums.LogisticsType | null
   estimate: Prisma.EstimateCreateNestedOneWithoutItemsInput
 }
 
@@ -374,6 +426,10 @@ export type EstimateItemUncheckedCreateInput = {
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  category?: $Enums.RawMaterialCategory | null
+  process?: $Enums.FabricationProcess | null
+  testType?: $Enums.TestingType | null
+  logisticsType?: $Enums.LogisticsType | null
 }
 
 export type EstimateItemUpdateInput = {
@@ -387,6 +443,10 @@ export type EstimateItemUpdateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.NullableEnumRawMaterialCategoryFieldUpdateOperationsInput | $Enums.RawMaterialCategory | null
+  process?: Prisma.NullableEnumFabricationProcessFieldUpdateOperationsInput | $Enums.FabricationProcess | null
+  testType?: Prisma.NullableEnumTestingTypeFieldUpdateOperationsInput | $Enums.TestingType | null
+  logisticsType?: Prisma.NullableEnumLogisticsTypeFieldUpdateOperationsInput | $Enums.LogisticsType | null
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutItemsNestedInput
 }
 
@@ -402,6 +462,10 @@ export type EstimateItemUncheckedUpdateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.NullableEnumRawMaterialCategoryFieldUpdateOperationsInput | $Enums.RawMaterialCategory | null
+  process?: Prisma.NullableEnumFabricationProcessFieldUpdateOperationsInput | $Enums.FabricationProcess | null
+  testType?: Prisma.NullableEnumTestingTypeFieldUpdateOperationsInput | $Enums.TestingType | null
+  logisticsType?: Prisma.NullableEnumLogisticsTypeFieldUpdateOperationsInput | $Enums.LogisticsType | null
 }
 
 export type EstimateItemCreateManyInput = {
@@ -416,6 +480,10 @@ export type EstimateItemCreateManyInput = {
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  category?: $Enums.RawMaterialCategory | null
+  process?: $Enums.FabricationProcess | null
+  testType?: $Enums.TestingType | null
+  logisticsType?: $Enums.LogisticsType | null
 }
 
 export type EstimateItemUpdateManyMutationInput = {
@@ -429,6 +497,10 @@ export type EstimateItemUpdateManyMutationInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.NullableEnumRawMaterialCategoryFieldUpdateOperationsInput | $Enums.RawMaterialCategory | null
+  process?: Prisma.NullableEnumFabricationProcessFieldUpdateOperationsInput | $Enums.FabricationProcess | null
+  testType?: Prisma.NullableEnumTestingTypeFieldUpdateOperationsInput | $Enums.TestingType | null
+  logisticsType?: Prisma.NullableEnumLogisticsTypeFieldUpdateOperationsInput | $Enums.LogisticsType | null
 }
 
 export type EstimateItemUncheckedUpdateManyInput = {
@@ -443,6 +515,10 @@ export type EstimateItemUncheckedUpdateManyInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.NullableEnumRawMaterialCategoryFieldUpdateOperationsInput | $Enums.RawMaterialCategory | null
+  process?: Prisma.NullableEnumFabricationProcessFieldUpdateOperationsInput | $Enums.FabricationProcess | null
+  testType?: Prisma.NullableEnumTestingTypeFieldUpdateOperationsInput | $Enums.TestingType | null
+  logisticsType?: Prisma.NullableEnumLogisticsTypeFieldUpdateOperationsInput | $Enums.LogisticsType | null
 }
 
 export type EstimateItemListRelationFilter = {
@@ -467,6 +543,10 @@ export type EstimateItemCountOrderByAggregateInput = {
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  process?: Prisma.SortOrder
+  testType?: Prisma.SortOrder
+  logisticsType?: Prisma.SortOrder
 }
 
 export type EstimateItemAvgOrderByAggregateInput = {
@@ -488,6 +568,10 @@ export type EstimateItemMaxOrderByAggregateInput = {
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  process?: Prisma.SortOrder
+  testType?: Prisma.SortOrder
+  logisticsType?: Prisma.SortOrder
 }
 
 export type EstimateItemMinOrderByAggregateInput = {
@@ -502,6 +586,10 @@ export type EstimateItemMinOrderByAggregateInput = {
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  process?: Prisma.SortOrder
+  testType?: Prisma.SortOrder
+  logisticsType?: Prisma.SortOrder
 }
 
 export type EstimateItemSumOrderByAggregateInput = {
@@ -553,6 +641,22 @@ export type EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput = {
   deleteMany?: Prisma.EstimateItemScalarWhereInput | Prisma.EstimateItemScalarWhereInput[]
 }
 
+export type NullableEnumRawMaterialCategoryFieldUpdateOperationsInput = {
+  set?: $Enums.RawMaterialCategory | null
+}
+
+export type NullableEnumFabricationProcessFieldUpdateOperationsInput = {
+  set?: $Enums.FabricationProcess | null
+}
+
+export type NullableEnumTestingTypeFieldUpdateOperationsInput = {
+  set?: $Enums.TestingType | null
+}
+
+export type NullableEnumLogisticsTypeFieldUpdateOperationsInput = {
+  set?: $Enums.LogisticsType | null
+}
+
 export type EstimateItemCreateWithoutEstimateInput = {
   id?: string
   itemType: string
@@ -564,6 +668,10 @@ export type EstimateItemCreateWithoutEstimateInput = {
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  category?: $Enums.RawMaterialCategory | null
+  process?: $Enums.FabricationProcess | null
+  testType?: $Enums.TestingType | null
+  logisticsType?: $Enums.LogisticsType | null
 }
 
 export type EstimateItemUncheckedCreateWithoutEstimateInput = {
@@ -577,6 +685,10 @@ export type EstimateItemUncheckedCreateWithoutEstimateInput = {
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  category?: $Enums.RawMaterialCategory | null
+  process?: $Enums.FabricationProcess | null
+  testType?: $Enums.TestingType | null
+  logisticsType?: $Enums.LogisticsType | null
 }
 
 export type EstimateItemCreateOrConnectWithoutEstimateInput = {
@@ -620,6 +732,10 @@ export type EstimateItemScalarWhereInput = {
   sortOrder?: Prisma.IntFilter<"EstimateItem"> | number
   createdAt?: Prisma.DateTimeFilter<"EstimateItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EstimateItem"> | Date | string
+  category?: Prisma.EnumRawMaterialCategoryNullableFilter<"EstimateItem"> | $Enums.RawMaterialCategory | null
+  process?: Prisma.EnumFabricationProcessNullableFilter<"EstimateItem"> | $Enums.FabricationProcess | null
+  testType?: Prisma.EnumTestingTypeNullableFilter<"EstimateItem"> | $Enums.TestingType | null
+  logisticsType?: Prisma.EnumLogisticsTypeNullableFilter<"EstimateItem"> | $Enums.LogisticsType | null
 }
 
 export type EstimateItemCreateManyEstimateInput = {
@@ -633,6 +749,10 @@ export type EstimateItemCreateManyEstimateInput = {
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  category?: $Enums.RawMaterialCategory | null
+  process?: $Enums.FabricationProcess | null
+  testType?: $Enums.TestingType | null
+  logisticsType?: $Enums.LogisticsType | null
 }
 
 export type EstimateItemUpdateWithoutEstimateInput = {
@@ -646,6 +766,10 @@ export type EstimateItemUpdateWithoutEstimateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.NullableEnumRawMaterialCategoryFieldUpdateOperationsInput | $Enums.RawMaterialCategory | null
+  process?: Prisma.NullableEnumFabricationProcessFieldUpdateOperationsInput | $Enums.FabricationProcess | null
+  testType?: Prisma.NullableEnumTestingTypeFieldUpdateOperationsInput | $Enums.TestingType | null
+  logisticsType?: Prisma.NullableEnumLogisticsTypeFieldUpdateOperationsInput | $Enums.LogisticsType | null
 }
 
 export type EstimateItemUncheckedUpdateWithoutEstimateInput = {
@@ -659,6 +783,10 @@ export type EstimateItemUncheckedUpdateWithoutEstimateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.NullableEnumRawMaterialCategoryFieldUpdateOperationsInput | $Enums.RawMaterialCategory | null
+  process?: Prisma.NullableEnumFabricationProcessFieldUpdateOperationsInput | $Enums.FabricationProcess | null
+  testType?: Prisma.NullableEnumTestingTypeFieldUpdateOperationsInput | $Enums.TestingType | null
+  logisticsType?: Prisma.NullableEnumLogisticsTypeFieldUpdateOperationsInput | $Enums.LogisticsType | null
 }
 
 export type EstimateItemUncheckedUpdateManyWithoutEstimateInput = {
@@ -672,6 +800,10 @@ export type EstimateItemUncheckedUpdateManyWithoutEstimateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.NullableEnumRawMaterialCategoryFieldUpdateOperationsInput | $Enums.RawMaterialCategory | null
+  process?: Prisma.NullableEnumFabricationProcessFieldUpdateOperationsInput | $Enums.FabricationProcess | null
+  testType?: Prisma.NullableEnumTestingTypeFieldUpdateOperationsInput | $Enums.TestingType | null
+  logisticsType?: Prisma.NullableEnumLogisticsTypeFieldUpdateOperationsInput | $Enums.LogisticsType | null
 }
 
 
@@ -688,6 +820,10 @@ export type EstimateItemSelect<ExtArgs extends runtime.Types.Extensions.Internal
   sortOrder?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  category?: boolean
+  process?: boolean
+  testType?: boolean
+  logisticsType?: boolean
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["estimateItem"]>
 
@@ -703,6 +839,10 @@ export type EstimateItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   sortOrder?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  category?: boolean
+  process?: boolean
+  testType?: boolean
+  logisticsType?: boolean
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["estimateItem"]>
 
@@ -718,6 +858,10 @@ export type EstimateItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   sortOrder?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  category?: boolean
+  process?: boolean
+  testType?: boolean
+  logisticsType?: boolean
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["estimateItem"]>
 
@@ -733,9 +877,13 @@ export type EstimateItemSelectScalar = {
   sortOrder?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  category?: boolean
+  process?: boolean
+  testType?: boolean
+  logisticsType?: boolean
 }
 
-export type EstimateItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estimateId" | "itemType" | "description" | "quantity" | "unit" | "unitRate" | "amount" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["estimateItem"]>
+export type EstimateItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estimateId" | "itemType" | "description" | "quantity" | "unit" | "unitRate" | "amount" | "sortOrder" | "createdAt" | "updatedAt" | "category" | "process" | "testType" | "logisticsType", ExtArgs["result"]["estimateItem"]>
 export type EstimateItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
 }
@@ -763,6 +911,10 @@ export type $EstimateItemPayload<ExtArgs extends runtime.Types.Extensions.Intern
     sortOrder: number
     createdAt: Date
     updatedAt: Date
+    category: $Enums.RawMaterialCategory | null
+    process: $Enums.FabricationProcess | null
+    testType: $Enums.TestingType | null
+    logisticsType: $Enums.LogisticsType | null
   }, ExtArgs["result"]["estimateItem"]>
   composites: {}
 }
@@ -1198,6 +1350,10 @@ export interface EstimateItemFieldRefs {
   readonly sortOrder: Prisma.FieldRef<"EstimateItem", 'Int'>
   readonly createdAt: Prisma.FieldRef<"EstimateItem", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"EstimateItem", 'DateTime'>
+  readonly category: Prisma.FieldRef<"EstimateItem", 'RawMaterialCategory'>
+  readonly process: Prisma.FieldRef<"EstimateItem", 'FabricationProcess'>
+  readonly testType: Prisma.FieldRef<"EstimateItem", 'TestingType'>
+  readonly logisticsType: Prisma.FieldRef<"EstimateItem", 'LogisticsType'>
 }
     
 

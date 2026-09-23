@@ -80,3 +80,43 @@ export interface DispatchResponse {
   data: Dispatch;
   message?: string;
 }
+
+
+export type LogisticsStage = "FG_READY" | "PACKING" | "LOADING" | "DISPATCHED" | "DELIVERED";
+export interface DispatchTrackingEvent {
+  id: string;
+  status: string;
+  location: string | null;
+  remarks: string | null;
+  eventAt: string;
+  createdById: string | null;
+  createdAt: string;
+}
+export interface DispatchLogistics {
+  id: string;
+  dispatchId: string;
+  stage: LogisticsStage;
+  fgReadyAt: string | null;
+  packedAt: string | null;
+  loadedAt: string | null;
+  dispatchedAt: string | null;
+  deliveredAt: string | null;
+  deliveryStatus: string;
+  ewayBillNumber: string | null;
+  ewayBillDate: string | null;
+  eInvoiceNumber: string | null;
+  eInvoiceDate: string | null;
+  lrNumber: string | null;
+  lrDate: string | null;
+  vehicleTrackingUrl: string | null;
+  vehicleTrackingNote: string | null;
+  packingListUrl: string | null;
+  lrCopyUrl: string | null;
+  podUrl: string | null;
+  podReceivedAt: string | null;
+  notes: string | null;
+}
+export interface DispatchWithLogistics extends Dispatch {
+  logistics: DispatchLogistics | null;
+  trackingEvents: DispatchTrackingEvent[];
+}

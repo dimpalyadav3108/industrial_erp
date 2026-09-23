@@ -85,3 +85,10 @@ export const updateQuotationStatus = async (
   return (result as QuotationResponse).data;
 };
 
+
+export const updateQuotationCustomerApproval = async (quotationId: string, payload: { status: "APPROVED" | "REJECTED"; reference?: string; notes?: string }): Promise<Quotation> => {
+  const response = await fetch(`${API_URL}/quotations/${quotationId}/customer-approval`, { method: "PATCH", headers: headers(true), body: JSON.stringify(payload) });
+  const result = (await response.json()) as QuotationResponse | ApiErrorResponse;
+  if (!response.ok) throw new Error(result.message || "Unable to update customer approval");
+  return (result as QuotationResponse).data;
+};

@@ -1,12 +1,13 @@
 import {useCallback,useEffect,useMemo,useState} from "react";
 import type {FormEvent} from "react";
 import {CircleCheck,Eye,Factory,PauseCircle,Plus,Search,Trash2,X,Wrench,Play} from "lucide-react";
-import {createJobCard,createMachine,createProductionOrder,createWorkCenter,getProductionOrders,getWorkCenters,updateJobCard,updateProductionOperation,updateProductionOrderStatus} from "../services/production.service";
+import {createJobCard,createMachine,createProductionOrder,createWorkCenter,getProductionOrders, getProductionPlanning,getWorkCenters,updateJobCard,updateProductionOperation,updateProductionOrderStatus} from "../services/production.service";
 import {getQuotations} from "../services/quotation.service";
 import type {CreateProductionOperationPayload,JobCardStatus,ProductionOperationStatus,ProductionOrder,ProductionOrderStatus,ProductionPriority,WorkCenter} from "../types/production";
 import type {Quotation} from "../types/quotation";
 import "./ProductionPage.css";
 import ProductionTraceabilityPanel from "./ProductionTraceabilityPanel";
+import ShopFloorDashboardPanel from "./ShopFloorDashboardPanel";
 const ol:Record<ProductionOrderStatus,string>={PLANNED:"Planned",RELEASED:"Released",IN_PROGRESS:"In progress",ON_HOLD:"On hold",COMPLETED:"Completed",CANCELLED:"Cancelled"};
 const opl:Record<ProductionOperationStatus,string>={PENDING:"Pending",IN_PROGRESS:"In progress",COMPLETED:"Completed",SKIPPED:"Skipped"};
 const pl:Record<ProductionPriority,string>={LOW:"Low",MEDIUM:"Medium",HIGH:"High",URGENT:"Urgent"};
@@ -14,6 +15,21 @@ const date=(v:string|null)=>v?new Intl.DateTimeFormat("en-IN",{day:"2-digit",mon
 const api=(v:string)=>new Date(`${v}T00:00:00.000Z`).toISOString();
 const blank=():CreateProductionOperationPayload=>({name:"",workCenter:""});
 const initial=():CreateProductionOperationPayload[]=>[{name:"Engineering and drawing approval",workCenter:"Engineering"},{name:"Panel assembly and wiring",workCenter:"Assembly"},{name:"Testing and quality inspection",workCenter:"Testing"}];
+
+
+function PPCPlanningPanel(){
+ const [data,setData]=useState<any>(null); const [loading,setLoading]=useState(false);
+ const load=async()=>{setLoading(true);try{setData(await getProductionPlanning())}finally{setLoading(false)}};
+ useEffect(()=>{void load()},[]);
+ if(loading&&!data)return <div className="directory-card"><div className="empty-state">Loading PPC planning...</div></div>;
+ if(!data)return null;
+ const stages=[['Fabrication',data.stages.fabrication],['Assembly',data.stages.assembly],['Testing',data.stages.testing],['Painting',data.stages.painting],['Packing',data.stages.packing],['Dispatch',data.stages.dispatch]];
+ return <div className="directory-card ppc-planning-panel"><div className="directory-header"><div><span className="page-eyebrow">MODULE 8 · PPC</span><h2>Production Planning & MRP</h2><p>Plan work orders, allocate capacity, identify material shortages and sequence shop-floor stages.</p></div><button className="secondary-action" onClick={()=>void load()}>Refresh</button></div>
+ <div className="production-summary-grid">{[['Open production orders',data.mrp.openOrders],['Material shortages',data.mrp.materialShortages],['Planned operation hours',Number(data.mrp.plannedOperationHours).toFixed(1)],['Work centers',data.workCenters.length]].map(([a,b])=><article key={String(a)}><Factory size={23}/><div><strong>{b}</strong><span>{a}</span></div></article>)}</div>
+ <div className="ppc-grid"><div><h3>Production stage plan</h3><div className="stage-plan">{stages.map(([name,count])=><div key={String(name)}><span>{name}</span><b>{count}</b></div>)}</div></div><div><h3>Work center capacity</h3><div className="capacity-list">{data.workCenters.map((w:any)=><div key={w.id}><div><b>{w.code} · {w.name}</b><span>{w.plannedHours} / {w.availableHours || 0} hrs</span></div><progress max="100" value={Math.min(w.utilizationPercent,100)}/><small>{w.utilizationPercent}% planned capacity</small></div>)}</div></div></div>
+ <div className="ppc-shortages"><h3>MRP / material shortage</h3>{data.shortages.length?<div className="table-scroll"><table className="data-table"><thead><tr><th>Item</th><th>Stock</th><th>Reorder</th><th>Shortage</th><th>Location</th></tr></thead><tbody>{data.shortages.map((x:any)=><tr key={x.id}><td><b>{x.itemCode}</b><small>{x.name}</small></td><td>{x.currentStock} {x.unit}</td><td>{x.reorderLevel} {x.unit}</td><td className="bad">{x.shortageQuantity} {x.unit}</td><td>{x.location||'—'}</td></tr>)}</tbody></table></div>:<div className="empty-state">No material shortage against current reorder levels.</div>}</div>
+ </div>
+}
 
 export default function ProductionPage(){
  const[orders,setOrders]=useState<ProductionOrder[]>([]),[quotes,setQuotes]=useState<Quotation[]>([]),[centers,setCenters]=useState<WorkCenter[]>([]);
@@ -33,6 +49,8 @@ export default function ProductionPage(){
  async function addJob(opId:string){if(!selected)return;try{setBusy(opId);await createJobCard({productionOrderId:selected.id,operationId:opId});await load(search);const fresh=(await getProductionOrders(search)).find(o=>o.id===selected.id);if(fresh)setSelected(fresh)}catch(e){setError(e instanceof Error?e.message:"Unable to create job card")}finally{setBusy(null)}}
  async function job(id:string,status:JobCardStatus){try{setBusy(id);await updateJobCard(id,{status});const all=await getProductionOrders(search);setOrders(all);const fresh=all.find(o=>o.id===selected?.id);if(fresh)setSelected(fresh)}catch(e){setError(e instanceof Error?e.message:"Unable to update job card")}finally{setBusy(null)}}
  return <section className="module-page production-page">
+  <PPCPlanningPanel />
+  <ShopFloorDashboardPanel />
   <div className="module-heading"><div><span className="page-eyebrow">SHOP FLOOR CONTROL</span><h1>Advanced Production</h1><p>Production orders, work centers, machines, job cards and shop-floor execution.</p></div><div className="production-actions"><button className="secondary-action" onClick={()=>setManage(true)}><Wrench size={18}/> Work centers</button><button className="primary-action" onClick={()=>{reset();setShow(true)}}><Plus size={19}/> New production order</button></div></div>
   <div className="production-summary-grid">{[["Total orders",summary.total],["Planned / released",summary.planned],["In progress",summary.active],["On hold",summary.held],["Completed",summary.completed]].map(([a,b])=><article key={a}><Factory size={23}/><div><strong>{b}</strong><span>{a}</span></div></article>)}</div>
   <div className="directory-card"><div className="directory-header"><div><h2>Production register</h2><p>{orders.length} records shown</p></div><form className="directory-search" onSubmit={e=>{e.preventDefault();void load(search)}}><Search size={19}/><input value={search} placeholder="Search production..." onChange={e=>setSearch(e.target.value)}/><button>Search</button></form></div>

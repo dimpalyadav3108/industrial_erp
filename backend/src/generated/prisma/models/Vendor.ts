@@ -53,6 +53,9 @@ export type VendorMinAggregateOutputType = {
   deliveryTerms: string | null
   rating: runtime.Decimal | null
   status: $Enums.VendorStatus | null
+  category: $Enums.VendorCategory | null
+  portalEnabled: boolean | null
+  portalLastLogin: Date | null
   notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -77,6 +80,9 @@ export type VendorMaxAggregateOutputType = {
   deliveryTerms: string | null
   rating: runtime.Decimal | null
   status: $Enums.VendorStatus | null
+  category: $Enums.VendorCategory | null
+  portalEnabled: boolean | null
+  portalLastLogin: Date | null
   notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -101,6 +107,9 @@ export type VendorCountAggregateOutputType = {
   deliveryTerms: number
   rating: number
   status: number
+  category: number
+  portalEnabled: number
+  portalLastLogin: number
   notes: number
   createdAt: number
   updatedAt: number
@@ -135,6 +144,9 @@ export type VendorMinAggregateInputType = {
   deliveryTerms?: true
   rating?: true
   status?: true
+  category?: true
+  portalEnabled?: true
+  portalLastLogin?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
@@ -159,6 +171,9 @@ export type VendorMaxAggregateInputType = {
   deliveryTerms?: true
   rating?: true
   status?: true
+  category?: true
+  portalEnabled?: true
+  portalLastLogin?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
@@ -183,6 +198,9 @@ export type VendorCountAggregateInputType = {
   deliveryTerms?: true
   rating?: true
   status?: true
+  category?: true
+  portalEnabled?: true
+  portalLastLogin?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
@@ -294,6 +312,9 @@ export type VendorGroupByOutputType = {
   deliveryTerms: string | null
   rating: runtime.Decimal | null
   status: $Enums.VendorStatus
+  category: $Enums.VendorCategory
+  portalEnabled: boolean
+  portalLastLogin: Date | null
   notes: string | null
   createdAt: Date
   updatedAt: Date
@@ -341,6 +362,9 @@ export type VendorWhereInput = {
   deliveryTerms?: Prisma.StringNullableFilter<"Vendor"> | string | null
   rating?: Prisma.DecimalNullableFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFilter<"Vendor"> | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFilter<"Vendor"> | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFilter<"Vendor"> | boolean
+  portalLastLogin?: Prisma.DateTimeNullableFilter<"Vendor"> | Date | string | null
   notes?: Prisma.StringNullableFilter<"Vendor"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Vendor"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Vendor"> | Date | string
@@ -351,6 +375,8 @@ export type VendorWhereInput = {
   financeBills?: Prisma.VendorBillListRelationFilter
   financePayments?: Prisma.VendorPaymentListRelationFilter
   financeExpenses?: Prisma.FinanceExpenseListRelationFilter
+  portalDocuments?: Prisma.VendorPortalDocumentListRelationFilter
+  ratingEntries?: Prisma.VendorRatingEntryListRelationFilter
 }
 
 export type VendorOrderByWithRelationInput = {
@@ -372,6 +398,9 @@ export type VendorOrderByWithRelationInput = {
   deliveryTerms?: Prisma.SortOrderInput | Prisma.SortOrder
   rating?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  portalEnabled?: Prisma.SortOrder
+  portalLastLogin?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -382,6 +411,8 @@ export type VendorOrderByWithRelationInput = {
   financeBills?: Prisma.VendorBillOrderByRelationAggregateInput
   financePayments?: Prisma.VendorPaymentOrderByRelationAggregateInput
   financeExpenses?: Prisma.FinanceExpenseOrderByRelationAggregateInput
+  portalDocuments?: Prisma.VendorPortalDocumentOrderByRelationAggregateInput
+  ratingEntries?: Prisma.VendorRatingEntryOrderByRelationAggregateInput
 }
 
 export type VendorWhereUniqueInput = Prisma.AtLeast<{
@@ -406,6 +437,9 @@ export type VendorWhereUniqueInput = Prisma.AtLeast<{
   deliveryTerms?: Prisma.StringNullableFilter<"Vendor"> | string | null
   rating?: Prisma.DecimalNullableFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFilter<"Vendor"> | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFilter<"Vendor"> | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFilter<"Vendor"> | boolean
+  portalLastLogin?: Prisma.DateTimeNullableFilter<"Vendor"> | Date | string | null
   notes?: Prisma.StringNullableFilter<"Vendor"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Vendor"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Vendor"> | Date | string
@@ -416,6 +450,8 @@ export type VendorWhereUniqueInput = Prisma.AtLeast<{
   financeBills?: Prisma.VendorBillListRelationFilter
   financePayments?: Prisma.VendorPaymentListRelationFilter
   financeExpenses?: Prisma.FinanceExpenseListRelationFilter
+  portalDocuments?: Prisma.VendorPortalDocumentListRelationFilter
+  ratingEntries?: Prisma.VendorRatingEntryListRelationFilter
 }, "id" | "vendorCode">
 
 export type VendorOrderByWithAggregationInput = {
@@ -437,6 +473,9 @@ export type VendorOrderByWithAggregationInput = {
   deliveryTerms?: Prisma.SortOrderInput | Prisma.SortOrder
   rating?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  portalEnabled?: Prisma.SortOrder
+  portalLastLogin?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -469,6 +508,9 @@ export type VendorScalarWhereWithAggregatesInput = {
   deliveryTerms?: Prisma.StringNullableWithAggregatesFilter<"Vendor"> | string | null
   rating?: Prisma.DecimalNullableWithAggregatesFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusWithAggregatesFilter<"Vendor"> | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryWithAggregatesFilter<"Vendor"> | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolWithAggregatesFilter<"Vendor"> | boolean
+  portalLastLogin?: Prisma.DateTimeNullableWithAggregatesFilter<"Vendor"> | Date | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"Vendor"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Vendor"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Vendor"> | Date | string
@@ -493,6 +535,9 @@ export type VendorCreateInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -503,6 +548,8 @@ export type VendorCreateInput = {
   financeBills?: Prisma.VendorBillCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateInput = {
@@ -524,6 +571,9 @@ export type VendorUncheckedCreateInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -534,6 +584,8 @@ export type VendorUncheckedCreateInput = {
   financeBills?: Prisma.VendorBillUncheckedCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentUncheckedCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUpdateInput = {
@@ -555,6 +607,9 @@ export type VendorUpdateInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -565,6 +620,8 @@ export type VendorUpdateInput = {
   financeBills?: Prisma.VendorBillUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateInput = {
@@ -586,6 +643,9 @@ export type VendorUncheckedUpdateInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -596,6 +656,8 @@ export type VendorUncheckedUpdateInput = {
   financeBills?: Prisma.VendorBillUncheckedUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUncheckedUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateManyInput = {
@@ -617,6 +679,9 @@ export type VendorCreateManyInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -641,6 +706,9 @@ export type VendorUpdateManyMutationInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -665,6 +733,9 @@ export type VendorUncheckedUpdateManyInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -689,6 +760,9 @@ export type VendorCountOrderByAggregateInput = {
   deliveryTerms?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  portalEnabled?: Prisma.SortOrder
+  portalLastLogin?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -717,6 +791,9 @@ export type VendorMaxOrderByAggregateInput = {
   deliveryTerms?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  portalEnabled?: Prisma.SortOrder
+  portalLastLogin?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -741,6 +818,9 @@ export type VendorMinOrderByAggregateInput = {
   deliveryTerms?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  portalEnabled?: Prisma.SortOrder
+  portalLastLogin?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -762,6 +842,38 @@ export type VendorNullableScalarRelationFilter = {
 
 export type EnumVendorStatusFieldUpdateOperationsInput = {
   set?: $Enums.VendorStatus
+}
+
+export type EnumVendorCategoryFieldUpdateOperationsInput = {
+  set?: $Enums.VendorCategory
+}
+
+export type VendorCreateNestedOneWithoutPortalDocumentsInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutPortalDocumentsInput, Prisma.VendorUncheckedCreateWithoutPortalDocumentsInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutPortalDocumentsInput
+  connect?: Prisma.VendorWhereUniqueInput
+}
+
+export type VendorUpdateOneRequiredWithoutPortalDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutPortalDocumentsInput, Prisma.VendorUncheckedCreateWithoutPortalDocumentsInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutPortalDocumentsInput
+  upsert?: Prisma.VendorUpsertWithoutPortalDocumentsInput
+  connect?: Prisma.VendorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutPortalDocumentsInput, Prisma.VendorUpdateWithoutPortalDocumentsInput>, Prisma.VendorUncheckedUpdateWithoutPortalDocumentsInput>
+}
+
+export type VendorCreateNestedOneWithoutRatingEntriesInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutRatingEntriesInput, Prisma.VendorUncheckedCreateWithoutRatingEntriesInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutRatingEntriesInput
+  connect?: Prisma.VendorWhereUniqueInput
+}
+
+export type VendorUpdateOneRequiredWithoutRatingEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutRatingEntriesInput, Prisma.VendorUncheckedCreateWithoutRatingEntriesInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutRatingEntriesInput
+  upsert?: Prisma.VendorUpsertWithoutRatingEntriesInput
+  connect?: Prisma.VendorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutRatingEntriesInput, Prisma.VendorUpdateWithoutRatingEntriesInput>, Prisma.VendorUncheckedUpdateWithoutRatingEntriesInput>
 }
 
 export type VendorCreateNestedOneWithoutRfqInvitationsInput = {
@@ -864,6 +976,318 @@ export type VendorUpdateOneWithoutFinanceExpensesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutFinanceExpensesInput, Prisma.VendorUpdateWithoutFinanceExpensesInput>, Prisma.VendorUncheckedUpdateWithoutFinanceExpensesInput>
 }
 
+export type VendorCreateWithoutPortalDocumentsInput = {
+  id?: string
+  vendorCode: string
+  name: string
+  contactPerson?: string | null
+  email?: string | null
+  phone?: string | null
+  alternatePhone?: string | null
+  gstNumber?: string | null
+  panNumber?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string
+  postalCode?: string | null
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  rfqInvitations?: Prisma.ProcurementRfqVendorCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.VendorQuotationCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutVendorInput
+  goodsReceipts?: Prisma.GoodsReceiptNoteCreateNestedManyWithoutVendorInput
+  financeBills?: Prisma.VendorBillCreateNestedManyWithoutVendorInput
+  financePayments?: Prisma.VendorPaymentCreateNestedManyWithoutVendorInput
+  financeExpenses?: Prisma.FinanceExpenseCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryCreateNestedManyWithoutVendorInput
+}
+
+export type VendorUncheckedCreateWithoutPortalDocumentsInput = {
+  id?: string
+  vendorCode: string
+  name: string
+  contactPerson?: string | null
+  email?: string | null
+  phone?: string | null
+  alternatePhone?: string | null
+  gstNumber?: string | null
+  panNumber?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string
+  postalCode?: string | null
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  rfqInvitations?: Prisma.ProcurementRfqVendorUncheckedCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.VendorQuotationUncheckedCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutVendorInput
+  goodsReceipts?: Prisma.GoodsReceiptNoteUncheckedCreateNestedManyWithoutVendorInput
+  financeBills?: Prisma.VendorBillUncheckedCreateNestedManyWithoutVendorInput
+  financePayments?: Prisma.VendorPaymentUncheckedCreateNestedManyWithoutVendorInput
+  financeExpenses?: Prisma.FinanceExpenseUncheckedCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedCreateNestedManyWithoutVendorInput
+}
+
+export type VendorCreateOrConnectWithoutPortalDocumentsInput = {
+  where: Prisma.VendorWhereUniqueInput
+  create: Prisma.XOR<Prisma.VendorCreateWithoutPortalDocumentsInput, Prisma.VendorUncheckedCreateWithoutPortalDocumentsInput>
+}
+
+export type VendorUpsertWithoutPortalDocumentsInput = {
+  update: Prisma.XOR<Prisma.VendorUpdateWithoutPortalDocumentsInput, Prisma.VendorUncheckedUpdateWithoutPortalDocumentsInput>
+  create: Prisma.XOR<Prisma.VendorCreateWithoutPortalDocumentsInput, Prisma.VendorUncheckedCreateWithoutPortalDocumentsInput>
+  where?: Prisma.VendorWhereInput
+}
+
+export type VendorUpdateToOneWithWhereWithoutPortalDocumentsInput = {
+  where?: Prisma.VendorWhereInput
+  data: Prisma.XOR<Prisma.VendorUpdateWithoutPortalDocumentsInput, Prisma.VendorUncheckedUpdateWithoutPortalDocumentsInput>
+}
+
+export type VendorUpdateWithoutPortalDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  panNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rfqInvitations?: Prisma.ProcurementRfqVendorUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.VendorQuotationUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutVendorNestedInput
+  goodsReceipts?: Prisma.GoodsReceiptNoteUpdateManyWithoutVendorNestedInput
+  financeBills?: Prisma.VendorBillUpdateManyWithoutVendorNestedInput
+  financePayments?: Prisma.VendorPaymentUpdateManyWithoutVendorNestedInput
+  financeExpenses?: Prisma.FinanceExpenseUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUpdateManyWithoutVendorNestedInput
+}
+
+export type VendorUncheckedUpdateWithoutPortalDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  panNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rfqInvitations?: Prisma.ProcurementRfqVendorUncheckedUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.VendorQuotationUncheckedUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutVendorNestedInput
+  goodsReceipts?: Prisma.GoodsReceiptNoteUncheckedUpdateManyWithoutVendorNestedInput
+  financeBills?: Prisma.VendorBillUncheckedUpdateManyWithoutVendorNestedInput
+  financePayments?: Prisma.VendorPaymentUncheckedUpdateManyWithoutVendorNestedInput
+  financeExpenses?: Prisma.FinanceExpenseUncheckedUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedUpdateManyWithoutVendorNestedInput
+}
+
+export type VendorCreateWithoutRatingEntriesInput = {
+  id?: string
+  vendorCode: string
+  name: string
+  contactPerson?: string | null
+  email?: string | null
+  phone?: string | null
+  alternatePhone?: string | null
+  gstNumber?: string | null
+  panNumber?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string
+  postalCode?: string | null
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  rfqInvitations?: Prisma.ProcurementRfqVendorCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.VendorQuotationCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutVendorInput
+  goodsReceipts?: Prisma.GoodsReceiptNoteCreateNestedManyWithoutVendorInput
+  financeBills?: Prisma.VendorBillCreateNestedManyWithoutVendorInput
+  financePayments?: Prisma.VendorPaymentCreateNestedManyWithoutVendorInput
+  financeExpenses?: Prisma.FinanceExpenseCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentCreateNestedManyWithoutVendorInput
+}
+
+export type VendorUncheckedCreateWithoutRatingEntriesInput = {
+  id?: string
+  vendorCode: string
+  name: string
+  contactPerson?: string | null
+  email?: string | null
+  phone?: string | null
+  alternatePhone?: string | null
+  gstNumber?: string | null
+  panNumber?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string
+  postalCode?: string | null
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  rfqInvitations?: Prisma.ProcurementRfqVendorUncheckedCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.VendorQuotationUncheckedCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutVendorInput
+  goodsReceipts?: Prisma.GoodsReceiptNoteUncheckedCreateNestedManyWithoutVendorInput
+  financeBills?: Prisma.VendorBillUncheckedCreateNestedManyWithoutVendorInput
+  financePayments?: Prisma.VendorPaymentUncheckedCreateNestedManyWithoutVendorInput
+  financeExpenses?: Prisma.FinanceExpenseUncheckedCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedCreateNestedManyWithoutVendorInput
+}
+
+export type VendorCreateOrConnectWithoutRatingEntriesInput = {
+  where: Prisma.VendorWhereUniqueInput
+  create: Prisma.XOR<Prisma.VendorCreateWithoutRatingEntriesInput, Prisma.VendorUncheckedCreateWithoutRatingEntriesInput>
+}
+
+export type VendorUpsertWithoutRatingEntriesInput = {
+  update: Prisma.XOR<Prisma.VendorUpdateWithoutRatingEntriesInput, Prisma.VendorUncheckedUpdateWithoutRatingEntriesInput>
+  create: Prisma.XOR<Prisma.VendorCreateWithoutRatingEntriesInput, Prisma.VendorUncheckedCreateWithoutRatingEntriesInput>
+  where?: Prisma.VendorWhereInput
+}
+
+export type VendorUpdateToOneWithWhereWithoutRatingEntriesInput = {
+  where?: Prisma.VendorWhereInput
+  data: Prisma.XOR<Prisma.VendorUpdateWithoutRatingEntriesInput, Prisma.VendorUncheckedUpdateWithoutRatingEntriesInput>
+}
+
+export type VendorUpdateWithoutRatingEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  panNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rfqInvitations?: Prisma.ProcurementRfqVendorUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.VendorQuotationUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutVendorNestedInput
+  goodsReceipts?: Prisma.GoodsReceiptNoteUpdateManyWithoutVendorNestedInput
+  financeBills?: Prisma.VendorBillUpdateManyWithoutVendorNestedInput
+  financePayments?: Prisma.VendorPaymentUpdateManyWithoutVendorNestedInput
+  financeExpenses?: Prisma.FinanceExpenseUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUpdateManyWithoutVendorNestedInput
+}
+
+export type VendorUncheckedUpdateWithoutRatingEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  panNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rfqInvitations?: Prisma.ProcurementRfqVendorUncheckedUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.VendorQuotationUncheckedUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutVendorNestedInput
+  goodsReceipts?: Prisma.GoodsReceiptNoteUncheckedUpdateManyWithoutVendorNestedInput
+  financeBills?: Prisma.VendorBillUncheckedUpdateManyWithoutVendorNestedInput
+  financePayments?: Prisma.VendorPaymentUncheckedUpdateManyWithoutVendorNestedInput
+  financeExpenses?: Prisma.FinanceExpenseUncheckedUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedUpdateManyWithoutVendorNestedInput
+}
+
 export type VendorCreateWithoutRfqInvitationsInput = {
   id?: string
   vendorCode: string
@@ -883,6 +1307,9 @@ export type VendorCreateWithoutRfqInvitationsInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -892,6 +1319,8 @@ export type VendorCreateWithoutRfqInvitationsInput = {
   financeBills?: Prisma.VendorBillCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutRfqInvitationsInput = {
@@ -913,6 +1342,9 @@ export type VendorUncheckedCreateWithoutRfqInvitationsInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -922,6 +1354,8 @@ export type VendorUncheckedCreateWithoutRfqInvitationsInput = {
   financeBills?: Prisma.VendorBillUncheckedCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentUncheckedCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutRfqInvitationsInput = {
@@ -959,6 +1393,9 @@ export type VendorUpdateWithoutRfqInvitationsInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -968,6 +1405,8 @@ export type VendorUpdateWithoutRfqInvitationsInput = {
   financeBills?: Prisma.VendorBillUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutRfqInvitationsInput = {
@@ -989,6 +1428,9 @@ export type VendorUncheckedUpdateWithoutRfqInvitationsInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -998,6 +1440,8 @@ export type VendorUncheckedUpdateWithoutRfqInvitationsInput = {
   financeBills?: Prisma.VendorBillUncheckedUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUncheckedUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutQuotationsInput = {
@@ -1019,6 +1463,9 @@ export type VendorCreateWithoutQuotationsInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1028,6 +1475,8 @@ export type VendorCreateWithoutQuotationsInput = {
   financeBills?: Prisma.VendorBillCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutQuotationsInput = {
@@ -1049,6 +1498,9 @@ export type VendorUncheckedCreateWithoutQuotationsInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1058,6 +1510,8 @@ export type VendorUncheckedCreateWithoutQuotationsInput = {
   financeBills?: Prisma.VendorBillUncheckedCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentUncheckedCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutQuotationsInput = {
@@ -1095,6 +1549,9 @@ export type VendorUpdateWithoutQuotationsInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1104,6 +1561,8 @@ export type VendorUpdateWithoutQuotationsInput = {
   financeBills?: Prisma.VendorBillUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutQuotationsInput = {
@@ -1125,6 +1584,9 @@ export type VendorUncheckedUpdateWithoutQuotationsInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1134,6 +1596,8 @@ export type VendorUncheckedUpdateWithoutQuotationsInput = {
   financeBills?: Prisma.VendorBillUncheckedUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUncheckedUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutPurchaseOrdersInput = {
@@ -1155,6 +1619,9 @@ export type VendorCreateWithoutPurchaseOrdersInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1164,6 +1631,8 @@ export type VendorCreateWithoutPurchaseOrdersInput = {
   financeBills?: Prisma.VendorBillCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutPurchaseOrdersInput = {
@@ -1185,6 +1654,9 @@ export type VendorUncheckedCreateWithoutPurchaseOrdersInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1194,6 +1666,8 @@ export type VendorUncheckedCreateWithoutPurchaseOrdersInput = {
   financeBills?: Prisma.VendorBillUncheckedCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentUncheckedCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutPurchaseOrdersInput = {
@@ -1231,6 +1705,9 @@ export type VendorUpdateWithoutPurchaseOrdersInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1240,6 +1717,8 @@ export type VendorUpdateWithoutPurchaseOrdersInput = {
   financeBills?: Prisma.VendorBillUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutPurchaseOrdersInput = {
@@ -1261,6 +1740,9 @@ export type VendorUncheckedUpdateWithoutPurchaseOrdersInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1270,6 +1752,8 @@ export type VendorUncheckedUpdateWithoutPurchaseOrdersInput = {
   financeBills?: Prisma.VendorBillUncheckedUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUncheckedUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutGoodsReceiptsInput = {
@@ -1291,6 +1775,9 @@ export type VendorCreateWithoutGoodsReceiptsInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1300,6 +1787,8 @@ export type VendorCreateWithoutGoodsReceiptsInput = {
   financeBills?: Prisma.VendorBillCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutGoodsReceiptsInput = {
@@ -1321,6 +1810,9 @@ export type VendorUncheckedCreateWithoutGoodsReceiptsInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1330,6 +1822,8 @@ export type VendorUncheckedCreateWithoutGoodsReceiptsInput = {
   financeBills?: Prisma.VendorBillUncheckedCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentUncheckedCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutGoodsReceiptsInput = {
@@ -1367,6 +1861,9 @@ export type VendorUpdateWithoutGoodsReceiptsInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1376,6 +1873,8 @@ export type VendorUpdateWithoutGoodsReceiptsInput = {
   financeBills?: Prisma.VendorBillUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutGoodsReceiptsInput = {
@@ -1397,6 +1896,9 @@ export type VendorUncheckedUpdateWithoutGoodsReceiptsInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1406,6 +1908,8 @@ export type VendorUncheckedUpdateWithoutGoodsReceiptsInput = {
   financeBills?: Prisma.VendorBillUncheckedUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUncheckedUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutFinanceBillsInput = {
@@ -1427,6 +1931,9 @@ export type VendorCreateWithoutFinanceBillsInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1436,6 +1943,8 @@ export type VendorCreateWithoutFinanceBillsInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutFinanceBillsInput = {
@@ -1457,6 +1966,9 @@ export type VendorUncheckedCreateWithoutFinanceBillsInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1466,6 +1978,8 @@ export type VendorUncheckedCreateWithoutFinanceBillsInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteUncheckedCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentUncheckedCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutFinanceBillsInput = {
@@ -1503,6 +2017,9 @@ export type VendorUpdateWithoutFinanceBillsInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1512,6 +2029,8 @@ export type VendorUpdateWithoutFinanceBillsInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutFinanceBillsInput = {
@@ -1533,6 +2052,9 @@ export type VendorUncheckedUpdateWithoutFinanceBillsInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1542,6 +2064,8 @@ export type VendorUncheckedUpdateWithoutFinanceBillsInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteUncheckedUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUncheckedUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutFinancePaymentsInput = {
@@ -1563,6 +2087,9 @@ export type VendorCreateWithoutFinancePaymentsInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1572,6 +2099,8 @@ export type VendorCreateWithoutFinancePaymentsInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteCreateNestedManyWithoutVendorInput
   financeBills?: Prisma.VendorBillCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutFinancePaymentsInput = {
@@ -1593,6 +2122,9 @@ export type VendorUncheckedCreateWithoutFinancePaymentsInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1602,6 +2134,8 @@ export type VendorUncheckedCreateWithoutFinancePaymentsInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteUncheckedCreateNestedManyWithoutVendorInput
   financeBills?: Prisma.VendorBillUncheckedCreateNestedManyWithoutVendorInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutFinancePaymentsInput = {
@@ -1639,6 +2173,9 @@ export type VendorUpdateWithoutFinancePaymentsInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1648,6 +2185,8 @@ export type VendorUpdateWithoutFinancePaymentsInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteUpdateManyWithoutVendorNestedInput
   financeBills?: Prisma.VendorBillUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutFinancePaymentsInput = {
@@ -1669,6 +2208,9 @@ export type VendorUncheckedUpdateWithoutFinancePaymentsInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1678,6 +2220,8 @@ export type VendorUncheckedUpdateWithoutFinancePaymentsInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteUncheckedUpdateManyWithoutVendorNestedInput
   financeBills?: Prisma.VendorBillUncheckedUpdateManyWithoutVendorNestedInput
   financeExpenses?: Prisma.FinanceExpenseUncheckedUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutFinanceExpensesInput = {
@@ -1699,6 +2243,9 @@ export type VendorCreateWithoutFinanceExpensesInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1708,6 +2255,8 @@ export type VendorCreateWithoutFinanceExpensesInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteCreateNestedManyWithoutVendorInput
   financeBills?: Prisma.VendorBillCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutFinanceExpensesInput = {
@@ -1729,6 +2278,9 @@ export type VendorUncheckedCreateWithoutFinanceExpensesInput = {
   deliveryTerms?: string | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.VendorStatus
+  category?: $Enums.VendorCategory
+  portalEnabled?: boolean
+  portalLastLogin?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1738,6 +2290,8 @@ export type VendorUncheckedCreateWithoutFinanceExpensesInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteUncheckedCreateNestedManyWithoutVendorInput
   financeBills?: Prisma.VendorBillUncheckedCreateNestedManyWithoutVendorInput
   financePayments?: Prisma.VendorPaymentUncheckedCreateNestedManyWithoutVendorInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedCreateNestedManyWithoutVendorInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutFinanceExpensesInput = {
@@ -1775,6 +2329,9 @@ export type VendorUpdateWithoutFinanceExpensesInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1784,6 +2341,8 @@ export type VendorUpdateWithoutFinanceExpensesInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteUpdateManyWithoutVendorNestedInput
   financeBills?: Prisma.VendorBillUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutFinanceExpensesInput = {
@@ -1805,6 +2364,9 @@ export type VendorUncheckedUpdateWithoutFinanceExpensesInput = {
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  category?: Prisma.EnumVendorCategoryFieldUpdateOperationsInput | $Enums.VendorCategory
+  portalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  portalLastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1814,6 +2376,8 @@ export type VendorUncheckedUpdateWithoutFinanceExpensesInput = {
   goodsReceipts?: Prisma.GoodsReceiptNoteUncheckedUpdateManyWithoutVendorNestedInput
   financeBills?: Prisma.VendorBillUncheckedUpdateManyWithoutVendorNestedInput
   financePayments?: Prisma.VendorPaymentUncheckedUpdateManyWithoutVendorNestedInput
+  portalDocuments?: Prisma.VendorPortalDocumentUncheckedUpdateManyWithoutVendorNestedInput
+  ratingEntries?: Prisma.VendorRatingEntryUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 
@@ -1829,6 +2393,8 @@ export type VendorCountOutputType = {
   financeBills: number
   financePayments: number
   financeExpenses: number
+  portalDocuments: number
+  ratingEntries: number
 }
 
 export type VendorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1839,6 +2405,8 @@ export type VendorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   financeBills?: boolean | VendorCountOutputTypeCountFinanceBillsArgs
   financePayments?: boolean | VendorCountOutputTypeCountFinancePaymentsArgs
   financeExpenses?: boolean | VendorCountOutputTypeCountFinanceExpensesArgs
+  portalDocuments?: boolean | VendorCountOutputTypeCountPortalDocumentsArgs
+  ratingEntries?: boolean | VendorCountOutputTypeCountRatingEntriesArgs
 }
 
 /**
@@ -1900,6 +2468,20 @@ export type VendorCountOutputTypeCountFinanceExpensesArgs<ExtArgs extends runtim
   where?: Prisma.FinanceExpenseWhereInput
 }
 
+/**
+ * VendorCountOutputType without action
+ */
+export type VendorCountOutputTypeCountPortalDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VendorPortalDocumentWhereInput
+}
+
+/**
+ * VendorCountOutputType without action
+ */
+export type VendorCountOutputTypeCountRatingEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VendorRatingEntryWhereInput
+}
+
 
 export type VendorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1920,6 +2502,9 @@ export type VendorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   deliveryTerms?: boolean
   rating?: boolean
   status?: boolean
+  category?: boolean
+  portalEnabled?: boolean
+  portalLastLogin?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1930,6 +2515,8 @@ export type VendorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   financeBills?: boolean | Prisma.Vendor$financeBillsArgs<ExtArgs>
   financePayments?: boolean | Prisma.Vendor$financePaymentsArgs<ExtArgs>
   financeExpenses?: boolean | Prisma.Vendor$financeExpensesArgs<ExtArgs>
+  portalDocuments?: boolean | Prisma.Vendor$portalDocumentsArgs<ExtArgs>
+  ratingEntries?: boolean | Prisma.Vendor$ratingEntriesArgs<ExtArgs>
   _count?: boolean | Prisma.VendorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vendor"]>
 
@@ -1952,6 +2539,9 @@ export type VendorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   deliveryTerms?: boolean
   rating?: boolean
   status?: boolean
+  category?: boolean
+  portalEnabled?: boolean
+  portalLastLogin?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1976,6 +2566,9 @@ export type VendorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   deliveryTerms?: boolean
   rating?: boolean
   status?: boolean
+  category?: boolean
+  portalEnabled?: boolean
+  portalLastLogin?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -2000,12 +2593,15 @@ export type VendorSelectScalar = {
   deliveryTerms?: boolean
   rating?: boolean
   status?: boolean
+  category?: boolean
+  portalEnabled?: boolean
+  portalLastLogin?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type VendorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "vendorCode" | "name" | "contactPerson" | "email" | "phone" | "alternatePhone" | "gstNumber" | "panNumber" | "address" | "city" | "state" | "country" | "postalCode" | "paymentTerms" | "deliveryTerms" | "rating" | "status" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["vendor"]>
+export type VendorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "vendorCode" | "name" | "contactPerson" | "email" | "phone" | "alternatePhone" | "gstNumber" | "panNumber" | "address" | "city" | "state" | "country" | "postalCode" | "paymentTerms" | "deliveryTerms" | "rating" | "status" | "category" | "portalEnabled" | "portalLastLogin" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["vendor"]>
 export type VendorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rfqInvitations?: boolean | Prisma.Vendor$rfqInvitationsArgs<ExtArgs>
   quotations?: boolean | Prisma.Vendor$quotationsArgs<ExtArgs>
@@ -2014,6 +2610,8 @@ export type VendorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   financeBills?: boolean | Prisma.Vendor$financeBillsArgs<ExtArgs>
   financePayments?: boolean | Prisma.Vendor$financePaymentsArgs<ExtArgs>
   financeExpenses?: boolean | Prisma.Vendor$financeExpensesArgs<ExtArgs>
+  portalDocuments?: boolean | Prisma.Vendor$portalDocumentsArgs<ExtArgs>
+  ratingEntries?: boolean | Prisma.Vendor$ratingEntriesArgs<ExtArgs>
   _count?: boolean | Prisma.VendorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VendorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2029,6 +2627,8 @@ export type $VendorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     financeBills: Prisma.$VendorBillPayload<ExtArgs>[]
     financePayments: Prisma.$VendorPaymentPayload<ExtArgs>[]
     financeExpenses: Prisma.$FinanceExpensePayload<ExtArgs>[]
+    portalDocuments: Prisma.$VendorPortalDocumentPayload<ExtArgs>[]
+    ratingEntries: Prisma.$VendorRatingEntryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2049,6 +2649,9 @@ export type $VendorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     deliveryTerms: string | null
     rating: runtime.Decimal | null
     status: $Enums.VendorStatus
+    category: $Enums.VendorCategory
+    portalEnabled: boolean
+    portalLastLogin: Date | null
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -2453,6 +3056,8 @@ export interface Prisma__VendorClient<T, Null = never, ExtArgs extends runtime.T
   financeBills<T extends Prisma.Vendor$financeBillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$financeBillsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendorBillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   financePayments<T extends Prisma.Vendor$financePaymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$financePaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendorPaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   financeExpenses<T extends Prisma.Vendor$financeExpensesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$financeExpensesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FinanceExpensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  portalDocuments<T extends Prisma.Vendor$portalDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$portalDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendorPortalDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ratingEntries<T extends Prisma.Vendor$ratingEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$ratingEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendorRatingEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2500,6 +3105,9 @@ export interface VendorFieldRefs {
   readonly deliveryTerms: Prisma.FieldRef<"Vendor", 'String'>
   readonly rating: Prisma.FieldRef<"Vendor", 'Decimal'>
   readonly status: Prisma.FieldRef<"Vendor", 'VendorStatus'>
+  readonly category: Prisma.FieldRef<"Vendor", 'VendorCategory'>
+  readonly portalEnabled: Prisma.FieldRef<"Vendor", 'Boolean'>
+  readonly portalLastLogin: Prisma.FieldRef<"Vendor", 'DateTime'>
   readonly notes: Prisma.FieldRef<"Vendor", 'String'>
   readonly createdAt: Prisma.FieldRef<"Vendor", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Vendor", 'DateTime'>
@@ -3061,6 +3669,54 @@ export type Vendor$financeExpensesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.FinanceExpenseScalarFieldEnum | Prisma.FinanceExpenseScalarFieldEnum[]
+}
+
+/**
+ * Vendor.portalDocuments
+ */
+export type Vendor$portalDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VendorPortalDocument
+   */
+  select?: Prisma.VendorPortalDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VendorPortalDocument
+   */
+  omit?: Prisma.VendorPortalDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VendorPortalDocumentInclude<ExtArgs> | null
+  where?: Prisma.VendorPortalDocumentWhereInput
+  orderBy?: Prisma.VendorPortalDocumentOrderByWithRelationInput | Prisma.VendorPortalDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.VendorPortalDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VendorPortalDocumentScalarFieldEnum | Prisma.VendorPortalDocumentScalarFieldEnum[]
+}
+
+/**
+ * Vendor.ratingEntries
+ */
+export type Vendor$ratingEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VendorRatingEntry
+   */
+  select?: Prisma.VendorRatingEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VendorRatingEntry
+   */
+  omit?: Prisma.VendorRatingEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VendorRatingEntryInclude<ExtArgs> | null
+  where?: Prisma.VendorRatingEntryWhereInput
+  orderBy?: Prisma.VendorRatingEntryOrderByWithRelationInput | Prisma.VendorRatingEntryOrderByWithRelationInput[]
+  cursor?: Prisma.VendorRatingEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VendorRatingEntryScalarFieldEnum | Prisma.VendorRatingEntryScalarFieldEnum[]
 }
 
 /**

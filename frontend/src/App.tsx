@@ -14,6 +14,7 @@ import InstallationPage from "./pages/InstallationPage";
 import InventoryPage from "./pages/InventoryPage";
 import IotDashboardPage from "./pages/IotDashboardPage";
 import LeadsPage from "./pages/LeadsPage";
+import LeadCRMPage from "./pages/LeadCRMPage";
 import { LoginPage } from "./pages/LoginPage";
 import ProcurementPage from "./pages/ProcurementPage";
 import ProjectPage from "./pages/ProjectPage";
@@ -56,6 +57,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/customers" element={<CustomersPage />} />
           <Route path="/leads" element={<LeadsPage />} />
+          <Route path="/leads/:id/crm" element={<LeadCRMPage />} />
           <Route path="/estimation" element={<EstimationPage />} />
           <Route path="/quotations" element={<QuotationsPage />} />
           <Route path="/engineering" element={<EngineeringPage />} />

@@ -41,6 +41,8 @@ export interface Vendor {
   deliveryTerms: string | null;
   rating: DecimalValue | null;
   status: VendorStatus;
+  category?: "PLATE_SUPPLIER" | "TUBE_SUPPLIER" | "VALVE_SUPPLIER" | "BURNER_SUPPLIER" | "FABRICATOR" | "TRANSPORT_VENDOR" | "OTHER";
+  portalEnabled?: boolean;
   notes: string | null;
   createdAt: string;
   updatedAt: string;

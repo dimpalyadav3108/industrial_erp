@@ -81,9 +81,19 @@ const projectInclude = {
     include: bomInclude,
     orderBy: { createdAt: "desc" as const },
   },
+  documents: {
+    include: { modifiedBy: { select: userSummary }, approvedBy: { select: userSummary } },
+    orderBy: { modifiedAt: "desc" as const },
+  },
+  ecrs: {
+    include: { createdBy: { select: userSummary }, approvedBy: { select: userSummary } },
+    orderBy: { createdAt: "desc" as const },
+  },
 };
 
 const asDate = (value?: string) => (value ? new Date(value) : null);
+const versionLabelForRevision = (revisionNumber: number) =>
+  revisionNumber === 0 ? "V1.0" : revisionNumber === 1 ? "V1.1" : `V${Math.floor(revisionNumber / 2) + 1}.${revisionNumber % 2}`;
 
 export const listEngineeringProjectsController = async (
   request: Request,
@@ -418,9 +428,12 @@ export const createEngineeringDrawingController = async (
         revisions: {
           create: {
             revisionNumber: 0,
+            versionLabel: "V1.0",
             documentName: data.documentName ?? null,
             documentUrl: data.documentUrl ?? null,
             changeReason: data.changeReason,
+            modifiedById: request.auth?.userId ?? null,
+            modifiedAt: new Date(),
             createdById: request.auth?.userId ?? null,
           },
         },
@@ -501,9 +514,12 @@ export const createDrawingRevisionController = async (
         data: {
           drawingId,
           revisionNumber,
+          versionLabel: versionLabelForRevision(revisionNumber),
           documentName: data.documentName ?? null,
           documentUrl: data.documentUrl ?? null,
           changeReason: data.changeReason,
+          modifiedById: request.auth?.userId ?? null,
+          modifiedAt: new Date(),
           createdById: request.auth?.userId ?? null,
         },
         include: revisionInclude,
@@ -600,6 +616,8 @@ export const updateDrawingRevisionController = async (
         where: { id: revisionId },
         data: {
           ...(data.status !== undefined ? { status: data.status } : {}),
+          modifiedById: request.auth?.userId ?? (existing as any).modifiedById ?? null,
+          modifiedAt: now,
           ...(data.status === "INTERNAL_REVIEW" || data.status === "CUSTOMER_REVIEW"
             ? { submittedAt: existing.submittedAt ?? now }
             : {}),
@@ -629,6 +647,13 @@ export const updateDrawingRevisionController = async (
           ),
         },
       });
+
+      if (data.customerApproved === true) {
+        await transaction.engineeringProject.update({
+          where: { id: existing.drawing.projectId },
+          data: { customerApprovedVersion: (updated as any).versionLabel, customerApprovalAt: now, status: "APPROVED", workflowStage: "CUSTOMER_APPROVAL" },
+        });
+      }
 
       return updated;
     });
@@ -1056,6 +1081,8 @@ export const createEngineeringBomItemController = async (
         unit: data.unit,
         source: data.source,
         materialSpec: data.materialSpec ?? null,
+        alternateMaterial: data.alternateMaterial ?? null,
+        unitCost: data.unitCost ?? null,
         drawingNumber: data.drawingNumber ?? null,
         remarks: data.remarks ?? null,
         sortOrder: data.sortOrder ?? 0,
@@ -1237,6 +1264,12 @@ export const updateEngineeringBomItemController = async (
         ...(data.materialSpec !== undefined
           ? { materialSpec: data.materialSpec ?? null }
           : {}),
+        ...(data.alternateMaterial !== undefined
+          ? { alternateMaterial: data.alternateMaterial ?? null }
+          : {}),
+        ...(data.unitCost !== undefined
+          ? { unitCost: data.unitCost }
+          : {}),
         ...(data.drawingNumber !== undefined
           ? { drawingNumber: data.drawingNumber ?? null }
           : {}),
@@ -1283,6 +1316,50 @@ export const updateEngineeringBomItemController = async (
       success: false,
       message: "Unable to update BOM item",
     });
+  }
+};
+
+export const getEngineeringBomCostRollupController = async (
+  request: Request,
+  response: Response
+) => {
+  try {
+    const bom = await prisma.engineeringBom.findUnique({
+      where: { id: String(request.params.bomId) },
+      include: { items: true },
+    });
+    if (!bom) {
+      response.status(404).json({ success: false, message: "Engineering BOM was not found" });
+      return;
+    }
+    const items = bom.items;
+    const byParent = new Map<string | null, typeof items>();
+    for (const item of items) {
+      const list = byParent.get(item.parentItemId) ?? [];
+      list.push(item);
+      byParent.set(item.parentItemId, list);
+    }
+    const calculate = (parentId: string | null): number =>
+      (byParent.get(parentId) ?? []).reduce((sum, item) => {
+        const own = Number(item.quantity) * Number(item.unitCost ?? 0);
+        return sum + own + calculate(item.id) * Number(item.quantity);
+      }, 0);
+    const total = calculate(null);
+    response.status(200).json({
+      success: true,
+      data: {
+        bomId: bom.id,
+        bomNumber: bom.bomNumber,
+        revision: bom.revision,
+        currency: "INR",
+        totalCost: Number(total.toFixed(2)),
+        pricedItems: items.filter((item) => item.unitCost !== null).length,
+        unpricedItems: items.filter((item) => item.unitCost === null).length,
+      },
+    });
+  } catch (error) {
+    console.error("Unable to calculate BOM cost roll-up:", error);
+    response.status(500).json({ success: false, message: "Unable to calculate BOM cost roll-up" });
   }
 };
 
@@ -1357,3 +1434,150 @@ export const deleteEngineeringBomItemController = async (
   }
 };
 
+
+// ============================================================
+// MODULE 4 - ENGINEERING WORKFLOW / DMS / ECR
+// ============================================================
+
+export const advanceEngineeringWorkflowController = async (
+  request: AuthenticatedRequest,
+  response: Response
+) => {
+  try {
+    const projectId = String(request.params.id);
+    const stage = String(request.body.stage || "").trim();
+    const allowed = [
+      "SALES_ORDER",
+      "ENGINEERING_RELEASE",
+      "DESIGN_CREATION",
+      "GA_DRAWING",
+      "CUSTOMER_APPROVAL",
+      "FABRICATION_DRAWING",
+      "BOM_RELEASE",
+      "PRODUCTION_RELEASE",
+    ];
+    if (!allowed.includes(stage)) {
+      response.status(400).json({ success: false, message: "Invalid engineering workflow stage" });
+      return;
+    }
+    const project = await prisma.engineeringProject.findUnique({ where: { id: projectId } });
+    if (!project) { response.status(404).json({ success: false, message: "Engineering project was not found" }); return; }
+
+    const now = new Date();
+    const data: Record<string, unknown> = { workflowStage: stage };
+    if (stage === "ENGINEERING_RELEASE") data.engineeringReleasedAt = now;
+    if (stage === "DESIGN_CREATION") data.designCreatedAt = now;
+    if (stage === "CUSTOMER_APPROVAL") { data.customerApprovalAt = now; data.status = "APPROVED"; }
+    if (stage === "FABRICATION_DRAWING") data.fabricationReleasedAt = now;
+    if (stage === "BOM_RELEASE") data.bomReleasedAt = now;
+    if (stage === "PRODUCTION_RELEASE") { data.productionReleasedAt = now; data.actualReleaseDate = now; data.status = "RELEASED"; }
+    if (stage === "ENGINEERING_RELEASE" && project.status === "DRAFT") data.status = "DESIGN_IN_PROGRESS";
+    if (stage === "DESIGN_CREATION") data.status = "DESIGN_IN_PROGRESS";
+    if (stage === "GA_DRAWING" || stage === "FABRICATION_DRAWING") data.status = "CUSTOMER_REVIEW";
+
+    const updated = await prisma.engineeringProject.update({ where: { id: projectId }, data, include: projectInclude });
+    await prisma.auditLog.create({ data: { userId: request.auth?.userId ?? null, action: "WORKFLOW_ADVANCE", entity: "EngineeringProject", entityId: projectId, oldValues: { workflowStage: (project as any).workflowStage }, newValues: { workflowStage: stage }, ipAddress: request.ip ?? null } });
+    response.json({ success: true, message: `Engineering workflow moved to ${stage}`, data: updated });
+  } catch (error) {
+    console.error("Unable to advance engineering workflow:", error);
+    response.status(500).json({ success: false, message: "Unable to advance engineering workflow" });
+  }
+};
+
+export const linkEngineeringSalesOrderController = async (request: AuthenticatedRequest, response: Response) => {
+  try {
+    const projectId = String(request.params.id);
+    const salesOrderId = String(request.body.salesOrderId || "");
+    if (!salesOrderId) { response.status(400).json({ success: false, message: "Sales Order is required" }); return; }
+    const [project, salesOrder] = await Promise.all([
+      prisma.engineeringProject.findUnique({ where: { id: projectId } }),
+      prisma.salesOrder.findUnique({ where: { id: salesOrderId }, select: { id: true, salesOrderNumber: true } }),
+    ]);
+    if (!project) { response.status(404).json({ success: false, message: "Engineering project was not found" }); return; }
+    if (!salesOrder) { response.status(404).json({ success: false, message: "Sales Order was not found" }); return; }
+    const updated = await prisma.engineeringProject.update({ where: { id: projectId }, data: { salesOrderId, workflowStage: "SALES_ORDER" }, include: projectInclude });
+    response.json({ success: true, message: `${salesOrder.salesOrderNumber} linked to engineering`, data: updated });
+  } catch (error) {
+    console.error("Unable to link sales order:", error);
+    response.status(500).json({ success: false, message: "Unable to link Sales Order" });
+  }
+};
+
+export const createEngineeringDocumentController = async (request: AuthenticatedRequest, response: Response) => {
+  try {
+    const { projectId, drawingId, documentNumber, title, category, versionLabel, fileName, fileUrl, modificationReason } = request.body;
+    if (!projectId || !documentNumber || !title || !category) { response.status(400).json({ success: false, message: "Project, document number, title and category are required" }); return; }
+    const document = await (prisma as any).engineeringDocument.create({ data: { projectId, drawingId: drawingId || null, documentNumber, title, category, versionLabel: versionLabel || "V1.0", fileName: fileName || null, fileUrl: fileUrl || null, modificationReason: modificationReason || "Initial issue", modifiedById: request.auth?.userId ?? null }, include: { modifiedBy: { select: userSummary }, approvedBy: { select: userSummary } } });
+    response.status(201).json({ success: true, message: "Engineering document created", data: document });
+  } catch (error) {
+    console.error("Unable to create engineering document:", error);
+    response.status(500).json({ success: false, message: "Unable to create engineering document" });
+  }
+};
+
+export const listEngineeringDocumentsController = async (request: Request, response: Response) => {
+  try {
+    const projectId = String(request.query.projectId || "");
+    const documents = await (prisma as any).engineeringDocument.findMany({ where: projectId ? { projectId } : undefined, include: { modifiedBy: { select: userSummary }, approvedBy: { select: userSummary } }, orderBy: [{ documentNumber: "asc" }, { modifiedAt: "desc" }] });
+    response.json({ success: true, data: documents });
+  } catch (error) {
+    console.error("Unable to list engineering documents:", error);
+    response.status(500).json({ success: false, message: "Unable to load engineering documents" });
+  }
+};
+
+export const updateEngineeringDocumentController = async (request: AuthenticatedRequest, response: Response) => {
+  try {
+    const id = String(request.params.documentId);
+    const { status, customerApproved, customerApprovedVersion, modificationReason, fileName, fileUrl } = request.body;
+    const existing = await (prisma as any).engineeringDocument.findUnique({ where: { id } });
+    if (!existing) { response.status(404).json({ success: false, message: "Engineering document was not found" }); return; }
+    const updated = await (prisma as any).engineeringDocument.update({ where: { id }, data: { ...(status ? { status } : {}), ...(fileName !== undefined ? { fileName } : {}), ...(fileUrl !== undefined ? { fileUrl } : {}), ...(modificationReason !== undefined ? { modificationReason, modifiedById: request.auth?.userId ?? null, modifiedAt: new Date() } : {}), ...(customerApproved !== undefined ? { customerApproved, customerApprovedAt: customerApproved ? new Date() : null, customerApprovedVersion: customerApproved ? (customerApprovedVersion || existing.versionLabel) : null, approvedById: customerApproved ? (request.auth?.userId ?? null) : null, approvedAt: customerApproved ? new Date() : null, status: customerApproved ? "APPROVED" : (status || existing.status) } : {}) }, include: { modifiedBy: { select: userSummary }, approvedBy: { select: userSummary } } });
+    response.json({ success: true, message: "Engineering document updated", data: updated });
+  } catch (error) {
+    console.error("Unable to update engineering document:", error);
+    response.status(500).json({ success: false, message: "Unable to update engineering document" });
+  }
+};
+
+export const createEcrController = async (request: AuthenticatedRequest, response: Response) => {
+  try {
+    const { projectId, title, description, reason, impactAnalysis, impactedDocuments, impactedBomItems, productionImpact, bomUpdateRequired, productionUpdateRequired } = request.body;
+    if (!projectId || !title || !description || !reason) { response.status(400).json({ success: false, message: "Project, title, description and reason are required" }); return; }
+    const count = await (prisma as any).engineeringChangeRequest.count();
+    const ecrNumber = `ECR-${new Date().getFullYear()}-${String(count + 1).padStart(4, "0")}`;
+    const ecr = await (prisma as any).engineeringChangeRequest.create({ data: { ecrNumber, projectId, title, description, reason, impactAnalysis: impactAnalysis || null, impactedDocuments: impactedDocuments || null, impactedBomItems: impactedBomItems || null, productionImpact: productionImpact || null, bomUpdateRequired: Boolean(bomUpdateRequired), productionUpdateRequired: Boolean(productionUpdateRequired), createdById: request.auth?.userId ?? null }, include: { createdBy: { select: userSummary }, approvedBy: { select: userSummary } } });
+    response.status(201).json({ success: true, message: `${ecrNumber} created`, data: ecr });
+  } catch (error) {
+    console.error("Unable to create ECR:", error);
+    response.status(500).json({ success: false, message: "Unable to create ECR" });
+  }
+};
+
+export const listEcrController = async (request: Request, response: Response) => {
+  try {
+    const projectId = String(request.query.projectId || "");
+    const ecrs = await (prisma as any).engineeringChangeRequest.findMany({ where: projectId ? { projectId } : undefined, include: { createdBy: { select: userSummary }, approvedBy: { select: userSummary } }, orderBy: { createdAt: "desc" } });
+    response.json({ success: true, data: ecrs });
+  } catch (error) {
+    console.error("Unable to list ECRs:", error);
+    response.status(500).json({ success: false, message: "Unable to load ECRs" });
+  }
+};
+
+export const updateEcrController = async (request: AuthenticatedRequest, response: Response) => {
+  try {
+    const id = String(request.params.ecrId);
+    const { status, impactAnalysis, bomUpdateRequired, productionUpdateRequired } = request.body;
+    const existing = await (prisma as any).engineeringChangeRequest.findUnique({ where: { id } });
+    if (!existing) { response.status(404).json({ success: false, message: "ECR was not found" }); return; }
+    const data: Record<string, unknown> = { ...(status ? { status } : {}), ...(impactAnalysis !== undefined ? { impactAnalysis } : {}), ...(bomUpdateRequired !== undefined ? { bomUpdateRequired: Boolean(bomUpdateRequired) } : {}), ...(productionUpdateRequired !== undefined ? { productionUpdateRequired: Boolean(productionUpdateRequired) } : {}) };
+    if (status === "APPROVED") { data.approvedById = request.auth?.userId ?? null; data.approvedAt = new Date(); }
+    if (status === "IMPLEMENTED") { data.implementedAt = new Date(); if (existing.bomUpdateRequired) data.bomUpdatedAt = new Date(); if (existing.productionUpdateRequired) data.productionUpdatedAt = new Date(); }
+    const ecr = await (prisma as any).engineeringChangeRequest.update({ where: { id }, data, include: { createdBy: { select: userSummary }, approvedBy: { select: userSummary } } });
+    response.json({ success: true, message: "ECR updated", data: ecr });
+  } catch (error) {
+    console.error("Unable to update ECR:", error);
+    response.status(500).json({ success: false, message: "Unable to update ECR" });
+  }
+};

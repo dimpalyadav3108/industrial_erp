@@ -81,3 +81,6 @@ export interface ServiceContractListResponse { success: boolean; data: ServiceCo
 export interface ServiceContractResponse { success: boolean; data: ServiceContract; message?: string }
 export interface ServiceRequestListResponse { success: boolean; data: ServiceRequest[]; message?: string }
 export interface ServiceRequestResponse { success: boolean; data: ServiceRequest; message?: string }
+
+export interface Service360 { activities:any[]; visits:any[]; feedback:any|null; spares:any[]; preventivePlans:any[]; warrantyCoverage:any[] }
+export interface ServiceEngineer { id:string; employeeCode:string; firstName:string; lastName:string; email:string }

@@ -1,0 +1,9 @@
+{
+  "name": "Industrial ERP Site App",
+  "short_name": "ERP Site App",
+  "start_url": "/installations",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "icons": []
+}

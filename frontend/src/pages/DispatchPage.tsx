@@ -1,155 +1,59 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
-import { CheckCircle2, Clock3, Eye, MapPin, PackageCheck, Plus, Search, Send, Truck, X } from "lucide-react";
-import { createDispatch, getDispatches, updateDispatchStatus } from "../services/dispatch.service";
+import { CheckCircle2, Eye, FileText, MapPin, PackageCheck, Plus, Search, Truck, X } from "lucide-react";
+import { createDispatch, getDispatches, updateDispatchStatus, updateDispatchLogistics, addDispatchTrackingEvent, uploadDispatchDocument } from "../services/dispatch.service";
 import { getQualityInspections } from "../services/quality.service";
-import type { CreateDispatchPayload, Dispatch, DispatchStatus, TransportMode } from "../types/dispatch";
+import type { Dispatch, DispatchStatus, TransportMode, DispatchWithLogistics, LogisticsStage } from "../types/dispatch";
 import type { QualityInspection } from "../types/quality";
 
-const statusLabels: Record<DispatchStatus, string> = {
-  PLANNED: "Planned", READY: "Ready", DISPATCHED: "Dispatched", DELIVERED: "Delivered", CANCELLED: "Cancelled",
-};
-const transportLabels: Record<TransportMode, string> = {
-  ROAD: "Road", AIR: "Air", RAIL: "Rail", COURIER: "Courier", CUSTOMER_PICKUP: "Customer pickup",
-};
-const displayDate = (value: string | null) => value ? new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(value)) : "Not set";
-const apiDate = (value: string) => new Date(`${value}T00:00:00.000Z`).toISOString();
+const statuses: Record<DispatchStatus,string> = { PLANNED:"Planned", READY:"Ready", DISPATCHED:"Dispatched", DELIVERED:"Delivered", CANCELLED:"Cancelled" };
+const stages: LogisticsStage[] = ["FG_READY","PACKING","LOADING","DISPATCHED","DELIVERED"];
+const transportLabels: Record<TransportMode,string> = { ROAD:"Road", AIR:"Air", RAIL:"Rail", COURIER:"Courier", CUSTOMER_PICKUP:"Customer pickup" };
+const fmt = (v?: string|null) => v ? new Intl.DateTimeFormat("en-IN",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"}).format(new Date(v)) : "—";
+const apiDate = (v:string) => new Date(`${v}T00:00:00.000Z`).toISOString();
 
 export default function DispatchPage() {
-  const [dispatches, setDispatches] = useState<Dispatch[]>([]);
-  const [inspections, setInspections] = useState<QualityInspection[]>([]);
-  const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [busyId, setBusyId] = useState<string | null>(null);
-  const [error, setError] = useState("");
-  const [showForm, setShowForm] = useState(false);
-  const [selected, setSelected] = useState<Dispatch | null>(null);
-  const [qualityInspectionId, setQualityInspectionId] = useState("");
-  const [transportMode, setTransportMode] = useState<TransportMode>("ROAD");
-  const [expectedDeliveryDate, setExpectedDeliveryDate] = useState("");
-  const [transporterName, setTransporterName] = useState("");
-  const [vehicleNumber, setVehicleNumber] = useState("");
-  const [trackingNumber, setTrackingNumber] = useState("");
-  const [destination, setDestination] = useState("");
-  const [contactPerson, setContactPerson] = useState("");
-  const [contactPhone, setContactPhone] = useState("");
-  const [packageCount, setPackageCount] = useState("1");
-  const [totalWeight, setTotalWeight] = useState("");
-  const [notes, setNotes] = useState("");
+  const [dispatches,setDispatches]=useState<Dispatch[]>([]);
+  const [inspections,setInspections]=useState<QualityInspection[]>([]);
+  const [search,setSearch]=useState(""); const [loading,setLoading]=useState(true); const [saving,setSaving]=useState(false); const [error,setError]=useState("");
+  const [showForm,setShowForm]=useState(false); const [selected,setSelected]=useState<DispatchWithLogistics|null>(null);
+  const [qualityInspectionId,setQualityInspectionId]=useState(""); const [transportMode,setTransportMode]=useState<TransportMode>("ROAD");
+  const [expectedDeliveryDate,setExpectedDeliveryDate]=useState(""); const [vehicleNumber,setVehicleNumber]=useState(""); const [trackingNumber,setTrackingNumber]=useState("");
+  const [destination,setDestination]=useState(""); const [packageCount,setPackageCount]=useState("1"); const [totalWeight,setTotalWeight]=useState("");
+  const [busy,setBusy]=useState(false);
+  const [stage,setStage]=useState<LogisticsStage>("FG_READY"); const [deliveryStatus,setDeliveryStatus]=useState("PENDING");
+  const [eway,setEway]=useState(""); const [einvoice,setEinvoice]=useState(""); const [lr,setLr]=useState(""); const [trackingUrl,setTrackingUrl]=useState("");
+  const [packingUrl,setPackingUrl]=useState(""); const [lrUrl,setLrUrl]=useState(""); const [podUrl,setPodUrl]=useState("");
+  const [eventStatus,setEventStatus]=useState(""); const [eventLocation,setEventLocation]=useState(""); const [eventRemarks,setEventRemarks]=useState("");
 
-  const loadData = useCallback(async (searchValue = "") => {
-    try {
-      setLoading(true); setError("");
-      const [dispatchRecords, inspectionRecords] = await Promise.all([getDispatches(searchValue), getQualityInspections()]);
-      setDispatches(dispatchRecords); setInspections(inspectionRecords);
-    } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "Unable to load dispatch data");
-    } finally { setLoading(false); }
-  }, []);
+  const load=useCallback(async()=>{try{setLoading(true);setError(""); const [d,q]=await Promise.all([getDispatches(search),getQualityInspections()]);setDispatches(d);setInspections(q);}catch(e){setError(e instanceof Error?e.message:"Unable to load dispatches");}finally{setLoading(false);}},[search]);
+  useEffect(()=>{void load();},[load]);
+  const eligible=useMemo(()=>inspections.filter(x=>x.inspectionType==="FINAL"&&x.status==="PASSED"&&!dispatches.some(d=>d.qualityInspectionId===x.id)),[inspections,dispatches]);
+  const summary=useMemo(()=>({total:dispatches.length,ready:dispatches.filter(x=>x.status==="READY").length,dispatched:dispatches.filter(x=>x.status==="DISPATCHED").length,delivered:dispatches.filter(x=>x.status==="DELIVERED").length}),[dispatches]);
 
-  useEffect(() => { void loadData(); }, [loadData]);
+  const reset=()=>{setQualityInspectionId("");setTransportMode("ROAD");setExpectedDeliveryDate("");setVehicleNumber("");setTrackingNumber("");setDestination("");setPackageCount("1");setTotalWeight("");};
+  const create=async(e:FormEvent)=>{e.preventDefault();if(!qualityInspectionId||!destination.trim())return setError("Final QC and destination are required");try{setSaving(true);await createDispatch({qualityInspectionId,transportMode,destination:destination.trim(),packageCount:Number(packageCount),...(expectedDeliveryDate?{expectedDeliveryDate:apiDate(expectedDeliveryDate)}:{}),...(vehicleNumber?{vehicleNumber}:{}),...(trackingNumber?{trackingNumber}:{}),...(totalWeight?{totalWeight:Number(totalWeight)}:{})});setShowForm(false);reset();await load();}catch(x){setError(x instanceof Error?x.message:"Unable to create dispatch");}finally{setSaving(false);}};
+  const openDetails=async(d:Dispatch)=>{try{setError("");const full=(await getDispatches("")).find(x=>x.id===d.id); if(full){setSelected(full as DispatchWithLogistics); const l=(full as DispatchWithLogistics).logistics; if(l){setStage(l.stage);setDeliveryStatus(l.deliveryStatus);setEway(l.ewayBillNumber||"");setEinvoice(l.eInvoiceNumber||"");setLr(l.lrNumber||"");setTrackingUrl(l.vehicleTrackingUrl||"");setPackingUrl(l.packingListUrl||"");setLrUrl(l.lrCopyUrl||"");setPodUrl(l.podUrl||"");}}}catch(e){setError(e instanceof Error?e.message:"Unable to open dispatch");}};
+  const saveLogistics=async()=>{if(!selected)return;try{setBusy(true);const data=await updateDispatchLogistics(selected.id,{stage,deliveryStatus,ewayBillNumber:eway||undefined,eInvoiceNumber:einvoice||undefined,lrNumber:lr||undefined,vehicleTrackingUrl:trackingUrl||undefined,packingListUrl:packingUrl||undefined,lrCopyUrl:lrUrl||undefined,podUrl:podUrl||undefined});setSelected({...selected,logistics:data.logistics,trackingEvents:data.trackingEvents});await load();}catch(e){setError(e instanceof Error?e.message:"Unable to save logistics");}finally{setBusy(false);}};
+  const addEvent=async()=>{if(!selected||!eventStatus.trim())return;try{setBusy(true);const data=await addDispatchTrackingEvent(selected.id,{status:eventStatus,location:eventLocation||undefined,remarks:eventRemarks||undefined});setSelected({...selected,logistics:data.logistics,trackingEvents:data.trackingEvents});setEventStatus("");setEventLocation("");setEventRemarks("");}catch(e){setError(e instanceof Error?e.message:"Unable to add tracking event");}finally{setBusy(false);}};
+  const setStatus=async(d:Dispatch,s:DispatchStatus)=>{try{setBusy(true);await updateDispatchStatus(d.id,s);await load();if(selected?.id===d.id)await openDetails(d);}catch(e){setError(e instanceof Error?e.message:"Unable to update status");}finally{setBusy(false);}};
 
-  const eligibleInspections = useMemo(() => inspections.filter((inspection) =>
-    inspection.inspectionType === "FINAL" && inspection.status === "PASSED" &&
-    !dispatches.some((item) => item.qualityInspectionId === inspection.id)
-  ), [dispatches, inspections]);
-  const selectedInspection = useMemo(() => eligibleInspections.find((item) => item.id === qualityInspectionId) ?? null, [eligibleInspections, qualityInspectionId]);
-  const summary = useMemo(() => ({
-    total: dispatches.length,
-    planned: dispatches.filter((item) => item.status === "PLANNED").length,
-    ready: dispatches.filter((item) => item.status === "READY").length,
-    dispatched: dispatches.filter((item) => item.status === "DISPATCHED").length,
-    delivered: dispatches.filter((item) => item.status === "DELIVERED").length,
-  }), [dispatches]);
-
-  const resetForm = () => {
-    setQualityInspectionId(""); setTransportMode("ROAD"); setExpectedDeliveryDate(""); setTransporterName("");
-    setVehicleNumber(""); setTrackingNumber(""); setDestination(""); setContactPerson(""); setContactPhone("");
-    setPackageCount("1"); setTotalWeight(""); setNotes(""); setError("");
-  };
-
-  const handleCreate = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!qualityInspectionId) { setError("Please select a passed final inspection"); return; }
-    try {
-      setSaving(true); setError("");
-      const payload: CreateDispatchPayload = {
-        qualityInspectionId, transportMode, destination: destination.trim(), packageCount: Number(packageCount),
-        ...(expectedDeliveryDate ? { expectedDeliveryDate: apiDate(expectedDeliveryDate) } : {}),
-        ...(transporterName.trim() ? { transporterName: transporterName.trim() } : {}),
-        ...(vehicleNumber.trim() ? { vehicleNumber: vehicleNumber.trim() } : {}),
-        ...(trackingNumber.trim() ? { trackingNumber: trackingNumber.trim() } : {}),
-        ...(contactPerson.trim() ? { contactPerson: contactPerson.trim() } : {}),
-        ...(contactPhone.trim() ? { contactPhone: contactPhone.trim() } : {}),
-        ...(totalWeight ? { totalWeight: Number(totalWeight) } : {}),
-        ...(notes.trim() ? { notes: notes.trim() } : {}),
-      };
-      await createDispatch(payload); setShowForm(false); resetForm(); await loadData(search);
-    } catch (saveError) {
-      setError(saveError instanceof Error ? saveError.message : "Unable to create dispatch");
-    } finally { setSaving(false); }
-  };
-
-  const handleStatus = async (dispatch: Dispatch, status: DispatchStatus) => {
-    try {
-      setBusyId(dispatch.id); setError("");
-      const updated = await updateDispatchStatus(dispatch.id, status);
-      setDispatches((current) => current.map((item) => item.id === updated.id ? updated : item));
-      if (selected?.id === updated.id) setSelected(updated);
-    } catch (updateError) {
-      setError(updateError instanceof Error ? updateError.message : "Unable to update dispatch");
-    } finally { setBusyId(null); }
-  };
+  const uploadDoc=async(type:"POD"|"PACKING_LIST"|"LR_COPY",file:File)=>{if(!selected)return;try{setBusy(true);await uploadDispatchDocument(selected.id,type,file);const refreshed=(await getDispatches("")).find(x=>x.id===selected.id) as DispatchWithLogistics|undefined;if(refreshed)setSelected(refreshed);}catch(e){setError(e instanceof Error?e.message:"Unable to upload document");}finally{setBusy(false);}};
 
   return <section className="module-page dispatch-page">
-    <div className="module-heading"><div><span className="page-eyebrow">LOGISTICS CONTROL</span><h1>Dispatch</h1><p>Plan shipments, track delivery and complete customer handover.</p></div><button className="primary-action" type="button" onClick={() => { resetForm(); setShowForm(true); }}><Plus size={19} /> New dispatch</button></div>
-    <div className="dispatch-summary-grid">
-      <article><PackageCheck size={24} /><div><strong>{summary.total}</strong><span>Total dispatches</span></div></article>
-      <article><Clock3 size={24} /><div><strong>{summary.planned}</strong><span>Planned</span></div></article>
-      <article><PackageCheck size={24} /><div><strong>{summary.ready}</strong><span>Ready</span></div></article>
-      <article><Truck size={24} /><div><strong>{summary.dispatched}</strong><span>Dispatched</span></div></article>
-      <article><CheckCircle2 size={24} /><div><strong>{summary.delivered}</strong><span>Delivered</span></div></article>
-    </div>
-    <div className="directory-card">
-      <div className="directory-header"><div><h2>Dispatch register</h2><p>{dispatches.length} records shown</p></div><form className="directory-search" onSubmit={(event) => { event.preventDefault(); void loadData(search); }}><Search size={19} /><input value={search} placeholder="Search dispatch, production, tracking or customer..." onChange={(event) => setSearch(event.target.value)} /><button type="submit">Search</button></form></div>
-      {error && !showForm && !selected && <div className="page-error">{error}</div>}
-      {loading ? <div className="empty-state"><div className="loading-spinner" /><h3>Loading dispatches...</h3></div> : dispatches.length === 0 ? <div className="empty-state"><span className="empty-state-icon"><Truck size={34} /></span><h3>No dispatches found</h3><p>Create a shipment from a passed final inspection.</p></div> :
-        <div className="table-scroll"><table className="data-table dispatch-table"><thead><tr><th>Dispatch</th><th>Customer / Product</th><th>Transport</th><th>Packages</th><th>Expected delivery</th><th>Status</th><th>Action</th></tr></thead><tbody>{dispatches.map((dispatch) => <tr key={dispatch.id}>
-          <td><div className="lead-title-cell"><strong>{dispatch.dispatchNumber}</strong><span>{dispatch.productionOrder.productionNumber}</span></div></td>
-          <td><div className="lead-title-cell"><strong>{dispatch.productionOrder.quotation.estimate.lead.customer?.companyName || "No customer"}</strong><span>{dispatch.productionOrder.title}</span></div></td>
-          <td><div className="lead-title-cell"><strong>{transportLabels[dispatch.transportMode]}</strong><span>{dispatch.trackingNumber || dispatch.vehicleNumber || "Details pending"}</span></div></td>
-          <td>{dispatch.packageCount}</td><td>{displayDate(dispatch.expectedDeliveryDate)}</td>
-          <td><select className="dispatch-status-select" value={dispatch.status} disabled={busyId === dispatch.id} onChange={(event) => void handleStatus(dispatch, event.target.value as DispatchStatus)}>{Object.entries(statusLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></td>
-          <td><button className="row-action-button" type="button" onClick={() => setSelected(dispatch)}><Eye size={17} /></button></td>
-        </tr>)}</tbody></table></div>}
-    </div>
+    <div className="module-heading"><div><span className="page-eyebrow">DISPATCH & LOGISTICS</span><h1>Dispatch Management</h1><p>Manage FG readiness, packing, vehicle loading, dispatch and delivery traceability.</p></div><button className="primary-action" onClick={()=>{reset();setError("");setShowForm(true)}}><Plus size={18}/> New dispatch</button></div>
+    {error&&<div className="page-error">{error}</div>}
+    <div className="dispatch-summary-grid"><article><PackageCheck size={23}/><div><strong>{summary.total}</strong><span>Total</span></div></article><article><CheckCircle2 size={23}/><div><strong>{summary.ready}</strong><span>Ready</span></div></article><article><Truck size={23}/><div><strong>{summary.dispatched}</strong><span>Dispatched</span></div></article><article><MapPin size={23}/><div><strong>{summary.delivered}</strong><span>Delivered</span></div></article></div>
+    <div className="directory-card"><div className="directory-header"><div><h2>Dispatch register</h2><p>FG Ready → Packing → Loading → Dispatch → Delivery</p></div><form className="directory-search" onSubmit={e=>{e.preventDefault();void load()}}><Search size={18}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search dispatch, vehicle, LR or customer"/><button>Search</button></form></div>
+    {loading?<div className="empty-state">Loading...</div>:dispatches.length===0?<div className="empty-state">No dispatch records found.</div>:<div className="table-scroll"><table className="data-table"><thead><tr><th>Dispatch</th><th>Customer / Product</th><th>Vehicle</th><th>Delivery</th><th>Status</th><th></th></tr></thead><tbody>{dispatches.map(d=><tr key={d.id}><td><strong>{d.dispatchNumber}</strong><br/><small>{d.productionOrder.productionNumber}</small></td><td><strong>{d.productionOrder.quotation.estimate.lead.customer?.companyName||"—"}</strong><br/><small>{d.productionOrder.title}</small></td><td>{d.vehicleNumber||"—"}<br/><small>{d.trackingNumber||""}</small></td><td>{fmt(d.expectedDeliveryDate)}</td><td><select value={d.status} disabled={busy} onChange={e=>void setStatus(d,e.target.value as DispatchStatus)}>{Object.entries(statuses).map(([k,v])=><option key={k} value={k}>{v}</option>)}</select></td><td><button className="row-action-button" onClick={()=>void openDetails(d)}><Eye size={17}/></button></td></tr>)}</tbody></table></div>}</div>
 
-    {showForm && <div className="modal-backdrop" role="presentation" onMouseDown={() => !saving && setShowForm(false)}><div className="dispatch-form-modal" role="dialog" aria-modal="true" onMouseDown={(event) => event.stopPropagation()}>
-      <div className="modal-header"><div><span className="page-eyebrow">NEW SHIPMENT</span><h2>Create dispatch</h2><p>Use a passed final inspection and enter the shipment details.</p></div><button className="icon-button" type="button" onClick={() => setShowForm(false)}><X size={21} /></button></div>
-      <form onSubmit={handleCreate}>{error && <div className="page-error">{error}</div>}<div className="dispatch-form-grid">
-        <label className="span-two">Passed final inspection<select required value={qualityInspectionId} onChange={(event) => setQualityInspectionId(event.target.value)}><option value="">Select inspection</option>{eligibleInspections.map((inspection) => <option key={inspection.id} value={inspection.id}>{inspection.inspectionNumber} — {inspection.productionOrder.productionNumber} — {inspection.productionOrder.title}</option>)}</select></label>
-        <label>Transport mode<select value={transportMode} onChange={(event) => setTransportMode(event.target.value as TransportMode)}>{Object.entries(transportLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
-        <label>Expected delivery<input type="date" value={expectedDeliveryDate} onChange={(event) => setExpectedDeliveryDate(event.target.value)} /></label>
-        <label>Transporter<input value={transporterName} onChange={(event) => setTransporterName(event.target.value)} placeholder="Transport company" /></label>
-        <label>Vehicle number<input value={vehicleNumber} onChange={(event) => setVehicleNumber(event.target.value)} placeholder="Vehicle registration" /></label>
-        <label>Tracking number<input value={trackingNumber} onChange={(event) => setTrackingNumber(event.target.value)} placeholder="LR / AWB / tracking no." /></label>
-        <label>Package count<input required min="1" type="number" value={packageCount} onChange={(event) => setPackageCount(event.target.value)} /></label>
-        <label>Total weight (kg)<input min="0" step="0.001" type="number" value={totalWeight} onChange={(event) => setTotalWeight(event.target.value)} /></label>
-        <label>Contact person<input value={contactPerson} onChange={(event) => setContactPerson(event.target.value)} /></label>
-        <label>Contact phone<input value={contactPhone} onChange={(event) => setContactPhone(event.target.value)} /></label>
-        <label className="span-two">Destination<textarea required rows={3} value={destination} onChange={(event) => setDestination(event.target.value)} placeholder="Complete delivery address" /></label>
-        <label className="span-two">Notes<textarea rows={3} value={notes} onChange={(event) => setNotes(event.target.value)} /></label>
-      </div>
-      {selectedInspection && <div className="dispatch-source-preview"><span>Production<strong>{selectedInspection.productionOrder.productionNumber}</strong></span><span>Product<strong>{selectedInspection.productionOrder.title}</strong></span><span>Customer<strong>{selectedInspection.productionOrder.quotation.estimate.lead.customer?.companyName || "No customer"}</strong></span></div>}
-      {eligibleInspections.length === 0 && <div className="dispatch-notice">No unused passed final inspection is currently available.</div>}
-      <div className="modal-actions"><button className="secondary-action" type="button" onClick={() => setShowForm(false)}>Cancel</button><button className="primary-action" type="submit" disabled={saving || eligibleInspections.length === 0}>{saving ? "Creating..." : "Create dispatch"}</button></div>
-      </form>
-    </div></div>}
+    {showForm&&<div className="modal-backdrop"><div className="dispatch-form-modal"><div className="modal-header"><div><span className="page-eyebrow">FG READY</span><h2>Create dispatch</h2></div><button className="icon-button" onClick={()=>setShowForm(false)}><X/></button></div><form onSubmit={create}><div className="dispatch-form-grid"><label className="span-two">Passed Final QC<select required value={qualityInspectionId} onChange={e=>setQualityInspectionId(e.target.value)}><option value="">Select final inspection</option>{eligible.map(i=><option key={i.id} value={i.id}>{i.inspectionNumber} — {i.productionOrder.productionNumber}</option>)}</select></label><label>Transport<select value={transportMode} onChange={e=>setTransportMode(e.target.value as TransportMode)}>{Object.entries(transportLabels).map(([k,v])=><option key={k} value={k}>{v}</option>)}</select></label><label>Expected Delivery<input type="date" value={expectedDeliveryDate} onChange={e=>setExpectedDeliveryDate(e.target.value)}/></label><label>Vehicle Number<input value={vehicleNumber} onChange={e=>setVehicleNumber(e.target.value)}/></label><label>Tracking / LR Number<input value={trackingNumber} onChange={e=>setTrackingNumber(e.target.value)}/></label><label>Package Count<input type="number" min="1" value={packageCount} onChange={e=>setPackageCount(e.target.value)}/></label><label>Total Weight (kg)<input type="number" min="0" value={totalWeight} onChange={e=>setTotalWeight(e.target.value)}/></label><label className="span-two">Destination<input required value={destination} onChange={e=>setDestination(e.target.value)}/></label></div><div className="modal-actions"><button type="button" onClick={()=>setShowForm(false)}>Cancel</button><button className="primary-action" disabled={saving}>{saving?"Creating...":"Create Dispatch"}</button></div></form></div></div>}
 
-    {selected && <div className="modal-backdrop" role="presentation" onMouseDown={() => setSelected(null)}><div className="dispatch-detail-modal" role="dialog" aria-modal="true" onMouseDown={(event) => event.stopPropagation()}>
-      <div className="modal-header"><div><span className="page-eyebrow">DISPATCH DETAILS</span><h2>{selected.dispatchNumber}</h2><p>{selected.productionOrder.productionNumber} · {selected.productionOrder.title}</p></div><button className="icon-button" type="button" onClick={() => setSelected(null)}><X size={21} /></button></div>
-      <div className="dispatch-detail-grid"><span><PackageCheck />Status<strong>{statusLabels[selected.status]}</strong></span><span><Truck />Transport<strong>{transportLabels[selected.transportMode]}</strong></span><span><Send />Tracking<strong>{selected.trackingNumber || "Not provided"}</strong></span><span><Clock3 />Expected delivery<strong>{displayDate(selected.expectedDeliveryDate)}</strong></span><span><MapPin />Destination<strong>{selected.destination}</strong></span><span><PackageCheck />Packages / Weight<strong>{selected.packageCount} packages · {selected.totalWeight ? `${selected.totalWeight} kg` : "Weight not set"}</strong></span></div>
+    {selected&&<div className="modal-backdrop"><div className="dispatch-form-modal logistics-modal"><div className="modal-header"><div><span className="page-eyebrow">LOGISTICS CONTROL</span><h2>{selected.dispatchNumber}</h2><p>{selected.productionOrder.title}</p></div><button className="icon-button" onClick={()=>setSelected(null)}><X/></button></div>
+      <div className="logistics-stepper">{stages.map((s,i)=><button key={s} className={stage===s?"active":""} onClick={()=>setStage(s)}><b>{i+1}</b>{s.replaceAll("_"," ")}</button>)}</div>
+      <div className="dispatch-form-grid"><label>Delivery Status<select value={deliveryStatus} onChange={e=>setDeliveryStatus(e.target.value)}><option>PENDING</option><option>IN_TRANSIT</option><option>DELIVERED</option><option>DELAYED</option><option>POD_RECEIVED</option></select></label><label>E-Way Bill No.<input value={eway} onChange={e=>setEway(e.target.value)}/></label><label>E-Invoice No.<input value={einvoice} onChange={e=>setEinvoice(e.target.value)}/></label><label>LR Number<input value={lr} onChange={e=>setLr(e.target.value)}/></label><label>Vehicle Tracking URL<input value={trackingUrl} onChange={e=>setTrackingUrl(e.target.value)} placeholder="https://..."/></label><label>Packing List URL<input value={packingUrl} onChange={e=>setPackingUrl(e.target.value)}/></label><label>LR Copy URL<input value={lrUrl} onChange={e=>setLrUrl(e.target.value)}/></label><label>POD Upload / URL<input value={podUrl} onChange={e=>setPodUrl(e.target.value)} placeholder="Document URL"/></label><label>Upload Packing List<input type="file" accept=".pdf,.jpg,.jpeg,.png" disabled={busy} onChange={e=>e.target.files?.[0]&&void uploadDoc("PACKING_LIST",e.target.files[0])}/></label><label>Upload LR Copy<input type="file" accept=".pdf,.jpg,.jpeg,.png" disabled={busy} onChange={e=>e.target.files?.[0]&&void uploadDoc("LR_COPY",e.target.files[0])}/></label><label>Upload POD<input type="file" accept=".pdf,.jpg,.jpeg,.png" disabled={busy} onChange={e=>e.target.files?.[0]&&void uploadDoc("POD",e.target.files[0])}/></label></div>
+      <div className="modal-actions"><button className="primary-action" disabled={busy} onClick={()=>void saveLogistics()}><FileText size={17}/>{busy?"Saving...":"Save Logistics"}</button></div>
+      <div className="tracking-panel"><h3>Delivery Tracking</h3><div className="dispatch-form-grid"><label>Status<input value={eventStatus} onChange={e=>setEventStatus(e.target.value)} placeholder="In transit / Arrived / Unloaded"/></label><label>Location<input value={eventLocation} onChange={e=>setEventLocation(e.target.value)}/></label><label className="span-two">Remarks<input value={eventRemarks} onChange={e=>setEventRemarks(e.target.value)}/></label></div><button className="secondary-action" disabled={busy} onClick={()=>void addEvent()}>Add tracking event</button>{selected.trackingEvents?.map(ev=><div className="tracking-event" key={ev.id}><strong>{ev.status}</strong><span>{ev.location||"—"} · {fmt(ev.eventAt)}</span><p>{ev.remarks||""}</p></div>)}</div>
     </div></div>}
   </section>;
 }

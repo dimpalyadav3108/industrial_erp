@@ -267,6 +267,7 @@ export type EngineeringDrawingWhereInput = {
   project?: Prisma.XOR<Prisma.EngineeringProjectScalarRelationFilter, Prisma.EngineeringProjectWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   revisions?: Prisma.EngineeringDrawingRevisionListRelationFilter
+  documents?: Prisma.EngineeringDocumentListRelationFilter
 }
 
 export type EngineeringDrawingOrderByWithRelationInput = {
@@ -284,6 +285,7 @@ export type EngineeringDrawingOrderByWithRelationInput = {
   project?: Prisma.EngineeringProjectOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   revisions?: Prisma.EngineeringDrawingRevisionOrderByRelationAggregateInput
+  documents?: Prisma.EngineeringDocumentOrderByRelationAggregateInput
 }
 
 export type EngineeringDrawingWhereUniqueInput = Prisma.AtLeast<{
@@ -305,6 +307,7 @@ export type EngineeringDrawingWhereUniqueInput = Prisma.AtLeast<{
   project?: Prisma.XOR<Prisma.EngineeringProjectScalarRelationFilter, Prisma.EngineeringProjectWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   revisions?: Prisma.EngineeringDrawingRevisionListRelationFilter
+  documents?: Prisma.EngineeringDocumentListRelationFilter
 }, "id" | "projectId_drawingNumber">
 
 export type EngineeringDrawingOrderByWithAggregationInput = {
@@ -356,6 +359,7 @@ export type EngineeringDrawingCreateInput = {
   project: Prisma.EngineeringProjectCreateNestedOneWithoutDrawingsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringDrawingsInput
   revisions?: Prisma.EngineeringDrawingRevisionCreateNestedManyWithoutDrawingInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutDrawingInput
 }
 
 export type EngineeringDrawingUncheckedCreateInput = {
@@ -371,6 +375,7 @@ export type EngineeringDrawingUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   revisions?: Prisma.EngineeringDrawingRevisionUncheckedCreateNestedManyWithoutDrawingInput
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutDrawingInput
 }
 
 export type EngineeringDrawingUpdateInput = {
@@ -386,6 +391,7 @@ export type EngineeringDrawingUpdateInput = {
   project?: Prisma.EngineeringProjectUpdateOneRequiredWithoutDrawingsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringDrawingsNestedInput
   revisions?: Prisma.EngineeringDrawingRevisionUpdateManyWithoutDrawingNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutDrawingNestedInput
 }
 
 export type EngineeringDrawingUncheckedUpdateInput = {
@@ -401,6 +407,7 @@ export type EngineeringDrawingUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revisions?: Prisma.EngineeringDrawingRevisionUncheckedUpdateManyWithoutDrawingNestedInput
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutDrawingNestedInput
 }
 
 export type EngineeringDrawingCreateManyInput = {
@@ -513,6 +520,11 @@ export type EngineeringDrawingScalarRelationFilter = {
   isNot?: Prisma.EngineeringDrawingWhereInput
 }
 
+export type EngineeringDrawingNullableScalarRelationFilter = {
+  is?: Prisma.EngineeringDrawingWhereInput | null
+  isNot?: Prisma.EngineeringDrawingWhereInput | null
+}
+
 export type EngineeringDrawingCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.EngineeringDrawingCreateWithoutCreatedByInput, Prisma.EngineeringDrawingUncheckedCreateWithoutCreatedByInput> | Prisma.EngineeringDrawingCreateWithoutCreatedByInput[] | Prisma.EngineeringDrawingUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.EngineeringDrawingCreateOrConnectWithoutCreatedByInput | Prisma.EngineeringDrawingCreateOrConnectWithoutCreatedByInput[]
@@ -619,6 +631,22 @@ export type EngineeringDrawingUpdateOneRequiredWithoutRevisionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EngineeringDrawingUpdateToOneWithWhereWithoutRevisionsInput, Prisma.EngineeringDrawingUpdateWithoutRevisionsInput>, Prisma.EngineeringDrawingUncheckedUpdateWithoutRevisionsInput>
 }
 
+export type EngineeringDrawingCreateNestedOneWithoutDocumentsInput = {
+  create?: Prisma.XOR<Prisma.EngineeringDrawingCreateWithoutDocumentsInput, Prisma.EngineeringDrawingUncheckedCreateWithoutDocumentsInput>
+  connectOrCreate?: Prisma.EngineeringDrawingCreateOrConnectWithoutDocumentsInput
+  connect?: Prisma.EngineeringDrawingWhereUniqueInput
+}
+
+export type EngineeringDrawingUpdateOneWithoutDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.EngineeringDrawingCreateWithoutDocumentsInput, Prisma.EngineeringDrawingUncheckedCreateWithoutDocumentsInput>
+  connectOrCreate?: Prisma.EngineeringDrawingCreateOrConnectWithoutDocumentsInput
+  upsert?: Prisma.EngineeringDrawingUpsertWithoutDocumentsInput
+  disconnect?: Prisma.EngineeringDrawingWhereInput | boolean
+  delete?: Prisma.EngineeringDrawingWhereInput | boolean
+  connect?: Prisma.EngineeringDrawingWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EngineeringDrawingUpdateToOneWithWhereWithoutDocumentsInput, Prisma.EngineeringDrawingUpdateWithoutDocumentsInput>, Prisma.EngineeringDrawingUncheckedUpdateWithoutDocumentsInput>
+}
+
 export type EngineeringDrawingCreateWithoutCreatedByInput = {
   id?: string
   drawingNumber: string
@@ -631,6 +659,7 @@ export type EngineeringDrawingCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   project: Prisma.EngineeringProjectCreateNestedOneWithoutDrawingsInput
   revisions?: Prisma.EngineeringDrawingRevisionCreateNestedManyWithoutDrawingInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutDrawingInput
 }
 
 export type EngineeringDrawingUncheckedCreateWithoutCreatedByInput = {
@@ -645,6 +674,7 @@ export type EngineeringDrawingUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   revisions?: Prisma.EngineeringDrawingRevisionUncheckedCreateNestedManyWithoutDrawingInput
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutDrawingInput
 }
 
 export type EngineeringDrawingCreateOrConnectWithoutCreatedByInput = {
@@ -702,6 +732,7 @@ export type EngineeringDrawingCreateWithoutProjectInput = {
   updatedAt?: Date | string
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringDrawingsInput
   revisions?: Prisma.EngineeringDrawingRevisionCreateNestedManyWithoutDrawingInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutDrawingInput
 }
 
 export type EngineeringDrawingUncheckedCreateWithoutProjectInput = {
@@ -716,6 +747,7 @@ export type EngineeringDrawingUncheckedCreateWithoutProjectInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   revisions?: Prisma.EngineeringDrawingRevisionUncheckedCreateNestedManyWithoutDrawingInput
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutDrawingInput
 }
 
 export type EngineeringDrawingCreateOrConnectWithoutProjectInput = {
@@ -756,6 +788,7 @@ export type EngineeringDrawingCreateWithoutRevisionsInput = {
   updatedAt?: Date | string
   project: Prisma.EngineeringProjectCreateNestedOneWithoutDrawingsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringDrawingsInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutDrawingInput
 }
 
 export type EngineeringDrawingUncheckedCreateWithoutRevisionsInput = {
@@ -770,6 +803,7 @@ export type EngineeringDrawingUncheckedCreateWithoutRevisionsInput = {
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutDrawingInput
 }
 
 export type EngineeringDrawingCreateOrConnectWithoutRevisionsInput = {
@@ -800,6 +834,7 @@ export type EngineeringDrawingUpdateWithoutRevisionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   project?: Prisma.EngineeringProjectUpdateOneRequiredWithoutDrawingsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringDrawingsNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutDrawingNestedInput
 }
 
 export type EngineeringDrawingUncheckedUpdateWithoutRevisionsInput = {
@@ -814,6 +849,83 @@ export type EngineeringDrawingUncheckedUpdateWithoutRevisionsInput = {
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutDrawingNestedInput
+}
+
+export type EngineeringDrawingCreateWithoutDocumentsInput = {
+  id?: string
+  drawingNumber: string
+  title: string
+  category: $Enums.DrawingCategory
+  description?: string | null
+  currentRevision?: number
+  status?: $Enums.DrawingRevisionStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  project: Prisma.EngineeringProjectCreateNestedOneWithoutDrawingsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringDrawingsInput
+  revisions?: Prisma.EngineeringDrawingRevisionCreateNestedManyWithoutDrawingInput
+}
+
+export type EngineeringDrawingUncheckedCreateWithoutDocumentsInput = {
+  id?: string
+  projectId: string
+  drawingNumber: string
+  title: string
+  category: $Enums.DrawingCategory
+  description?: string | null
+  currentRevision?: number
+  status?: $Enums.DrawingRevisionStatus
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  revisions?: Prisma.EngineeringDrawingRevisionUncheckedCreateNestedManyWithoutDrawingInput
+}
+
+export type EngineeringDrawingCreateOrConnectWithoutDocumentsInput = {
+  where: Prisma.EngineeringDrawingWhereUniqueInput
+  create: Prisma.XOR<Prisma.EngineeringDrawingCreateWithoutDocumentsInput, Prisma.EngineeringDrawingUncheckedCreateWithoutDocumentsInput>
+}
+
+export type EngineeringDrawingUpsertWithoutDocumentsInput = {
+  update: Prisma.XOR<Prisma.EngineeringDrawingUpdateWithoutDocumentsInput, Prisma.EngineeringDrawingUncheckedUpdateWithoutDocumentsInput>
+  create: Prisma.XOR<Prisma.EngineeringDrawingCreateWithoutDocumentsInput, Prisma.EngineeringDrawingUncheckedCreateWithoutDocumentsInput>
+  where?: Prisma.EngineeringDrawingWhereInput
+}
+
+export type EngineeringDrawingUpdateToOneWithWhereWithoutDocumentsInput = {
+  where?: Prisma.EngineeringDrawingWhereInput
+  data: Prisma.XOR<Prisma.EngineeringDrawingUpdateWithoutDocumentsInput, Prisma.EngineeringDrawingUncheckedUpdateWithoutDocumentsInput>
+}
+
+export type EngineeringDrawingUpdateWithoutDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  drawingNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumDrawingCategoryFieldUpdateOperationsInput | $Enums.DrawingCategory
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentRevision?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project?: Prisma.EngineeringProjectUpdateOneRequiredWithoutDrawingsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringDrawingsNestedInput
+  revisions?: Prisma.EngineeringDrawingRevisionUpdateManyWithoutDrawingNestedInput
+}
+
+export type EngineeringDrawingUncheckedUpdateWithoutDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  projectId?: Prisma.StringFieldUpdateOperationsInput | string
+  drawingNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumDrawingCategoryFieldUpdateOperationsInput | $Enums.DrawingCategory
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentRevision?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumDrawingRevisionStatusFieldUpdateOperationsInput | $Enums.DrawingRevisionStatus
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  revisions?: Prisma.EngineeringDrawingRevisionUncheckedUpdateManyWithoutDrawingNestedInput
 }
 
 export type EngineeringDrawingCreateManyCreatedByInput = {
@@ -841,6 +953,7 @@ export type EngineeringDrawingUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   project?: Prisma.EngineeringProjectUpdateOneRequiredWithoutDrawingsNestedInput
   revisions?: Prisma.EngineeringDrawingRevisionUpdateManyWithoutDrawingNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutDrawingNestedInput
 }
 
 export type EngineeringDrawingUncheckedUpdateWithoutCreatedByInput = {
@@ -855,6 +968,7 @@ export type EngineeringDrawingUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revisions?: Prisma.EngineeringDrawingRevisionUncheckedUpdateManyWithoutDrawingNestedInput
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutDrawingNestedInput
 }
 
 export type EngineeringDrawingUncheckedUpdateManyWithoutCreatedByInput = {
@@ -895,6 +1009,7 @@ export type EngineeringDrawingUpdateWithoutProjectInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringDrawingsNestedInput
   revisions?: Prisma.EngineeringDrawingRevisionUpdateManyWithoutDrawingNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutDrawingNestedInput
 }
 
 export type EngineeringDrawingUncheckedUpdateWithoutProjectInput = {
@@ -909,6 +1024,7 @@ export type EngineeringDrawingUncheckedUpdateWithoutProjectInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revisions?: Prisma.EngineeringDrawingRevisionUncheckedUpdateManyWithoutDrawingNestedInput
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutDrawingNestedInput
 }
 
 export type EngineeringDrawingUncheckedUpdateManyWithoutProjectInput = {
@@ -931,10 +1047,12 @@ export type EngineeringDrawingUncheckedUpdateManyWithoutProjectInput = {
 
 export type EngineeringDrawingCountOutputType = {
   revisions: number
+  documents: number
 }
 
 export type EngineeringDrawingCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   revisions?: boolean | EngineeringDrawingCountOutputTypeCountRevisionsArgs
+  documents?: boolean | EngineeringDrawingCountOutputTypeCountDocumentsArgs
 }
 
 /**
@@ -954,6 +1072,13 @@ export type EngineeringDrawingCountOutputTypeCountRevisionsArgs<ExtArgs extends 
   where?: Prisma.EngineeringDrawingRevisionWhereInput
 }
 
+/**
+ * EngineeringDrawingCountOutputType without action
+ */
+export type EngineeringDrawingCountOutputTypeCountDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EngineeringDocumentWhereInput
+}
+
 
 export type EngineeringDrawingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -970,6 +1095,7 @@ export type EngineeringDrawingSelect<ExtArgs extends runtime.Types.Extensions.In
   project?: boolean | Prisma.EngineeringProjectDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringDrawing$createdByArgs<ExtArgs>
   revisions?: boolean | Prisma.EngineeringDrawing$revisionsArgs<ExtArgs>
+  documents?: boolean | Prisma.EngineeringDrawing$documentsArgs<ExtArgs>
   _count?: boolean | Prisma.EngineeringDrawingCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["engineeringDrawing"]>
 
@@ -1024,6 +1150,7 @@ export type EngineeringDrawingInclude<ExtArgs extends runtime.Types.Extensions.I
   project?: boolean | Prisma.EngineeringProjectDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringDrawing$createdByArgs<ExtArgs>
   revisions?: boolean | Prisma.EngineeringDrawing$revisionsArgs<ExtArgs>
+  documents?: boolean | Prisma.EngineeringDrawing$documentsArgs<ExtArgs>
   _count?: boolean | Prisma.EngineeringDrawingCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EngineeringDrawingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1041,6 +1168,7 @@ export type $EngineeringDrawingPayload<ExtArgs extends runtime.Types.Extensions.
     project: Prisma.$EngineeringProjectPayload<ExtArgs>
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     revisions: Prisma.$EngineeringDrawingRevisionPayload<ExtArgs>[]
+    documents: Prisma.$EngineeringDocumentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1451,6 +1579,7 @@ export interface Prisma__EngineeringDrawingClient<T, Null = never, ExtArgs exten
   project<T extends Prisma.EngineeringProjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringProjectDefaultArgs<ExtArgs>>): Prisma.Prisma__EngineeringProjectClient<runtime.Types.Result.GetResult<Prisma.$EngineeringProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.EngineeringDrawing$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringDrawing$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   revisions<T extends Prisma.EngineeringDrawing$revisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringDrawing$revisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EngineeringDrawingRevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documents<T extends Prisma.EngineeringDrawing$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringDrawing$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EngineeringDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1932,6 +2061,30 @@ export type EngineeringDrawing$revisionsArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.EngineeringDrawingRevisionScalarFieldEnum | Prisma.EngineeringDrawingRevisionScalarFieldEnum[]
+}
+
+/**
+ * EngineeringDrawing.documents
+ */
+export type EngineeringDrawing$documentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EngineeringDocument
+   */
+  select?: Prisma.EngineeringDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EngineeringDocument
+   */
+  omit?: Prisma.EngineeringDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EngineeringDocumentInclude<ExtArgs> | null
+  where?: Prisma.EngineeringDocumentWhereInput
+  orderBy?: Prisma.EngineeringDocumentOrderByWithRelationInput | Prisma.EngineeringDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.EngineeringDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EngineeringDocumentScalarFieldEnum | Prisma.EngineeringDocumentScalarFieldEnum[]
 }
 
 /**

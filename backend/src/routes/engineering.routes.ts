@@ -8,12 +8,21 @@ import {
   createEngineeringProjectController,
   deleteEngineeringBomItemController,
   getEngineeringBomController,
+  getEngineeringBomCostRollupController,
   getEngineeringProjectController,
   listEngineeringBomsController,
   listEngineeringProjectsController,
   updateDrawingRevisionController,
   updateEngineeringBomController,
   updateEngineeringBomItemController,
+  advanceEngineeringWorkflowController,
+  linkEngineeringSalesOrderController,
+  createEngineeringDocumentController,
+  listEngineeringDocumentsController,
+  updateEngineeringDocumentController,
+  createEcrController,
+  listEcrController,
+  updateEcrController,
   updateEngineeringProjectController,
 } from "../controllers/engineering.controller.js";
 
@@ -68,6 +77,11 @@ engineeringRouter.get(
   getEngineeringBomController
 );
 
+engineeringRouter.get(
+  "/boms/:bomId/cost-rollup",
+  getEngineeringBomCostRollupController
+);
+
 engineeringRouter.post(
   "/boms",
   createEngineeringBomController
@@ -77,6 +91,18 @@ engineeringRouter.patch(
   "/boms/:bomId",
   updateEngineeringBomController
 );
+
+// ============================================================
+// MODULE 4 - WORKFLOW / DMS / ECR
+// ============================================================
+engineeringRouter.post("/:id/workflow", advanceEngineeringWorkflowController);
+engineeringRouter.post("/:id/sales-order", linkEngineeringSalesOrderController);
+engineeringRouter.get("/documents/list", listEngineeringDocumentsController);
+engineeringRouter.post("/documents", createEngineeringDocumentController);
+engineeringRouter.patch("/documents/:documentId", updateEngineeringDocumentController);
+engineeringRouter.get("/ecr", listEcrController);
+engineeringRouter.post("/ecr", createEcrController);
+engineeringRouter.patch("/ecr/:ecrId", updateEcrController);
 
 // ============================================================
 // BOM ITEMS

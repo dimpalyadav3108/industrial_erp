@@ -10,6 +10,9 @@ import {
   createPurchaseRequisitionSchema,
   createVendorQuotationSchema,
   createVendorSchema,
+  createMaterialPlanSchema,
+  createVendorPortalDocumentSchema,
+  createVendorRatingSchema,
   updateGoodsReceiptNoteSchema,
   updateProcurementRfqSchema,
   updatePurchaseOrderSchema,
@@ -173,10 +176,17 @@ export const createVendorController = async (request: AuthenticatedRequest, resp
         notes: data.notes ?? null,
       },
     });
+    if (data.category !== undefined || data.portalEnabled !== undefined) {
+      await prisma.$executeRawUnsafe(
+        `UPDATE "Vendor" SET "category"=COALESCE($1,"category"), "portalEnabled"=COALESCE($2,"portalEnabled") WHERE "id"=$3`,
+        data.category ?? null, data.portalEnabled ?? null, vendor.id
+      );
+    }
     await audit(request, "CREATE", "Vendor", vendor.id, undefined, {
       vendorCode: vendor.vendorCode,
       name: vendor.name,
       status: vendor.status,
+      category: data.category ?? "OTHER",
     });
     response.status(201).json({ success: true, message: "Vendor created successfully", data: vendor });
   } catch (error) {
@@ -221,7 +231,13 @@ export const updateVendorController = async (request: AuthenticatedRequest, resp
         ...(data.status !== undefined ? { status: data.status } : {}),
       },
     });
-    await audit(request, "UPDATE", "Vendor", id, { name: existing.name, status: existing.status }, { name: vendor.name, status: vendor.status });
+    if (data.category !== undefined || data.portalEnabled !== undefined) {
+      await prisma.$executeRawUnsafe(
+        `UPDATE "Vendor" SET "category"=COALESCE($1,"category"), "portalEnabled"=COALESCE($2,"portalEnabled") WHERE "id"=$3`,
+        data.category ?? null, data.portalEnabled ?? null, id
+      );
+    }
+    await audit(request, "UPDATE", "Vendor", id, { name: existing.name, status: existing.status }, { name: vendor.name, status: vendor.status, category: data.category });
     response.status(200).json({ success: true, message: "Vendor updated successfully", data: vendor });
   } catch (error) {
     console.error("Unable to update vendor:", error);
@@ -1068,5 +1084,109 @@ export const postGoodsReceiptNoteController = async (request: AuthenticatedReque
   } catch (error) {
     console.error("Unable to post GRN:", error);
     response.status(500).json({ success: false, message: "Unable to post goods receipt note" });
+  }
+};
+
+
+// ============================================================
+// MRP / MATERIAL SHORTAGE
+// ============================================================
+
+export const listMaterialPlansController = async (_request: Request, response: Response) => {
+  try {
+    const rows = await prisma.$queryRawUnsafe(`SELECT * FROM "ProcurementMaterialPlan" ORDER BY "createdAt" DESC`);
+    response.status(200).json({ success: true, data: rows });
+  } catch (error) {
+    console.error("Unable to list material plans:", error);
+    response.status(500).json({ success: false, message: "Unable to load material plans" });
+  }
+};
+
+export const createMaterialPlanController = async (request: AuthenticatedRequest, response: Response) => {
+  const validation = createMaterialPlanSchema.safeParse(request.body);
+  if (!validation.success) { badValidation(response, validation, "Please correct the material plan fields"); return; }
+  const d = validation.data;
+  try {
+    const id = randomUUID();
+    const planNumber = code("MRP");
+    await prisma.$executeRawUnsafe(
+      `INSERT INTO "ProcurementMaterialPlan" ("id","planNumber","title","status","salesOrderId","shortageValue","notes","createdById","createdAt","updatedAt") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,NOW(),NOW())`,
+      id, planNumber, d.title, Number(d.shortageValue ?? 0) > 0 ? "SHORTAGE_IDENTIFIED" : "DRAFT", d.salesOrderId ?? null, Number(d.shortageValue ?? 0), d.notes ?? null, request.auth?.userId ?? null
+    );
+    response.status(201).json({ success: true, message: "MRP material plan created", data: { id, planNumber, ...d } });
+  } catch (error) {
+    console.error("Unable to create material plan:", error);
+    response.status(500).json({ success: false, message: "Unable to create material plan" });
+  }
+};
+
+// ============================================================
+// VENDOR PORTAL DOCUMENTS
+// ============================================================
+
+export const listVendorPortalDocumentsController = async (request: Request, response: Response) => {
+  try {
+    const vendorId = String(request.params.vendorId);
+    const rows = await prisma.$queryRawUnsafe(`SELECT * FROM "VendorPortalDocument" WHERE "vendorId"=$1 ORDER BY "uploadedAt" DESC`, vendorId);
+    response.status(200).json({ success: true, data: rows });
+  } catch (error) {
+    console.error("Unable to list vendor portal documents:", error);
+    response.status(500).json({ success: false, message: "Unable to load vendor portal documents" });
+  }
+};
+
+export const createVendorPortalDocumentController = async (request: AuthenticatedRequest, response: Response) => {
+  const validation = createVendorPortalDocumentSchema.safeParse(request.body);
+  if (!validation.success) { badValidation(response, validation, "Please correct the document fields"); return; }
+  const vendorId = String(request.params.vendorId);
+  const d = validation.data;
+  try {
+    const vendor = await prisma.vendor.findUnique({ where: { id: vendorId } });
+    if (!vendor) { response.status(404).json({ success: false, message: "Vendor was not found" }); return; }
+    const id = randomUUID();
+    await prisma.$executeRawUnsafe(
+      `INSERT INTO "VendorPortalDocument" ("id","vendorId","documentType","fileName","fileUrl","invoiceNumber","dispatchNumber","uploadedBy","uploadedAt","notes") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,NOW(),$9)`,
+      id, vendorId, d.documentType, d.fileName, d.fileUrl ?? null, d.invoiceNumber ?? null, d.dispatchNumber ?? null, request.auth?.userId ?? null, d.notes ?? null
+    );
+    response.status(201).json({ success: true, message: "Vendor portal document uploaded", data: { id, vendorId, ...d } });
+  } catch (error) {
+    console.error("Unable to create vendor portal document:", error);
+    response.status(500).json({ success: false, message: "Unable to upload vendor document" });
+  }
+};
+
+// ============================================================
+// VENDOR RATING ENGINE
+// ============================================================
+
+export const listVendorRatingsController = async (request: Request, response: Response) => {
+  try {
+    const vendorId = String(request.params.vendorId);
+    const rows = await prisma.$queryRawUnsafe(`SELECT * FROM "VendorRatingEntry" WHERE "vendorId"=$1 ORDER BY "createdAt" DESC`, vendorId);
+    response.status(200).json({ success: true, data: rows });
+  } catch (error) {
+    response.status(500).json({ success: false, message: "Unable to load vendor ratings" });
+  }
+};
+
+export const createVendorRatingController = async (request: AuthenticatedRequest, response: Response) => {
+  const validation = createVendorRatingSchema.safeParse(request.body);
+  if (!validation.success) { badValidation(response, validation, "Please correct the vendor rating"); return; }
+  const vendorId = String(request.params.vendorId);
+  const d = validation.data;
+  const overall = (Number(d.qualityScore) + Number(d.deliveryScore) + Number(d.priceScore) + Number(d.serviceScore)) / 4;
+  try {
+    const vendor = await prisma.vendor.findUnique({ where: { id: vendorId } });
+    if (!vendor) { response.status(404).json({ success: false, message: "Vendor was not found" }); return; }
+    const id = randomUUID();
+    await prisma.$executeRawUnsafe(
+      `INSERT INTO "VendorRatingEntry" ("id","vendorId","purchaseOrderId","qualityScore","deliveryScore","priceScore","serviceScore","overallScore","remarks","ratedById","createdAt") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,NOW())`,
+      id, vendorId, d.purchaseOrderId ?? null, Number(d.qualityScore), Number(d.deliveryScore), Number(d.priceScore), Number(d.serviceScore), overall, d.remarks ?? null, request.auth?.userId ?? null
+    );
+    await prisma.vendor.update({ where: { id: vendorId }, data: { rating: overall / 20 } });
+    response.status(201).json({ success: true, message: "Vendor rating saved", data: { id, vendorId, overallScore: overall } });
+  } catch (error) {
+    console.error("Unable to save vendor rating:", error);
+    response.status(500).json({ success: false, message: "Unable to save vendor rating" });
   }
 };

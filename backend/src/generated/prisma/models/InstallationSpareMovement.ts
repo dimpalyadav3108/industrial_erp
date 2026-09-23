@@ -557,10 +557,6 @@ export type InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNeste
   deleteMany?: Prisma.InstallationSpareMovementScalarWhereInput | Prisma.InstallationSpareMovementScalarWhereInput[]
 }
 
-export type EnumSpareMovementTypeFieldUpdateOperationsInput = {
-  set?: $Enums.SpareMovementType
-}
-
 export type InstallationSpareMovementCreateWithoutRecordedByInput = {
   id?: string
   movementType: $Enums.SpareMovementType

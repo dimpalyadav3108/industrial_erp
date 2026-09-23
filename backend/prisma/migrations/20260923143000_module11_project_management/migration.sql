@@ -1,0 +1,15 @@
+ALTER TABLE "Project" ALTER COLUMN "status" DROP DEFAULT;
+ALTER TYPE "ProjectStatus" RENAME TO "ProjectStatus_old";
+CREATE TYPE "ProjectStatus" AS ENUM ('PLANNED','ACTIVE','ON_HOLD','COMPLETED','CANCELLED');
+ALTER TABLE "Project" ALTER COLUMN "status" TYPE "ProjectStatus" USING "status"::text::"ProjectStatus";
+ALTER TABLE "Project" ALTER COLUMN "status" SET DEFAULT 'PLANNED'::"ProjectStatus";
+DROP TYPE "ProjectStatus_old";
+CREATE TYPE "ProjectStage" AS ENUM ('ORDER','ENGINEERING','PROCUREMENT','FABRICATION','TESTING','DISPATCH','INSTALLATION','COMMISSIONING','HANDOVER');
+ALTER TABLE "Project" ADD COLUMN "stage" "ProjectStage" NOT NULL DEFAULT 'ORDER';
+ALTER TABLE "Project" ADD COLUMN "actualCost" DECIMAL(15,2) NOT NULL DEFAULT 0;
+ALTER TABLE "Project" ADD COLUMN "revenueAmount" DECIMAL(15,2) NOT NULL DEFAULT 0;
+UPDATE "Project" SET "revenueAmount"="budgetAmount";
+CREATE TABLE "ProjectCostLine" ("id" TEXT NOT NULL,"projectId" TEXT NOT NULL,"category" TEXT NOT NULL,"description" TEXT NOT NULL,"plannedCost" DECIMAL(15,2) NOT NULL DEFAULT 0,"actualCost" DECIMAL(15,2) NOT NULL DEFAULT 0,"incurredOn" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,"createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,"updatedAt" TIMESTAMP(3) NOT NULL,CONSTRAINT "ProjectCostLine_pkey" PRIMARY KEY ("id"));
+CREATE INDEX "ProjectCostLine_projectId_idx" ON "ProjectCostLine"("projectId");
+CREATE INDEX "ProjectCostLine_category_idx" ON "ProjectCostLine"("category");
+ALTER TABLE "ProjectCostLine" ADD CONSTRAINT "ProjectCostLine_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;

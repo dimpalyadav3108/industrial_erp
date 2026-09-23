@@ -17,6 +17,28 @@ export type DrawingCategory =
   | "FOUNDATION"
   | "OTHER";
 
+export type EngineeringWorkflowStage =
+  | "SALES_ORDER" | "ENGINEERING_RELEASE" | "DESIGN_CREATION" | "GA_DRAWING"
+  | "CUSTOMER_APPROVAL" | "FABRICATION_DRAWING" | "BOM_RELEASE" | "PRODUCTION_RELEASE";
+
+export type EngineeringDocumentStatus = "DRAFT" | "INTERNAL_REVIEW" | "CUSTOMER_REVIEW" | "APPROVED" | "REJECTED" | "SUPERSEDED";
+export type EcrStatus = "DRAFT" | "IMPACT_ANALYSIS" | "PENDING_APPROVAL" | "APPROVED" | "REJECTED" | "IMPLEMENTED" | "CANCELLED";
+
+export interface EngineeringDocument {
+  id: string; projectId: string; drawingId: string | null; documentNumber: string; title: string; category: DrawingCategory;
+  versionLabel: string; status: EngineeringDocumentStatus; fileName: string | null; fileUrl: string | null;
+  modificationReason: string | null; modifiedAt: string; customerApproved: boolean; customerApprovedAt: string | null; customerApprovedVersion: string | null;
+  modifiedBy: EngineeringUserSummary | null; approvedBy: EngineeringUserSummary | null;
+}
+
+export interface EngineeringChangeRequest {
+  id: string; ecrNumber: string; projectId: string; title: string; description: string; reason: string; impactAnalysis: string | null;
+  impactedDocuments: string | null; impactedBomItems: string | null; productionImpact: string | null; status: EcrStatus;
+  bomUpdateRequired: boolean; productionUpdateRequired: boolean; bomUpdatedAt: string | null; productionUpdatedAt: string | null;
+  createdAt: string; approvedAt: string | null; implementedAt: string | null;
+  createdBy: EngineeringUserSummary | null; approvedBy: EngineeringUserSummary | null;
+}
+
 export type DrawingRevisionStatus =
   | "DRAFT"
   | "INTERNAL_REVIEW"
@@ -58,6 +80,7 @@ export interface EngineeringDrawingRevision {
   id: string;
   drawingId: string;
   revisionNumber: number;
+  versionLabel: string;
   status: DrawingRevisionStatus;
 
   documentName: string | null;
@@ -69,6 +92,8 @@ export interface EngineeringDrawingRevision {
 
   customerApproved: boolean;
   customerApprovedAt: string | null;
+  modifiedById: string | null;
+  modifiedAt: string | null;
 
   createdById: string | null;
   approvedById: string | null;
@@ -107,6 +132,7 @@ export interface EngineeringDrawing {
   createdBy: EngineeringUserSummary | null;
 
   revisions: EngineeringDrawingRevision[];
+  documents?: EngineeringDocument[];
 }
 
 // ============================================================
@@ -152,6 +178,8 @@ export interface EngineeringBomItem {
   source: BomItemSource;
 
   materialSpec: string | null;
+  alternateMaterial: string | null;
+  unitCost: string | number | null;
 
   drawingNumber: string | null;
 
@@ -248,6 +276,15 @@ export interface EngineeringProject {
   productModel: string | null;
 
   status: EngineeringProjectStatus;
+  workflowStage: EngineeringWorkflowStage;
+  salesOrderId: string | null;
+  engineeringReleasedAt: string | null;
+  designCreatedAt: string | null;
+  customerApprovalAt: string | null;
+  fabricationReleasedAt: string | null;
+  bomReleasedAt: string | null;
+  productionReleasedAt: string | null;
+  customerApprovedVersion: string | null;
 
   plannedStartDate: string | null;
 
@@ -270,6 +307,8 @@ export interface EngineeringProject {
 
   // BOMs belonging to this engineering project
   boms: EngineeringBom[];
+  documents?: EngineeringDocument[];
+  ecrs?: EngineeringChangeRequest[];
 }
 
 // ============================================================
@@ -393,6 +432,10 @@ export interface CreateEngineeringBomItemPayload {
 
   materialSpec?: string;
 
+  alternateMaterial?: string;
+
+  unitCost?: number;
+
   drawingNumber?: string;
 
   remarks?: string;
@@ -418,6 +461,10 @@ export interface UpdateEngineeringBomItemPayload {
   source?: BomItemSource;
 
   materialSpec?: string | null;
+
+  alternateMaterial?: string | null;
+
+  unitCost?: number;
 
   drawingNumber?: string | null;
 

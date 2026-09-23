@@ -27,6 +27,8 @@ export type AggregateSalesOrder = {
 }
 
 export type SalesOrderAvgAggregateOutputType = {
+  advanceAmount: runtime.Decimal | null
+  advanceDueAmount: runtime.Decimal | null
   subtotal: runtime.Decimal | null
   discountAmount: runtime.Decimal | null
   taxAmount: runtime.Decimal | null
@@ -35,6 +37,8 @@ export type SalesOrderAvgAggregateOutputType = {
 }
 
 export type SalesOrderSumAggregateOutputType = {
+  advanceAmount: runtime.Decimal | null
+  advanceDueAmount: runtime.Decimal | null
   subtotal: runtime.Decimal | null
   discountAmount: runtime.Decimal | null
   taxAmount: runtime.Decimal | null
@@ -48,6 +52,10 @@ export type SalesOrderMinAggregateOutputType = {
   customerId: string | null
   quotationId: string | null
   status: $Enums.SalesOrderStatus | null
+  customerApprovalAt: Date | null
+  customerApprovalReference: string | null
+  advanceAmount: runtime.Decimal | null
+  advanceDueAmount: runtime.Decimal | null
   orderDate: Date | null
   customerPoNumber: string | null
   customerPoDate: Date | null
@@ -77,6 +85,10 @@ export type SalesOrderMaxAggregateOutputType = {
   customerId: string | null
   quotationId: string | null
   status: $Enums.SalesOrderStatus | null
+  customerApprovalAt: Date | null
+  customerApprovalReference: string | null
+  advanceAmount: runtime.Decimal | null
+  advanceDueAmount: runtime.Decimal | null
   orderDate: Date | null
   customerPoNumber: string | null
   customerPoDate: Date | null
@@ -106,6 +118,10 @@ export type SalesOrderCountAggregateOutputType = {
   customerId: number
   quotationId: number
   status: number
+  customerApprovalAt: number
+  customerApprovalReference: number
+  advanceAmount: number
+  advanceDueAmount: number
   orderDate: number
   customerPoNumber: number
   customerPoDate: number
@@ -132,6 +148,8 @@ export type SalesOrderCountAggregateOutputType = {
 
 
 export type SalesOrderAvgAggregateInputType = {
+  advanceAmount?: true
+  advanceDueAmount?: true
   subtotal?: true
   discountAmount?: true
   taxAmount?: true
@@ -140,6 +158,8 @@ export type SalesOrderAvgAggregateInputType = {
 }
 
 export type SalesOrderSumAggregateInputType = {
+  advanceAmount?: true
+  advanceDueAmount?: true
   subtotal?: true
   discountAmount?: true
   taxAmount?: true
@@ -153,6 +173,10 @@ export type SalesOrderMinAggregateInputType = {
   customerId?: true
   quotationId?: true
   status?: true
+  customerApprovalAt?: true
+  customerApprovalReference?: true
+  advanceAmount?: true
+  advanceDueAmount?: true
   orderDate?: true
   customerPoNumber?: true
   customerPoDate?: true
@@ -182,6 +206,10 @@ export type SalesOrderMaxAggregateInputType = {
   customerId?: true
   quotationId?: true
   status?: true
+  customerApprovalAt?: true
+  customerApprovalReference?: true
+  advanceAmount?: true
+  advanceDueAmount?: true
   orderDate?: true
   customerPoNumber?: true
   customerPoDate?: true
@@ -211,6 +239,10 @@ export type SalesOrderCountAggregateInputType = {
   customerId?: true
   quotationId?: true
   status?: true
+  customerApprovalAt?: true
+  customerApprovalReference?: true
+  advanceAmount?: true
+  advanceDueAmount?: true
   orderDate?: true
   customerPoNumber?: true
   customerPoDate?: true
@@ -327,6 +359,10 @@ export type SalesOrderGroupByOutputType = {
   customerId: string
   quotationId: string | null
   status: $Enums.SalesOrderStatus
+  customerApprovalAt: Date | null
+  customerApprovalReference: string | null
+  advanceAmount: runtime.Decimal
+  advanceDueAmount: runtime.Decimal
   orderDate: Date
   customerPoNumber: string | null
   customerPoDate: Date | null
@@ -379,6 +415,10 @@ export type SalesOrderWhereInput = {
   customerId?: Prisma.StringFilter<"SalesOrder"> | string
   quotationId?: Prisma.StringNullableFilter<"SalesOrder"> | string | null
   status?: Prisma.EnumSalesOrderStatusFilter<"SalesOrder"> | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.DateTimeNullableFilter<"SalesOrder"> | Date | string | null
+  customerApprovalReference?: Prisma.StringNullableFilter<"SalesOrder"> | string | null
+  advanceAmount?: Prisma.DecimalFilter<"SalesOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFilter<"SalesOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFilter<"SalesOrder"> | Date | string
   customerPoNumber?: Prisma.StringNullableFilter<"SalesOrder"> | string | null
   customerPoDate?: Prisma.DateTimeNullableFilter<"SalesOrder"> | Date | string | null
@@ -402,11 +442,18 @@ export type SalesOrderWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"SalesOrder"> | Date | string
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   quotation?: Prisma.XOR<Prisma.QuotationNullableScalarRelationFilter, Prisma.QuotationWhereInput> | null
+  engineeringProject?: Prisma.XOR<Prisma.EngineeringProjectNullableScalarRelationFilter, Prisma.EngineeringProjectWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   confirmedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.SalesOrderItemListRelationFilter
   invoices?: Prisma.SalesInvoiceListRelationFilter
   project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
+  productionOrders?: Prisma.ProductionOrderListRelationFilter
+  dispatchNotes?: Prisma.SalesDispatchNoteListRelationFilter
+  eWayBills?: Prisma.SalesEWayBillListRelationFilter
+  payments?: Prisma.SalesPaymentListRelationFilter
+  dispatch?: Prisma.XOR<Prisma.DispatchNullableScalarRelationFilter, Prisma.DispatchWhereInput> | null
+  installationJob?: Prisma.XOR<Prisma.InstallationJobNullableScalarRelationFilter, Prisma.InstallationJobWhereInput> | null
 }
 
 export type SalesOrderOrderByWithRelationInput = {
@@ -415,6 +462,10 @@ export type SalesOrderOrderByWithRelationInput = {
   customerId?: Prisma.SortOrder
   quotationId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  customerApprovalAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrderInput | Prisma.SortOrder
+  advanceAmount?: Prisma.SortOrder
+  advanceDueAmount?: Prisma.SortOrder
   orderDate?: Prisma.SortOrder
   customerPoNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   customerPoDate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -438,11 +489,18 @@ export type SalesOrderOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   customer?: Prisma.CustomerOrderByWithRelationInput
   quotation?: Prisma.QuotationOrderByWithRelationInput
+  engineeringProject?: Prisma.EngineeringProjectOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   confirmedBy?: Prisma.UserOrderByWithRelationInput
   items?: Prisma.SalesOrderItemOrderByRelationAggregateInput
   invoices?: Prisma.SalesInvoiceOrderByRelationAggregateInput
   project?: Prisma.ProjectOrderByWithRelationInput
+  productionOrders?: Prisma.ProductionOrderOrderByRelationAggregateInput
+  dispatchNotes?: Prisma.SalesDispatchNoteOrderByRelationAggregateInput
+  eWayBills?: Prisma.SalesEWayBillOrderByRelationAggregateInput
+  payments?: Prisma.SalesPaymentOrderByRelationAggregateInput
+  dispatch?: Prisma.DispatchOrderByWithRelationInput
+  installationJob?: Prisma.InstallationJobOrderByWithRelationInput
 }
 
 export type SalesOrderWhereUniqueInput = Prisma.AtLeast<{
@@ -454,6 +512,10 @@ export type SalesOrderWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.SalesOrderWhereInput | Prisma.SalesOrderWhereInput[]
   customerId?: Prisma.StringFilter<"SalesOrder"> | string
   status?: Prisma.EnumSalesOrderStatusFilter<"SalesOrder"> | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.DateTimeNullableFilter<"SalesOrder"> | Date | string | null
+  customerApprovalReference?: Prisma.StringNullableFilter<"SalesOrder"> | string | null
+  advanceAmount?: Prisma.DecimalFilter<"SalesOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFilter<"SalesOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFilter<"SalesOrder"> | Date | string
   customerPoNumber?: Prisma.StringNullableFilter<"SalesOrder"> | string | null
   customerPoDate?: Prisma.DateTimeNullableFilter<"SalesOrder"> | Date | string | null
@@ -477,11 +539,18 @@ export type SalesOrderWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"SalesOrder"> | Date | string
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   quotation?: Prisma.XOR<Prisma.QuotationNullableScalarRelationFilter, Prisma.QuotationWhereInput> | null
+  engineeringProject?: Prisma.XOR<Prisma.EngineeringProjectNullableScalarRelationFilter, Prisma.EngineeringProjectWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   confirmedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.SalesOrderItemListRelationFilter
   invoices?: Prisma.SalesInvoiceListRelationFilter
   project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
+  productionOrders?: Prisma.ProductionOrderListRelationFilter
+  dispatchNotes?: Prisma.SalesDispatchNoteListRelationFilter
+  eWayBills?: Prisma.SalesEWayBillListRelationFilter
+  payments?: Prisma.SalesPaymentListRelationFilter
+  dispatch?: Prisma.XOR<Prisma.DispatchNullableScalarRelationFilter, Prisma.DispatchWhereInput> | null
+  installationJob?: Prisma.XOR<Prisma.InstallationJobNullableScalarRelationFilter, Prisma.InstallationJobWhereInput> | null
 }, "id" | "salesOrderNumber" | "quotationId">
 
 export type SalesOrderOrderByWithAggregationInput = {
@@ -490,6 +559,10 @@ export type SalesOrderOrderByWithAggregationInput = {
   customerId?: Prisma.SortOrder
   quotationId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  customerApprovalAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrderInput | Prisma.SortOrder
+  advanceAmount?: Prisma.SortOrder
+  advanceDueAmount?: Prisma.SortOrder
   orderDate?: Prisma.SortOrder
   customerPoNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   customerPoDate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -527,6 +600,10 @@ export type SalesOrderScalarWhereWithAggregatesInput = {
   customerId?: Prisma.StringWithAggregatesFilter<"SalesOrder"> | string
   quotationId?: Prisma.StringNullableWithAggregatesFilter<"SalesOrder"> | string | null
   status?: Prisma.EnumSalesOrderStatusWithAggregatesFilter<"SalesOrder"> | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.DateTimeNullableWithAggregatesFilter<"SalesOrder"> | Date | string | null
+  customerApprovalReference?: Prisma.StringNullableWithAggregatesFilter<"SalesOrder"> | string | null
+  advanceAmount?: Prisma.DecimalWithAggregatesFilter<"SalesOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalWithAggregatesFilter<"SalesOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeWithAggregatesFilter<"SalesOrder"> | Date | string
   customerPoNumber?: Prisma.StringNullableWithAggregatesFilter<"SalesOrder"> | string | null
   customerPoDate?: Prisma.DateTimeNullableWithAggregatesFilter<"SalesOrder"> | Date | string | null
@@ -554,6 +631,10 @@ export type SalesOrderCreateInput = {
   id?: string
   salesOrderNumber: string
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -575,11 +656,18 @@ export type SalesOrderCreateInput = {
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
   quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
   confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
   items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderUncheckedCreateInput = {
@@ -588,6 +676,10 @@ export type SalesOrderUncheckedCreateInput = {
   customerId: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -609,15 +701,26 @@ export type SalesOrderUncheckedCreateInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
   items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -639,11 +742,18 @@ export type SalesOrderUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
   quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
   confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
   items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateInput = {
@@ -652,6 +762,10 @@ export type SalesOrderUncheckedUpdateInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -673,9 +787,16 @@ export type SalesOrderUncheckedUpdateInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
   items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderCreateManyInput = {
@@ -684,6 +805,10 @@ export type SalesOrderCreateManyInput = {
   customerId: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -711,6 +836,10 @@ export type SalesOrderUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -738,6 +867,10 @@ export type SalesOrderUncheckedUpdateManyInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -782,6 +915,10 @@ export type SalesOrderCountOrderByAggregateInput = {
   customerId?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  customerApprovalAt?: Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrder
+  advanceAmount?: Prisma.SortOrder
+  advanceDueAmount?: Prisma.SortOrder
   orderDate?: Prisma.SortOrder
   customerPoNumber?: Prisma.SortOrder
   customerPoDate?: Prisma.SortOrder
@@ -806,6 +943,8 @@ export type SalesOrderCountOrderByAggregateInput = {
 }
 
 export type SalesOrderAvgOrderByAggregateInput = {
+  advanceAmount?: Prisma.SortOrder
+  advanceDueAmount?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   discountAmount?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
@@ -819,6 +958,10 @@ export type SalesOrderMaxOrderByAggregateInput = {
   customerId?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  customerApprovalAt?: Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrder
+  advanceAmount?: Prisma.SortOrder
+  advanceDueAmount?: Prisma.SortOrder
   orderDate?: Prisma.SortOrder
   customerPoNumber?: Prisma.SortOrder
   customerPoDate?: Prisma.SortOrder
@@ -848,6 +991,10 @@ export type SalesOrderMinOrderByAggregateInput = {
   customerId?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  customerApprovalAt?: Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrder
+  advanceAmount?: Prisma.SortOrder
+  advanceDueAmount?: Prisma.SortOrder
   orderDate?: Prisma.SortOrder
   customerPoNumber?: Prisma.SortOrder
   customerPoDate?: Prisma.SortOrder
@@ -872,6 +1019,8 @@ export type SalesOrderMinOrderByAggregateInput = {
 }
 
 export type SalesOrderSumOrderByAggregateInput = {
+  advanceAmount?: Prisma.SortOrder
+  advanceDueAmount?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   discountAmount?: Prisma.SortOrder
   taxAmount?: Prisma.SortOrder
@@ -1042,6 +1191,54 @@ export type SalesOrderUncheckedUpdateOneWithoutQuotationNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SalesOrderUpdateToOneWithWhereWithoutQuotationInput, Prisma.SalesOrderUpdateWithoutQuotationInput>, Prisma.SalesOrderUncheckedUpdateWithoutQuotationInput>
 }
 
+export type SalesOrderCreateNestedOneWithoutProductionOrdersInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutProductionOrdersInput, Prisma.SalesOrderUncheckedCreateWithoutProductionOrdersInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutProductionOrdersInput
+  connect?: Prisma.SalesOrderWhereUniqueInput
+}
+
+export type SalesOrderUpdateOneWithoutProductionOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutProductionOrdersInput, Prisma.SalesOrderUncheckedCreateWithoutProductionOrdersInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutProductionOrdersInput
+  upsert?: Prisma.SalesOrderUpsertWithoutProductionOrdersInput
+  disconnect?: Prisma.SalesOrderWhereInput | boolean
+  delete?: Prisma.SalesOrderWhereInput | boolean
+  connect?: Prisma.SalesOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SalesOrderUpdateToOneWithWhereWithoutProductionOrdersInput, Prisma.SalesOrderUpdateWithoutProductionOrdersInput>, Prisma.SalesOrderUncheckedUpdateWithoutProductionOrdersInput>
+}
+
+export type SalesOrderCreateNestedOneWithoutDispatchInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutDispatchInput, Prisma.SalesOrderUncheckedCreateWithoutDispatchInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutDispatchInput
+  connect?: Prisma.SalesOrderWhereUniqueInput
+}
+
+export type SalesOrderUpdateOneWithoutDispatchNestedInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutDispatchInput, Prisma.SalesOrderUncheckedCreateWithoutDispatchInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutDispatchInput
+  upsert?: Prisma.SalesOrderUpsertWithoutDispatchInput
+  disconnect?: Prisma.SalesOrderWhereInput | boolean
+  delete?: Prisma.SalesOrderWhereInput | boolean
+  connect?: Prisma.SalesOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SalesOrderUpdateToOneWithWhereWithoutDispatchInput, Prisma.SalesOrderUpdateWithoutDispatchInput>, Prisma.SalesOrderUncheckedUpdateWithoutDispatchInput>
+}
+
+export type SalesOrderCreateNestedOneWithoutEngineeringProjectInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutEngineeringProjectInput, Prisma.SalesOrderUncheckedCreateWithoutEngineeringProjectInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutEngineeringProjectInput
+  connect?: Prisma.SalesOrderWhereUniqueInput
+}
+
+export type SalesOrderUpdateOneWithoutEngineeringProjectNestedInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutEngineeringProjectInput, Prisma.SalesOrderUncheckedCreateWithoutEngineeringProjectInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutEngineeringProjectInput
+  upsert?: Prisma.SalesOrderUpsertWithoutEngineeringProjectInput
+  disconnect?: Prisma.SalesOrderWhereInput | boolean
+  delete?: Prisma.SalesOrderWhereInput | boolean
+  connect?: Prisma.SalesOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SalesOrderUpdateToOneWithWhereWithoutEngineeringProjectInput, Prisma.SalesOrderUpdateWithoutEngineeringProjectInput>, Prisma.SalesOrderUncheckedUpdateWithoutEngineeringProjectInput>
+}
+
 export type EnumSalesOrderStatusFieldUpdateOperationsInput = {
   set?: $Enums.SalesOrderStatus
 }
@@ -1074,6 +1271,50 @@ export type SalesOrderUpdateOneRequiredWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SalesOrderUpdateToOneWithWhereWithoutInvoicesInput, Prisma.SalesOrderUpdateWithoutInvoicesInput>, Prisma.SalesOrderUncheckedUpdateWithoutInvoicesInput>
 }
 
+export type SalesOrderCreateNestedOneWithoutPaymentsInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutPaymentsInput, Prisma.SalesOrderUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutPaymentsInput
+  connect?: Prisma.SalesOrderWhereUniqueInput
+}
+
+export type SalesOrderUpdateOneWithoutPaymentsNestedInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutPaymentsInput, Prisma.SalesOrderUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutPaymentsInput
+  upsert?: Prisma.SalesOrderUpsertWithoutPaymentsInput
+  disconnect?: Prisma.SalesOrderWhereInput | boolean
+  delete?: Prisma.SalesOrderWhereInput | boolean
+  connect?: Prisma.SalesOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SalesOrderUpdateToOneWithWhereWithoutPaymentsInput, Prisma.SalesOrderUpdateWithoutPaymentsInput>, Prisma.SalesOrderUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type SalesOrderCreateNestedOneWithoutDispatchNotesInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutDispatchNotesInput, Prisma.SalesOrderUncheckedCreateWithoutDispatchNotesInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutDispatchNotesInput
+  connect?: Prisma.SalesOrderWhereUniqueInput
+}
+
+export type SalesOrderUpdateOneRequiredWithoutDispatchNotesNestedInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutDispatchNotesInput, Prisma.SalesOrderUncheckedCreateWithoutDispatchNotesInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutDispatchNotesInput
+  upsert?: Prisma.SalesOrderUpsertWithoutDispatchNotesInput
+  connect?: Prisma.SalesOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SalesOrderUpdateToOneWithWhereWithoutDispatchNotesInput, Prisma.SalesOrderUpdateWithoutDispatchNotesInput>, Prisma.SalesOrderUncheckedUpdateWithoutDispatchNotesInput>
+}
+
+export type SalesOrderCreateNestedOneWithoutEWayBillsInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutEWayBillsInput, Prisma.SalesOrderUncheckedCreateWithoutEWayBillsInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutEWayBillsInput
+  connect?: Prisma.SalesOrderWhereUniqueInput
+}
+
+export type SalesOrderUpdateOneRequiredWithoutEWayBillsNestedInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutEWayBillsInput, Prisma.SalesOrderUncheckedCreateWithoutEWayBillsInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutEWayBillsInput
+  upsert?: Prisma.SalesOrderUpsertWithoutEWayBillsInput
+  connect?: Prisma.SalesOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SalesOrderUpdateToOneWithWhereWithoutEWayBillsInput, Prisma.SalesOrderUpdateWithoutEWayBillsInput>, Prisma.SalesOrderUncheckedUpdateWithoutEWayBillsInput>
+}
+
 export type SalesOrderCreateNestedOneWithoutProjectInput = {
   create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutProjectInput, Prisma.SalesOrderUncheckedCreateWithoutProjectInput>
   connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutProjectInput
@@ -1088,10 +1329,30 @@ export type SalesOrderUpdateOneRequiredWithoutProjectNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SalesOrderUpdateToOneWithWhereWithoutProjectInput, Prisma.SalesOrderUpdateWithoutProjectInput>, Prisma.SalesOrderUncheckedUpdateWithoutProjectInput>
 }
 
+export type SalesOrderCreateNestedOneWithoutInstallationJobInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutInstallationJobInput, Prisma.SalesOrderUncheckedCreateWithoutInstallationJobInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutInstallationJobInput
+  connect?: Prisma.SalesOrderWhereUniqueInput
+}
+
+export type SalesOrderUpdateOneWithoutInstallationJobNestedInput = {
+  create?: Prisma.XOR<Prisma.SalesOrderCreateWithoutInstallationJobInput, Prisma.SalesOrderUncheckedCreateWithoutInstallationJobInput>
+  connectOrCreate?: Prisma.SalesOrderCreateOrConnectWithoutInstallationJobInput
+  upsert?: Prisma.SalesOrderUpsertWithoutInstallationJobInput
+  disconnect?: Prisma.SalesOrderWhereInput | boolean
+  delete?: Prisma.SalesOrderWhereInput | boolean
+  connect?: Prisma.SalesOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SalesOrderUpdateToOneWithWhereWithoutInstallationJobInput, Prisma.SalesOrderUpdateWithoutInstallationJobInput>, Prisma.SalesOrderUncheckedUpdateWithoutInstallationJobInput>
+}
+
 export type SalesOrderCreateWithoutCreatedByInput = {
   id?: string
   salesOrderNumber: string
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1113,10 +1374,17 @@ export type SalesOrderCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
   quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
   confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
   items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderUncheckedCreateWithoutCreatedByInput = {
@@ -1125,6 +1393,10 @@ export type SalesOrderUncheckedCreateWithoutCreatedByInput = {
   customerId: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1145,9 +1417,16 @@ export type SalesOrderUncheckedCreateWithoutCreatedByInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
   items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderCreateOrConnectWithoutCreatedByInput = {
@@ -1164,6 +1443,10 @@ export type SalesOrderCreateWithoutConfirmedByInput = {
   id?: string
   salesOrderNumber: string
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1185,10 +1468,17 @@ export type SalesOrderCreateWithoutConfirmedByInput = {
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
   quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
   items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderUncheckedCreateWithoutConfirmedByInput = {
@@ -1197,6 +1487,10 @@ export type SalesOrderUncheckedCreateWithoutConfirmedByInput = {
   customerId: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1217,9 +1511,16 @@ export type SalesOrderUncheckedCreateWithoutConfirmedByInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
   items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderCreateOrConnectWithoutConfirmedByInput = {
@@ -1257,6 +1558,10 @@ export type SalesOrderScalarWhereInput = {
   customerId?: Prisma.StringFilter<"SalesOrder"> | string
   quotationId?: Prisma.StringNullableFilter<"SalesOrder"> | string | null
   status?: Prisma.EnumSalesOrderStatusFilter<"SalesOrder"> | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.DateTimeNullableFilter<"SalesOrder"> | Date | string | null
+  customerApprovalReference?: Prisma.StringNullableFilter<"SalesOrder"> | string | null
+  advanceAmount?: Prisma.DecimalFilter<"SalesOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFilter<"SalesOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFilter<"SalesOrder"> | Date | string
   customerPoNumber?: Prisma.StringNullableFilter<"SalesOrder"> | string | null
   customerPoDate?: Prisma.DateTimeNullableFilter<"SalesOrder"> | Date | string | null
@@ -1300,6 +1605,10 @@ export type SalesOrderCreateWithoutCustomerInput = {
   id?: string
   salesOrderNumber: string
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1320,11 +1629,18 @@ export type SalesOrderCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
   confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
   items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderUncheckedCreateWithoutCustomerInput = {
@@ -1332,6 +1648,10 @@ export type SalesOrderUncheckedCreateWithoutCustomerInput = {
   salesOrderNumber: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1353,9 +1673,16 @@ export type SalesOrderUncheckedCreateWithoutCustomerInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
   items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderCreateOrConnectWithoutCustomerInput = {
@@ -1388,6 +1715,10 @@ export type SalesOrderCreateWithoutQuotationInput = {
   id?: string
   salesOrderNumber: string
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1408,11 +1739,18 @@ export type SalesOrderCreateWithoutQuotationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
   confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
   items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderUncheckedCreateWithoutQuotationInput = {
@@ -1420,6 +1758,10 @@ export type SalesOrderUncheckedCreateWithoutQuotationInput = {
   salesOrderNumber: string
   customerId: string
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1441,9 +1783,16 @@ export type SalesOrderUncheckedCreateWithoutQuotationInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
   items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderCreateOrConnectWithoutQuotationInput = {
@@ -1466,6 +1815,10 @@ export type SalesOrderUpdateWithoutQuotationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1486,11 +1839,18 @@ export type SalesOrderUpdateWithoutQuotationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
   confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
   items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateWithoutQuotationInput = {
@@ -1498,6 +1858,563 @@ export type SalesOrderUncheckedUpdateWithoutQuotationInput = {
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderCreateWithoutProductionOrdersInput = {
+  id?: string
+  salesOrderNumber: string
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
+  quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
+  confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
+  items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderUncheckedCreateWithoutProductionOrdersInput = {
+  id?: string
+  salesOrderNumber: string
+  customerId: string
+  quotationId?: string | null
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  createdById?: string | null
+  confirmedById?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderCreateOrConnectWithoutProductionOrdersInput = {
+  where: Prisma.SalesOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutProductionOrdersInput, Prisma.SalesOrderUncheckedCreateWithoutProductionOrdersInput>
+}
+
+export type SalesOrderUpsertWithoutProductionOrdersInput = {
+  update: Prisma.XOR<Prisma.SalesOrderUpdateWithoutProductionOrdersInput, Prisma.SalesOrderUncheckedUpdateWithoutProductionOrdersInput>
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutProductionOrdersInput, Prisma.SalesOrderUncheckedCreateWithoutProductionOrdersInput>
+  where?: Prisma.SalesOrderWhereInput
+}
+
+export type SalesOrderUpdateToOneWithWhereWithoutProductionOrdersInput = {
+  where?: Prisma.SalesOrderWhereInput
+  data: Prisma.XOR<Prisma.SalesOrderUpdateWithoutProductionOrdersInput, Prisma.SalesOrderUncheckedUpdateWithoutProductionOrdersInput>
+}
+
+export type SalesOrderUpdateWithoutProductionOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
+  quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
+  confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
+  items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderUncheckedUpdateWithoutProductionOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderCreateWithoutDispatchInput = {
+  id?: string
+  salesOrderNumber: string
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
+  quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
+  confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
+  items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderUncheckedCreateWithoutDispatchInput = {
+  id?: string
+  salesOrderNumber: string
+  customerId: string
+  quotationId?: string | null
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  createdById?: string | null
+  confirmedById?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderCreateOrConnectWithoutDispatchInput = {
+  where: Prisma.SalesOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutDispatchInput, Prisma.SalesOrderUncheckedCreateWithoutDispatchInput>
+}
+
+export type SalesOrderUpsertWithoutDispatchInput = {
+  update: Prisma.XOR<Prisma.SalesOrderUpdateWithoutDispatchInput, Prisma.SalesOrderUncheckedUpdateWithoutDispatchInput>
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutDispatchInput, Prisma.SalesOrderUncheckedCreateWithoutDispatchInput>
+  where?: Prisma.SalesOrderWhereInput
+}
+
+export type SalesOrderUpdateToOneWithWhereWithoutDispatchInput = {
+  where?: Prisma.SalesOrderWhereInput
+  data: Prisma.XOR<Prisma.SalesOrderUpdateWithoutDispatchInput, Prisma.SalesOrderUncheckedUpdateWithoutDispatchInput>
+}
+
+export type SalesOrderUpdateWithoutDispatchInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
+  quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
+  confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
+  items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderUncheckedUpdateWithoutDispatchInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderCreateWithoutEngineeringProjectInput = {
+  id?: string
+  salesOrderNumber: string
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
+  quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
+  confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
+  items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderUncheckedCreateWithoutEngineeringProjectInput = {
+  id?: string
+  salesOrderNumber: string
+  customerId: string
+  quotationId?: string | null
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  createdById?: string | null
+  confirmedById?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderCreateOrConnectWithoutEngineeringProjectInput = {
+  where: Prisma.SalesOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutEngineeringProjectInput, Prisma.SalesOrderUncheckedCreateWithoutEngineeringProjectInput>
+}
+
+export type SalesOrderUpsertWithoutEngineeringProjectInput = {
+  update: Prisma.XOR<Prisma.SalesOrderUpdateWithoutEngineeringProjectInput, Prisma.SalesOrderUncheckedUpdateWithoutEngineeringProjectInput>
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutEngineeringProjectInput, Prisma.SalesOrderUncheckedCreateWithoutEngineeringProjectInput>
+  where?: Prisma.SalesOrderWhereInput
+}
+
+export type SalesOrderUpdateToOneWithWhereWithoutEngineeringProjectInput = {
+  where?: Prisma.SalesOrderWhereInput
+  data: Prisma.XOR<Prisma.SalesOrderUpdateWithoutEngineeringProjectInput, Prisma.SalesOrderUncheckedUpdateWithoutEngineeringProjectInput>
+}
+
+export type SalesOrderUpdateWithoutEngineeringProjectInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
+  quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
+  confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
+  items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderUncheckedUpdateWithoutEngineeringProjectInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1522,12 +2439,22 @@ export type SalesOrderUncheckedUpdateWithoutQuotationInput = {
   items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderCreateWithoutItemsInput = {
   id?: string
   salesOrderNumber: string
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1549,10 +2476,17 @@ export type SalesOrderCreateWithoutItemsInput = {
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
   quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
   confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
   invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderUncheckedCreateWithoutItemsInput = {
@@ -1561,6 +2495,10 @@ export type SalesOrderUncheckedCreateWithoutItemsInput = {
   customerId: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1582,8 +2520,15 @@ export type SalesOrderUncheckedCreateWithoutItemsInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderCreateOrConnectWithoutItemsInput = {
@@ -1606,6 +2551,10 @@ export type SalesOrderUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1627,10 +2576,17 @@ export type SalesOrderUpdateWithoutItemsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
   quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
   confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
   invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateWithoutItemsInput = {
@@ -1639,6 +2595,10 @@ export type SalesOrderUncheckedUpdateWithoutItemsInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1660,14 +2620,25 @@ export type SalesOrderUncheckedUpdateWithoutItemsInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderCreateWithoutInvoicesInput = {
   id?: string
   salesOrderNumber: string
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1689,10 +2660,17 @@ export type SalesOrderCreateWithoutInvoicesInput = {
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
   quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
   confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
   items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderUncheckedCreateWithoutInvoicesInput = {
@@ -1701,6 +2679,10 @@ export type SalesOrderUncheckedCreateWithoutInvoicesInput = {
   customerId: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1722,8 +2704,15 @@ export type SalesOrderUncheckedCreateWithoutInvoicesInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
   items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
   project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderCreateOrConnectWithoutInvoicesInput = {
@@ -1746,6 +2735,10 @@ export type SalesOrderUpdateWithoutInvoicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1767,10 +2760,17 @@ export type SalesOrderUpdateWithoutInvoicesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
   quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
   confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
   items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateWithoutInvoicesInput = {
@@ -1779,6 +2779,10 @@ export type SalesOrderUncheckedUpdateWithoutInvoicesInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1800,14 +2804,25 @@ export type SalesOrderUncheckedUpdateWithoutInvoicesInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
   items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
 }
 
-export type SalesOrderCreateWithoutProjectInput = {
+export type SalesOrderCreateWithoutPaymentsInput = {
   id?: string
   salesOrderNumber: string
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1829,18 +2844,29 @@ export type SalesOrderCreateWithoutProjectInput = {
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
   quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
   confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
   items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
 }
 
-export type SalesOrderUncheckedCreateWithoutProjectInput = {
+export type SalesOrderUncheckedCreateWithoutPaymentsInput = {
   id?: string
   salesOrderNumber: string
   customerId: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1862,8 +2888,567 @@ export type SalesOrderUncheckedCreateWithoutProjectInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
   items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
   invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderCreateOrConnectWithoutPaymentsInput = {
+  where: Prisma.SalesOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutPaymentsInput, Prisma.SalesOrderUncheckedCreateWithoutPaymentsInput>
+}
+
+export type SalesOrderUpsertWithoutPaymentsInput = {
+  update: Prisma.XOR<Prisma.SalesOrderUpdateWithoutPaymentsInput, Prisma.SalesOrderUncheckedUpdateWithoutPaymentsInput>
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutPaymentsInput, Prisma.SalesOrderUncheckedCreateWithoutPaymentsInput>
+  where?: Prisma.SalesOrderWhereInput
+}
+
+export type SalesOrderUpdateToOneWithWhereWithoutPaymentsInput = {
+  where?: Prisma.SalesOrderWhereInput
+  data: Prisma.XOR<Prisma.SalesOrderUpdateWithoutPaymentsInput, Prisma.SalesOrderUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type SalesOrderUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
+  quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
+  confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
+  items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderUncheckedUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderCreateWithoutDispatchNotesInput = {
+  id?: string
+  salesOrderNumber: string
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
+  quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
+  confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
+  items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderUncheckedCreateWithoutDispatchNotesInput = {
+  id?: string
+  salesOrderNumber: string
+  customerId: string
+  quotationId?: string | null
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  createdById?: string | null
+  confirmedById?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderCreateOrConnectWithoutDispatchNotesInput = {
+  where: Prisma.SalesOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutDispatchNotesInput, Prisma.SalesOrderUncheckedCreateWithoutDispatchNotesInput>
+}
+
+export type SalesOrderUpsertWithoutDispatchNotesInput = {
+  update: Prisma.XOR<Prisma.SalesOrderUpdateWithoutDispatchNotesInput, Prisma.SalesOrderUncheckedUpdateWithoutDispatchNotesInput>
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutDispatchNotesInput, Prisma.SalesOrderUncheckedCreateWithoutDispatchNotesInput>
+  where?: Prisma.SalesOrderWhereInput
+}
+
+export type SalesOrderUpdateToOneWithWhereWithoutDispatchNotesInput = {
+  where?: Prisma.SalesOrderWhereInput
+  data: Prisma.XOR<Prisma.SalesOrderUpdateWithoutDispatchNotesInput, Prisma.SalesOrderUncheckedUpdateWithoutDispatchNotesInput>
+}
+
+export type SalesOrderUpdateWithoutDispatchNotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
+  quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
+  confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
+  items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderUncheckedUpdateWithoutDispatchNotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderCreateWithoutEWayBillsInput = {
+  id?: string
+  salesOrderNumber: string
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
+  quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
+  confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
+  items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderUncheckedCreateWithoutEWayBillsInput = {
+  id?: string
+  salesOrderNumber: string
+  customerId: string
+  quotationId?: string | null
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  createdById?: string | null
+  confirmedById?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderCreateOrConnectWithoutEWayBillsInput = {
+  where: Prisma.SalesOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutEWayBillsInput, Prisma.SalesOrderUncheckedCreateWithoutEWayBillsInput>
+}
+
+export type SalesOrderUpsertWithoutEWayBillsInput = {
+  update: Prisma.XOR<Prisma.SalesOrderUpdateWithoutEWayBillsInput, Prisma.SalesOrderUncheckedUpdateWithoutEWayBillsInput>
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutEWayBillsInput, Prisma.SalesOrderUncheckedCreateWithoutEWayBillsInput>
+  where?: Prisma.SalesOrderWhereInput
+}
+
+export type SalesOrderUpdateToOneWithWhereWithoutEWayBillsInput = {
+  where?: Prisma.SalesOrderWhereInput
+  data: Prisma.XOR<Prisma.SalesOrderUpdateWithoutEWayBillsInput, Prisma.SalesOrderUncheckedUpdateWithoutEWayBillsInput>
+}
+
+export type SalesOrderUpdateWithoutEWayBillsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
+  quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
+  confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
+  items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderUncheckedUpdateWithoutEWayBillsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderCreateWithoutProjectInput = {
+  id?: string
+  salesOrderNumber: string
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
+  quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
+  confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
+  items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderUncheckedCreateWithoutProjectInput = {
+  id?: string
+  salesOrderNumber: string
+  customerId: string
+  quotationId?: string | null
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  createdById?: string | null
+  confirmedById?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+  installationJob?: Prisma.InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput
 }
 
 export type SalesOrderCreateOrConnectWithoutProjectInput = {
@@ -1886,6 +3471,10 @@ export type SalesOrderUpdateWithoutProjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1907,10 +3496,17 @@ export type SalesOrderUpdateWithoutProjectInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
   quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
   confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
   items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateWithoutProjectInput = {
@@ -1919,6 +3515,10 @@ export type SalesOrderUncheckedUpdateWithoutProjectInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1940,8 +3540,199 @@ export type SalesOrderUncheckedUpdateWithoutProjectInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
   items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderCreateWithoutInstallationJobInput = {
+  id?: string
+  salesOrderNumber: string
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutSalesOrdersInput
+  quotation?: Prisma.QuotationCreateNestedOneWithoutSalesOrderInput
+  engineeringProject?: Prisma.EngineeringProjectCreateNestedOneWithoutSalesOrderInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedSalesOrdersInput
+  confirmedBy?: Prisma.UserCreateNestedOneWithoutConfirmedSalesOrdersInput
+  items?: Prisma.SalesOrderItemCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderUncheckedCreateWithoutInstallationJobInput = {
+  id?: string
+  salesOrderNumber: string
+  customerId: string
+  quotationId?: string | null
+  status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Date | string
+  customerPoNumber?: string | null
+  customerPoDate?: Date | string | null
+  expectedDeliveryDate?: Date | string | null
+  currency?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: string | null
+  deliveryTerms?: string | null
+  billingAddress?: string | null
+  shippingAddress?: string | null
+  notes?: string | null
+  createdById?: string | null
+  confirmedById?: string | null
+  confirmedAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  items?: Prisma.SalesOrderItemUncheckedCreateNestedManyWithoutSalesOrderInput
+  invoices?: Prisma.SalesInvoiceUncheckedCreateNestedManyWithoutSalesOrderInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutSalesOrderInput
+  productionOrders?: Prisma.ProductionOrderUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedCreateNestedManyWithoutSalesOrderInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedCreateNestedManyWithoutSalesOrderInput
+  payments?: Prisma.SalesPaymentUncheckedCreateNestedManyWithoutSalesOrderInput
+  dispatch?: Prisma.DispatchUncheckedCreateNestedOneWithoutSalesOrderInput
+}
+
+export type SalesOrderCreateOrConnectWithoutInstallationJobInput = {
+  where: Prisma.SalesOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutInstallationJobInput, Prisma.SalesOrderUncheckedCreateWithoutInstallationJobInput>
+}
+
+export type SalesOrderUpsertWithoutInstallationJobInput = {
+  update: Prisma.XOR<Prisma.SalesOrderUpdateWithoutInstallationJobInput, Prisma.SalesOrderUncheckedUpdateWithoutInstallationJobInput>
+  create: Prisma.XOR<Prisma.SalesOrderCreateWithoutInstallationJobInput, Prisma.SalesOrderUncheckedCreateWithoutInstallationJobInput>
+  where?: Prisma.SalesOrderWhereInput
+}
+
+export type SalesOrderUpdateToOneWithWhereWithoutInstallationJobInput = {
+  where?: Prisma.SalesOrderWhereInput
+  data: Prisma.XOR<Prisma.SalesOrderUpdateWithoutInstallationJobInput, Prisma.SalesOrderUncheckedUpdateWithoutInstallationJobInput>
+}
+
+export type SalesOrderUpdateWithoutInstallationJobInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
+  quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
+  confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
+  items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+}
+
+export type SalesOrderUncheckedUpdateWithoutInstallationJobInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedDeliveryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  freightAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shippingAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
+  invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderCreateManyCreatedByInput = {
@@ -1950,6 +3741,10 @@ export type SalesOrderCreateManyCreatedByInput = {
   customerId: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -1978,6 +3773,10 @@ export type SalesOrderCreateManyConfirmedByInput = {
   customerId: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -2004,6 +3803,10 @@ export type SalesOrderUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2025,10 +3828,17 @@ export type SalesOrderUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
   quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
   confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
   items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateWithoutCreatedByInput = {
@@ -2037,6 +3847,10 @@ export type SalesOrderUncheckedUpdateWithoutCreatedByInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2057,9 +3871,16 @@ export type SalesOrderUncheckedUpdateWithoutCreatedByInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
   items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateManyWithoutCreatedByInput = {
@@ -2068,6 +3889,10 @@ export type SalesOrderUncheckedUpdateManyWithoutCreatedByInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2094,6 +3919,10 @@ export type SalesOrderUpdateWithoutConfirmedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2115,10 +3944,17 @@ export type SalesOrderUpdateWithoutConfirmedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutSalesOrdersNestedInput
   quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
   items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateWithoutConfirmedByInput = {
@@ -2127,6 +3963,10 @@ export type SalesOrderUncheckedUpdateWithoutConfirmedByInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2147,9 +3987,16 @@ export type SalesOrderUncheckedUpdateWithoutConfirmedByInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
   items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateManyWithoutConfirmedByInput = {
@@ -2158,6 +4005,10 @@ export type SalesOrderUncheckedUpdateManyWithoutConfirmedByInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2185,6 +4036,10 @@ export type SalesOrderCreateManyCustomerInput = {
   salesOrderNumber: string
   quotationId?: string | null
   status?: $Enums.SalesOrderStatus
+  customerApprovalAt?: Date | string | null
+  customerApprovalReference?: string | null
+  advanceAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Date | string
   customerPoNumber?: string | null
   customerPoDate?: Date | string | null
@@ -2212,6 +4067,10 @@ export type SalesOrderUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2232,11 +4091,18 @@ export type SalesOrderUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneWithoutSalesOrderNestedInput
+  engineeringProject?: Prisma.EngineeringProjectUpdateOneWithoutSalesOrderNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedSalesOrdersNestedInput
   confirmedBy?: Prisma.UserUpdateOneWithoutConfirmedSalesOrdersNestedInput
   items?: Prisma.SalesOrderItemUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateWithoutCustomerInput = {
@@ -2244,6 +4110,10 @@ export type SalesOrderUncheckedUpdateWithoutCustomerInput = {
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2265,9 +4135,16 @@ export type SalesOrderUncheckedUpdateWithoutCustomerInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  engineeringProject?: Prisma.EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
   items?: Prisma.SalesOrderItemUncheckedUpdateManyWithoutSalesOrderNestedInput
   invoices?: Prisma.SalesInvoiceUncheckedUpdateManyWithoutSalesOrderNestedInput
   project?: Prisma.ProjectUncheckedUpdateOneWithoutSalesOrderNestedInput
+  productionOrders?: Prisma.ProductionOrderUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatchNotes?: Prisma.SalesDispatchNoteUncheckedUpdateManyWithoutSalesOrderNestedInput
+  eWayBills?: Prisma.SalesEWayBillUncheckedUpdateManyWithoutSalesOrderNestedInput
+  payments?: Prisma.SalesPaymentUncheckedUpdateManyWithoutSalesOrderNestedInput
+  dispatch?: Prisma.DispatchUncheckedUpdateOneWithoutSalesOrderNestedInput
+  installationJob?: Prisma.InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput
 }
 
 export type SalesOrderUncheckedUpdateManyWithoutCustomerInput = {
@@ -2275,6 +4152,10 @@ export type SalesOrderUncheckedUpdateManyWithoutCustomerInput = {
   salesOrderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumSalesOrderStatusFieldUpdateOperationsInput | $Enums.SalesOrderStatus
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  advanceAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  advanceDueAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   orderDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customerPoNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerPoDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2306,11 +4187,19 @@ export type SalesOrderUncheckedUpdateManyWithoutCustomerInput = {
 export type SalesOrderCountOutputType = {
   items: number
   invoices: number
+  productionOrders: number
+  dispatchNotes: number
+  eWayBills: number
+  payments: number
 }
 
 export type SalesOrderCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | SalesOrderCountOutputTypeCountItemsArgs
   invoices?: boolean | SalesOrderCountOutputTypeCountInvoicesArgs
+  productionOrders?: boolean | SalesOrderCountOutputTypeCountProductionOrdersArgs
+  dispatchNotes?: boolean | SalesOrderCountOutputTypeCountDispatchNotesArgs
+  eWayBills?: boolean | SalesOrderCountOutputTypeCountEWayBillsArgs
+  payments?: boolean | SalesOrderCountOutputTypeCountPaymentsArgs
 }
 
 /**
@@ -2337,6 +4226,34 @@ export type SalesOrderCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.T
   where?: Prisma.SalesInvoiceWhereInput
 }
 
+/**
+ * SalesOrderCountOutputType without action
+ */
+export type SalesOrderCountOutputTypeCountProductionOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductionOrderWhereInput
+}
+
+/**
+ * SalesOrderCountOutputType without action
+ */
+export type SalesOrderCountOutputTypeCountDispatchNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SalesDispatchNoteWhereInput
+}
+
+/**
+ * SalesOrderCountOutputType without action
+ */
+export type SalesOrderCountOutputTypeCountEWayBillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SalesEWayBillWhereInput
+}
+
+/**
+ * SalesOrderCountOutputType without action
+ */
+export type SalesOrderCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SalesPaymentWhereInput
+}
+
 
 export type SalesOrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2344,6 +4261,10 @@ export type SalesOrderSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   customerId?: boolean
   quotationId?: boolean
   status?: boolean
+  customerApprovalAt?: boolean
+  customerApprovalReference?: boolean
+  advanceAmount?: boolean
+  advanceDueAmount?: boolean
   orderDate?: boolean
   customerPoNumber?: boolean
   customerPoDate?: boolean
@@ -2367,11 +4288,18 @@ export type SalesOrderSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   updatedAt?: boolean
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   quotation?: boolean | Prisma.SalesOrder$quotationArgs<ExtArgs>
+  engineeringProject?: boolean | Prisma.SalesOrder$engineeringProjectArgs<ExtArgs>
   createdBy?: boolean | Prisma.SalesOrder$createdByArgs<ExtArgs>
   confirmedBy?: boolean | Prisma.SalesOrder$confirmedByArgs<ExtArgs>
   items?: boolean | Prisma.SalesOrder$itemsArgs<ExtArgs>
   invoices?: boolean | Prisma.SalesOrder$invoicesArgs<ExtArgs>
   project?: boolean | Prisma.SalesOrder$projectArgs<ExtArgs>
+  productionOrders?: boolean | Prisma.SalesOrder$productionOrdersArgs<ExtArgs>
+  dispatchNotes?: boolean | Prisma.SalesOrder$dispatchNotesArgs<ExtArgs>
+  eWayBills?: boolean | Prisma.SalesOrder$eWayBillsArgs<ExtArgs>
+  payments?: boolean | Prisma.SalesOrder$paymentsArgs<ExtArgs>
+  dispatch?: boolean | Prisma.SalesOrder$dispatchArgs<ExtArgs>
+  installationJob?: boolean | Prisma.SalesOrder$installationJobArgs<ExtArgs>
   _count?: boolean | Prisma.SalesOrderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["salesOrder"]>
 
@@ -2381,6 +4309,10 @@ export type SalesOrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   customerId?: boolean
   quotationId?: boolean
   status?: boolean
+  customerApprovalAt?: boolean
+  customerApprovalReference?: boolean
+  advanceAmount?: boolean
+  advanceDueAmount?: boolean
   orderDate?: boolean
   customerPoNumber?: boolean
   customerPoDate?: boolean
@@ -2414,6 +4346,10 @@ export type SalesOrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   customerId?: boolean
   quotationId?: boolean
   status?: boolean
+  customerApprovalAt?: boolean
+  customerApprovalReference?: boolean
+  advanceAmount?: boolean
+  advanceDueAmount?: boolean
   orderDate?: boolean
   customerPoNumber?: boolean
   customerPoDate?: boolean
@@ -2447,6 +4383,10 @@ export type SalesOrderSelectScalar = {
   customerId?: boolean
   quotationId?: boolean
   status?: boolean
+  customerApprovalAt?: boolean
+  customerApprovalReference?: boolean
+  advanceAmount?: boolean
+  advanceDueAmount?: boolean
   orderDate?: boolean
   customerPoNumber?: boolean
   customerPoDate?: boolean
@@ -2470,15 +4410,22 @@ export type SalesOrderSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SalesOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "salesOrderNumber" | "customerId" | "quotationId" | "status" | "orderDate" | "customerPoNumber" | "customerPoDate" | "expectedDeliveryDate" | "currency" | "subtotal" | "discountAmount" | "taxAmount" | "freightAmount" | "totalAmount" | "paymentTerms" | "deliveryTerms" | "billingAddress" | "shippingAddress" | "notes" | "createdById" | "confirmedById" | "confirmedAt" | "completedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["salesOrder"]>
+export type SalesOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "salesOrderNumber" | "customerId" | "quotationId" | "status" | "customerApprovalAt" | "customerApprovalReference" | "advanceAmount" | "advanceDueAmount" | "orderDate" | "customerPoNumber" | "customerPoDate" | "expectedDeliveryDate" | "currency" | "subtotal" | "discountAmount" | "taxAmount" | "freightAmount" | "totalAmount" | "paymentTerms" | "deliveryTerms" | "billingAddress" | "shippingAddress" | "notes" | "createdById" | "confirmedById" | "confirmedAt" | "completedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["salesOrder"]>
 export type SalesOrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   quotation?: boolean | Prisma.SalesOrder$quotationArgs<ExtArgs>
+  engineeringProject?: boolean | Prisma.SalesOrder$engineeringProjectArgs<ExtArgs>
   createdBy?: boolean | Prisma.SalesOrder$createdByArgs<ExtArgs>
   confirmedBy?: boolean | Prisma.SalesOrder$confirmedByArgs<ExtArgs>
   items?: boolean | Prisma.SalesOrder$itemsArgs<ExtArgs>
   invoices?: boolean | Prisma.SalesOrder$invoicesArgs<ExtArgs>
   project?: boolean | Prisma.SalesOrder$projectArgs<ExtArgs>
+  productionOrders?: boolean | Prisma.SalesOrder$productionOrdersArgs<ExtArgs>
+  dispatchNotes?: boolean | Prisma.SalesOrder$dispatchNotesArgs<ExtArgs>
+  eWayBills?: boolean | Prisma.SalesOrder$eWayBillsArgs<ExtArgs>
+  payments?: boolean | Prisma.SalesOrder$paymentsArgs<ExtArgs>
+  dispatch?: boolean | Prisma.SalesOrder$dispatchArgs<ExtArgs>
+  installationJob?: boolean | Prisma.SalesOrder$installationJobArgs<ExtArgs>
   _count?: boolean | Prisma.SalesOrderCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SalesOrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2499,11 +4446,18 @@ export type $SalesOrderPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     customer: Prisma.$CustomerPayload<ExtArgs>
     quotation: Prisma.$QuotationPayload<ExtArgs> | null
+    engineeringProject: Prisma.$EngineeringProjectPayload<ExtArgs> | null
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     confirmedBy: Prisma.$UserPayload<ExtArgs> | null
     items: Prisma.$SalesOrderItemPayload<ExtArgs>[]
     invoices: Prisma.$SalesInvoicePayload<ExtArgs>[]
     project: Prisma.$ProjectPayload<ExtArgs> | null
+    productionOrders: Prisma.$ProductionOrderPayload<ExtArgs>[]
+    dispatchNotes: Prisma.$SalesDispatchNotePayload<ExtArgs>[]
+    eWayBills: Prisma.$SalesEWayBillPayload<ExtArgs>[]
+    payments: Prisma.$SalesPaymentPayload<ExtArgs>[]
+    dispatch: Prisma.$DispatchPayload<ExtArgs> | null
+    installationJob: Prisma.$InstallationJobPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2511,6 +4465,10 @@ export type $SalesOrderPayload<ExtArgs extends runtime.Types.Extensions.Internal
     customerId: string
     quotationId: string | null
     status: $Enums.SalesOrderStatus
+    customerApprovalAt: Date | null
+    customerApprovalReference: string | null
+    advanceAmount: runtime.Decimal
+    advanceDueAmount: runtime.Decimal
     orderDate: Date
     customerPoNumber: string | null
     customerPoDate: Date | null
@@ -2928,11 +4886,18 @@ export interface Prisma__SalesOrderClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   quotation<T extends Prisma.SalesOrder$quotationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$quotationArgs<ExtArgs>>): Prisma.Prisma__QuotationClient<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  engineeringProject<T extends Prisma.SalesOrder$engineeringProjectArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$engineeringProjectArgs<ExtArgs>>): Prisma.Prisma__EngineeringProjectClient<runtime.Types.Result.GetResult<Prisma.$EngineeringProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.SalesOrder$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   confirmedBy<T extends Prisma.SalesOrder$confirmedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$confirmedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.SalesOrder$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalesOrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.SalesOrder$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalesInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   project<T extends Prisma.SalesOrder$projectArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$projectArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  productionOrders<T extends Prisma.SalesOrder$productionOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$productionOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductionOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  dispatchNotes<T extends Prisma.SalesOrder$dispatchNotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$dispatchNotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalesDispatchNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  eWayBills<T extends Prisma.SalesOrder$eWayBillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$eWayBillsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalesEWayBillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.SalesOrder$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalesPaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  dispatch<T extends Prisma.SalesOrder$dispatchArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$dispatchArgs<ExtArgs>>): Prisma.Prisma__DispatchClient<runtime.Types.Result.GetResult<Prisma.$DispatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  installationJob<T extends Prisma.SalesOrder$installationJobArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalesOrder$installationJobArgs<ExtArgs>>): Prisma.Prisma__InstallationJobClient<runtime.Types.Result.GetResult<Prisma.$InstallationJobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2967,6 +4932,10 @@ export interface SalesOrderFieldRefs {
   readonly customerId: Prisma.FieldRef<"SalesOrder", 'String'>
   readonly quotationId: Prisma.FieldRef<"SalesOrder", 'String'>
   readonly status: Prisma.FieldRef<"SalesOrder", 'SalesOrderStatus'>
+  readonly customerApprovalAt: Prisma.FieldRef<"SalesOrder", 'DateTime'>
+  readonly customerApprovalReference: Prisma.FieldRef<"SalesOrder", 'String'>
+  readonly advanceAmount: Prisma.FieldRef<"SalesOrder", 'Decimal'>
+  readonly advanceDueAmount: Prisma.FieldRef<"SalesOrder", 'Decimal'>
   readonly orderDate: Prisma.FieldRef<"SalesOrder", 'DateTime'>
   readonly customerPoNumber: Prisma.FieldRef<"SalesOrder", 'String'>
   readonly customerPoDate: Prisma.FieldRef<"SalesOrder", 'DateTime'>
@@ -3408,6 +5377,25 @@ export type SalesOrder$quotationArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
+ * SalesOrder.engineeringProject
+ */
+export type SalesOrder$engineeringProjectArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EngineeringProject
+   */
+  select?: Prisma.EngineeringProjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EngineeringProject
+   */
+  omit?: Prisma.EngineeringProjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EngineeringProjectInclude<ExtArgs> | null
+  where?: Prisma.EngineeringProjectWhereInput
+}
+
+/**
  * SalesOrder.createdBy
  */
 export type SalesOrder$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3510,6 +5498,140 @@ export type SalesOrder$projectArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   include?: Prisma.ProjectInclude<ExtArgs> | null
   where?: Prisma.ProjectWhereInput
+}
+
+/**
+ * SalesOrder.productionOrders
+ */
+export type SalesOrder$productionOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductionOrder
+   */
+  select?: Prisma.ProductionOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProductionOrder
+   */
+  omit?: Prisma.ProductionOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductionOrderInclude<ExtArgs> | null
+  where?: Prisma.ProductionOrderWhereInput
+  orderBy?: Prisma.ProductionOrderOrderByWithRelationInput | Prisma.ProductionOrderOrderByWithRelationInput[]
+  cursor?: Prisma.ProductionOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductionOrderScalarFieldEnum | Prisma.ProductionOrderScalarFieldEnum[]
+}
+
+/**
+ * SalesOrder.dispatchNotes
+ */
+export type SalesOrder$dispatchNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SalesDispatchNote
+   */
+  select?: Prisma.SalesDispatchNoteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SalesDispatchNote
+   */
+  omit?: Prisma.SalesDispatchNoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalesDispatchNoteInclude<ExtArgs> | null
+  where?: Prisma.SalesDispatchNoteWhereInput
+  orderBy?: Prisma.SalesDispatchNoteOrderByWithRelationInput | Prisma.SalesDispatchNoteOrderByWithRelationInput[]
+  cursor?: Prisma.SalesDispatchNoteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SalesDispatchNoteScalarFieldEnum | Prisma.SalesDispatchNoteScalarFieldEnum[]
+}
+
+/**
+ * SalesOrder.eWayBills
+ */
+export type SalesOrder$eWayBillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SalesEWayBill
+   */
+  select?: Prisma.SalesEWayBillSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SalesEWayBill
+   */
+  omit?: Prisma.SalesEWayBillOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalesEWayBillInclude<ExtArgs> | null
+  where?: Prisma.SalesEWayBillWhereInput
+  orderBy?: Prisma.SalesEWayBillOrderByWithRelationInput | Prisma.SalesEWayBillOrderByWithRelationInput[]
+  cursor?: Prisma.SalesEWayBillWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SalesEWayBillScalarFieldEnum | Prisma.SalesEWayBillScalarFieldEnum[]
+}
+
+/**
+ * SalesOrder.payments
+ */
+export type SalesOrder$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SalesPayment
+   */
+  select?: Prisma.SalesPaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SalesPayment
+   */
+  omit?: Prisma.SalesPaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalesPaymentInclude<ExtArgs> | null
+  where?: Prisma.SalesPaymentWhereInput
+  orderBy?: Prisma.SalesPaymentOrderByWithRelationInput | Prisma.SalesPaymentOrderByWithRelationInput[]
+  cursor?: Prisma.SalesPaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SalesPaymentScalarFieldEnum | Prisma.SalesPaymentScalarFieldEnum[]
+}
+
+/**
+ * SalesOrder.dispatch
+ */
+export type SalesOrder$dispatchArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Dispatch
+   */
+  select?: Prisma.DispatchSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Dispatch
+   */
+  omit?: Prisma.DispatchOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DispatchInclude<ExtArgs> | null
+  where?: Prisma.DispatchWhereInput
+}
+
+/**
+ * SalesOrder.installationJob
+ */
+export type SalesOrder$installationJobArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InstallationJob
+   */
+  select?: Prisma.InstallationJobSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InstallationJob
+   */
+  omit?: Prisma.InstallationJobOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InstallationJobInclude<ExtArgs> | null
+  where?: Prisma.InstallationJobWhereInput
 }
 
 /**

@@ -32,6 +32,9 @@ export interface Quotation {
   paymentTerms: string | null;
   deliveryTerms: string | null;
   termsAndConditions: string | null;
+  customerApprovalStatus?: "PENDING" | "APPROVED" | "REJECTED";
+  customerApprovedAt?: string | null;
+  customerApprovalReference?: string | null;
   notes: string | null;
   createdAt: string;
   updatedAt: string;

@@ -36,6 +36,9 @@ import {
   createGoodsReceiptNoteController,
   updateGoodsReceiptNoteController,
   postGoodsReceiptNoteController,
+  listMaterialPlansController, createMaterialPlanController,
+  listVendorPortalDocumentsController, createVendorPortalDocumentController,
+  listVendorRatingsController, createVendorRatingController,
 } from "../controllers/procurement.controller.js";
 
 import { authenticate } from "../middleware/auth.middleware.js";
@@ -174,3 +177,10 @@ procurementRouter.post(
   "/grns/:id/post",
   postGoodsReceiptNoteController
 );
+
+procurementRouter.get("/mrp/plans", listMaterialPlansController);
+procurementRouter.post("/mrp/plans", createMaterialPlanController);
+procurementRouter.get("/vendors/:vendorId/portal-documents", listVendorPortalDocumentsController);
+procurementRouter.post("/vendors/:vendorId/portal-documents", createVendorPortalDocumentController);
+procurementRouter.get("/vendors/:vendorId/ratings", listVendorRatingsController);
+procurementRouter.post("/vendors/:vendorId/ratings", createVendorRatingController);

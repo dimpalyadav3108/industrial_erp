@@ -28,10 +28,19 @@ export type EngineeringProjectMinAggregateOutputType = {
   id: string | null
   engineeringNumber: string | null
   quotationId: string | null
+  salesOrderId: string | null
   title: string | null
   productFamily: string | null
   productModel: string | null
   status: $Enums.EngineeringProjectStatus | null
+  workflowStage: $Enums.EngineeringWorkflowStage | null
+  engineeringReleasedAt: Date | null
+  designCreatedAt: Date | null
+  customerApprovalAt: Date | null
+  fabricationReleasedAt: Date | null
+  bomReleasedAt: Date | null
+  productionReleasedAt: Date | null
+  customerApprovedVersion: string | null
   plannedStartDate: Date | null
   plannedReleaseDate: Date | null
   actualReleaseDate: Date | null
@@ -45,10 +54,19 @@ export type EngineeringProjectMaxAggregateOutputType = {
   id: string | null
   engineeringNumber: string | null
   quotationId: string | null
+  salesOrderId: string | null
   title: string | null
   productFamily: string | null
   productModel: string | null
   status: $Enums.EngineeringProjectStatus | null
+  workflowStage: $Enums.EngineeringWorkflowStage | null
+  engineeringReleasedAt: Date | null
+  designCreatedAt: Date | null
+  customerApprovalAt: Date | null
+  fabricationReleasedAt: Date | null
+  bomReleasedAt: Date | null
+  productionReleasedAt: Date | null
+  customerApprovedVersion: string | null
   plannedStartDate: Date | null
   plannedReleaseDate: Date | null
   actualReleaseDate: Date | null
@@ -62,10 +80,19 @@ export type EngineeringProjectCountAggregateOutputType = {
   id: number
   engineeringNumber: number
   quotationId: number
+  salesOrderId: number
   title: number
   productFamily: number
   productModel: number
   status: number
+  workflowStage: number
+  engineeringReleasedAt: number
+  designCreatedAt: number
+  customerApprovalAt: number
+  fabricationReleasedAt: number
+  bomReleasedAt: number
+  productionReleasedAt: number
+  customerApprovedVersion: number
   plannedStartDate: number
   plannedReleaseDate: number
   actualReleaseDate: number
@@ -81,10 +108,19 @@ export type EngineeringProjectMinAggregateInputType = {
   id?: true
   engineeringNumber?: true
   quotationId?: true
+  salesOrderId?: true
   title?: true
   productFamily?: true
   productModel?: true
   status?: true
+  workflowStage?: true
+  engineeringReleasedAt?: true
+  designCreatedAt?: true
+  customerApprovalAt?: true
+  fabricationReleasedAt?: true
+  bomReleasedAt?: true
+  productionReleasedAt?: true
+  customerApprovedVersion?: true
   plannedStartDate?: true
   plannedReleaseDate?: true
   actualReleaseDate?: true
@@ -98,10 +134,19 @@ export type EngineeringProjectMaxAggregateInputType = {
   id?: true
   engineeringNumber?: true
   quotationId?: true
+  salesOrderId?: true
   title?: true
   productFamily?: true
   productModel?: true
   status?: true
+  workflowStage?: true
+  engineeringReleasedAt?: true
+  designCreatedAt?: true
+  customerApprovalAt?: true
+  fabricationReleasedAt?: true
+  bomReleasedAt?: true
+  productionReleasedAt?: true
+  customerApprovedVersion?: true
   plannedStartDate?: true
   plannedReleaseDate?: true
   actualReleaseDate?: true
@@ -115,10 +160,19 @@ export type EngineeringProjectCountAggregateInputType = {
   id?: true
   engineeringNumber?: true
   quotationId?: true
+  salesOrderId?: true
   title?: true
   productFamily?: true
   productModel?: true
   status?: true
+  workflowStage?: true
+  engineeringReleasedAt?: true
+  designCreatedAt?: true
+  customerApprovalAt?: true
+  fabricationReleasedAt?: true
+  bomReleasedAt?: true
+  productionReleasedAt?: true
+  customerApprovedVersion?: true
   plannedStartDate?: true
   plannedReleaseDate?: true
   actualReleaseDate?: true
@@ -205,10 +259,19 @@ export type EngineeringProjectGroupByOutputType = {
   id: string
   engineeringNumber: string
   quotationId: string
+  salesOrderId: string | null
   title: string
   productFamily: string | null
   productModel: string | null
   status: $Enums.EngineeringProjectStatus
+  workflowStage: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt: Date | null
+  designCreatedAt: Date | null
+  customerApprovalAt: Date | null
+  fabricationReleasedAt: Date | null
+  bomReleasedAt: Date | null
+  productionReleasedAt: Date | null
+  customerApprovedVersion: string | null
   plannedStartDate: Date | null
   plannedReleaseDate: Date | null
   actualReleaseDate: Date | null
@@ -243,10 +306,19 @@ export type EngineeringProjectWhereInput = {
   id?: Prisma.StringFilter<"EngineeringProject"> | string
   engineeringNumber?: Prisma.StringFilter<"EngineeringProject"> | string
   quotationId?: Prisma.StringFilter<"EngineeringProject"> | string
+  salesOrderId?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   title?: Prisma.StringFilter<"EngineeringProject"> | string
   productFamily?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   productModel?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   status?: Prisma.EnumEngineeringProjectStatusFilter<"EngineeringProject"> | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFilter<"EngineeringProject"> | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  designCreatedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  customerApprovalAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  fabricationReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  bomReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  productionReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  customerApprovedVersion?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   plannedStartDate?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
   plannedReleaseDate?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
   actualReleaseDate?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
@@ -255,19 +327,31 @@ export type EngineeringProjectWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"EngineeringProject"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EngineeringProject"> | Date | string
   quotation?: Prisma.XOR<Prisma.QuotationScalarRelationFilter, Prisma.QuotationWhereInput>
+  salesOrder?: Prisma.XOR<Prisma.SalesOrderNullableScalarRelationFilter, Prisma.SalesOrderWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   drawings?: Prisma.EngineeringDrawingListRelationFilter
   boms?: Prisma.EngineeringBomListRelationFilter
+  documents?: Prisma.EngineeringDocumentListRelationFilter
+  ecrs?: Prisma.EngineeringChangeRequestListRelationFilter
 }
 
 export type EngineeringProjectOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   engineeringNumber?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrder
   productFamily?: Prisma.SortOrderInput | Prisma.SortOrder
   productModel?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  workflowStage?: Prisma.SortOrder
+  engineeringReleasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  designCreatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  fabricationReleasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  bomReleasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  productionReleasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovedVersion?: Prisma.SortOrderInput | Prisma.SortOrder
   plannedStartDate?: Prisma.SortOrderInput | Prisma.SortOrder
   plannedReleaseDate?: Prisma.SortOrderInput | Prisma.SortOrder
   actualReleaseDate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -276,15 +360,19 @@ export type EngineeringProjectOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   quotation?: Prisma.QuotationOrderByWithRelationInput
+  salesOrder?: Prisma.SalesOrderOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   drawings?: Prisma.EngineeringDrawingOrderByRelationAggregateInput
   boms?: Prisma.EngineeringBomOrderByRelationAggregateInput
+  documents?: Prisma.EngineeringDocumentOrderByRelationAggregateInput
+  ecrs?: Prisma.EngineeringChangeRequestOrderByRelationAggregateInput
 }
 
 export type EngineeringProjectWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   engineeringNumber?: string
   quotationId?: string
+  salesOrderId?: string
   AND?: Prisma.EngineeringProjectWhereInput | Prisma.EngineeringProjectWhereInput[]
   OR?: Prisma.EngineeringProjectWhereInput[]
   NOT?: Prisma.EngineeringProjectWhereInput | Prisma.EngineeringProjectWhereInput[]
@@ -292,6 +380,14 @@ export type EngineeringProjectWhereUniqueInput = Prisma.AtLeast<{
   productFamily?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   productModel?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   status?: Prisma.EnumEngineeringProjectStatusFilter<"EngineeringProject"> | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFilter<"EngineeringProject"> | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  designCreatedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  customerApprovalAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  fabricationReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  bomReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  productionReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  customerApprovedVersion?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   plannedStartDate?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
   plannedReleaseDate?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
   actualReleaseDate?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
@@ -300,19 +396,31 @@ export type EngineeringProjectWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"EngineeringProject"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EngineeringProject"> | Date | string
   quotation?: Prisma.XOR<Prisma.QuotationScalarRelationFilter, Prisma.QuotationWhereInput>
+  salesOrder?: Prisma.XOR<Prisma.SalesOrderNullableScalarRelationFilter, Prisma.SalesOrderWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   drawings?: Prisma.EngineeringDrawingListRelationFilter
   boms?: Prisma.EngineeringBomListRelationFilter
-}, "id" | "engineeringNumber" | "quotationId">
+  documents?: Prisma.EngineeringDocumentListRelationFilter
+  ecrs?: Prisma.EngineeringChangeRequestListRelationFilter
+}, "id" | "engineeringNumber" | "quotationId" | "salesOrderId">
 
 export type EngineeringProjectOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   engineeringNumber?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrder
   productFamily?: Prisma.SortOrderInput | Prisma.SortOrder
   productModel?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  workflowStage?: Prisma.SortOrder
+  engineeringReleasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  designCreatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  fabricationReleasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  bomReleasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  productionReleasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovedVersion?: Prisma.SortOrderInput | Prisma.SortOrder
   plannedStartDate?: Prisma.SortOrderInput | Prisma.SortOrder
   plannedReleaseDate?: Prisma.SortOrderInput | Prisma.SortOrder
   actualReleaseDate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -332,10 +440,19 @@ export type EngineeringProjectScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"EngineeringProject"> | string
   engineeringNumber?: Prisma.StringWithAggregatesFilter<"EngineeringProject"> | string
   quotationId?: Prisma.StringWithAggregatesFilter<"EngineeringProject"> | string
+  salesOrderId?: Prisma.StringNullableWithAggregatesFilter<"EngineeringProject"> | string | null
   title?: Prisma.StringWithAggregatesFilter<"EngineeringProject"> | string
   productFamily?: Prisma.StringNullableWithAggregatesFilter<"EngineeringProject"> | string | null
   productModel?: Prisma.StringNullableWithAggregatesFilter<"EngineeringProject"> | string | null
   status?: Prisma.EnumEngineeringProjectStatusWithAggregatesFilter<"EngineeringProject"> | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageWithAggregatesFilter<"EngineeringProject"> | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringProject"> | Date | string | null
+  designCreatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringProject"> | Date | string | null
+  customerApprovalAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringProject"> | Date | string | null
+  fabricationReleasedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringProject"> | Date | string | null
+  bomReleasedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringProject"> | Date | string | null
+  productionReleasedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringProject"> | Date | string | null
+  customerApprovedVersion?: Prisma.StringNullableWithAggregatesFilter<"EngineeringProject"> | string | null
   plannedStartDate?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringProject"> | Date | string | null
   plannedReleaseDate?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringProject"> | Date | string | null
   actualReleaseDate?: Prisma.DateTimeNullableWithAggregatesFilter<"EngineeringProject"> | Date | string | null
@@ -352,6 +469,14 @@ export type EngineeringProjectCreateInput = {
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -359,19 +484,31 @@ export type EngineeringProjectCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutEngineeringProjectInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutEngineeringProjectInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringProjectsInput
   drawings?: Prisma.EngineeringDrawingCreateNestedManyWithoutProjectInput
   boms?: Prisma.EngineeringBomCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestCreateNestedManyWithoutProjectInput
 }
 
 export type EngineeringProjectUncheckedCreateInput = {
   id?: string
   engineeringNumber: string
   quotationId: string
+  salesOrderId?: string | null
   title: string
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -381,6 +518,8 @@ export type EngineeringProjectUncheckedCreateInput = {
   updatedAt?: Date | string
   drawings?: Prisma.EngineeringDrawingUncheckedCreateNestedManyWithoutProjectInput
   boms?: Prisma.EngineeringBomUncheckedCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type EngineeringProjectUpdateInput = {
@@ -390,6 +529,14 @@ export type EngineeringProjectUpdateInput = {
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -397,19 +544,31 @@ export type EngineeringProjectUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutEngineeringProjectNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutEngineeringProjectNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringProjectsNestedInput
   drawings?: Prisma.EngineeringDrawingUpdateManyWithoutProjectNestedInput
   boms?: Prisma.EngineeringBomUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUpdateManyWithoutProjectNestedInput
 }
 
 export type EngineeringProjectUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -419,16 +578,27 @@ export type EngineeringProjectUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   drawings?: Prisma.EngineeringDrawingUncheckedUpdateManyWithoutProjectNestedInput
   boms?: Prisma.EngineeringBomUncheckedUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type EngineeringProjectCreateManyInput = {
   id?: string
   engineeringNumber: string
   quotationId: string
+  salesOrderId?: string | null
   title: string
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -445,6 +615,14 @@ export type EngineeringProjectUpdateManyMutationInput = {
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -457,10 +635,19 @@ export type EngineeringProjectUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -489,10 +676,19 @@ export type EngineeringProjectCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   engineeringNumber?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   productFamily?: Prisma.SortOrder
   productModel?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  workflowStage?: Prisma.SortOrder
+  engineeringReleasedAt?: Prisma.SortOrder
+  designCreatedAt?: Prisma.SortOrder
+  customerApprovalAt?: Prisma.SortOrder
+  fabricationReleasedAt?: Prisma.SortOrder
+  bomReleasedAt?: Prisma.SortOrder
+  productionReleasedAt?: Prisma.SortOrder
+  customerApprovedVersion?: Prisma.SortOrder
   plannedStartDate?: Prisma.SortOrder
   plannedReleaseDate?: Prisma.SortOrder
   actualReleaseDate?: Prisma.SortOrder
@@ -506,10 +702,19 @@ export type EngineeringProjectMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   engineeringNumber?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   productFamily?: Prisma.SortOrder
   productModel?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  workflowStage?: Prisma.SortOrder
+  engineeringReleasedAt?: Prisma.SortOrder
+  designCreatedAt?: Prisma.SortOrder
+  customerApprovalAt?: Prisma.SortOrder
+  fabricationReleasedAt?: Prisma.SortOrder
+  bomReleasedAt?: Prisma.SortOrder
+  productionReleasedAt?: Prisma.SortOrder
+  customerApprovedVersion?: Prisma.SortOrder
   plannedStartDate?: Prisma.SortOrder
   plannedReleaseDate?: Prisma.SortOrder
   actualReleaseDate?: Prisma.SortOrder
@@ -523,10 +728,19 @@ export type EngineeringProjectMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   engineeringNumber?: Prisma.SortOrder
   quotationId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   productFamily?: Prisma.SortOrder
   productModel?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  workflowStage?: Prisma.SortOrder
+  engineeringReleasedAt?: Prisma.SortOrder
+  designCreatedAt?: Prisma.SortOrder
+  customerApprovalAt?: Prisma.SortOrder
+  fabricationReleasedAt?: Prisma.SortOrder
+  bomReleasedAt?: Prisma.SortOrder
+  productionReleasedAt?: Prisma.SortOrder
+  customerApprovedVersion?: Prisma.SortOrder
   plannedStartDate?: Prisma.SortOrder
   plannedReleaseDate?: Prisma.SortOrder
   actualReleaseDate?: Prisma.SortOrder
@@ -619,6 +833,10 @@ export type EnumEngineeringProjectStatusFieldUpdateOperationsInput = {
   set?: $Enums.EngineeringProjectStatus
 }
 
+export type EnumEngineeringWorkflowStageFieldUpdateOperationsInput = {
+  set?: $Enums.EngineeringWorkflowStage
+}
+
 export type EngineeringProjectCreateNestedOneWithoutDrawingsInput = {
   create?: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutDrawingsInput, Prisma.EngineeringProjectUncheckedCreateWithoutDrawingsInput>
   connectOrCreate?: Prisma.EngineeringProjectCreateOrConnectWithoutDrawingsInput
@@ -647,6 +865,66 @@ export type EngineeringProjectUpdateOneRequiredWithoutBomsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EngineeringProjectUpdateToOneWithWhereWithoutBomsInput, Prisma.EngineeringProjectUpdateWithoutBomsInput>, Prisma.EngineeringProjectUncheckedUpdateWithoutBomsInput>
 }
 
+export type EngineeringProjectCreateNestedOneWithoutDocumentsInput = {
+  create?: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutDocumentsInput, Prisma.EngineeringProjectUncheckedCreateWithoutDocumentsInput>
+  connectOrCreate?: Prisma.EngineeringProjectCreateOrConnectWithoutDocumentsInput
+  connect?: Prisma.EngineeringProjectWhereUniqueInput
+}
+
+export type EngineeringProjectUpdateOneRequiredWithoutDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutDocumentsInput, Prisma.EngineeringProjectUncheckedCreateWithoutDocumentsInput>
+  connectOrCreate?: Prisma.EngineeringProjectCreateOrConnectWithoutDocumentsInput
+  upsert?: Prisma.EngineeringProjectUpsertWithoutDocumentsInput
+  connect?: Prisma.EngineeringProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EngineeringProjectUpdateToOneWithWhereWithoutDocumentsInput, Prisma.EngineeringProjectUpdateWithoutDocumentsInput>, Prisma.EngineeringProjectUncheckedUpdateWithoutDocumentsInput>
+}
+
+export type EngineeringProjectCreateNestedOneWithoutEcrsInput = {
+  create?: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutEcrsInput, Prisma.EngineeringProjectUncheckedCreateWithoutEcrsInput>
+  connectOrCreate?: Prisma.EngineeringProjectCreateOrConnectWithoutEcrsInput
+  connect?: Prisma.EngineeringProjectWhereUniqueInput
+}
+
+export type EngineeringProjectUpdateOneRequiredWithoutEcrsNestedInput = {
+  create?: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutEcrsInput, Prisma.EngineeringProjectUncheckedCreateWithoutEcrsInput>
+  connectOrCreate?: Prisma.EngineeringProjectCreateOrConnectWithoutEcrsInput
+  upsert?: Prisma.EngineeringProjectUpsertWithoutEcrsInput
+  connect?: Prisma.EngineeringProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EngineeringProjectUpdateToOneWithWhereWithoutEcrsInput, Prisma.EngineeringProjectUpdateWithoutEcrsInput>, Prisma.EngineeringProjectUncheckedUpdateWithoutEcrsInput>
+}
+
+export type EngineeringProjectCreateNestedOneWithoutSalesOrderInput = {
+  create?: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutSalesOrderInput, Prisma.EngineeringProjectUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.EngineeringProjectCreateOrConnectWithoutSalesOrderInput
+  connect?: Prisma.EngineeringProjectWhereUniqueInput
+}
+
+export type EngineeringProjectUncheckedCreateNestedOneWithoutSalesOrderInput = {
+  create?: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutSalesOrderInput, Prisma.EngineeringProjectUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.EngineeringProjectCreateOrConnectWithoutSalesOrderInput
+  connect?: Prisma.EngineeringProjectWhereUniqueInput
+}
+
+export type EngineeringProjectUpdateOneWithoutSalesOrderNestedInput = {
+  create?: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutSalesOrderInput, Prisma.EngineeringProjectUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.EngineeringProjectCreateOrConnectWithoutSalesOrderInput
+  upsert?: Prisma.EngineeringProjectUpsertWithoutSalesOrderInput
+  disconnect?: Prisma.EngineeringProjectWhereInput | boolean
+  delete?: Prisma.EngineeringProjectWhereInput | boolean
+  connect?: Prisma.EngineeringProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EngineeringProjectUpdateToOneWithWhereWithoutSalesOrderInput, Prisma.EngineeringProjectUpdateWithoutSalesOrderInput>, Prisma.EngineeringProjectUncheckedUpdateWithoutSalesOrderInput>
+}
+
+export type EngineeringProjectUncheckedUpdateOneWithoutSalesOrderNestedInput = {
+  create?: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutSalesOrderInput, Prisma.EngineeringProjectUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.EngineeringProjectCreateOrConnectWithoutSalesOrderInput
+  upsert?: Prisma.EngineeringProjectUpsertWithoutSalesOrderInput
+  disconnect?: Prisma.EngineeringProjectWhereInput | boolean
+  delete?: Prisma.EngineeringProjectWhereInput | boolean
+  connect?: Prisma.EngineeringProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EngineeringProjectUpdateToOneWithWhereWithoutSalesOrderInput, Prisma.EngineeringProjectUpdateWithoutSalesOrderInput>, Prisma.EngineeringProjectUncheckedUpdateWithoutSalesOrderInput>
+}
+
 export type EngineeringProjectCreateWithoutCreatedByInput = {
   id?: string
   engineeringNumber: string
@@ -654,6 +932,14 @@ export type EngineeringProjectCreateWithoutCreatedByInput = {
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -661,18 +947,30 @@ export type EngineeringProjectCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutEngineeringProjectInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutEngineeringProjectInput
   drawings?: Prisma.EngineeringDrawingCreateNestedManyWithoutProjectInput
   boms?: Prisma.EngineeringBomCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestCreateNestedManyWithoutProjectInput
 }
 
 export type EngineeringProjectUncheckedCreateWithoutCreatedByInput = {
   id?: string
   engineeringNumber: string
   quotationId: string
+  salesOrderId?: string | null
   title: string
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -681,6 +979,8 @@ export type EngineeringProjectUncheckedCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   drawings?: Prisma.EngineeringDrawingUncheckedCreateNestedManyWithoutProjectInput
   boms?: Prisma.EngineeringBomUncheckedCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type EngineeringProjectCreateOrConnectWithoutCreatedByInput = {
@@ -716,10 +1016,19 @@ export type EngineeringProjectScalarWhereInput = {
   id?: Prisma.StringFilter<"EngineeringProject"> | string
   engineeringNumber?: Prisma.StringFilter<"EngineeringProject"> | string
   quotationId?: Prisma.StringFilter<"EngineeringProject"> | string
+  salesOrderId?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   title?: Prisma.StringFilter<"EngineeringProject"> | string
   productFamily?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   productModel?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   status?: Prisma.EnumEngineeringProjectStatusFilter<"EngineeringProject"> | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFilter<"EngineeringProject"> | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  designCreatedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  customerApprovalAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  fabricationReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  bomReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  productionReleasedAt?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
+  customerApprovedVersion?: Prisma.StringNullableFilter<"EngineeringProject"> | string | null
   plannedStartDate?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
   plannedReleaseDate?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
   actualReleaseDate?: Prisma.DateTimeNullableFilter<"EngineeringProject"> | Date | string | null
@@ -736,24 +1045,44 @@ export type EngineeringProjectCreateWithoutQuotationInput = {
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutEngineeringProjectInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringProjectsInput
   drawings?: Prisma.EngineeringDrawingCreateNestedManyWithoutProjectInput
   boms?: Prisma.EngineeringBomCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestCreateNestedManyWithoutProjectInput
 }
 
 export type EngineeringProjectUncheckedCreateWithoutQuotationInput = {
   id?: string
   engineeringNumber: string
+  salesOrderId?: string | null
   title: string
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -763,6 +1092,8 @@ export type EngineeringProjectUncheckedCreateWithoutQuotationInput = {
   updatedAt?: Date | string
   drawings?: Prisma.EngineeringDrawingUncheckedCreateNestedManyWithoutProjectInput
   boms?: Prisma.EngineeringBomUncheckedCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type EngineeringProjectCreateOrConnectWithoutQuotationInput = {
@@ -788,24 +1119,44 @@ export type EngineeringProjectUpdateWithoutQuotationInput = {
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutEngineeringProjectNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringProjectsNestedInput
   drawings?: Prisma.EngineeringDrawingUpdateManyWithoutProjectNestedInput
   boms?: Prisma.EngineeringBomUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUpdateManyWithoutProjectNestedInput
 }
 
 export type EngineeringProjectUncheckedUpdateWithoutQuotationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -815,6 +1166,8 @@ export type EngineeringProjectUncheckedUpdateWithoutQuotationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   drawings?: Prisma.EngineeringDrawingUncheckedUpdateManyWithoutProjectNestedInput
   boms?: Prisma.EngineeringBomUncheckedUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type EngineeringProjectCreateWithoutDrawingsInput = {
@@ -824,6 +1177,14 @@ export type EngineeringProjectCreateWithoutDrawingsInput = {
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -831,18 +1192,30 @@ export type EngineeringProjectCreateWithoutDrawingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutEngineeringProjectInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutEngineeringProjectInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringProjectsInput
   boms?: Prisma.EngineeringBomCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestCreateNestedManyWithoutProjectInput
 }
 
 export type EngineeringProjectUncheckedCreateWithoutDrawingsInput = {
   id?: string
   engineeringNumber: string
   quotationId: string
+  salesOrderId?: string | null
   title: string
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -851,6 +1224,8 @@ export type EngineeringProjectUncheckedCreateWithoutDrawingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   boms?: Prisma.EngineeringBomUncheckedCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type EngineeringProjectCreateOrConnectWithoutDrawingsInput = {
@@ -876,6 +1251,14 @@ export type EngineeringProjectUpdateWithoutDrawingsInput = {
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -883,18 +1266,30 @@ export type EngineeringProjectUpdateWithoutDrawingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutEngineeringProjectNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutEngineeringProjectNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringProjectsNestedInput
   boms?: Prisma.EngineeringBomUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUpdateManyWithoutProjectNestedInput
 }
 
 export type EngineeringProjectUncheckedUpdateWithoutDrawingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -903,6 +1298,8 @@ export type EngineeringProjectUncheckedUpdateWithoutDrawingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   boms?: Prisma.EngineeringBomUncheckedUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type EngineeringProjectCreateWithoutBomsInput = {
@@ -912,6 +1309,14 @@ export type EngineeringProjectCreateWithoutBomsInput = {
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -919,18 +1324,30 @@ export type EngineeringProjectCreateWithoutBomsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotation: Prisma.QuotationCreateNestedOneWithoutEngineeringProjectInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutEngineeringProjectInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringProjectsInput
   drawings?: Prisma.EngineeringDrawingCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestCreateNestedManyWithoutProjectInput
 }
 
 export type EngineeringProjectUncheckedCreateWithoutBomsInput = {
   id?: string
   engineeringNumber: string
   quotationId: string
+  salesOrderId?: string | null
   title: string
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -939,6 +1356,8 @@ export type EngineeringProjectUncheckedCreateWithoutBomsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   drawings?: Prisma.EngineeringDrawingUncheckedCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type EngineeringProjectCreateOrConnectWithoutBomsInput = {
@@ -964,6 +1383,410 @@ export type EngineeringProjectUpdateWithoutBomsInput = {
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutEngineeringProjectNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutEngineeringProjectNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringProjectsNestedInput
+  drawings?: Prisma.EngineeringDrawingUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUpdateManyWithoutProjectNestedInput
+}
+
+export type EngineeringProjectUncheckedUpdateWithoutBomsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  drawings?: Prisma.EngineeringDrawingUncheckedUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type EngineeringProjectCreateWithoutDocumentsInput = {
+  id?: string
+  engineeringNumber: string
+  title: string
+  productFamily?: string | null
+  productModel?: string | null
+  status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
+  plannedStartDate?: Date | string | null
+  plannedReleaseDate?: Date | string | null
+  actualReleaseDate?: Date | string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutEngineeringProjectInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutEngineeringProjectInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringProjectsInput
+  drawings?: Prisma.EngineeringDrawingCreateNestedManyWithoutProjectInput
+  boms?: Prisma.EngineeringBomCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestCreateNestedManyWithoutProjectInput
+}
+
+export type EngineeringProjectUncheckedCreateWithoutDocumentsInput = {
+  id?: string
+  engineeringNumber: string
+  quotationId: string
+  salesOrderId?: string | null
+  title: string
+  productFamily?: string | null
+  productModel?: string | null
+  status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
+  plannedStartDate?: Date | string | null
+  plannedReleaseDate?: Date | string | null
+  actualReleaseDate?: Date | string | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  drawings?: Prisma.EngineeringDrawingUncheckedCreateNestedManyWithoutProjectInput
+  boms?: Prisma.EngineeringBomUncheckedCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type EngineeringProjectCreateOrConnectWithoutDocumentsInput = {
+  where: Prisma.EngineeringProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutDocumentsInput, Prisma.EngineeringProjectUncheckedCreateWithoutDocumentsInput>
+}
+
+export type EngineeringProjectUpsertWithoutDocumentsInput = {
+  update: Prisma.XOR<Prisma.EngineeringProjectUpdateWithoutDocumentsInput, Prisma.EngineeringProjectUncheckedUpdateWithoutDocumentsInput>
+  create: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutDocumentsInput, Prisma.EngineeringProjectUncheckedCreateWithoutDocumentsInput>
+  where?: Prisma.EngineeringProjectWhereInput
+}
+
+export type EngineeringProjectUpdateToOneWithWhereWithoutDocumentsInput = {
+  where?: Prisma.EngineeringProjectWhereInput
+  data: Prisma.XOR<Prisma.EngineeringProjectUpdateWithoutDocumentsInput, Prisma.EngineeringProjectUncheckedUpdateWithoutDocumentsInput>
+}
+
+export type EngineeringProjectUpdateWithoutDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutEngineeringProjectNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutEngineeringProjectNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringProjectsNestedInput
+  drawings?: Prisma.EngineeringDrawingUpdateManyWithoutProjectNestedInput
+  boms?: Prisma.EngineeringBomUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUpdateManyWithoutProjectNestedInput
+}
+
+export type EngineeringProjectUncheckedUpdateWithoutDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  drawings?: Prisma.EngineeringDrawingUncheckedUpdateManyWithoutProjectNestedInput
+  boms?: Prisma.EngineeringBomUncheckedUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type EngineeringProjectCreateWithoutEcrsInput = {
+  id?: string
+  engineeringNumber: string
+  title: string
+  productFamily?: string | null
+  productModel?: string | null
+  status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
+  plannedStartDate?: Date | string | null
+  plannedReleaseDate?: Date | string | null
+  actualReleaseDate?: Date | string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutEngineeringProjectInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutEngineeringProjectInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringProjectsInput
+  drawings?: Prisma.EngineeringDrawingCreateNestedManyWithoutProjectInput
+  boms?: Prisma.EngineeringBomCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutProjectInput
+}
+
+export type EngineeringProjectUncheckedCreateWithoutEcrsInput = {
+  id?: string
+  engineeringNumber: string
+  quotationId: string
+  salesOrderId?: string | null
+  title: string
+  productFamily?: string | null
+  productModel?: string | null
+  status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
+  plannedStartDate?: Date | string | null
+  plannedReleaseDate?: Date | string | null
+  actualReleaseDate?: Date | string | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  drawings?: Prisma.EngineeringDrawingUncheckedCreateNestedManyWithoutProjectInput
+  boms?: Prisma.EngineeringBomUncheckedCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type EngineeringProjectCreateOrConnectWithoutEcrsInput = {
+  where: Prisma.EngineeringProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutEcrsInput, Prisma.EngineeringProjectUncheckedCreateWithoutEcrsInput>
+}
+
+export type EngineeringProjectUpsertWithoutEcrsInput = {
+  update: Prisma.XOR<Prisma.EngineeringProjectUpdateWithoutEcrsInput, Prisma.EngineeringProjectUncheckedUpdateWithoutEcrsInput>
+  create: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutEcrsInput, Prisma.EngineeringProjectUncheckedCreateWithoutEcrsInput>
+  where?: Prisma.EngineeringProjectWhereInput
+}
+
+export type EngineeringProjectUpdateToOneWithWhereWithoutEcrsInput = {
+  where?: Prisma.EngineeringProjectWhereInput
+  data: Prisma.XOR<Prisma.EngineeringProjectUpdateWithoutEcrsInput, Prisma.EngineeringProjectUncheckedUpdateWithoutEcrsInput>
+}
+
+export type EngineeringProjectUpdateWithoutEcrsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotation?: Prisma.QuotationUpdateOneRequiredWithoutEngineeringProjectNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutEngineeringProjectNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringProjectsNestedInput
+  drawings?: Prisma.EngineeringDrawingUpdateManyWithoutProjectNestedInput
+  boms?: Prisma.EngineeringBomUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutProjectNestedInput
+}
+
+export type EngineeringProjectUncheckedUpdateWithoutEcrsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  drawings?: Prisma.EngineeringDrawingUncheckedUpdateManyWithoutProjectNestedInput
+  boms?: Prisma.EngineeringBomUncheckedUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type EngineeringProjectCreateWithoutSalesOrderInput = {
+  id?: string
+  engineeringNumber: string
+  title: string
+  productFamily?: string | null
+  productModel?: string | null
+  status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
+  plannedStartDate?: Date | string | null
+  plannedReleaseDate?: Date | string | null
+  actualReleaseDate?: Date | string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotation: Prisma.QuotationCreateNestedOneWithoutEngineeringProjectInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedEngineeringProjectsInput
+  drawings?: Prisma.EngineeringDrawingCreateNestedManyWithoutProjectInput
+  boms?: Prisma.EngineeringBomCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestCreateNestedManyWithoutProjectInput
+}
+
+export type EngineeringProjectUncheckedCreateWithoutSalesOrderInput = {
+  id?: string
+  engineeringNumber: string
+  quotationId: string
+  title: string
+  productFamily?: string | null
+  productModel?: string | null
+  status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
+  plannedStartDate?: Date | string | null
+  plannedReleaseDate?: Date | string | null
+  actualReleaseDate?: Date | string | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  drawings?: Prisma.EngineeringDrawingUncheckedCreateNestedManyWithoutProjectInput
+  boms?: Prisma.EngineeringBomUncheckedCreateNestedManyWithoutProjectInput
+  documents?: Prisma.EngineeringDocumentUncheckedCreateNestedManyWithoutProjectInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type EngineeringProjectCreateOrConnectWithoutSalesOrderInput = {
+  where: Prisma.EngineeringProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutSalesOrderInput, Prisma.EngineeringProjectUncheckedCreateWithoutSalesOrderInput>
+}
+
+export type EngineeringProjectUpsertWithoutSalesOrderInput = {
+  update: Prisma.XOR<Prisma.EngineeringProjectUpdateWithoutSalesOrderInput, Prisma.EngineeringProjectUncheckedUpdateWithoutSalesOrderInput>
+  create: Prisma.XOR<Prisma.EngineeringProjectCreateWithoutSalesOrderInput, Prisma.EngineeringProjectUncheckedCreateWithoutSalesOrderInput>
+  where?: Prisma.EngineeringProjectWhereInput
+}
+
+export type EngineeringProjectUpdateToOneWithWhereWithoutSalesOrderInput = {
+  where?: Prisma.EngineeringProjectWhereInput
+  data: Prisma.XOR<Prisma.EngineeringProjectUpdateWithoutSalesOrderInput, Prisma.EngineeringProjectUncheckedUpdateWithoutSalesOrderInput>
+}
+
+export type EngineeringProjectUpdateWithoutSalesOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -973,9 +1796,12 @@ export type EngineeringProjectUpdateWithoutBomsInput = {
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutEngineeringProjectNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedEngineeringProjectsNestedInput
   drawings?: Prisma.EngineeringDrawingUpdateManyWithoutProjectNestedInput
+  boms?: Prisma.EngineeringBomUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUpdateManyWithoutProjectNestedInput
 }
 
-export type EngineeringProjectUncheckedUpdateWithoutBomsInput = {
+export type EngineeringProjectUncheckedUpdateWithoutSalesOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -983,6 +1809,14 @@ export type EngineeringProjectUncheckedUpdateWithoutBomsInput = {
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -991,16 +1825,28 @@ export type EngineeringProjectUncheckedUpdateWithoutBomsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   drawings?: Prisma.EngineeringDrawingUncheckedUpdateManyWithoutProjectNestedInput
+  boms?: Prisma.EngineeringBomUncheckedUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type EngineeringProjectCreateManyCreatedByInput = {
   id?: string
   engineeringNumber: string
   quotationId: string
+  salesOrderId?: string | null
   title: string
   productFamily?: string | null
   productModel?: string | null
   status?: $Enums.EngineeringProjectStatus
+  workflowStage?: $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Date | string | null
+  designCreatedAt?: Date | string | null
+  customerApprovalAt?: Date | string | null
+  fabricationReleasedAt?: Date | string | null
+  bomReleasedAt?: Date | string | null
+  productionReleasedAt?: Date | string | null
+  customerApprovedVersion?: string | null
   plannedStartDate?: Date | string | null
   plannedReleaseDate?: Date | string | null
   actualReleaseDate?: Date | string | null
@@ -1016,6 +1862,14 @@ export type EngineeringProjectUpdateWithoutCreatedByInput = {
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1023,18 +1877,30 @@ export type EngineeringProjectUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotation?: Prisma.QuotationUpdateOneRequiredWithoutEngineeringProjectNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutEngineeringProjectNestedInput
   drawings?: Prisma.EngineeringDrawingUpdateManyWithoutProjectNestedInput
   boms?: Prisma.EngineeringBomUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUpdateManyWithoutProjectNestedInput
 }
 
 export type EngineeringProjectUncheckedUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1043,16 +1909,27 @@ export type EngineeringProjectUncheckedUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   drawings?: Prisma.EngineeringDrawingUncheckedUpdateManyWithoutProjectNestedInput
   boms?: Prisma.EngineeringBomUncheckedUpdateManyWithoutProjectNestedInput
+  documents?: Prisma.EngineeringDocumentUncheckedUpdateManyWithoutProjectNestedInput
+  ecrs?: Prisma.EngineeringChangeRequestUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type EngineeringProjectUncheckedUpdateManyWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   engineeringNumber?: Prisma.StringFieldUpdateOperationsInput | string
   quotationId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   productFamily?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEngineeringProjectStatusFieldUpdateOperationsInput | $Enums.EngineeringProjectStatus
+  workflowStage?: Prisma.EnumEngineeringWorkflowStageFieldUpdateOperationsInput | $Enums.EngineeringWorkflowStage
+  engineeringReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  designCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fabricationReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bomReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  productionReleasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovedVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   plannedReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actualReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1069,11 +1946,15 @@ export type EngineeringProjectUncheckedUpdateManyWithoutCreatedByInput = {
 export type EngineeringProjectCountOutputType = {
   drawings: number
   boms: number
+  documents: number
+  ecrs: number
 }
 
 export type EngineeringProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   drawings?: boolean | EngineeringProjectCountOutputTypeCountDrawingsArgs
   boms?: boolean | EngineeringProjectCountOutputTypeCountBomsArgs
+  documents?: boolean | EngineeringProjectCountOutputTypeCountDocumentsArgs
+  ecrs?: boolean | EngineeringProjectCountOutputTypeCountEcrsArgs
 }
 
 /**
@@ -1100,15 +1981,38 @@ export type EngineeringProjectCountOutputTypeCountBomsArgs<ExtArgs extends runti
   where?: Prisma.EngineeringBomWhereInput
 }
 
+/**
+ * EngineeringProjectCountOutputType without action
+ */
+export type EngineeringProjectCountOutputTypeCountDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EngineeringDocumentWhereInput
+}
+
+/**
+ * EngineeringProjectCountOutputType without action
+ */
+export type EngineeringProjectCountOutputTypeCountEcrsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EngineeringChangeRequestWhereInput
+}
+
 
 export type EngineeringProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   engineeringNumber?: boolean
   quotationId?: boolean
+  salesOrderId?: boolean
   title?: boolean
   productFamily?: boolean
   productModel?: boolean
   status?: boolean
+  workflowStage?: boolean
+  engineeringReleasedAt?: boolean
+  designCreatedAt?: boolean
+  customerApprovalAt?: boolean
+  fabricationReleasedAt?: boolean
+  bomReleasedAt?: boolean
+  productionReleasedAt?: boolean
+  customerApprovedVersion?: boolean
   plannedStartDate?: boolean
   plannedReleaseDate?: boolean
   actualReleaseDate?: boolean
@@ -1117,9 +2021,12 @@ export type EngineeringProjectSelect<ExtArgs extends runtime.Types.Extensions.In
   createdAt?: boolean
   updatedAt?: boolean
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.EngineeringProject$salesOrderArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringProject$createdByArgs<ExtArgs>
   drawings?: boolean | Prisma.EngineeringProject$drawingsArgs<ExtArgs>
   boms?: boolean | Prisma.EngineeringProject$bomsArgs<ExtArgs>
+  documents?: boolean | Prisma.EngineeringProject$documentsArgs<ExtArgs>
+  ecrs?: boolean | Prisma.EngineeringProject$ecrsArgs<ExtArgs>
   _count?: boolean | Prisma.EngineeringProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["engineeringProject"]>
 
@@ -1127,10 +2034,19 @@ export type EngineeringProjectSelectCreateManyAndReturn<ExtArgs extends runtime.
   id?: boolean
   engineeringNumber?: boolean
   quotationId?: boolean
+  salesOrderId?: boolean
   title?: boolean
   productFamily?: boolean
   productModel?: boolean
   status?: boolean
+  workflowStage?: boolean
+  engineeringReleasedAt?: boolean
+  designCreatedAt?: boolean
+  customerApprovalAt?: boolean
+  fabricationReleasedAt?: boolean
+  bomReleasedAt?: boolean
+  productionReleasedAt?: boolean
+  customerApprovedVersion?: boolean
   plannedStartDate?: boolean
   plannedReleaseDate?: boolean
   actualReleaseDate?: boolean
@@ -1139,6 +2055,7 @@ export type EngineeringProjectSelectCreateManyAndReturn<ExtArgs extends runtime.
   createdAt?: boolean
   updatedAt?: boolean
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.EngineeringProject$salesOrderArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringProject$createdByArgs<ExtArgs>
 }, ExtArgs["result"]["engineeringProject"]>
 
@@ -1146,10 +2063,19 @@ export type EngineeringProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.
   id?: boolean
   engineeringNumber?: boolean
   quotationId?: boolean
+  salesOrderId?: boolean
   title?: boolean
   productFamily?: boolean
   productModel?: boolean
   status?: boolean
+  workflowStage?: boolean
+  engineeringReleasedAt?: boolean
+  designCreatedAt?: boolean
+  customerApprovalAt?: boolean
+  fabricationReleasedAt?: boolean
+  bomReleasedAt?: boolean
+  productionReleasedAt?: boolean
+  customerApprovedVersion?: boolean
   plannedStartDate?: boolean
   plannedReleaseDate?: boolean
   actualReleaseDate?: boolean
@@ -1158,6 +2084,7 @@ export type EngineeringProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.
   createdAt?: boolean
   updatedAt?: boolean
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.EngineeringProject$salesOrderArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringProject$createdByArgs<ExtArgs>
 }, ExtArgs["result"]["engineeringProject"]>
 
@@ -1165,10 +2092,19 @@ export type EngineeringProjectSelectScalar = {
   id?: boolean
   engineeringNumber?: boolean
   quotationId?: boolean
+  salesOrderId?: boolean
   title?: boolean
   productFamily?: boolean
   productModel?: boolean
   status?: boolean
+  workflowStage?: boolean
+  engineeringReleasedAt?: boolean
+  designCreatedAt?: boolean
+  customerApprovalAt?: boolean
+  fabricationReleasedAt?: boolean
+  bomReleasedAt?: boolean
+  productionReleasedAt?: boolean
+  customerApprovedVersion?: boolean
   plannedStartDate?: boolean
   plannedReleaseDate?: boolean
   actualReleaseDate?: boolean
@@ -1178,20 +2114,25 @@ export type EngineeringProjectSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EngineeringProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "engineeringNumber" | "quotationId" | "title" | "productFamily" | "productModel" | "status" | "plannedStartDate" | "plannedReleaseDate" | "actualReleaseDate" | "notes" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["engineeringProject"]>
+export type EngineeringProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "engineeringNumber" | "quotationId" | "salesOrderId" | "title" | "productFamily" | "productModel" | "status" | "workflowStage" | "engineeringReleasedAt" | "designCreatedAt" | "customerApprovalAt" | "fabricationReleasedAt" | "bomReleasedAt" | "productionReleasedAt" | "customerApprovedVersion" | "plannedStartDate" | "plannedReleaseDate" | "actualReleaseDate" | "notes" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["engineeringProject"]>
 export type EngineeringProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.EngineeringProject$salesOrderArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringProject$createdByArgs<ExtArgs>
   drawings?: boolean | Prisma.EngineeringProject$drawingsArgs<ExtArgs>
   boms?: boolean | Prisma.EngineeringProject$bomsArgs<ExtArgs>
+  documents?: boolean | Prisma.EngineeringProject$documentsArgs<ExtArgs>
+  ecrs?: boolean | Prisma.EngineeringProject$ecrsArgs<ExtArgs>
   _count?: boolean | Prisma.EngineeringProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EngineeringProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.EngineeringProject$salesOrderArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringProject$createdByArgs<ExtArgs>
 }
 export type EngineeringProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotation?: boolean | Prisma.QuotationDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.EngineeringProject$salesOrderArgs<ExtArgs>
   createdBy?: boolean | Prisma.EngineeringProject$createdByArgs<ExtArgs>
 }
 
@@ -1199,18 +2140,30 @@ export type $EngineeringProjectPayload<ExtArgs extends runtime.Types.Extensions.
   name: "EngineeringProject"
   objects: {
     quotation: Prisma.$QuotationPayload<ExtArgs>
+    salesOrder: Prisma.$SalesOrderPayload<ExtArgs> | null
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     drawings: Prisma.$EngineeringDrawingPayload<ExtArgs>[]
     boms: Prisma.$EngineeringBomPayload<ExtArgs>[]
+    documents: Prisma.$EngineeringDocumentPayload<ExtArgs>[]
+    ecrs: Prisma.$EngineeringChangeRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     engineeringNumber: string
     quotationId: string
+    salesOrderId: string | null
     title: string
     productFamily: string | null
     productModel: string | null
     status: $Enums.EngineeringProjectStatus
+    workflowStage: $Enums.EngineeringWorkflowStage
+    engineeringReleasedAt: Date | null
+    designCreatedAt: Date | null
+    customerApprovalAt: Date | null
+    fabricationReleasedAt: Date | null
+    bomReleasedAt: Date | null
+    productionReleasedAt: Date | null
+    customerApprovedVersion: string | null
     plannedStartDate: Date | null
     plannedReleaseDate: Date | null
     actualReleaseDate: Date | null
@@ -1613,9 +2566,12 @@ readonly fields: EngineeringProjectFieldRefs;
 export interface Prisma__EngineeringProjectClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   quotation<T extends Prisma.QuotationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuotationDefaultArgs<ExtArgs>>): Prisma.Prisma__QuotationClient<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  salesOrder<T extends Prisma.EngineeringProject$salesOrderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringProject$salesOrderArgs<ExtArgs>>): Prisma.Prisma__SalesOrderClient<runtime.Types.Result.GetResult<Prisma.$SalesOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.EngineeringProject$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringProject$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   drawings<T extends Prisma.EngineeringProject$drawingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringProject$drawingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EngineeringDrawingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   boms<T extends Prisma.EngineeringProject$bomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringProject$bomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EngineeringBomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documents<T extends Prisma.EngineeringProject$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringProject$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EngineeringDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ecrs<T extends Prisma.EngineeringProject$ecrsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EngineeringProject$ecrsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EngineeringChangeRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1648,10 +2604,19 @@ export interface EngineeringProjectFieldRefs {
   readonly id: Prisma.FieldRef<"EngineeringProject", 'String'>
   readonly engineeringNumber: Prisma.FieldRef<"EngineeringProject", 'String'>
   readonly quotationId: Prisma.FieldRef<"EngineeringProject", 'String'>
+  readonly salesOrderId: Prisma.FieldRef<"EngineeringProject", 'String'>
   readonly title: Prisma.FieldRef<"EngineeringProject", 'String'>
   readonly productFamily: Prisma.FieldRef<"EngineeringProject", 'String'>
   readonly productModel: Prisma.FieldRef<"EngineeringProject", 'String'>
   readonly status: Prisma.FieldRef<"EngineeringProject", 'EngineeringProjectStatus'>
+  readonly workflowStage: Prisma.FieldRef<"EngineeringProject", 'EngineeringWorkflowStage'>
+  readonly engineeringReleasedAt: Prisma.FieldRef<"EngineeringProject", 'DateTime'>
+  readonly designCreatedAt: Prisma.FieldRef<"EngineeringProject", 'DateTime'>
+  readonly customerApprovalAt: Prisma.FieldRef<"EngineeringProject", 'DateTime'>
+  readonly fabricationReleasedAt: Prisma.FieldRef<"EngineeringProject", 'DateTime'>
+  readonly bomReleasedAt: Prisma.FieldRef<"EngineeringProject", 'DateTime'>
+  readonly productionReleasedAt: Prisma.FieldRef<"EngineeringProject", 'DateTime'>
+  readonly customerApprovedVersion: Prisma.FieldRef<"EngineeringProject", 'String'>
   readonly plannedStartDate: Prisma.FieldRef<"EngineeringProject", 'DateTime'>
   readonly plannedReleaseDate: Prisma.FieldRef<"EngineeringProject", 'DateTime'>
   readonly actualReleaseDate: Prisma.FieldRef<"EngineeringProject", 'DateTime'>
@@ -2060,6 +3025,25 @@ export type EngineeringProjectDeleteManyArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
+ * EngineeringProject.salesOrder
+ */
+export type EngineeringProject$salesOrderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SalesOrder
+   */
+  select?: Prisma.SalesOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SalesOrder
+   */
+  omit?: Prisma.SalesOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalesOrderInclude<ExtArgs> | null
+  where?: Prisma.SalesOrderWhereInput
+}
+
+/**
  * EngineeringProject.createdBy
  */
 export type EngineeringProject$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2124,6 +3108,54 @@ export type EngineeringProject$bomsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.EngineeringBomScalarFieldEnum | Prisma.EngineeringBomScalarFieldEnum[]
+}
+
+/**
+ * EngineeringProject.documents
+ */
+export type EngineeringProject$documentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EngineeringDocument
+   */
+  select?: Prisma.EngineeringDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EngineeringDocument
+   */
+  omit?: Prisma.EngineeringDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EngineeringDocumentInclude<ExtArgs> | null
+  where?: Prisma.EngineeringDocumentWhereInput
+  orderBy?: Prisma.EngineeringDocumentOrderByWithRelationInput | Prisma.EngineeringDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.EngineeringDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EngineeringDocumentScalarFieldEnum | Prisma.EngineeringDocumentScalarFieldEnum[]
+}
+
+/**
+ * EngineeringProject.ecrs
+ */
+export type EngineeringProject$ecrsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EngineeringChangeRequest
+   */
+  select?: Prisma.EngineeringChangeRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EngineeringChangeRequest
+   */
+  omit?: Prisma.EngineeringChangeRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EngineeringChangeRequestInclude<ExtArgs> | null
+  where?: Prisma.EngineeringChangeRequestWhereInput
+  orderBy?: Prisma.EngineeringChangeRequestOrderByWithRelationInput | Prisma.EngineeringChangeRequestOrderByWithRelationInput[]
+  cursor?: Prisma.EngineeringChangeRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EngineeringChangeRequestScalarFieldEnum | Prisma.EngineeringChangeRequestScalarFieldEnum[]
 }
 
 /**

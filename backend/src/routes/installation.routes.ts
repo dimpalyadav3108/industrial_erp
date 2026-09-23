@@ -13,3 +13,9 @@ installationRouter.patch("/:id/checklist/:itemId",i.updateChecklistController);
 installationRouter.patch("/:id/tests/:testId",i.updateCommissioningTestController);
 installationRouter.post("/:id/spares",i.recordSpareMovementController);
 installationRouter.post("/:id/warranty",i.activateWarrantyController);
+
+installationRouter.post("/:id/site-updates",i.createSiteUpdateController);
+installationRouter.post("/:id/reports",i.createInstallationReportController);
+installationRouter.post("/:id/commissioning-certificate",i.generateCommissioningCertificateController);
+
+installationRouter.post("/:id/site-photos",i.uploadSitePhotoController);

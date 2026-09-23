@@ -19,6 +19,7 @@ import type {
   UpdateEngineeringBomItemPayload,
   UpdateEngineeringBomPayload,
   UpdateEngineeringProjectPayload,
+  EngineeringDocument, EngineeringChangeRequest, EngineeringWorkflowStage,
 } from "../types/engineering";
 
 const API_URL =
@@ -363,6 +364,12 @@ export const createEngineeringBomItem = async (
   return result.data;
 };
 
+export const getEngineeringBomCostRollup = async (bomId: string): Promise<{ bomId: string; bomNumber: string; revision: number; currency: string; totalCost: number; pricedItems: number; unpricedItems: number }> => {
+  const response = await fetch(`${API_URL}/engineering/boms/${encodeURIComponent(bomId)}/cost-rollup`, { headers: headers(true) });
+  const result = await readResponse<{ success: boolean; data: { bomId: string; bomNumber: string; revision: number; currency: string; totalCost: number; pricedItems: number; unpricedItems: number } }>(response, "Unable to calculate BOM cost roll-up");
+  return result.data;
+};
+
 export const updateEngineeringBomItem = async (
   itemId: string,
   payload: UpdateEngineeringBomItemPayload
@@ -404,4 +411,44 @@ export const deleteEngineeringBomItem = async (
     response,
     "Unable to delete BOM item"
   );
+};
+
+export const advanceEngineeringWorkflow = async (projectId: string, stage: EngineeringWorkflowStage) => {
+  const response = await fetch(`${API_URL}/engineering/${encodeURIComponent(projectId)}/workflow`, { method: "POST", headers: headers(true), body: JSON.stringify({ stage }) });
+  return (await readResponse<{success:true; data: any}>(response, "Unable to update engineering workflow")).data;
+};
+
+export const linkEngineeringSalesOrder = async (projectId: string, salesOrderId: string) => {
+  const response = await fetch(`${API_URL}/engineering/${encodeURIComponent(projectId)}/sales-order`, { method: "POST", headers: headers(true), body: JSON.stringify({ salesOrderId }) });
+  return (await readResponse<{success:true; data:any}>(response, "Unable to link Sales Order")).data;
+};
+
+export const getEngineeringDocuments = async (projectId: string): Promise<EngineeringDocument[]> => {
+  const response = await fetch(`${API_URL}/engineering/documents/list?projectId=${encodeURIComponent(projectId)}`, { headers: headers() });
+  return (await readResponse<{success:true; data:EngineeringDocument[]}>(response, "Unable to load documents")).data;
+};
+
+export const createEngineeringDocument = async (payload: Record<string, unknown>): Promise<EngineeringDocument> => {
+  const response = await fetch(`${API_URL}/engineering/documents`, { method: "POST", headers: headers(true), body: JSON.stringify(payload) });
+  return (await readResponse<{success:true; data:EngineeringDocument}>(response, "Unable to create document")).data;
+};
+
+export const updateEngineeringDocument = async (documentId: string, payload: Record<string, unknown>): Promise<EngineeringDocument> => {
+  const response = await fetch(`${API_URL}/engineering/documents/${encodeURIComponent(documentId)}`, { method: "PATCH", headers: headers(true), body: JSON.stringify(payload) });
+  return (await readResponse<{success:true; data:EngineeringDocument}>(response, "Unable to update document")).data;
+};
+
+export const getEngineeringEcrs = async (projectId: string): Promise<EngineeringChangeRequest[]> => {
+  const response = await fetch(`${API_URL}/engineering/ecr?projectId=${encodeURIComponent(projectId)}`, { headers: headers() });
+  return (await readResponse<{success:true; data:EngineeringChangeRequest[]}>(response, "Unable to load ECRs")).data;
+};
+
+export const createEngineeringEcr = async (payload: Record<string, unknown>): Promise<EngineeringChangeRequest> => {
+  const response = await fetch(`${API_URL}/engineering/ecr`, { method: "POST", headers: headers(true), body: JSON.stringify(payload) });
+  return (await readResponse<{success:true; data:EngineeringChangeRequest}>(response, "Unable to create ECR")).data;
+};
+
+export const updateEngineeringEcr = async (ecrId: string, payload: Record<string, unknown>): Promise<EngineeringChangeRequest> => {
+  const response = await fetch(`${API_URL}/engineering/ecr/${encodeURIComponent(ecrId)}`, { method: "PATCH", headers: headers(true), body: JSON.stringify(payload) });
+  return (await readResponse<{success:true; data:EngineeringChangeRequest}>(response, "Unable to update ECR")).data;
 };

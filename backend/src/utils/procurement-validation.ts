@@ -175,6 +175,31 @@ export const grnStatusSchema = z.enum([
 // VENDOR
 // ============================================================
 
+export const createVendorPortalDocumentSchema = z.object({
+  documentType: z.string().min(2),
+  fileName: z.string().min(1),
+  fileUrl: z.string().optional(),
+  invoiceNumber: z.string().optional(),
+  dispatchNumber: z.string().optional(),
+  notes: z.string().optional(),
+});
+
+export const createVendorRatingSchema = z.object({
+  purchaseOrderId: z.string().optional(),
+  qualityScore: z.coerce.number().min(0).max(100),
+  deliveryScore: z.coerce.number().min(0).max(100),
+  priceScore: z.coerce.number().min(0).max(100),
+  serviceScore: z.coerce.number().min(0).max(100),
+  remarks: z.string().optional(),
+});
+
+export const createMaterialPlanSchema = z.object({
+  title: z.string().min(2),
+  salesOrderId: z.string().optional(),
+  shortageValue: z.coerce.number().min(0).optional(),
+  notes: z.string().optional(),
+});
+
 export const createVendorSchema = z.object({
   name: z.string().trim().min(2, "Vendor name must contain at least 2 characters").max(200),
   contactPerson: optionalText(150),
@@ -197,6 +222,8 @@ export const createVendorSchema = z.object({
     (value) => value === "" || value === null || value === undefined ? undefined : Number(value),
     z.number().min(0).max(5).optional()
   ),
+  category: z.enum(["PLATE_SUPPLIER","TUBE_SUPPLIER","VALVE_SUPPLIER","BURNER_SUPPLIER","FABRICATOR","TRANSPORT_VENDOR","OTHER"]).optional(),
+  portalEnabled: z.boolean().optional(),
   notes: optionalText(2000),
 });
 
@@ -223,6 +250,8 @@ export const updateVendorSchema = z
       (value) => value === "" || value === null || value === undefined ? undefined : Number(value),
       z.number().min(0).max(5).optional()
     ),
+    category: z.enum(["PLATE_SUPPLIER","TUBE_SUPPLIER","VALVE_SUPPLIER","BURNER_SUPPLIER","FABRICATOR","TRANSPORT_VENDOR","OTHER"]).optional(),
+    portalEnabled: z.boolean().optional(),
     notes: optionalText(2000),
     status: vendorStatusSchema.optional(),
   })

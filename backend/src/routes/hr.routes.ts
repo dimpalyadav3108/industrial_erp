@@ -10,3 +10,12 @@ hrRouter.get("/leaves", hr.listLeaves); hrRouter.post("/leaves", hr.createLeave)
 hrRouter.put("/employees/:employeeId/salary", hr.setSalary);
 hrRouter.get("/payroll/control",hr.payrollControl);
 hrRouter.get("/payroll", hr.listPayroll); hrRouter.post("/payroll", hr.createPayroll); hrRouter.patch("/payroll/:id", hr.updatePayroll);
+hrRouter.get("/recruitment", hr.listRecruitments); hrRouter.post("/recruitment", hr.createRecruitment); hrRouter.post("/recruitment/applications", hr.createApplication);
+hrRouter.get("/shifts", hr.listShifts); hrRouter.post("/shifts", hr.createShift); hrRouter.post("/shifts/assign", hr.assignShift);
+hrRouter.get("/overtime", hr.listOvertime); hrRouter.post("/overtime", hr.createOvertime); hrRouter.patch("/overtime/:id", hr.updateOvertime);
+hrRouter.get("/biometric", hr.listBiometric); hrRouter.post("/biometric", hr.recordBiometric);
+hrRouter.get("/appraisals", hr.listAppraisals); hrRouter.post("/appraisals", hr.createAppraisal);
+hrRouter.get("/skills", hr.listSkills); hrRouter.post("/skills", hr.createSkill); hrRouter.post("/skills/assign", hr.assignSkill);
+hrRouter.get("/certifications", hr.listCertifications); hrRouter.post("/certifications", hr.createCertification);
+hrRouter.get("/training", hr.listTraining); hrRouter.post("/training", hr.createTraining); hrRouter.post("/training/assign", hr.assignTraining);
+hrRouter.get("/payslips", hr.listPayslips); hrRouter.post("/payslips", hr.generatePayslip);

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import InventoryStoresPanel from "./InventoryStoresPanel";
 import type { FormEvent } from "react";
 import {
   AlertTriangle,
@@ -336,6 +337,7 @@ export default function InventoryPage() {
           </div>
         </div>
       )}
+      <InventoryStoresPanel />
     </section>
   );
 }

@@ -57,6 +57,10 @@ export type QuotationMinAggregateOutputType = {
   paymentTerms: string | null
   deliveryTerms: string | null
   termsAndConditions: string | null
+  customerApprovalStatus: $Enums.CustomerApprovalStatus | null
+  customerApprovedAt: Date | null
+  customerApprovalReference: string | null
+  customerApprovalNotes: string | null
   notes: string | null
   createdById: string | null
   createdAt: Date | null
@@ -78,6 +82,10 @@ export type QuotationMaxAggregateOutputType = {
   paymentTerms: string | null
   deliveryTerms: string | null
   termsAndConditions: string | null
+  customerApprovalStatus: $Enums.CustomerApprovalStatus | null
+  customerApprovedAt: Date | null
+  customerApprovalReference: string | null
+  customerApprovalNotes: string | null
   notes: string | null
   createdById: string | null
   createdAt: Date | null
@@ -99,6 +107,10 @@ export type QuotationCountAggregateOutputType = {
   paymentTerms: number
   deliveryTerms: number
   termsAndConditions: number
+  customerApprovalStatus: number
+  customerApprovedAt: number
+  customerApprovalReference: number
+  customerApprovalNotes: number
   notes: number
   createdById: number
   createdAt: number
@@ -138,6 +150,10 @@ export type QuotationMinAggregateInputType = {
   paymentTerms?: true
   deliveryTerms?: true
   termsAndConditions?: true
+  customerApprovalStatus?: true
+  customerApprovedAt?: true
+  customerApprovalReference?: true
+  customerApprovalNotes?: true
   notes?: true
   createdById?: true
   createdAt?: true
@@ -159,6 +175,10 @@ export type QuotationMaxAggregateInputType = {
   paymentTerms?: true
   deliveryTerms?: true
   termsAndConditions?: true
+  customerApprovalStatus?: true
+  customerApprovedAt?: true
+  customerApprovalReference?: true
+  customerApprovalNotes?: true
   notes?: true
   createdById?: true
   createdAt?: true
@@ -180,6 +200,10 @@ export type QuotationCountAggregateInputType = {
   paymentTerms?: true
   deliveryTerms?: true
   termsAndConditions?: true
+  customerApprovalStatus?: true
+  customerApprovedAt?: true
+  customerApprovalReference?: true
+  customerApprovalNotes?: true
   notes?: true
   createdById?: true
   createdAt?: true
@@ -288,6 +312,10 @@ export type QuotationGroupByOutputType = {
   paymentTerms: string | null
   deliveryTerms: string | null
   termsAndConditions: string | null
+  customerApprovalStatus: $Enums.CustomerApprovalStatus
+  customerApprovedAt: Date | null
+  customerApprovalReference: string | null
+  customerApprovalNotes: string | null
   notes: string | null
   createdById: string | null
   createdAt: Date
@@ -332,6 +360,10 @@ export type QuotationWhereInput = {
   paymentTerms?: Prisma.StringNullableFilter<"Quotation"> | string | null
   deliveryTerms?: Prisma.StringNullableFilter<"Quotation"> | string | null
   termsAndConditions?: Prisma.StringNullableFilter<"Quotation"> | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFilter<"Quotation"> | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.DateTimeNullableFilter<"Quotation"> | Date | string | null
+  customerApprovalReference?: Prisma.StringNullableFilter<"Quotation"> | string | null
+  customerApprovalNotes?: Prisma.StringNullableFilter<"Quotation"> | string | null
   notes?: Prisma.StringNullableFilter<"Quotation"> | string | null
   createdById?: Prisma.StringNullableFilter<"Quotation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
@@ -358,6 +390,10 @@ export type QuotationOrderByWithRelationInput = {
   paymentTerms?: Prisma.SortOrderInput | Prisma.SortOrder
   deliveryTerms?: Prisma.SortOrderInput | Prisma.SortOrder
   termsAndConditions?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalStatus?: Prisma.SortOrder
+  customerApprovedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -388,6 +424,10 @@ export type QuotationWhereUniqueInput = Prisma.AtLeast<{
   paymentTerms?: Prisma.StringNullableFilter<"Quotation"> | string | null
   deliveryTerms?: Prisma.StringNullableFilter<"Quotation"> | string | null
   termsAndConditions?: Prisma.StringNullableFilter<"Quotation"> | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFilter<"Quotation"> | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.DateTimeNullableFilter<"Quotation"> | Date | string | null
+  customerApprovalReference?: Prisma.StringNullableFilter<"Quotation"> | string | null
+  customerApprovalNotes?: Prisma.StringNullableFilter<"Quotation"> | string | null
   notes?: Prisma.StringNullableFilter<"Quotation"> | string | null
   createdById?: Prisma.StringNullableFilter<"Quotation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
@@ -414,6 +454,10 @@ export type QuotationOrderByWithAggregationInput = {
   paymentTerms?: Prisma.SortOrderInput | Prisma.SortOrder
   deliveryTerms?: Prisma.SortOrderInput | Prisma.SortOrder
   termsAndConditions?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalStatus?: Prisma.SortOrder
+  customerApprovedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrderInput | Prisma.SortOrder
+  customerApprovalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -443,6 +487,10 @@ export type QuotationScalarWhereWithAggregatesInput = {
   paymentTerms?: Prisma.StringNullableWithAggregatesFilter<"Quotation"> | string | null
   deliveryTerms?: Prisma.StringNullableWithAggregatesFilter<"Quotation"> | string | null
   termsAndConditions?: Prisma.StringNullableWithAggregatesFilter<"Quotation"> | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusWithAggregatesFilter<"Quotation"> | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Quotation"> | Date | string | null
+  customerApprovalReference?: Prisma.StringNullableWithAggregatesFilter<"Quotation"> | string | null
+  customerApprovalNotes?: Prisma.StringNullableWithAggregatesFilter<"Quotation"> | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"Quotation"> | string | null
   createdById?: Prisma.StringNullableWithAggregatesFilter<"Quotation"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Quotation"> | Date | string
@@ -463,6 +511,10 @@ export type QuotationCreateInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -488,6 +540,10 @@ export type QuotationUncheckedCreateInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdById?: string | null
   createdAt?: Date | string
@@ -511,6 +567,10 @@ export type QuotationUpdateInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -536,6 +596,10 @@ export type QuotationUncheckedUpdateInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -560,6 +624,10 @@ export type QuotationCreateManyInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdById?: string | null
   createdAt?: Date | string
@@ -580,6 +648,10 @@ export type QuotationUpdateManyMutationInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -600,6 +672,10 @@ export type QuotationUncheckedUpdateManyInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -636,6 +712,10 @@ export type QuotationCountOrderByAggregateInput = {
   paymentTerms?: Prisma.SortOrder
   deliveryTerms?: Prisma.SortOrder
   termsAndConditions?: Prisma.SortOrder
+  customerApprovalStatus?: Prisma.SortOrder
+  customerApprovedAt?: Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrder
+  customerApprovalNotes?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -665,6 +745,10 @@ export type QuotationMaxOrderByAggregateInput = {
   paymentTerms?: Prisma.SortOrder
   deliveryTerms?: Prisma.SortOrder
   termsAndConditions?: Prisma.SortOrder
+  customerApprovalStatus?: Prisma.SortOrder
+  customerApprovedAt?: Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrder
+  customerApprovalNotes?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -686,6 +770,10 @@ export type QuotationMinOrderByAggregateInput = {
   paymentTerms?: Prisma.SortOrder
   deliveryTerms?: Prisma.SortOrder
   termsAndConditions?: Prisma.SortOrder
+  customerApprovalStatus?: Prisma.SortOrder
+  customerApprovedAt?: Prisma.SortOrder
+  customerApprovalReference?: Prisma.SortOrder
+  customerApprovalNotes?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -798,6 +886,10 @@ export type EnumQuotationStatusFieldUpdateOperationsInput = {
   set?: $Enums.QuotationStatus
 }
 
+export type EnumCustomerApprovalStatusFieldUpdateOperationsInput = {
+  set?: $Enums.CustomerApprovalStatus
+}
+
 export type QuotationCreateNestedOneWithoutProductionOrdersInput = {
   create?: Prisma.XOR<Prisma.QuotationCreateWithoutProductionOrdersInput, Prisma.QuotationUncheckedCreateWithoutProductionOrdersInput>
   connectOrCreate?: Prisma.QuotationCreateOrConnectWithoutProductionOrdersInput
@@ -856,6 +948,10 @@ export type QuotationCreateWithoutCreatedByInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -880,6 +976,10 @@ export type QuotationUncheckedCreateWithoutCreatedByInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -932,6 +1032,10 @@ export type QuotationScalarWhereInput = {
   paymentTerms?: Prisma.StringNullableFilter<"Quotation"> | string | null
   deliveryTerms?: Prisma.StringNullableFilter<"Quotation"> | string | null
   termsAndConditions?: Prisma.StringNullableFilter<"Quotation"> | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFilter<"Quotation"> | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.DateTimeNullableFilter<"Quotation"> | Date | string | null
+  customerApprovalReference?: Prisma.StringNullableFilter<"Quotation"> | string | null
+  customerApprovalNotes?: Prisma.StringNullableFilter<"Quotation"> | string | null
   notes?: Prisma.StringNullableFilter<"Quotation"> | string | null
   createdById?: Prisma.StringNullableFilter<"Quotation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Quotation"> | Date | string
@@ -952,6 +1056,10 @@ export type QuotationCreateWithoutEstimateInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -975,6 +1083,10 @@ export type QuotationUncheckedCreateWithoutEstimateInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdById?: string | null
   createdAt?: Date | string
@@ -1024,6 +1136,10 @@ export type QuotationCreateWithoutProductionOrdersInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1048,6 +1164,10 @@ export type QuotationUncheckedCreateWithoutProductionOrdersInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdById?: string | null
   createdAt?: Date | string
@@ -1086,6 +1206,10 @@ export type QuotationUpdateWithoutProductionOrdersInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1110,6 +1234,10 @@ export type QuotationUncheckedUpdateWithoutProductionOrdersInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1132,6 +1260,10 @@ export type QuotationCreateWithoutEngineeringProjectInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1156,6 +1288,10 @@ export type QuotationUncheckedCreateWithoutEngineeringProjectInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdById?: string | null
   createdAt?: Date | string
@@ -1194,6 +1330,10 @@ export type QuotationUpdateWithoutEngineeringProjectInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1218,6 +1358,10 @@ export type QuotationUncheckedUpdateWithoutEngineeringProjectInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1240,6 +1384,10 @@ export type QuotationCreateWithoutSalesOrderInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1264,6 +1412,10 @@ export type QuotationUncheckedCreateWithoutSalesOrderInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdById?: string | null
   createdAt?: Date | string
@@ -1302,6 +1454,10 @@ export type QuotationUpdateWithoutSalesOrderInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1326,6 +1482,10 @@ export type QuotationUncheckedUpdateWithoutSalesOrderInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1349,6 +1509,10 @@ export type QuotationCreateManyCreatedByInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1368,6 +1532,10 @@ export type QuotationUpdateWithoutCreatedByInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1392,6 +1560,10 @@ export type QuotationUncheckedUpdateWithoutCreatedByInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1415,6 +1587,10 @@ export type QuotationUncheckedUpdateManyWithoutCreatedByInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1434,6 +1610,10 @@ export type QuotationCreateManyEstimateInput = {
   paymentTerms?: string | null
   deliveryTerms?: string | null
   termsAndConditions?: string | null
+  customerApprovalStatus?: $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Date | string | null
+  customerApprovalReference?: string | null
+  customerApprovalNotes?: string | null
   notes?: string | null
   createdById?: string | null
   createdAt?: Date | string
@@ -1454,6 +1634,10 @@ export type QuotationUpdateWithoutEstimateInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1477,6 +1661,10 @@ export type QuotationUncheckedUpdateWithoutEstimateInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1500,6 +1688,10 @@ export type QuotationUncheckedUpdateManyWithoutEstimateInput = {
   paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deliveryTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   termsAndConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalStatus?: Prisma.EnumCustomerApprovalStatusFieldUpdateOperationsInput | $Enums.CustomerApprovalStatus
+  customerApprovedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerApprovalReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerApprovalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1552,6 +1744,10 @@ export type QuotationSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   paymentTerms?: boolean
   deliveryTerms?: boolean
   termsAndConditions?: boolean
+  customerApprovalStatus?: boolean
+  customerApprovedAt?: boolean
+  customerApprovalReference?: boolean
+  customerApprovalNotes?: boolean
   notes?: boolean
   createdById?: boolean
   createdAt?: boolean
@@ -1579,6 +1775,10 @@ export type QuotationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   paymentTerms?: boolean
   deliveryTerms?: boolean
   termsAndConditions?: boolean
+  customerApprovalStatus?: boolean
+  customerApprovedAt?: boolean
+  customerApprovalReference?: boolean
+  customerApprovalNotes?: boolean
   notes?: boolean
   createdById?: boolean
   createdAt?: boolean
@@ -1602,6 +1802,10 @@ export type QuotationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   paymentTerms?: boolean
   deliveryTerms?: boolean
   termsAndConditions?: boolean
+  customerApprovalStatus?: boolean
+  customerApprovedAt?: boolean
+  customerApprovalReference?: boolean
+  customerApprovalNotes?: boolean
   notes?: boolean
   createdById?: boolean
   createdAt?: boolean
@@ -1625,13 +1829,17 @@ export type QuotationSelectScalar = {
   paymentTerms?: boolean
   deliveryTerms?: boolean
   termsAndConditions?: boolean
+  customerApprovalStatus?: boolean
+  customerApprovedAt?: boolean
+  customerApprovalReference?: boolean
+  customerApprovalNotes?: boolean
   notes?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type QuotationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "quotationNumber" | "estimateId" | "version" | "status" | "issueDate" | "validUntil" | "subtotal" | "taxPercent" | "taxAmount" | "totalAmount" | "paymentTerms" | "deliveryTerms" | "termsAndConditions" | "notes" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["quotation"]>
+export type QuotationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "quotationNumber" | "estimateId" | "version" | "status" | "issueDate" | "validUntil" | "subtotal" | "taxPercent" | "taxAmount" | "totalAmount" | "paymentTerms" | "deliveryTerms" | "termsAndConditions" | "customerApprovalStatus" | "customerApprovedAt" | "customerApprovalReference" | "customerApprovalNotes" | "notes" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["quotation"]>
 export type QuotationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Quotation$createdByArgs<ExtArgs>
@@ -1673,6 +1881,10 @@ export type $QuotationPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     paymentTerms: string | null
     deliveryTerms: string | null
     termsAndConditions: string | null
+    customerApprovalStatus: $Enums.CustomerApprovalStatus
+    customerApprovedAt: Date | null
+    customerApprovalReference: string | null
+    customerApprovalNotes: string | null
     notes: string | null
     createdById: string | null
     createdAt: Date
@@ -2119,6 +2331,10 @@ export interface QuotationFieldRefs {
   readonly paymentTerms: Prisma.FieldRef<"Quotation", 'String'>
   readonly deliveryTerms: Prisma.FieldRef<"Quotation", 'String'>
   readonly termsAndConditions: Prisma.FieldRef<"Quotation", 'String'>
+  readonly customerApprovalStatus: Prisma.FieldRef<"Quotation", 'CustomerApprovalStatus'>
+  readonly customerApprovedAt: Prisma.FieldRef<"Quotation", 'DateTime'>
+  readonly customerApprovalReference: Prisma.FieldRef<"Quotation", 'String'>
+  readonly customerApprovalNotes: Prisma.FieldRef<"Quotation", 'String'>
   readonly notes: Prisma.FieldRef<"Quotation", 'String'>
   readonly createdById: Prisma.FieldRef<"Quotation", 'String'>
   readonly createdAt: Prisma.FieldRef<"Quotation", 'DateTime'>

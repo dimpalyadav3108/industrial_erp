@@ -1,7 +1,9 @@
 import { Router } from "express";
-import {createDowntimeController,createJobCardController,createMachineController,createProductionOrderController,createTraceabilityController,createWorkCenterController,getProductionOrderController,listProductionInventoryController,listProductionOrdersController,listWorkCentersController,recordMaterialMovementController,updateJobCardController,updateProductionOperationController,updateProductionOrderController} from "../controllers/production.controller.js";
+import {createDowntimeController,createJobCardController,getShopFloorDashboardController,createMachineController,createProductionOrderController,createTraceabilityController,createWorkCenterController,getProductionOrderController,getProductionPlanningController,listProductionInventoryController,listProductionOrdersController,listWorkCentersController,recordMaterialMovementController,updateJobCardController,updateProductionOperationController,updateProductionOrderController} from "../controllers/production.controller.js";
 import { authenticate } from "../middleware/auth.middleware.js";
 export const productionRouter=Router(); productionRouter.use(authenticate);
+productionRouter.get("/planning",getProductionPlanningController);
+productionRouter.get("/shop-floor/dashboard",getShopFloorDashboardController);
 productionRouter.get("/work-centers",listWorkCentersController);
 productionRouter.post("/work-centers",createWorkCenterController);
 productionRouter.get("/inventory-items",listProductionInventoryController);

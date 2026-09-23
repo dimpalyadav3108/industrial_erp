@@ -14,6 +14,7 @@ import {
   createQuotation,
   getQuotations,
   updateQuotationStatus,
+  updateQuotationCustomerApproval,
 } from "../services/quotation.service";
 import type { Estimate } from "../types/estimate";
 import type {
@@ -38,6 +39,7 @@ const money = (value: number | string) =>
     maximumFractionDigits: 0,
   }).format(Number(value || 0));
 
+const printQuotation=(q: Quotation)=>{const w=window.open("","_blank","width=900,height=700");if(!w)return;w.document.write(`<!doctype html><html><head><title>${q.quotationNumber}</title><style>body{font-family:Arial;padding:40px}table{width:100%;border-collapse:collapse}td,th{border:1px solid #ddd;padding:8px}.total{font-size:18px;font-weight:bold;margin-top:20px}</style></head><body><h1>Quotation ${q.quotationNumber}</h1><p>Customer: ${q.estimate.lead.customer?.companyName??"—"}</p><p>Payment Terms: ${q.paymentTerms??"—"}</p><p>Delivery Terms: ${q.deliveryTerms??"—"}</p><p>Terms & Conditions: ${q.termsAndConditions??"—"}</p><div class="total">Total: ${money(Number(q.totalAmount))}</div></body></html>`);w.document.close();w.focus();w.print();};
 const date = (value: string | null) =>
   value
     ? new Intl.DateTimeFormat("en-IN", {
@@ -176,7 +178,11 @@ export default function QuotationsPage() {
     try {
       setBusyId(quotation.id);
       setError("");
-      const updated = await updateQuotationStatus(quotation.id, nextStatus);
+      const updated = nextStatus === "ACCEPTED"
+        ? await updateQuotationCustomerApproval(quotation.id, { status: "APPROVED" })
+        : nextStatus === "REJECTED"
+          ? await updateQuotationCustomerApproval(quotation.id, { status: "REJECTED" })
+          : await updateQuotationStatus(quotation.id, nextStatus);
       setQuotations((current) =>
         current.map((record) =>
           record.id === updated.id ? updated : record
@@ -246,7 +252,7 @@ export default function QuotationsPage() {
                     <td><div className="lead-title-cell"><strong>{quotation.quotationNumber}</strong><span>{date(quotation.issueDate)}</span></div></td>
                     <td><div className="lead-title-cell"><strong>{quotation.estimate.lead.customer?.companyName || "No customer"}</strong><span>{quotation.estimate.lead.title}</span></div></td>
                     <td>{quotation.estimate.estimateNumber} · V{quotation.version}</td>
-                    <td><select className="quotation-status-select" value={quotation.status} disabled={busyId === quotation.id} onChange={(event) => void handleStatus(quotation, event.target.value as QuotationStatus)}>{Object.entries(statusLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></td>
+                    <td><button type="button" className="quotation-secondary-btn" onClick={()=>printQuotation(quotation)}>Print</button> <select className="quotation-status-select" value={quotation.status} disabled={busyId === quotation.id} onChange={(event) => void handleStatus(quotation, event.target.value as QuotationStatus)}>{Object.entries(statusLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></td>
                     <td><strong>{money(quotation.totalAmount)}</strong></td>
                     <td>{date(quotation.validUntil)}</td>
                     <td><button className="row-action-button" type="button" title="View quotation" onClick={() => setSelected(quotation)}><Eye size={17} /></button></td>

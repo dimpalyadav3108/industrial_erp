@@ -12,3 +12,13 @@ export interface PayrollItem{id:string;basicSalary:string;hra:string;allowances:
 export interface PayrollRun{id:string;payrollNumber:string;month:number;year:number;status:PayrollStatus;processedAt:string|null;paidAt:string|null;items:PayrollItem[]}
 export interface HrDashboard{activeEmployees:number;departments:number;pendingLeave:number;payrollTotal:number}
 export interface PayrollControl{month:number;year:number;activeEmployees:number;employeesWithoutSalary:number;attendanceRecords:number;paidAttendanceDays:number;absenceRecords:number;pendingLeave:number;payrollStatus:string;payrollNet:number}
+
+export type Recruitment = {id:string;requisitionNumber:string;jobTitle:string;departmentId?:string;positions:number;description?:string;status:string;openingDate:string;closingDate?:string};
+export type HrShift = {id:string;code:string;name:string;startTime:string;endTime:string;graceMinutes:number;status:string};
+export type HrOvertime = {id:string;employeeId:string;date:string;hours:number;rate:number;amount:number;status:string;employeeCode:string;firstName:string;lastName:string};
+export type HrBiometric = {id:string;employeeId:string;eventType:string;eventAt:string;biometricId?:string;deviceId?:string;employeeCode:string;firstName:string;lastName:string};
+export type HrAppraisal = {id:string;employeeId:string;appraisalPeriod:string;rating:number;goalsScore:number;skillScore:number;attendanceScore:number;status:string;employeeCode:string;firstName:string;lastName:string};
+export type HrSkill = {id:string;skillCode:string;name:string;category?:string;employeeCount:number};
+export type HrCertification = {id:string;employeeId:string;certificationType:string;certificationName:string;certificateNumber?:string;issueDate?:string;expiryDate?:string;status:string;computedStatus:string;employeeCode:string;firstName:string;lastName:string};
+export type HrTraining = {id:string;trainingCode:string;title:string;trainer?:string;provider?:string;startDate:string;endDate?:string;status:string;certificateIssued:boolean};
+export type HrPayslip = {id:string;payslipNumber:string;employeeId:string;month:number;year:number;grossSalary:number;deductions:number;netSalary:number;employeeCode:string;firstName:string;lastName:string};

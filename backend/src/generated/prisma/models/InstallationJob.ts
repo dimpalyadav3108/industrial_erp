@@ -28,6 +28,7 @@ export type InstallationJobMinAggregateOutputType = {
   id: string | null
   installationNumber: string | null
   dispatchId: string | null
+  salesOrderId: string | null
   serviceRequestId: string | null
   warrantyContractId: string | null
   siteName: string | null
@@ -54,6 +55,7 @@ export type InstallationJobMaxAggregateOutputType = {
   id: string | null
   installationNumber: string | null
   dispatchId: string | null
+  salesOrderId: string | null
   serviceRequestId: string | null
   warrantyContractId: string | null
   siteName: string | null
@@ -80,6 +82,7 @@ export type InstallationJobCountAggregateOutputType = {
   id: number
   installationNumber: number
   dispatchId: number
+  salesOrderId: number
   serviceRequestId: number
   warrantyContractId: number
   siteName: number
@@ -108,6 +111,7 @@ export type InstallationJobMinAggregateInputType = {
   id?: true
   installationNumber?: true
   dispatchId?: true
+  salesOrderId?: true
   serviceRequestId?: true
   warrantyContractId?: true
   siteName?: true
@@ -134,6 +138,7 @@ export type InstallationJobMaxAggregateInputType = {
   id?: true
   installationNumber?: true
   dispatchId?: true
+  salesOrderId?: true
   serviceRequestId?: true
   warrantyContractId?: true
   siteName?: true
@@ -160,6 +165,7 @@ export type InstallationJobCountAggregateInputType = {
   id?: true
   installationNumber?: true
   dispatchId?: true
+  salesOrderId?: true
   serviceRequestId?: true
   warrantyContractId?: true
   siteName?: true
@@ -259,6 +265,7 @@ export type InstallationJobGroupByOutputType = {
   id: string
   installationNumber: string
   dispatchId: string
+  salesOrderId: string | null
   serviceRequestId: string | null
   warrantyContractId: string | null
   siteName: string
@@ -306,6 +313,7 @@ export type InstallationJobWhereInput = {
   id?: Prisma.StringFilter<"InstallationJob"> | string
   installationNumber?: Prisma.StringFilter<"InstallationJob"> | string
   dispatchId?: Prisma.StringFilter<"InstallationJob"> | string
+  salesOrderId?: Prisma.StringNullableFilter<"InstallationJob"> | string | null
   serviceRequestId?: Prisma.StringNullableFilter<"InstallationJob"> | string | null
   warrantyContractId?: Prisma.StringNullableFilter<"InstallationJob"> | string | null
   siteName?: Prisma.StringFilter<"InstallationJob"> | string
@@ -327,6 +335,7 @@ export type InstallationJobWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"InstallationJob"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InstallationJob"> | Date | string
   dispatch?: Prisma.XOR<Prisma.DispatchScalarRelationFilter, Prisma.DispatchWhereInput>
+  salesOrder?: Prisma.XOR<Prisma.SalesOrderNullableScalarRelationFilter, Prisma.SalesOrderWhereInput> | null
   serviceRequest?: Prisma.XOR<Prisma.ServiceRequestNullableScalarRelationFilter, Prisma.ServiceRequestWhereInput> | null
   warrantyContract?: Prisma.XOR<Prisma.ServiceContractNullableScalarRelationFilter, Prisma.ServiceContractWhereInput> | null
   engineer?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -334,6 +343,8 @@ export type InstallationJobWhereInput = {
   checklist?: Prisma.InstallationChecklistItemListRelationFilter
   commissioningTests?: Prisma.CommissioningTestListRelationFilter
   spareMovements?: Prisma.InstallationSpareMovementListRelationFilter
+  siteUpdates?: Prisma.InstallationSiteUpdateListRelationFilter
+  reports?: Prisma.InstallationReportListRelationFilter
   customers?: Prisma.CustomerListRelationFilter
 }
 
@@ -341,6 +352,7 @@ export type InstallationJobOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   installationNumber?: Prisma.SortOrder
   dispatchId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
   serviceRequestId?: Prisma.SortOrderInput | Prisma.SortOrder
   warrantyContractId?: Prisma.SortOrderInput | Prisma.SortOrder
   siteName?: Prisma.SortOrder
@@ -362,6 +374,7 @@ export type InstallationJobOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   dispatch?: Prisma.DispatchOrderByWithRelationInput
+  salesOrder?: Prisma.SalesOrderOrderByWithRelationInput
   serviceRequest?: Prisma.ServiceRequestOrderByWithRelationInput
   warrantyContract?: Prisma.ServiceContractOrderByWithRelationInput
   engineer?: Prisma.UserOrderByWithRelationInput
@@ -369,6 +382,8 @@ export type InstallationJobOrderByWithRelationInput = {
   checklist?: Prisma.InstallationChecklistItemOrderByRelationAggregateInput
   commissioningTests?: Prisma.CommissioningTestOrderByRelationAggregateInput
   spareMovements?: Prisma.InstallationSpareMovementOrderByRelationAggregateInput
+  siteUpdates?: Prisma.InstallationSiteUpdateOrderByRelationAggregateInput
+  reports?: Prisma.InstallationReportOrderByRelationAggregateInput
   customers?: Prisma.CustomerOrderByRelationAggregateInput
 }
 
@@ -376,6 +391,7 @@ export type InstallationJobWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   installationNumber?: string
   dispatchId?: string
+  salesOrderId?: string
   serviceRequestId?: string
   AND?: Prisma.InstallationJobWhereInput | Prisma.InstallationJobWhereInput[]
   OR?: Prisma.InstallationJobWhereInput[]
@@ -400,6 +416,7 @@ export type InstallationJobWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"InstallationJob"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InstallationJob"> | Date | string
   dispatch?: Prisma.XOR<Prisma.DispatchScalarRelationFilter, Prisma.DispatchWhereInput>
+  salesOrder?: Prisma.XOR<Prisma.SalesOrderNullableScalarRelationFilter, Prisma.SalesOrderWhereInput> | null
   serviceRequest?: Prisma.XOR<Prisma.ServiceRequestNullableScalarRelationFilter, Prisma.ServiceRequestWhereInput> | null
   warrantyContract?: Prisma.XOR<Prisma.ServiceContractNullableScalarRelationFilter, Prisma.ServiceContractWhereInput> | null
   engineer?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -407,13 +424,16 @@ export type InstallationJobWhereUniqueInput = Prisma.AtLeast<{
   checklist?: Prisma.InstallationChecklistItemListRelationFilter
   commissioningTests?: Prisma.CommissioningTestListRelationFilter
   spareMovements?: Prisma.InstallationSpareMovementListRelationFilter
+  siteUpdates?: Prisma.InstallationSiteUpdateListRelationFilter
+  reports?: Prisma.InstallationReportListRelationFilter
   customers?: Prisma.CustomerListRelationFilter
-}, "id" | "installationNumber" | "dispatchId" | "serviceRequestId">
+}, "id" | "installationNumber" | "dispatchId" | "salesOrderId" | "serviceRequestId">
 
 export type InstallationJobOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   installationNumber?: Prisma.SortOrder
   dispatchId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
   serviceRequestId?: Prisma.SortOrderInput | Prisma.SortOrder
   warrantyContractId?: Prisma.SortOrderInput | Prisma.SortOrder
   siteName?: Prisma.SortOrder
@@ -446,6 +466,7 @@ export type InstallationJobScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"InstallationJob"> | string
   installationNumber?: Prisma.StringWithAggregatesFilter<"InstallationJob"> | string
   dispatchId?: Prisma.StringWithAggregatesFilter<"InstallationJob"> | string
+  salesOrderId?: Prisma.StringNullableWithAggregatesFilter<"InstallationJob"> | string | null
   serviceRequestId?: Prisma.StringNullableWithAggregatesFilter<"InstallationJob"> | string | null
   warrantyContractId?: Prisma.StringNullableWithAggregatesFilter<"InstallationJob"> | string | null
   siteName?: Prisma.StringWithAggregatesFilter<"InstallationJob"> | string
@@ -488,6 +509,7 @@ export type InstallationJobCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
   serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
   warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
   engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
@@ -495,6 +517,8 @@ export type InstallationJobCreateInput = {
   checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -502,6 +526,7 @@ export type InstallationJobUncheckedCreateInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   warrantyContractId?: string | null
   siteName: string
@@ -525,6 +550,8 @@ export type InstallationJobUncheckedCreateInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -548,6 +575,7 @@ export type InstallationJobUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
   serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
   warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
   engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
@@ -555,6 +583,8 @@ export type InstallationJobUpdateInput = {
   checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -562,6 +592,7 @@ export type InstallationJobUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -585,6 +616,8 @@ export type InstallationJobUncheckedUpdateInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -592,6 +625,7 @@ export type InstallationJobCreateManyInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   warrantyContractId?: string | null
   siteName: string
@@ -639,6 +673,7 @@ export type InstallationJobUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -680,6 +715,7 @@ export type InstallationJobCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   installationNumber?: Prisma.SortOrder
   dispatchId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrder
   serviceRequestId?: Prisma.SortOrder
   warrantyContractId?: Prisma.SortOrder
   siteName?: Prisma.SortOrder
@@ -706,6 +742,7 @@ export type InstallationJobMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   installationNumber?: Prisma.SortOrder
   dispatchId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrder
   serviceRequestId?: Prisma.SortOrder
   warrantyContractId?: Prisma.SortOrder
   siteName?: Prisma.SortOrder
@@ -732,6 +769,7 @@ export type InstallationJobMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   installationNumber?: Prisma.SortOrder
   dispatchId?: Prisma.SortOrder
+  salesOrderId?: Prisma.SortOrder
   serviceRequestId?: Prisma.SortOrder
   warrantyContractId?: Prisma.SortOrder
   siteName?: Prisma.SortOrder
@@ -965,6 +1003,38 @@ export type InstallationJobUncheckedUpdateOneWithoutServiceRequestNestedInput = 
   update?: Prisma.XOR<Prisma.XOR<Prisma.InstallationJobUpdateToOneWithWhereWithoutServiceRequestInput, Prisma.InstallationJobUpdateWithoutServiceRequestInput>, Prisma.InstallationJobUncheckedUpdateWithoutServiceRequestInput>
 }
 
+export type InstallationJobCreateNestedOneWithoutSalesOrderInput = {
+  create?: Prisma.XOR<Prisma.InstallationJobCreateWithoutSalesOrderInput, Prisma.InstallationJobUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.InstallationJobCreateOrConnectWithoutSalesOrderInput
+  connect?: Prisma.InstallationJobWhereUniqueInput
+}
+
+export type InstallationJobUncheckedCreateNestedOneWithoutSalesOrderInput = {
+  create?: Prisma.XOR<Prisma.InstallationJobCreateWithoutSalesOrderInput, Prisma.InstallationJobUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.InstallationJobCreateOrConnectWithoutSalesOrderInput
+  connect?: Prisma.InstallationJobWhereUniqueInput
+}
+
+export type InstallationJobUpdateOneWithoutSalesOrderNestedInput = {
+  create?: Prisma.XOR<Prisma.InstallationJobCreateWithoutSalesOrderInput, Prisma.InstallationJobUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.InstallationJobCreateOrConnectWithoutSalesOrderInput
+  upsert?: Prisma.InstallationJobUpsertWithoutSalesOrderInput
+  disconnect?: Prisma.InstallationJobWhereInput | boolean
+  delete?: Prisma.InstallationJobWhereInput | boolean
+  connect?: Prisma.InstallationJobWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InstallationJobUpdateToOneWithWhereWithoutSalesOrderInput, Prisma.InstallationJobUpdateWithoutSalesOrderInput>, Prisma.InstallationJobUncheckedUpdateWithoutSalesOrderInput>
+}
+
+export type InstallationJobUncheckedUpdateOneWithoutSalesOrderNestedInput = {
+  create?: Prisma.XOR<Prisma.InstallationJobCreateWithoutSalesOrderInput, Prisma.InstallationJobUncheckedCreateWithoutSalesOrderInput>
+  connectOrCreate?: Prisma.InstallationJobCreateOrConnectWithoutSalesOrderInput
+  upsert?: Prisma.InstallationJobUpsertWithoutSalesOrderInput
+  disconnect?: Prisma.InstallationJobWhereInput | boolean
+  delete?: Prisma.InstallationJobWhereInput | boolean
+  connect?: Prisma.InstallationJobWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InstallationJobUpdateToOneWithWhereWithoutSalesOrderInput, Prisma.InstallationJobUpdateWithoutSalesOrderInput>, Prisma.InstallationJobUncheckedUpdateWithoutSalesOrderInput>
+}
+
 export type EnumInstallationStatusFieldUpdateOperationsInput = {
   set?: $Enums.InstallationStatus
 }
@@ -1011,6 +1081,34 @@ export type InstallationJobUpdateOneRequiredWithoutSpareMovementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.InstallationJobUpdateToOneWithWhereWithoutSpareMovementsInput, Prisma.InstallationJobUpdateWithoutSpareMovementsInput>, Prisma.InstallationJobUncheckedUpdateWithoutSpareMovementsInput>
 }
 
+export type InstallationJobCreateNestedOneWithoutSiteUpdatesInput = {
+  create?: Prisma.XOR<Prisma.InstallationJobCreateWithoutSiteUpdatesInput, Prisma.InstallationJobUncheckedCreateWithoutSiteUpdatesInput>
+  connectOrCreate?: Prisma.InstallationJobCreateOrConnectWithoutSiteUpdatesInput
+  connect?: Prisma.InstallationJobWhereUniqueInput
+}
+
+export type InstallationJobUpdateOneRequiredWithoutSiteUpdatesNestedInput = {
+  create?: Prisma.XOR<Prisma.InstallationJobCreateWithoutSiteUpdatesInput, Prisma.InstallationJobUncheckedCreateWithoutSiteUpdatesInput>
+  connectOrCreate?: Prisma.InstallationJobCreateOrConnectWithoutSiteUpdatesInput
+  upsert?: Prisma.InstallationJobUpsertWithoutSiteUpdatesInput
+  connect?: Prisma.InstallationJobWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InstallationJobUpdateToOneWithWhereWithoutSiteUpdatesInput, Prisma.InstallationJobUpdateWithoutSiteUpdatesInput>, Prisma.InstallationJobUncheckedUpdateWithoutSiteUpdatesInput>
+}
+
+export type InstallationJobCreateNestedOneWithoutReportsInput = {
+  create?: Prisma.XOR<Prisma.InstallationJobCreateWithoutReportsInput, Prisma.InstallationJobUncheckedCreateWithoutReportsInput>
+  connectOrCreate?: Prisma.InstallationJobCreateOrConnectWithoutReportsInput
+  connect?: Prisma.InstallationJobWhereUniqueInput
+}
+
+export type InstallationJobUpdateOneRequiredWithoutReportsNestedInput = {
+  create?: Prisma.XOR<Prisma.InstallationJobCreateWithoutReportsInput, Prisma.InstallationJobUncheckedCreateWithoutReportsInput>
+  connectOrCreate?: Prisma.InstallationJobCreateOrConnectWithoutReportsInput
+  upsert?: Prisma.InstallationJobUpsertWithoutReportsInput
+  connect?: Prisma.InstallationJobWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InstallationJobUpdateToOneWithWhereWithoutReportsInput, Prisma.InstallationJobUpdateWithoutReportsInput>, Prisma.InstallationJobUncheckedUpdateWithoutReportsInput>
+}
+
 export type InstallationJobCreateWithoutEngineerInput = {
   id?: string
   installationNumber: string
@@ -1031,12 +1129,15 @@ export type InstallationJobCreateWithoutEngineerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
   serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
   warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInstallationJobsInput
   checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1044,6 +1145,7 @@ export type InstallationJobUncheckedCreateWithoutEngineerInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   warrantyContractId?: string | null
   siteName: string
@@ -1066,6 +1168,8 @@ export type InstallationJobUncheckedCreateWithoutEngineerInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1099,12 +1203,15 @@ export type InstallationJobCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
   serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
   warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
   engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
   checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1112,6 +1219,7 @@ export type InstallationJobUncheckedCreateWithoutCreatedByInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   warrantyContractId?: string | null
   siteName: string
@@ -1134,6 +1242,8 @@ export type InstallationJobUncheckedCreateWithoutCreatedByInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1170,6 +1280,7 @@ export type InstallationJobScalarWhereInput = {
   id?: Prisma.StringFilter<"InstallationJob"> | string
   installationNumber?: Prisma.StringFilter<"InstallationJob"> | string
   dispatchId?: Prisma.StringFilter<"InstallationJob"> | string
+  salesOrderId?: Prisma.StringNullableFilter<"InstallationJob"> | string | null
   serviceRequestId?: Prisma.StringNullableFilter<"InstallationJob"> | string | null
   warrantyContractId?: Prisma.StringNullableFilter<"InstallationJob"> | string | null
   siteName?: Prisma.StringFilter<"InstallationJob"> | string
@@ -1228,6 +1339,7 @@ export type InstallationJobCreateWithoutCustomersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
   serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
   warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
   engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
@@ -1235,12 +1347,15 @@ export type InstallationJobCreateWithoutCustomersInput = {
   checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
 }
 
 export type InstallationJobUncheckedCreateWithoutCustomersInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   warrantyContractId?: string | null
   siteName: string
@@ -1264,6 +1379,8 @@ export type InstallationJobUncheckedCreateWithoutCustomersInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
 }
 
 export type InstallationJobCreateOrConnectWithoutCustomersInput = {
@@ -1302,6 +1419,7 @@ export type InstallationJobUpdateWithoutCustomersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
   serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
   warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
   engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
@@ -1309,12 +1427,15 @@ export type InstallationJobUpdateWithoutCustomersInput = {
   checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
 }
 
 export type InstallationJobUncheckedUpdateWithoutCustomersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1338,6 +1459,8 @@ export type InstallationJobUncheckedUpdateWithoutCustomersInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
 }
 
 export type InstallationJobCreateWithoutDispatchInput = {
@@ -1359,6 +1482,7 @@ export type InstallationJobCreateWithoutDispatchInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
   serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
   warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
   engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
@@ -1366,12 +1490,15 @@ export type InstallationJobCreateWithoutDispatchInput = {
   checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
 }
 
 export type InstallationJobUncheckedCreateWithoutDispatchInput = {
   id?: string
   installationNumber: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   warrantyContractId?: string | null
   siteName: string
@@ -1395,6 +1522,8 @@ export type InstallationJobUncheckedCreateWithoutDispatchInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1433,6 +1562,7 @@ export type InstallationJobUpdateWithoutDispatchInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
   serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
   warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
   engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
@@ -1440,12 +1570,15 @@ export type InstallationJobUpdateWithoutDispatchInput = {
   checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
 }
 
 export type InstallationJobUncheckedUpdateWithoutDispatchInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1469,6 +1602,8 @@ export type InstallationJobUncheckedUpdateWithoutDispatchInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -1492,12 +1627,15 @@ export type InstallationJobCreateWithoutWarrantyContractInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
   serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
   engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInstallationJobsInput
   checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1505,6 +1643,7 @@ export type InstallationJobUncheckedCreateWithoutWarrantyContractInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   siteName: string
   siteAddress: string
@@ -1527,6 +1666,8 @@ export type InstallationJobUncheckedCreateWithoutWarrantyContractInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1576,12 +1717,15 @@ export type InstallationJobCreateWithoutServiceRequestInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
   warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
   engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInstallationJobsInput
   checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1589,6 +1733,7 @@ export type InstallationJobUncheckedCreateWithoutServiceRequestInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   warrantyContractId?: string | null
   siteName: string
   siteAddress: string
@@ -1611,6 +1756,8 @@ export type InstallationJobUncheckedCreateWithoutServiceRequestInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1650,12 +1797,15 @@ export type InstallationJobUpdateWithoutServiceRequestInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
   warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
   engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInstallationJobsNestedInput
   checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -1663,6 +1813,7 @@ export type InstallationJobUncheckedUpdateWithoutServiceRequestInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
   siteAddress?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1685,10 +1836,12 @@ export type InstallationJobUncheckedUpdateWithoutServiceRequestInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
 }
 
-export type InstallationJobCreateWithoutChecklistInput = {
+export type InstallationJobCreateWithoutSalesOrderInput = {
   id?: string
   installationNumber: string
   siteName: string
@@ -1712,12 +1865,15 @@ export type InstallationJobCreateWithoutChecklistInput = {
   warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
   engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInstallationJobsInput
+  checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
 }
 
-export type InstallationJobUncheckedCreateWithoutChecklistInput = {
+export type InstallationJobUncheckedCreateWithoutSalesOrderInput = {
   id?: string
   installationNumber: string
   dispatchId: string
@@ -1741,8 +1897,155 @@ export type InstallationJobUncheckedCreateWithoutChecklistInput = {
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
+  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
+}
+
+export type InstallationJobCreateOrConnectWithoutSalesOrderInput = {
+  where: Prisma.InstallationJobWhereUniqueInput
+  create: Prisma.XOR<Prisma.InstallationJobCreateWithoutSalesOrderInput, Prisma.InstallationJobUncheckedCreateWithoutSalesOrderInput>
+}
+
+export type InstallationJobUpsertWithoutSalesOrderInput = {
+  update: Prisma.XOR<Prisma.InstallationJobUpdateWithoutSalesOrderInput, Prisma.InstallationJobUncheckedUpdateWithoutSalesOrderInput>
+  create: Prisma.XOR<Prisma.InstallationJobCreateWithoutSalesOrderInput, Prisma.InstallationJobUncheckedCreateWithoutSalesOrderInput>
+  where?: Prisma.InstallationJobWhereInput
+}
+
+export type InstallationJobUpdateToOneWithWhereWithoutSalesOrderInput = {
+  where?: Prisma.InstallationJobWhereInput
+  data: Prisma.XOR<Prisma.InstallationJobUpdateWithoutSalesOrderInput, Prisma.InstallationJobUncheckedUpdateWithoutSalesOrderInput>
+}
+
+export type InstallationJobUpdateWithoutSalesOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  siteName?: Prisma.StringFieldUpdateOperationsInput | string
+  siteAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  siteContactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumInstallationStatusFieldUpdateOperationsInput | $Enums.InstallationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  installationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commissioningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  handoverDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerSignoffName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerSignoffNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commissioningReportUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
+  warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
+  engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedInstallationJobsNestedInput
+  checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
+  commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
+  spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
+  customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
+}
+
+export type InstallationJobUncheckedUpdateWithoutSalesOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteName?: Prisma.StringFieldUpdateOperationsInput | string
+  siteAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  siteContactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumInstallationStatusFieldUpdateOperationsInput | $Enums.InstallationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  installationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commissioningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  handoverDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerSignoffName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerSignoffNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commissioningReportUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
+  commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
+  spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
+  customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
+}
+
+export type InstallationJobCreateWithoutChecklistInput = {
+  id?: string
+  installationNumber: string
+  siteName: string
+  siteAddress: string
+  siteContactPerson?: string | null
+  siteContactPhone?: string | null
+  status?: $Enums.InstallationStatus
+  plannedStartDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  installationDate?: Date | string | null
+  commissioningDate?: Date | string | null
+  handoverDate?: Date | string | null
+  customerSignoffName?: string | null
+  customerSignoffNotes?: string | null
+  commissioningReportUrl?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
+  serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
+  warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
+  engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInstallationJobsInput
+  commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
+  spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
+  customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
+}
+
+export type InstallationJobUncheckedCreateWithoutChecklistInput = {
+  id?: string
+  installationNumber: string
+  dispatchId: string
+  salesOrderId?: string | null
+  serviceRequestId?: string | null
+  warrantyContractId?: string | null
+  siteName: string
+  siteAddress: string
+  siteContactPerson?: string | null
+  siteContactPhone?: string | null
+  engineerId?: string | null
+  status?: $Enums.InstallationStatus
+  plannedStartDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  installationDate?: Date | string | null
+  commissioningDate?: Date | string | null
+  handoverDate?: Date | string | null
+  customerSignoffName?: string | null
+  customerSignoffNotes?: string | null
+  commissioningReportUrl?: string | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
+  spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1782,12 +2085,15 @@ export type InstallationJobUpdateWithoutChecklistInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
   serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
   warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
   engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInstallationJobsNestedInput
   commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -1795,6 +2101,7 @@ export type InstallationJobUncheckedUpdateWithoutChecklistInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1817,6 +2124,8 @@ export type InstallationJobUncheckedUpdateWithoutChecklistInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -1840,12 +2149,15 @@ export type InstallationJobCreateWithoutCommissioningTestsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
   serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
   warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
   engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInstallationJobsInput
   checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1853,6 +2165,7 @@ export type InstallationJobUncheckedCreateWithoutCommissioningTestsInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   warrantyContractId?: string | null
   siteName: string
@@ -1875,6 +2188,8 @@ export type InstallationJobUncheckedCreateWithoutCommissioningTestsInput = {
   updatedAt?: Date | string
   checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1914,12 +2229,15 @@ export type InstallationJobUpdateWithoutCommissioningTestsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
   serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
   warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
   engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInstallationJobsNestedInput
   checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -1927,6 +2245,7 @@ export type InstallationJobUncheckedUpdateWithoutCommissioningTestsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1949,6 +2268,8 @@ export type InstallationJobUncheckedUpdateWithoutCommissioningTestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -1972,12 +2293,15 @@ export type InstallationJobCreateWithoutSpareMovementsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
   serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
   warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
   engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInstallationJobsInput
   checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -1985,6 +2309,7 @@ export type InstallationJobUncheckedCreateWithoutSpareMovementsInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   warrantyContractId?: string | null
   siteName: string
@@ -2007,6 +2332,8 @@ export type InstallationJobUncheckedCreateWithoutSpareMovementsInput = {
   updatedAt?: Date | string
   checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
   commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
 }
 
@@ -2046,12 +2373,15 @@ export type InstallationJobUpdateWithoutSpareMovementsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
   serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
   warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
   engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInstallationJobsNestedInput
   checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -2059,6 +2389,7 @@ export type InstallationJobUncheckedUpdateWithoutSpareMovementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2081,6 +2412,296 @@ export type InstallationJobUncheckedUpdateWithoutSpareMovementsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
+  customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
+}
+
+export type InstallationJobCreateWithoutSiteUpdatesInput = {
+  id?: string
+  installationNumber: string
+  siteName: string
+  siteAddress: string
+  siteContactPerson?: string | null
+  siteContactPhone?: string | null
+  status?: $Enums.InstallationStatus
+  plannedStartDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  installationDate?: Date | string | null
+  commissioningDate?: Date | string | null
+  handoverDate?: Date | string | null
+  customerSignoffName?: string | null
+  customerSignoffNotes?: string | null
+  commissioningReportUrl?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
+  serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
+  warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
+  engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInstallationJobsInput
+  checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
+  commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
+  spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportCreateNestedManyWithoutInstallationInput
+  customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
+}
+
+export type InstallationJobUncheckedCreateWithoutSiteUpdatesInput = {
+  id?: string
+  installationNumber: string
+  dispatchId: string
+  salesOrderId?: string | null
+  serviceRequestId?: string | null
+  warrantyContractId?: string | null
+  siteName: string
+  siteAddress: string
+  siteContactPerson?: string | null
+  siteContactPhone?: string | null
+  engineerId?: string | null
+  status?: $Enums.InstallationStatus
+  plannedStartDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  installationDate?: Date | string | null
+  commissioningDate?: Date | string | null
+  handoverDate?: Date | string | null
+  customerSignoffName?: string | null
+  customerSignoffNotes?: string | null
+  commissioningReportUrl?: string | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
+  commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
+  spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  reports?: Prisma.InstallationReportUncheckedCreateNestedManyWithoutInstallationInput
+  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
+}
+
+export type InstallationJobCreateOrConnectWithoutSiteUpdatesInput = {
+  where: Prisma.InstallationJobWhereUniqueInput
+  create: Prisma.XOR<Prisma.InstallationJobCreateWithoutSiteUpdatesInput, Prisma.InstallationJobUncheckedCreateWithoutSiteUpdatesInput>
+}
+
+export type InstallationJobUpsertWithoutSiteUpdatesInput = {
+  update: Prisma.XOR<Prisma.InstallationJobUpdateWithoutSiteUpdatesInput, Prisma.InstallationJobUncheckedUpdateWithoutSiteUpdatesInput>
+  create: Prisma.XOR<Prisma.InstallationJobCreateWithoutSiteUpdatesInput, Prisma.InstallationJobUncheckedCreateWithoutSiteUpdatesInput>
+  where?: Prisma.InstallationJobWhereInput
+}
+
+export type InstallationJobUpdateToOneWithWhereWithoutSiteUpdatesInput = {
+  where?: Prisma.InstallationJobWhereInput
+  data: Prisma.XOR<Prisma.InstallationJobUpdateWithoutSiteUpdatesInput, Prisma.InstallationJobUncheckedUpdateWithoutSiteUpdatesInput>
+}
+
+export type InstallationJobUpdateWithoutSiteUpdatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  siteName?: Prisma.StringFieldUpdateOperationsInput | string
+  siteAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  siteContactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumInstallationStatusFieldUpdateOperationsInput | $Enums.InstallationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  installationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commissioningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  handoverDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerSignoffName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerSignoffNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commissioningReportUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
+  serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
+  warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
+  engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedInstallationJobsNestedInput
+  checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
+  commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
+  spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
+  customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
+}
+
+export type InstallationJobUncheckedUpdateWithoutSiteUpdatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteName?: Prisma.StringFieldUpdateOperationsInput | string
+  siteAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  siteContactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumInstallationStatusFieldUpdateOperationsInput | $Enums.InstallationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  installationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commissioningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  handoverDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerSignoffName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerSignoffNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commissioningReportUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
+  commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
+  spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
+  customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
+}
+
+export type InstallationJobCreateWithoutReportsInput = {
+  id?: string
+  installationNumber: string
+  siteName: string
+  siteAddress: string
+  siteContactPerson?: string | null
+  siteContactPhone?: string | null
+  status?: $Enums.InstallationStatus
+  plannedStartDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  installationDate?: Date | string | null
+  commissioningDate?: Date | string | null
+  handoverDate?: Date | string | null
+  customerSignoffName?: string | null
+  customerSignoffNotes?: string | null
+  commissioningReportUrl?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  dispatch: Prisma.DispatchCreateNestedOneWithoutInstallationJobInput
+  salesOrder?: Prisma.SalesOrderCreateNestedOneWithoutInstallationJobInput
+  serviceRequest?: Prisma.ServiceRequestCreateNestedOneWithoutInstallationJobInput
+  warrantyContract?: Prisma.ServiceContractCreateNestedOneWithoutInstallationWarrantyJobsInput
+  engineer?: Prisma.UserCreateNestedOneWithoutInstallationEngineerJobsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInstallationJobsInput
+  checklist?: Prisma.InstallationChecklistItemCreateNestedManyWithoutInstallationInput
+  commissioningTests?: Prisma.CommissioningTestCreateNestedManyWithoutInstallationInput
+  spareMovements?: Prisma.InstallationSpareMovementCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateCreateNestedManyWithoutInstallationInput
+  customers?: Prisma.CustomerCreateNestedManyWithoutInstallationJobInput
+}
+
+export type InstallationJobUncheckedCreateWithoutReportsInput = {
+  id?: string
+  installationNumber: string
+  dispatchId: string
+  salesOrderId?: string | null
+  serviceRequestId?: string | null
+  warrantyContractId?: string | null
+  siteName: string
+  siteAddress: string
+  siteContactPerson?: string | null
+  siteContactPhone?: string | null
+  engineerId?: string | null
+  status?: $Enums.InstallationStatus
+  plannedStartDate?: Date | string | null
+  actualStartDate?: Date | string | null
+  installationDate?: Date | string | null
+  commissioningDate?: Date | string | null
+  handoverDate?: Date | string | null
+  customerSignoffName?: string | null
+  customerSignoffNotes?: string | null
+  commissioningReportUrl?: string | null
+  notes?: string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  checklist?: Prisma.InstallationChecklistItemUncheckedCreateNestedManyWithoutInstallationInput
+  commissioningTests?: Prisma.CommissioningTestUncheckedCreateNestedManyWithoutInstallationInput
+  spareMovements?: Prisma.InstallationSpareMovementUncheckedCreateNestedManyWithoutInstallationInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedCreateNestedManyWithoutInstallationInput
+  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutInstallationJobInput
+}
+
+export type InstallationJobCreateOrConnectWithoutReportsInput = {
+  where: Prisma.InstallationJobWhereUniqueInput
+  create: Prisma.XOR<Prisma.InstallationJobCreateWithoutReportsInput, Prisma.InstallationJobUncheckedCreateWithoutReportsInput>
+}
+
+export type InstallationJobUpsertWithoutReportsInput = {
+  update: Prisma.XOR<Prisma.InstallationJobUpdateWithoutReportsInput, Prisma.InstallationJobUncheckedUpdateWithoutReportsInput>
+  create: Prisma.XOR<Prisma.InstallationJobCreateWithoutReportsInput, Prisma.InstallationJobUncheckedCreateWithoutReportsInput>
+  where?: Prisma.InstallationJobWhereInput
+}
+
+export type InstallationJobUpdateToOneWithWhereWithoutReportsInput = {
+  where?: Prisma.InstallationJobWhereInput
+  data: Prisma.XOR<Prisma.InstallationJobUpdateWithoutReportsInput, Prisma.InstallationJobUncheckedUpdateWithoutReportsInput>
+}
+
+export type InstallationJobUpdateWithoutReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  siteName?: Prisma.StringFieldUpdateOperationsInput | string
+  siteAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  siteContactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumInstallationStatusFieldUpdateOperationsInput | $Enums.InstallationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  installationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commissioningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  handoverDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerSignoffName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerSignoffNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commissioningReportUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
+  serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
+  warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
+  engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedInstallationJobsNestedInput
+  checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
+  commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
+  spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
+}
+
+export type InstallationJobUncheckedUpdateWithoutReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteName?: Prisma.StringFieldUpdateOperationsInput | string
+  siteAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  siteContactPerson?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumInstallationStatusFieldUpdateOperationsInput | $Enums.InstallationStatus
+  plannedStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  installationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commissioningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  handoverDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  customerSignoffName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customerSignoffNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commissioningReportUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
+  commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
+  spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -2088,6 +2709,7 @@ export type InstallationJobCreateManyEngineerInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   warrantyContractId?: string | null
   siteName: string
@@ -2113,6 +2735,7 @@ export type InstallationJobCreateManyCreatedByInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   warrantyContractId?: string | null
   siteName: string
@@ -2154,12 +2777,15 @@ export type InstallationJobUpdateWithoutEngineerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
   serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
   warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInstallationJobsNestedInput
   checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -2167,6 +2793,7 @@ export type InstallationJobUncheckedUpdateWithoutEngineerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2189,6 +2816,8 @@ export type InstallationJobUncheckedUpdateWithoutEngineerInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -2196,6 +2825,7 @@ export type InstallationJobUncheckedUpdateManyWithoutEngineerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2237,12 +2867,15 @@ export type InstallationJobUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
   serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
   warrantyContract?: Prisma.ServiceContractUpdateOneWithoutInstallationWarrantyJobsNestedInput
   engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
   checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -2250,6 +2883,7 @@ export type InstallationJobUncheckedUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2272,6 +2906,8 @@ export type InstallationJobUncheckedUpdateWithoutCreatedByInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -2279,6 +2915,7 @@ export type InstallationJobUncheckedUpdateManyWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warrantyContractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2304,6 +2941,7 @@ export type InstallationJobCreateManyWarrantyContractInput = {
   id?: string
   installationNumber: string
   dispatchId: string
+  salesOrderId?: string | null
   serviceRequestId?: string | null
   siteName: string
   siteAddress: string
@@ -2345,12 +2983,15 @@ export type InstallationJobUpdateWithoutWarrantyContractInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dispatch?: Prisma.DispatchUpdateOneRequiredWithoutInstallationJobNestedInput
+  salesOrder?: Prisma.SalesOrderUpdateOneWithoutInstallationJobNestedInput
   serviceRequest?: Prisma.ServiceRequestUpdateOneWithoutInstallationJobNestedInput
   engineer?: Prisma.UserUpdateOneWithoutInstallationEngineerJobsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInstallationJobsNestedInput
   checklist?: Prisma.InstallationChecklistItemUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -2358,6 +2999,7 @@ export type InstallationJobUncheckedUpdateWithoutWarrantyContractInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
   siteAddress?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2380,6 +3022,8 @@ export type InstallationJobUncheckedUpdateWithoutWarrantyContractInput = {
   checklist?: Prisma.InstallationChecklistItemUncheckedUpdateManyWithoutInstallationNestedInput
   commissioningTests?: Prisma.CommissioningTestUncheckedUpdateManyWithoutInstallationNestedInput
   spareMovements?: Prisma.InstallationSpareMovementUncheckedUpdateManyWithoutInstallationNestedInput
+  siteUpdates?: Prisma.InstallationSiteUpdateUncheckedUpdateManyWithoutInstallationNestedInput
+  reports?: Prisma.InstallationReportUncheckedUpdateManyWithoutInstallationNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutInstallationJobNestedInput
 }
 
@@ -2387,6 +3031,7 @@ export type InstallationJobUncheckedUpdateManyWithoutWarrantyContractInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   installationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   dispatchId?: Prisma.StringFieldUpdateOperationsInput | string
+  salesOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   serviceRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteName?: Prisma.StringFieldUpdateOperationsInput | string
   siteAddress?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2417,6 +3062,8 @@ export type InstallationJobCountOutputType = {
   checklist: number
   commissioningTests: number
   spareMovements: number
+  siteUpdates: number
+  reports: number
   customers: number
 }
 
@@ -2424,6 +3071,8 @@ export type InstallationJobCountOutputTypeSelect<ExtArgs extends runtime.Types.E
   checklist?: boolean | InstallationJobCountOutputTypeCountChecklistArgs
   commissioningTests?: boolean | InstallationJobCountOutputTypeCountCommissioningTestsArgs
   spareMovements?: boolean | InstallationJobCountOutputTypeCountSpareMovementsArgs
+  siteUpdates?: boolean | InstallationJobCountOutputTypeCountSiteUpdatesArgs
+  reports?: boolean | InstallationJobCountOutputTypeCountReportsArgs
   customers?: boolean | InstallationJobCountOutputTypeCountCustomersArgs
 }
 
@@ -2461,6 +3110,20 @@ export type InstallationJobCountOutputTypeCountSpareMovementsArgs<ExtArgs extend
 /**
  * InstallationJobCountOutputType without action
  */
+export type InstallationJobCountOutputTypeCountSiteUpdatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InstallationSiteUpdateWhereInput
+}
+
+/**
+ * InstallationJobCountOutputType without action
+ */
+export type InstallationJobCountOutputTypeCountReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InstallationReportWhereInput
+}
+
+/**
+ * InstallationJobCountOutputType without action
+ */
 export type InstallationJobCountOutputTypeCountCustomersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CustomerWhereInput
 }
@@ -2470,6 +3133,7 @@ export type InstallationJobSelect<ExtArgs extends runtime.Types.Extensions.Inter
   id?: boolean
   installationNumber?: boolean
   dispatchId?: boolean
+  salesOrderId?: boolean
   serviceRequestId?: boolean
   warrantyContractId?: boolean
   siteName?: boolean
@@ -2491,6 +3155,7 @@ export type InstallationJobSelect<ExtArgs extends runtime.Types.Extensions.Inter
   createdAt?: boolean
   updatedAt?: boolean
   dispatch?: boolean | Prisma.DispatchDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.InstallationJob$salesOrderArgs<ExtArgs>
   serviceRequest?: boolean | Prisma.InstallationJob$serviceRequestArgs<ExtArgs>
   warrantyContract?: boolean | Prisma.InstallationJob$warrantyContractArgs<ExtArgs>
   engineer?: boolean | Prisma.InstallationJob$engineerArgs<ExtArgs>
@@ -2498,6 +3163,8 @@ export type InstallationJobSelect<ExtArgs extends runtime.Types.Extensions.Inter
   checklist?: boolean | Prisma.InstallationJob$checklistArgs<ExtArgs>
   commissioningTests?: boolean | Prisma.InstallationJob$commissioningTestsArgs<ExtArgs>
   spareMovements?: boolean | Prisma.InstallationJob$spareMovementsArgs<ExtArgs>
+  siteUpdates?: boolean | Prisma.InstallationJob$siteUpdatesArgs<ExtArgs>
+  reports?: boolean | Prisma.InstallationJob$reportsArgs<ExtArgs>
   customers?: boolean | Prisma.InstallationJob$customersArgs<ExtArgs>
   _count?: boolean | Prisma.InstallationJobCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["installationJob"]>
@@ -2506,6 +3173,7 @@ export type InstallationJobSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   id?: boolean
   installationNumber?: boolean
   dispatchId?: boolean
+  salesOrderId?: boolean
   serviceRequestId?: boolean
   warrantyContractId?: boolean
   siteName?: boolean
@@ -2527,6 +3195,7 @@ export type InstallationJobSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   createdAt?: boolean
   updatedAt?: boolean
   dispatch?: boolean | Prisma.DispatchDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.InstallationJob$salesOrderArgs<ExtArgs>
   serviceRequest?: boolean | Prisma.InstallationJob$serviceRequestArgs<ExtArgs>
   warrantyContract?: boolean | Prisma.InstallationJob$warrantyContractArgs<ExtArgs>
   engineer?: boolean | Prisma.InstallationJob$engineerArgs<ExtArgs>
@@ -2537,6 +3206,7 @@ export type InstallationJobSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   id?: boolean
   installationNumber?: boolean
   dispatchId?: boolean
+  salesOrderId?: boolean
   serviceRequestId?: boolean
   warrantyContractId?: boolean
   siteName?: boolean
@@ -2558,6 +3228,7 @@ export type InstallationJobSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   createdAt?: boolean
   updatedAt?: boolean
   dispatch?: boolean | Prisma.DispatchDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.InstallationJob$salesOrderArgs<ExtArgs>
   serviceRequest?: boolean | Prisma.InstallationJob$serviceRequestArgs<ExtArgs>
   warrantyContract?: boolean | Prisma.InstallationJob$warrantyContractArgs<ExtArgs>
   engineer?: boolean | Prisma.InstallationJob$engineerArgs<ExtArgs>
@@ -2568,6 +3239,7 @@ export type InstallationJobSelectScalar = {
   id?: boolean
   installationNumber?: boolean
   dispatchId?: boolean
+  salesOrderId?: boolean
   serviceRequestId?: boolean
   warrantyContractId?: boolean
   siteName?: boolean
@@ -2590,9 +3262,10 @@ export type InstallationJobSelectScalar = {
   updatedAt?: boolean
 }
 
-export type InstallationJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "installationNumber" | "dispatchId" | "serviceRequestId" | "warrantyContractId" | "siteName" | "siteAddress" | "siteContactPerson" | "siteContactPhone" | "engineerId" | "status" | "plannedStartDate" | "actualStartDate" | "installationDate" | "commissioningDate" | "handoverDate" | "customerSignoffName" | "customerSignoffNotes" | "commissioningReportUrl" | "notes" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["installationJob"]>
+export type InstallationJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "installationNumber" | "dispatchId" | "salesOrderId" | "serviceRequestId" | "warrantyContractId" | "siteName" | "siteAddress" | "siteContactPerson" | "siteContactPhone" | "engineerId" | "status" | "plannedStartDate" | "actualStartDate" | "installationDate" | "commissioningDate" | "handoverDate" | "customerSignoffName" | "customerSignoffNotes" | "commissioningReportUrl" | "notes" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["installationJob"]>
 export type InstallationJobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dispatch?: boolean | Prisma.DispatchDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.InstallationJob$salesOrderArgs<ExtArgs>
   serviceRequest?: boolean | Prisma.InstallationJob$serviceRequestArgs<ExtArgs>
   warrantyContract?: boolean | Prisma.InstallationJob$warrantyContractArgs<ExtArgs>
   engineer?: boolean | Prisma.InstallationJob$engineerArgs<ExtArgs>
@@ -2600,11 +3273,14 @@ export type InstallationJobInclude<ExtArgs extends runtime.Types.Extensions.Inte
   checklist?: boolean | Prisma.InstallationJob$checklistArgs<ExtArgs>
   commissioningTests?: boolean | Prisma.InstallationJob$commissioningTestsArgs<ExtArgs>
   spareMovements?: boolean | Prisma.InstallationJob$spareMovementsArgs<ExtArgs>
+  siteUpdates?: boolean | Prisma.InstallationJob$siteUpdatesArgs<ExtArgs>
+  reports?: boolean | Prisma.InstallationJob$reportsArgs<ExtArgs>
   customers?: boolean | Prisma.InstallationJob$customersArgs<ExtArgs>
   _count?: boolean | Prisma.InstallationJobCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type InstallationJobIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dispatch?: boolean | Prisma.DispatchDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.InstallationJob$salesOrderArgs<ExtArgs>
   serviceRequest?: boolean | Prisma.InstallationJob$serviceRequestArgs<ExtArgs>
   warrantyContract?: boolean | Prisma.InstallationJob$warrantyContractArgs<ExtArgs>
   engineer?: boolean | Prisma.InstallationJob$engineerArgs<ExtArgs>
@@ -2612,6 +3288,7 @@ export type InstallationJobIncludeCreateManyAndReturn<ExtArgs extends runtime.Ty
 }
 export type InstallationJobIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dispatch?: boolean | Prisma.DispatchDefaultArgs<ExtArgs>
+  salesOrder?: boolean | Prisma.InstallationJob$salesOrderArgs<ExtArgs>
   serviceRequest?: boolean | Prisma.InstallationJob$serviceRequestArgs<ExtArgs>
   warrantyContract?: boolean | Prisma.InstallationJob$warrantyContractArgs<ExtArgs>
   engineer?: boolean | Prisma.InstallationJob$engineerArgs<ExtArgs>
@@ -2622,6 +3299,7 @@ export type $InstallationJobPayload<ExtArgs extends runtime.Types.Extensions.Int
   name: "InstallationJob"
   objects: {
     dispatch: Prisma.$DispatchPayload<ExtArgs>
+    salesOrder: Prisma.$SalesOrderPayload<ExtArgs> | null
     serviceRequest: Prisma.$ServiceRequestPayload<ExtArgs> | null
     warrantyContract: Prisma.$ServiceContractPayload<ExtArgs> | null
     engineer: Prisma.$UserPayload<ExtArgs> | null
@@ -2629,12 +3307,15 @@ export type $InstallationJobPayload<ExtArgs extends runtime.Types.Extensions.Int
     checklist: Prisma.$InstallationChecklistItemPayload<ExtArgs>[]
     commissioningTests: Prisma.$CommissioningTestPayload<ExtArgs>[]
     spareMovements: Prisma.$InstallationSpareMovementPayload<ExtArgs>[]
+    siteUpdates: Prisma.$InstallationSiteUpdatePayload<ExtArgs>[]
+    reports: Prisma.$InstallationReportPayload<ExtArgs>[]
     customers: Prisma.$CustomerPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     installationNumber: string
     dispatchId: string
+    salesOrderId: string | null
     serviceRequestId: string | null
     warrantyContractId: string | null
     siteName: string
@@ -3050,6 +3731,7 @@ readonly fields: InstallationJobFieldRefs;
 export interface Prisma__InstallationJobClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   dispatch<T extends Prisma.DispatchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DispatchDefaultArgs<ExtArgs>>): Prisma.Prisma__DispatchClient<runtime.Types.Result.GetResult<Prisma.$DispatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  salesOrder<T extends Prisma.InstallationJob$salesOrderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallationJob$salesOrderArgs<ExtArgs>>): Prisma.Prisma__SalesOrderClient<runtime.Types.Result.GetResult<Prisma.$SalesOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   serviceRequest<T extends Prisma.InstallationJob$serviceRequestArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallationJob$serviceRequestArgs<ExtArgs>>): Prisma.Prisma__ServiceRequestClient<runtime.Types.Result.GetResult<Prisma.$ServiceRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   warrantyContract<T extends Prisma.InstallationJob$warrantyContractArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallationJob$warrantyContractArgs<ExtArgs>>): Prisma.Prisma__ServiceContractClient<runtime.Types.Result.GetResult<Prisma.$ServiceContractPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   engineer<T extends Prisma.InstallationJob$engineerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallationJob$engineerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -3057,6 +3739,8 @@ export interface Prisma__InstallationJobClient<T, Null = never, ExtArgs extends 
   checklist<T extends Prisma.InstallationJob$checklistArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallationJob$checklistArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InstallationChecklistItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   commissioningTests<T extends Prisma.InstallationJob$commissioningTestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallationJob$commissioningTestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommissioningTestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   spareMovements<T extends Prisma.InstallationJob$spareMovementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallationJob$spareMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InstallationSpareMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  siteUpdates<T extends Prisma.InstallationJob$siteUpdatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallationJob$siteUpdatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InstallationSiteUpdatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reports<T extends Prisma.InstallationJob$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallationJob$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InstallationReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   customers<T extends Prisma.InstallationJob$customersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallationJob$customersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3090,6 +3774,7 @@ export interface InstallationJobFieldRefs {
   readonly id: Prisma.FieldRef<"InstallationJob", 'String'>
   readonly installationNumber: Prisma.FieldRef<"InstallationJob", 'String'>
   readonly dispatchId: Prisma.FieldRef<"InstallationJob", 'String'>
+  readonly salesOrderId: Prisma.FieldRef<"InstallationJob", 'String'>
   readonly serviceRequestId: Prisma.FieldRef<"InstallationJob", 'String'>
   readonly warrantyContractId: Prisma.FieldRef<"InstallationJob", 'String'>
   readonly siteName: Prisma.FieldRef<"InstallationJob", 'String'>
@@ -3511,6 +4196,25 @@ export type InstallationJobDeleteManyArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
+ * InstallationJob.salesOrder
+ */
+export type InstallationJob$salesOrderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SalesOrder
+   */
+  select?: Prisma.SalesOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SalesOrder
+   */
+  omit?: Prisma.SalesOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalesOrderInclude<ExtArgs> | null
+  where?: Prisma.SalesOrderWhereInput
+}
+
+/**
  * InstallationJob.serviceRequest
  */
 export type InstallationJob$serviceRequestArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3656,6 +4360,54 @@ export type InstallationJob$spareMovementsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.InstallationSpareMovementScalarFieldEnum | Prisma.InstallationSpareMovementScalarFieldEnum[]
+}
+
+/**
+ * InstallationJob.siteUpdates
+ */
+export type InstallationJob$siteUpdatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InstallationSiteUpdate
+   */
+  select?: Prisma.InstallationSiteUpdateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InstallationSiteUpdate
+   */
+  omit?: Prisma.InstallationSiteUpdateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InstallationSiteUpdateInclude<ExtArgs> | null
+  where?: Prisma.InstallationSiteUpdateWhereInput
+  orderBy?: Prisma.InstallationSiteUpdateOrderByWithRelationInput | Prisma.InstallationSiteUpdateOrderByWithRelationInput[]
+  cursor?: Prisma.InstallationSiteUpdateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InstallationSiteUpdateScalarFieldEnum | Prisma.InstallationSiteUpdateScalarFieldEnum[]
+}
+
+/**
+ * InstallationJob.reports
+ */
+export type InstallationJob$reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InstallationReport
+   */
+  select?: Prisma.InstallationReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InstallationReport
+   */
+  omit?: Prisma.InstallationReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InstallationReportInclude<ExtArgs> | null
+  where?: Prisma.InstallationReportWhereInput
+  orderBy?: Prisma.InstallationReportOrderByWithRelationInput | Prisma.InstallationReportOrderByWithRelationInput[]
+  cursor?: Prisma.InstallationReportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InstallationReportScalarFieldEnum | Prisma.InstallationReportScalarFieldEnum[]
 }
 
 /**

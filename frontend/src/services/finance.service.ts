@@ -8,3 +8,19 @@ export const getReceivables=()=>call<Receivable[]>("/receivables",{headers:h()})
 export const getExpenses=()=>call<FinanceExpense[]>("/expenses",{headers:h()}); export const createExpense=(p:{expenseDate?:string;category:string;description:string;amount:number;gstType:GstType;gstRate:number;paymentMethod?:PaymentMethod;referenceNumber?:string})=>call<FinanceExpense>("/expenses",{method:"POST",headers:h(true),body:JSON.stringify(p)}); export const updateExpenseStatus=(id:string,status:ExpenseStatus)=>call<FinanceExpense>(`/expenses/${id}`,{method:"PATCH",headers:h(true),body:JSON.stringify({status})});
 export const getGstSummary=()=>call<GstSummary>("/gst-summary",{headers:h()});
 export const getTrialBalance=()=>call<BalanceRow[]>("/reports/trial-balance",{headers:h()}); export const getProfitLoss=()=>call<{income:number;expense:number;profit:number;accounts:BalanceRow[]}>("/reports/profit-loss",{headers:h()}); export const getBalanceSheet=()=>call<{assets:number;liabilities:number;equity:number;accounts:BalanceRow[]}>("/reports/balance-sheet",{headers:h()});
+export const createCustomerReceipt=(p:{invoiceId:string;amount:number;method:PaymentMethod;paymentDate?:string;referenceNumber?:string;notes?:string})=>call<any>("/receipts",{method:"POST",headers:h(true),body:JSON.stringify(p)});
+export const getReceipts=()=>call<any[]>("/receipts",{headers:h()});
+export const createPaymentFollowUp=(p:any)=>call<any>("/payment-followups",{method:"POST",headers:h(true),body:JSON.stringify(p)});
+export const getPaymentFollowUps=()=>call<any[]>("/payment-followups",{headers:h()});
+export const getVendorPaymentApprovals=()=>call<any[]>("/vendor-payment-approvals",{headers:h()});
+export const approveVendorPayment=(id:string,decision:"APPROVED"|"REJECTED",rejectionReason?:string)=>call<any>(`/vendor-payment-approvals/${id}`,{method:"PATCH",headers:h(true),body:JSON.stringify({decision,rejectionReason})});
+export const getCashFlow=()=>call<any>("/reports/cash-flow",{headers:h()});
+export const getCustomerProfitability=()=>call<any[]>("/reports/customer-profitability",{headers:h()});
+export const getProductProfitability=()=>call<any[]>("/reports/product-profitability",{headers:h()});
+export const getProjectProfitability=()=>call<any[]>("/reports/project-profitability",{headers:h()});
+export const getRevenueRecognitions=()=>call<any[]>("/revenue-recognition",{headers:h()});
+export const createRevenueRecognition=(p:any)=>call<any>("/revenue-recognition",{method:"POST",headers:h(true),body:JSON.stringify(p)});
+export const getTdsSummary=()=>call<any[]>("/tds-summary",{headers:h()});
+export const createTds=(p:any)=>call<any>("/tds",{method:"POST",headers:h(true),body:JSON.stringify(p)});
+
+export const createProductCost=(p:{productName:string;standardCost:number})=>call<any>("/product-costs",{method:"POST",headers:h(true),body:JSON.stringify(p)});

@@ -139,3 +139,31 @@ export const deleteLead = async (leadId: string): Promise<void> => {
     );
   }
 };
+export interface LeadCrmDetails {
+  technical: Record<string, any> | null;
+  activities: any[];
+  competitors: any[];
+  surveys: any[];
+  tenders: any[];
+  quotations: any[];
+}
+
+const crmRequest = async (leadId: string, path: string, method: string, body?: unknown) => {
+  const response = await fetch(`${API_URL}/leads/${leadId}${path}`, {
+    method,
+    headers: authenticatedHeaders(Boolean(body)),
+    ...(body ? { body: JSON.stringify(body) } : {}),
+  });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.message || "CRM request failed");
+  return result;
+};
+
+export const getLeadCrmDetails = async (leadId: string): Promise<LeadCrmDetails> =>
+  (await crmRequest(leadId, "/crm", "GET")).data;
+export const saveLeadTechnical = (leadId: string, data: Record<string, unknown>) => crmRequest(leadId, "/technical", "PUT", data);
+export const addLeadActivity = (leadId: string, data: Record<string, unknown>) => crmRequest(leadId, "/activities", "POST", data);
+export const addLeadCompetitor = (leadId: string, data: Record<string, unknown>) => crmRequest(leadId, "/competitors", "POST", data);
+export const addLeadSurvey = (leadId: string, data: Record<string, unknown>) => crmRequest(leadId, "/surveys", "POST", data);
+export const addLeadTender = (leadId: string, data: Record<string, unknown>) => crmRequest(leadId, "/tenders", "POST", data);
+export const addLeadOutcome = (leadId: string, data: Record<string, unknown>) => crmRequest(leadId, "/outcomes", "POST", data);

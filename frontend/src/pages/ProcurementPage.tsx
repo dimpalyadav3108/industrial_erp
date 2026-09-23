@@ -53,6 +53,7 @@ import type {
 } from "../types/procurement";
 
 import ProcurementIntelligencePanel from "./ProcurementIntelligencePanel";
+import ProcurementModule6Panel from "./ProcurementModule6Panel";
 
 type Tab =
   | "vendors"
@@ -934,6 +935,8 @@ export default function ProcurementPage() {
         orders={orders}
         grns={grns}
       />
+
+      <ProcurementModule6Panel vendors={vendors} />
 
       {/* ========================================================
           MAIN DATA CARD

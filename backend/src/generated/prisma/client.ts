@@ -82,6 +82,31 @@ export type Customer = Prisma.CustomerModel
  */
 export type Lead = Prisma.LeadModel
 /**
+ * Model LeadActivity
+ * 
+ */
+export type LeadActivity = Prisma.LeadActivityModel
+/**
+ * Model LeadCompetitor
+ * 
+ */
+export type LeadCompetitor = Prisma.LeadCompetitorModel
+/**
+ * Model LeadOutcomeRecord
+ * 
+ */
+export type LeadOutcomeRecord = Prisma.LeadOutcomeRecordModel
+/**
+ * Model LeadTechnicalSurvey
+ * 
+ */
+export type LeadTechnicalSurvey = Prisma.LeadTechnicalSurveyModel
+/**
+ * Model LeadTender
+ * 
+ */
+export type LeadTender = Prisma.LeadTenderModel
+/**
  * Model Estimate
  * 
  */
@@ -162,6 +187,16 @@ export type QualityCheckItem = Prisma.QualityCheckItemModel
  */
 export type Dispatch = Prisma.DispatchModel
 /**
+ * Model DispatchLogistics
+ * 
+ */
+export type DispatchLogistics = Prisma.DispatchLogisticsModel
+/**
+ * Model DispatchTrackingEvent
+ * 
+ */
+export type DispatchTrackingEvent = Prisma.DispatchTrackingEventModel
+/**
  * Model ServiceContract
  * 
  */
@@ -171,6 +206,36 @@ export type ServiceContract = Prisma.ServiceContractModel
  * 
  */
 export type ServiceRequest = Prisma.ServiceRequestModel
+/**
+ * Model ServiceActivity
+ * 
+ */
+export type ServiceActivity = Prisma.ServiceActivityModel
+/**
+ * Model ServiceSiteVisit
+ * 
+ */
+export type ServiceSiteVisit = Prisma.ServiceSiteVisitModel
+/**
+ * Model ServiceFeedback
+ * 
+ */
+export type ServiceFeedback = Prisma.ServiceFeedbackModel
+/**
+ * Model ServiceSpareMovement
+ * 
+ */
+export type ServiceSpareMovement = Prisma.ServiceSpareMovementModel
+/**
+ * Model PreventiveMaintenancePlan
+ * 
+ */
+export type PreventiveMaintenancePlan = Prisma.PreventiveMaintenancePlanModel
+/**
+ * Model WarrantyCoverage
+ * 
+ */
+export type WarrantyCoverage = Prisma.WarrantyCoverageModel
 /**
  * Model EngineeringProject
  * 
@@ -197,10 +262,35 @@ export type EngineeringBom = Prisma.EngineeringBomModel
  */
 export type EngineeringBomItem = Prisma.EngineeringBomItemModel
 /**
+ * Model EngineeringDocument
+ * 
+ */
+export type EngineeringDocument = Prisma.EngineeringDocumentModel
+/**
+ * Model EngineeringChangeRequest
+ * 
+ */
+export type EngineeringChangeRequest = Prisma.EngineeringChangeRequestModel
+/**
  * Model Vendor
  * 
  */
 export type Vendor = Prisma.VendorModel
+/**
+ * Model ProcurementMaterialPlan
+ * 
+ */
+export type ProcurementMaterialPlan = Prisma.ProcurementMaterialPlanModel
+/**
+ * Model VendorPortalDocument
+ * 
+ */
+export type VendorPortalDocument = Prisma.VendorPortalDocumentModel
+/**
+ * Model VendorRatingEntry
+ * 
+ */
+export type VendorRatingEntry = Prisma.VendorRatingEntryModel
 /**
  * Model PurchaseRequisition
  * 
@@ -282,6 +372,21 @@ export type SalesInvoiceItem = Prisma.SalesInvoiceItemModel
  */
 export type SalesPayment = Prisma.SalesPaymentModel
 /**
+ * Model SalesDispatchNote
+ * 
+ */
+export type SalesDispatchNote = Prisma.SalesDispatchNoteModel
+/**
+ * Model SalesDispatchNoteItem
+ * 
+ */
+export type SalesDispatchNoteItem = Prisma.SalesDispatchNoteItemModel
+/**
+ * Model SalesEWayBill
+ * 
+ */
+export type SalesEWayBill = Prisma.SalesEWayBillModel
+/**
  * Model CompanySettings
  * 
  */
@@ -291,6 +396,11 @@ export type CompanySettings = Prisma.CompanySettingsModel
  * 
  */
 export type Project = Prisma.ProjectModel
+/**
+ * Model ProjectCostLine
+ * 
+ */
+export type ProjectCostLine = Prisma.ProjectCostLineModel
 /**
  * Model ProjectMilestone
  * 
@@ -361,6 +471,36 @@ export type CommissioningTest = Prisma.CommissioningTestModel
  * 
  */
 export type InstallationSpareMovement = Prisma.InstallationSpareMovementModel
+/**
+ * Model FinanceReceipt
+ * 
+ */
+export type FinanceReceipt = Prisma.FinanceReceiptModel
+/**
+ * Model FinancePaymentFollowUp
+ * 
+ */
+export type FinancePaymentFollowUp = Prisma.FinancePaymentFollowUpModel
+/**
+ * Model VendorPaymentApproval
+ * 
+ */
+export type VendorPaymentApproval = Prisma.VendorPaymentApprovalModel
+/**
+ * Model FinanceRevenueRecognition
+ * 
+ */
+export type FinanceRevenueRecognition = Prisma.FinanceRevenueRecognitionModel
+/**
+ * Model FinanceProductCost
+ * 
+ */
+export type FinanceProductCost = Prisma.FinanceProductCostModel
+/**
+ * Model TdsRecord
+ * 
+ */
+export type TdsRecord = Prisma.TdsRecordModel
 /**
  * Model FinanceAccount
  * 
@@ -446,3 +586,98 @@ export type IotSensorReading = Prisma.IotSensorReadingModel
  * 
  */
 export type IotAlert = Prisma.IotAlertModel
+/**
+ * Model InventoryLocation
+ * 
+ */
+export type InventoryLocation = Prisma.InventoryLocationModel
+/**
+ * Model InventoryStockUnit
+ * 
+ */
+export type InventoryStockUnit = Prisma.InventoryStockUnitModel
+/**
+ * Model InventoryReservation
+ * 
+ */
+export type InventoryReservation = Prisma.InventoryReservationModel
+/**
+ * Model InventoryMaterialReturn
+ * 
+ */
+export type InventoryMaterialReturn = Prisma.InventoryMaterialReturnModel
+/**
+ * Model InstallationSiteUpdate
+ * 
+ */
+export type InstallationSiteUpdate = Prisma.InstallationSiteUpdateModel
+/**
+ * Model InstallationReport
+ * 
+ */
+export type InstallationReport = Prisma.InstallationReportModel
+/**
+ * Model HrRecruitment
+ * 
+ */
+export type HrRecruitment = Prisma.HrRecruitmentModel
+/**
+ * Model HrRecruitmentApplication
+ * 
+ */
+export type HrRecruitmentApplication = Prisma.HrRecruitmentApplicationModel
+/**
+ * Model HrShift
+ * 
+ */
+export type HrShift = Prisma.HrShiftModel
+/**
+ * Model HrShiftAssignment
+ * 
+ */
+export type HrShiftAssignment = Prisma.HrShiftAssignmentModel
+/**
+ * Model HrOvertime
+ * 
+ */
+export type HrOvertime = Prisma.HrOvertimeModel
+/**
+ * Model HrBiometricLog
+ * 
+ */
+export type HrBiometricLog = Prisma.HrBiometricLogModel
+/**
+ * Model HrAppraisal
+ * 
+ */
+export type HrAppraisal = Prisma.HrAppraisalModel
+/**
+ * Model HrSkill
+ * 
+ */
+export type HrSkill = Prisma.HrSkillModel
+/**
+ * Model HrEmployeeSkill
+ * 
+ */
+export type HrEmployeeSkill = Prisma.HrEmployeeSkillModel
+/**
+ * Model HrCertification
+ * 
+ */
+export type HrCertification = Prisma.HrCertificationModel
+/**
+ * Model HrTraining
+ * 
+ */
+export type HrTraining = Prisma.HrTrainingModel
+/**
+ * Model HrTrainingParticipant
+ * 
+ */
+export type HrTrainingParticipant = Prisma.HrTrainingParticipantModel
+/**
+ * Model HrPayslip
+ * 
+ */
+export type HrPayslip = Prisma.HrPayslipModel
