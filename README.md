@@ -1,211 +1,642 @@
-Industrial ERP
+# 🏭 Industrial ERP System
 
-A full-stack Manufacturing + Engineering + Project + Service ERP
-designed for industrial equipment and boiler-manufacturing workflows.
-The system connects the business lifecycle from CRM and estimation
-through engineering, procurement, production, quality, dispatch,
-installation, service, finance, HR, IoT monitoring, and management
-reporting.
+A complete **Manufacturing + Engineering + Project + Service ERP System** designed for industrial manufacturing organizations, especially businesses involved in **boilers, heaters, pressure vessels, engineering projects, manufacturing, installation, commissioning, and after-sales service**.
 
-Live Application: http://3.223.87.25/
+The ERP connects the complete business lifecycle — from receiving a customer enquiry to estimation, quotation, engineering, procurement, manufacturing, quality inspection, dispatch, installation, service, finance, HR, IoT monitoring, and management reporting.
 
-Project Overview
+---
 
-Industrial ERP is designed for organizations whose operations are more
-complex than a simple trading ERP. It supports technical sales,
-engineered products, multi-stage manufacturing, project execution,
-installation/commissioning, and after-sales service in one integrated
-system.
+## 🌐 Live Project
 
-The application uses a React/TypeScript frontend, an Express/TypeScript
-API, PostgreSQL with Prisma ORM, and a production deployment using AWS
-EC2, PM2, and Nginx.
+### 🔗 [View Industrial ERP Live](http://3.223.87.25/)
 
-Core Functional Areas
+> The live deployment URL uses an AWS public IP and may change if the server/network configuration changes.
 
-Area                                Main Capabilities
+---
 
-Dashboard                           Operational overview and management KPIs
+## 📌 Project Overview
 
-CRM & Customers                     Customer master, customer information
-and commercial/technical data
+Traditional trading ERP systems mainly focus on purchasing, inventory, sales, and accounting.
 
-Leads & Enquiries                   Lead pipeline, technical qualification,
-activities, surveys, tender and
-competitor tracking
+This project is designed as a **Manufacturing + Engineering + Project + Service ERP**, where an industrial order passes through multiple technical and operational departments.
 
-Estimation & Costing                RFQ, engineering validation, BOM
-estimation,
-material/fabrication/testing/logistics
-costing and margin review
+The overall workflow is:
 
-Quotations                          Quotation preparation, release, approval
-and history
-
-Engineering                         Engineering projects, drawings,
-revisions, documents, approval workflow
-and engineering change requests
-
-BOM Management                      Multi-level engineering BOM, BOM items,
-revision/change support and cost roll-up
-
-Procurement                         Material planning, vendors, PR, RFQ,
-vendor quotations, comparison, PO, GRN
-and vendor ratings
-
-Sales & Invoicing                   Sales orders, order items, invoices,
-payments, dispatch notes and E-Way Bill
-records
-
-Projects & Milestones               Project lifecycle, milestones, tasks and
-project cost tracking
-
-Inventory & Stores                  Inventory items, locations, stock units,
-reservations, movements and material
-returns
-
-Production                          Production orders, work centers,
-machines, operations, job cards,
-consumption, traceability and downtime
-
-Shop Floor                          Digital production tracking, WIP,
-efficiency, delay and production
-visibility
-
-Quality                             Inspections, check items, ITP, IBR
-documents, welding records, NCR and CAPA
-
-Dispatch & Logistics                Dispatch planning, logistics, tracking
-events and delivery workflow
-
-Installation & Commissioning        Installation jobs, checklists,
-commissioning tests, site updates,
-reports and spare movements
-
-Service & AMC                       Service requests, site visits,
-activities, feedback, warranty, AMC and
-preventive maintenance
-
-Finance & Accounts                  Accounts, journals, receipts, vendor
-bills/payments, expenses, TDS, revenue
-recognition and product costing
-
-HR & Payroll                        Employees, attendance, leave, payroll,
-recruitment, shifts, overtime,
-appraisal, skills, certifications and
-training
-
-IoT & Management                    IoT devices, sensor readings, alerts and
-management dashboard reporting
-
-Settings                            Company and application settings
-
-Business Flow
-
-Lead / Enquiry
-      ↓
-Technical Qualification
-      ↓
+```text
+Customer Enquiry
+       ↓
+CRM / Lead Management
+       ↓
+Technical Requirement Analysis
+       ↓
 Estimation & Costing
-      ↓
+       ↓
 Quotation
-      ↓
+       ↓
 Customer Approval
+       ↓
+Sales Order
+       ↓
+Engineering & Design
+       ↓
+BOM Management
+       ↓
+Procurement & Inventory
+       ↓
+Production Planning
+       ↓
+Shop Floor Manufacturing
+       ↓
+Quality Inspection
+       ↓
+Project / Milestone Tracking
+       ↓
+Dispatch & Logistics
+       ↓
+Installation & Commissioning
+       ↓
+Service / AMC
+       ↓
+Finance & Management Reporting
+```
+
+---
+
+# 🚀 Main Features
+
+The ERP contains integrated modules covering the complete industrial business lifecycle.
+
+### 👥 CRM & Customer Management
+- Customer Master
+- Customer Details
+- Lead Management
+- Lead Pipeline
+- Lead Activities
+- Follow-up Tracking
+- Technical Requirement Capture
+- Technical Survey
+- Competitor Tracking
+- Tender Management
+- Win/Loss Tracking
+
+### 💰 Estimation & Costing
+- RFQ Management
+- Engineering Validation
+- BOM Estimation
+- Raw Material Costing
+- Labour Costing
+- Fabrication Costing
+- Testing Costing
+- Logistics Costing
+- Margin Review
+- Quotation Release
+
+### 📄 Quotation Management
+- Create Quotations
+- Quotation History
+- Customer Approval
+- Commercial Tracking
+- Estimate-to-Quotation Workflow
+
+### 🛒 Sales Management
+- Sales Orders
+- Order Items
+- Customer Approval
+- Invoicing
+- Payment Tracking
+- Dispatch Notes
+- E-Way Bill Records
+- Sales Order Lifecycle
+
+### 🛠️ Engineering Management
+- Engineering Projects
+- Engineering Documents
+- GA Drawings
+- Fabrication Drawings
+- P&ID
+- Electrical Drawings
+- Instrumentation Drawings
+- Drawing Revision Control
+- Engineering Change Requests
+- Approval Workflow
+- Engineering Release
+
+### 🧩 BOM Management
+- Multi-Level BOM
+- BOM Items
+- Assembly Structure
+- Material Structure
+- Revision Control
+- Engineering Change Support
+- Cost Roll-Up
+
+Example:
+
+```text
+Steam Boiler
+│
+├── Shell
+├── Furnace
+├── Tube Bundle
+├── Burner System
+├── Feed Water System
+├── Valves
+├── Pumps
+├── Chimney
+└── Control Panel
+```
+
+### 🚚 Procurement Management
+- Material Requirement Planning
+- Vendor Management
+- Purchase Requisition
+- RFQ
+- Vendor Quotations
+- Vendor Comparison
+- Purchase Orders
+- Goods Receipt
+- Vendor Ratings
+- Procurement Material Planning
+
+### 📦 Inventory & Stores
+- Inventory Items
+- Warehouse / Store Locations
+- Stock Units
+- Stock Movements
+- Material Reservations
+- Material Returns
+- Raw Material Tracking
+- WIP Inventory
+- Finished Goods Inventory
+
+### 🏗️ Production Planning
+- Production Orders
+- Work Centers
+- Machine Management
+- Production Operations
+- Material Allocation
+- Job Cards
+- Material Consumption
+- Production Traceability
+- Downtime Tracking
+
+### 🏭 Shop Floor Management
+- Digital Production Tracking
+- Operator Activity
+- WIP Monitoring
+- Production Progress
+- Production Delays
+- Efficiency Monitoring
+- Material Consumption
+- Production Completion Tracking
+
+### ✅ Quality Management
+- Incoming Quality Inspection
+- In-Process Inspection
+- Final Quality Inspection
+- Inspection Plans
+- Inspection Reports
+- Welding Records
+- IBR Documents
+- NCR
+- CAPA
+- Hydro Test Records
+- Quality Compliance Tracking
+
+### 📊 Project Management
+- Project Creation
+- Project Milestones
+- Project Tasks
+- Project Cost Tracking
+- Engineering Milestones
+- Procurement Milestones
+- Production Milestones
+- Dispatch Milestones
+- Installation Milestones
+- Commissioning Milestones
+
+### 🚛 Dispatch & Logistics
+- Dispatch Planning
+- Packing
+- Vehicle / Logistics Details
+- Dispatch Tracking
+- Tracking Events
+- Customer Delivery
+- Logistics Records
+
+### 🔧 Installation & Commissioning
+- Installation Jobs
+- Site Updates
+- Installation Checklists
+- Commissioning Tests
+- Site Progress
+- Commissioning Reports
+- Spare Movement
+- Customer Sign-Off
+
+Typical flow:
+
+```text
+Dispatch
+   ↓
+Site Arrival
+   ↓
+Installation
+   ↓
+Piping
+   ↓
+Electrical Connection
+   ↓
+Trial Run
+   ↓
+Commissioning
+   ↓
+Customer Sign-Off
+```
+
+### 🛎️ Service & AMC
+- Service Requests
+- Service Tickets
+- Engineer Assignment
+- Site Visits
+- Service Activities
+- Customer Feedback
+- Warranty Tracking
+- AMC Management
+- Preventive Maintenance
+- Spare Parts Movement
+
+### 💵 Finance & Accounts
+- Finance Accounts
+- Journal Entries
+- Receipts
+- Expenses
+- Vendor Bills
+- Vendor Payments
+- Payment Follow-Up
+- TDS Records
+- GST-related Expense Data
+- Revenue Recognition
+- Product Costing
+- Project / Product Financial Tracking
+
+### 👨‍💼 HR & Payroll
+- Employee Management
+- Recruitment
+- Attendance
+- Leave Management
+- Payroll
+- Payslips
+- Shift Management
+- Shift Assignment
+- Overtime
+- Employee Appraisal
+- Skill Matrix
+- Certifications
+- Training Records
+- Biometric Logs
+
+### 🌐 IoT Monitoring
+- IoT Device Registration
+- Sensor Readings
+- Device Monitoring
+- IoT Alerts
+- Industrial Equipment Monitoring
+
+The architecture can support monitoring information such as:
+
+- Pressure
+- Temperature
+- Fuel Consumption
+- Feed Water
+- Efficiency
+- Downtime
+
+### 📈 Management Dashboard
+Management-level visibility across areas such as:
+
+- Sales
+- Order Pipeline
+- Engineering
+- Procurement
+- Production
+- Projects
+- Finance
+- Service
+- Operational KPIs
+
+---
+
+# 🔄 Complete ERP Business Flow
+
+## 1️⃣ CRM
+
+A customer enquiry enters the system.
+
+```text
+Lead Received
       ↓
+Sales Assignment
+      ↓
+Requirement Analysis
+      ↓
+Technical Discussion
+      ↓
+Proposal / Offer
+      ↓
+Negotiation
+      ↓
+Order Confirmation
+```
+
+---
+
+## 2️⃣ Estimation
+
+The customer requirement is converted into a technical and commercial estimate.
+
+```text
+RFQ
+ ↓
+Engineering Validation
+ ↓
+BOM Estimation
+ ↓
+Raw Material Cost
+ ↓
+Labour / Fabrication Cost
+ ↓
+Testing Cost
+ ↓
+Transportation Cost
+ ↓
+Margin Review
+ ↓
+Quotation
+```
+
+---
+
+## 3️⃣ Sales
+
+After customer approval:
+
+```text
+Quotation
+    ↓
+Customer Approval
+    ↓
+Sales Order
+    ↓
+Production / Project Execution
+    ↓
+Dispatch
+    ↓
+Installation
+    ↓
+Final Commercial Processing
+```
+
+---
+
+## 4️⃣ Engineering
+
+Engineering prepares the technical documents required for manufacturing.
+
+```text
+Sales Order
+    ↓
+Engineering Release
+    ↓
+Design Creation
+    ↓
+GA Drawing
+    ↓
+Customer Approval
+    ↓
+Fabrication Drawing
+    ↓
+BOM Release
+    ↓
+Manufacturing Release
+```
+
+---
+
+## 5️⃣ Procurement
+
+Material requirements generated by engineering and production can move through:
+
+```text
+Material Requirement
+       ↓
+Purchase Requisition
+       ↓
+Approval
+       ↓
+RFQ
+       ↓
+Vendor Quotation
+       ↓
+Comparison
+       ↓
+Purchase Order
+       ↓
+Material Receipt
+       ↓
+Quality Check
+       ↓
+Store Entry
+```
+
+---
+
+## 6️⃣ Production
+
+```text
 Sales Order
       ↓
-Engineering + BOM
+Production Plan
       ↓
-Procurement / Inventory
+Work Order
       ↓
-Production / Shop Floor
+Material Allocation
       ↓
-Quality Inspection
+Fabrication
       ↓
-Project / Dispatch
+Assembly
       ↓
-Installation & Commissioning
+Testing
       ↓
-Service / AMC
+Painting
       ↓
-Finance + Management Reporting
+Packing
+      ↓
+Finished Goods
+```
 
-Technology Stack
+---
 
-Frontend
+## 7️⃣ Quality
 
-React 19
+Quality activities can occur throughout manufacturing.
 
-TypeScript
+```text
+Material Receipt
+      ↓
+Incoming Inspection
+      ↓
+In-Process Inspection
+      ↓
+Testing
+      ↓
+Final Inspection
+      ↓
+Approval
+```
 
-Vite
+---
 
-React Router
+## 8️⃣ Dispatch
 
-Lucide React
+```text
+Finished Goods Ready
+        ↓
+Packing
+        ↓
+Logistics Planning
+        ↓
+Loading
+        ↓
+Dispatch
+        ↓
+Customer Delivery
+```
 
-HTML/CSS
+---
 
-Backend
+## 9️⃣ Installation & Commissioning
 
-Node.js
+```text
+Equipment Arrival
+       ↓
+Site Preparation
+       ↓
+Installation
+       ↓
+Piping
+       ↓
+Electrical Work
+       ↓
+Trial Run
+       ↓
+Commissioning
+       ↓
+Customer Sign-Off
+```
 
-Express 5
+---
 
-TypeScript
+## 🔟 Service & AMC
 
-Prisma ORM 7
+After commissioning, the ERP continues supporting the equipment lifecycle.
 
-PostgreSQL
+```text
+Customer Complaint / AMC
+        ↓
+Service Request
+        ↓
+Engineer Assignment
+        ↓
+Site Visit
+        ↓
+Service Activity
+        ↓
+Resolution
+        ↓
+Customer Feedback
+        ↓
+Closure
+```
 
-Zod validation
+---
 
-JWT authentication
+# 🧰 Technology Stack
 
-bcryptjs
+## Frontend
 
-Helmet, CORS and Morgan
+- React 19
+- TypeScript
+- Vite
+- React Router
+- Lucide React
+- HTML
+- CSS
 
-Production Deployment
+## Backend
 
-AWS EC2
+- Node.js
+- Express.js
+- TypeScript
+- Prisma ORM
+- PostgreSQL
+- Zod
+- JWT Authentication
+- bcryptjs
+- Helmet
+- CORS
+- Morgan
 
-Ubuntu
+## Deployment
 
-Nginx
+- AWS EC2
+- Ubuntu Server
+- Nginx
+- PM2
+- PostgreSQL
+- Git
+- GitHub
 
-PM2
+---
 
-PostgreSQL
+# 🏗️ System Architecture
 
-Git/GitHub
+```text
+                    USER
+                      │
+                      ▼
+                Web Browser
+                      │
+                      ▼
+                   NGINX
+                 /        \
+                /          \
+               ▼            ▼
+        React Frontend    /api requests
+                             │
+                             ▼
+                    Node.js + Express
+                             │
+                             ▼
+                        Prisma ORM
+                             │
+                             ▼
+                        PostgreSQL
+```
 
-Architecture
+---
 
-Browser
-   │
-   ▼
-Nginx
-   ├── Frontend static build (React/Vite)
-   │
-   └── /api → Node.js / Express API
-                    │
-                    ▼
-                Prisma ORM
-                    │
-                    ▼
-                PostgreSQL
+# 📂 Project Structure
 
-The production frontend uses /api as its API base URL so requests are
-routed through Nginx to the backend service.
-
-Repository Structure
-
+```text
 industrial_erp/
+│
 ├── backend/
+│   │
 │   ├── prisma/
 │   │   ├── migrations/
 │   │   └── schema.prisma
+│   │
 │   ├── src/
 │   │   ├── config/
 │   │   ├── controllers/
@@ -214,142 +645,454 @@ industrial_erp/
 │   │   ├── routes/
 │   │   ├── utils/
 │   │   └── server.ts
+│   │
 │   ├── package.json
 │   └── prisma7.config.ts
 │
 ├── frontend/
+│   │
 │   ├── public/
+│   │
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
 │   │   ├── services/
-│   │   └── types/
+│   │   ├── types/
+│   │   └── App.tsx
+│   │
 │   └── package.json
 │
 └── README.md
+```
 
-Local Setup
+---
 
-Prerequisites
+# ⚙️ Installation & Local Setup
 
-Install: - Node.js - npm - PostgreSQL - Git
+## Prerequisites
 
-1. Clone the repository
+Make sure the following are installed:
 
+```text
+Node.js
+npm
+PostgreSQL
+Git
+```
+
+---
+
+## 1. Clone Repository
+
+```bash
 git clone https://github.com/dimpalyadav3108/industrial_erp.git
+```
+
+Enter the project:
+
+```bash
 cd industrial_erp
+```
+
+Checkout the release branch:
+
+```bash
 git checkout release/final-erp
+```
 
-2. Backend setup
+---
 
+# 🔧 Backend Setup
+
+Enter backend:
+
+```bash
 cd backend
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
 
-Create backend/.env using your own environment values. Do not
-commit credentials.
+Create a `.env` file.
 
-Typical configuration includes:
+Example:
 
+```env
 DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
-JWT_SECRET=replace-with-a-secure-secret
+JWT_SECRET=YOUR_SECURE_SECRET
 CLIENT_URL=http://localhost:5173
 PORT=5000
+```
 
-Generate Prisma Client and apply the appropriate database migrations:
+> ⚠️ Never upload your real `.env`, database password, or JWT secret to GitHub.
 
+Generate Prisma Client:
+
+```bash
 npx prisma generate --config prisma7.config.ts
+```
+
+Apply existing migrations:
+
+```bash
 npx prisma migrate deploy --config prisma7.config.ts
+```
 
-Start the backend:
+Start the development backend:
 
+```bash
 npm run dev
+```
 
-3. Frontend setup
+---
 
-Open another terminal:
+# 💻 Frontend Setup
 
+Open another terminal and enter:
+
+```bash
 cd frontend
+```
+
+Install packages:
+
+```bash
 npm install
+```
 
-For local development, create a frontend environment file if required:
+For local development, configure the API URL as required:
 
+```env
 VITE_API_URL=http://localhost:5000/api
+```
 
-Start the frontend:
+Start frontend:
 
+```bash
 npm run dev
+```
 
-Production Build
+---
 
-Frontend:
+# 🌐 Production Configuration
 
+The production frontend uses:
+
+```env
+VITE_API_URL=/api
+```
+
+This means frontend API requests are sent through Nginx.
+
+Example:
+
+```text
+Browser
+   ↓
+http://SERVER/api/...
+   ↓
+Nginx
+   ↓
+127.0.0.1:3000
+   ↓
+Express Backend
+```
+
+---
+
+# 🏭 Production Build
+
+## Frontend
+
+```bash
 cd frontend
+
 npm ci
+
 printf 'VITE_API_URL=/api\n' > .env.production
+
 npm run build
+```
 
-Backend:
+The production files are generated inside:
 
+```text
+frontend/dist/
+```
+
+---
+
+## Backend
+
+```bash
 cd backend
+
 npm ci
+
 npx prisma generate --config prisma7.config.ts
+
 npx tsc --noEmit
+
 npm start
+```
 
-For production database changes, use committed Prisma migrations and
-prisma migrate deploy. Avoid destructive reset commands on production
-data.
+---
 
-Authentication & Security
+# 🗄️ Database
 
-The system includes protected application routes and token-based
-authentication. The backend also uses security middleware including
-Helmet and CORS. Environment files and credentials should remain outside
-version control.
+The ERP uses:
 
-Health Check
+```text
+PostgreSQL
++
+Prisma ORM
+```
 
-The backend exposes:
+Prisma migrations are used to manage database schema changes.
 
+Production migrations should be applied using:
+
+```bash
+npx prisma migrate deploy --config prisma7.config.ts
+```
+
+> ⚠️ Do not use destructive database reset commands on a production database.
+
+---
+
+# 🔐 Authentication & Security
+
+The ERP includes:
+
+- User Authentication
+- JWT-based authorization
+- Protected API routes
+- Password hashing
+- CORS configuration
+- Helmet security headers
+- Environment-based configuration
+
+Sensitive information such as:
+
+```text
+Database Password
+JWT Secret
+Production Credentials
+Environment Variables
+```
+
+should **never be committed to GitHub**.
+
+---
+
+# ❤️ API Health Check
+
+The backend provides a health endpoint:
+
+```text
 GET /api/health
+```
 
-It verifies that the API and database connection are available.
+It can be used to verify that the API and database are available.
 
-Current Deployment
+---
 
-Application: http://3.223.87.25/
+# ☁️ AWS Deployment
 
-Release branch: release/final-erp
+The production architecture uses:
 
-Production process manager: PM2
+```text
+AWS EC2
+   │
+   ├── Ubuntu
+   │
+   ├── Nginx
+   │      │
+   │      ├── React Frontend
+   │      │
+   │      └── /api Proxy
+   │
+   ├── PM2
+   │      │
+   │      └── Node.js / Express Backend
+   │
+   └── PostgreSQL
+```
 
-Reverse proxy / static server: Nginx
+PM2 keeps the backend running continuously while Nginx serves the frontend and forwards API requests.
 
-Database: PostgreSQL
+---
 
-The public IP is deployment-specific and can change if the server
-configuration changes.
+# 🌐 Current Deployment
 
-Intended Use
+**Live ERP**
 
-This project demonstrates an integrated industrial ERP workflow suitable
-for manufacturing and engineering operations, especially businesses
-managing engineered products, production, projects,
-installation/commissioning, and after-sales service.
+http://3.223.87.25/
 
-Important Notes
+**GitHub Repository**
 
-Never commit .env files, database passwords, JWT secrets, or
-production credentials.
+https://github.com/dimpalyadav3108/industrial_erp
 
-Back up the production database before applying new migrations.
+**Production Branch**
 
-Test backend TypeScript, Prisma generation, frontend TypeScript, and
-the production build before deployment.
+```text
+release/final-erp
+```
 
-Keep production API configuration environment-specific.
+---
 
-License
+# 🎯 Project Objective
 
-No open-source license is declared in this project. Add a license only
-if you intend to permit reuse or redistrib
+The objective of this project is to develop an integrated ERP platform capable of managing the complete lifecycle of an industrial manufacturing organization.
+
+The system connects:
+
+```text
+Sales
++
+Engineering
++
+Procurement
++
+Inventory
++
+Production
++
+Quality
++
+Projects
++
+Dispatch
++
+Installation
++
+Service
++
+Finance
++
+HR
++
+Management
+```
+
+within one centralized application.
+
+---
+
+# 💡 Key Advantages
+
+- Centralized industrial business data
+- End-to-end order lifecycle
+- Engineering and manufacturing integration
+- Multi-level BOM management
+- Production visibility
+- Procurement and inventory coordination
+- Quality control tracking
+- Project milestone monitoring
+- Installation and commissioning management
+- After-sales service and AMC support
+- Finance integration
+- HR and payroll management
+- IoT-ready architecture
+- Management-level reporting
+- Cloud deployment on AWS
+
+---
+
+# 🔮 Future Enhancements
+
+The architecture can be further expanded with features such as:
+
+- Boiler Performance Calculator
+- Steam Consumption Calculator
+- Fuel Saving Analyzer
+- Thermal Efficiency Analyzer
+- Pressure Vessel Traceability
+- Weld Joint Traceability
+- Tube Traceability
+- Advanced IBR Compliance Tracking
+- Mobile Site Commissioning
+- AMC Mobile Application
+- Advanced IoT Boiler Monitoring
+- Spare Parts Catalog
+- Vendor Portal
+- Export Documentation
+- Advanced CAPA & NCR
+- Engineering Revision Analytics
+- Advanced Project Costing
+- Manufacturing KPI Analytics
+- Management BI Dashboard
+- Customer Service Portal
+
+---
+
+# 📸 Screenshots
+
+Add screenshots of the ERP here to showcase the application.
+
+Example:
+
+```markdown
+![ERP Dashboard](screenshots/dashboard.png)
+![CRM Module](screenshots/crm.png)
+![Engineering Module](screenshots/engineering.png)
+![Production Module](screenshots/production.png)
+```
+
+---
+
+# 👩‍💻 Developer
+
+**Dimpal Yadav**
+
+B.Tech Information Technology  
+Indus University
+
+Areas of Interest:
+
+- Full-Stack Development
+- Data Science
+- Machine Learning
+- Artificial Intelligence
+- Backend Development
+- Industrial Software Systems
+
+---
+
+# 📌 Important Note
+
+This ERP was developed as an industrial workflow-oriented system rather than a basic trading ERP.
+
+It focuses on connecting the complete lifecycle:
+
+**Customer Requirement → Engineering → Manufacturing → Project Execution → Installation → Service**
+
+into a single integrated platform.
+
+---
+
+# ⭐ Project Status
+
+```text
+✅ Backend API
+✅ PostgreSQL Database
+✅ Prisma ORM
+✅ Frontend
+✅ Authentication
+✅ Industrial ERP Modules
+✅ Production Database Migrations
+✅ AWS Deployment
+✅ Nginx Reverse Proxy
+✅ PM2 Process Management
+```
+
+**Status: Deployed and Operational**
+
+---
+
+## ⭐ Support
+
+If you find this project useful, consider giving the repository a **Star ⭐** on GitHub.
